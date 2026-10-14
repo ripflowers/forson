@@ -1,0 +1,12 @@
+.env
+.env.*
+!.env.example
+.venv/
+__pycache__/
+.pytest_cache/
+node_modules/
+web/dist/
+data/runtime/
+data/sample-images/
+*.log
+.DS_Store
