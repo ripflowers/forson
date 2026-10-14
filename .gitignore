@@ -8,5 +8,7 @@ node_modules/
 web/dist/
 data/runtime/
 data/sample-images/
+data/imports/
 *.log
 .DS_Store
+*.tsbuildinfo

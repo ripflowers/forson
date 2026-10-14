@@ -18,6 +18,8 @@ TeachingPackage: `{id,questionId,questionRevision,lessonVersion,status,reviewLev
 LessonPart: `{partId,label,goal,known:string[],prerequisites:string[],method,steps:[{id,title,explanation,reason,formulaLatex}],answer:{kind,value,display},verification,misconceptions:[{mistake,correction}],summary,scene:null|{kind:'number-line'|'triangle-count',params:object}}`。
 steps不能为空或仅答案，goal/known/method/理由/检验/易错/收束必须齐。answer.kind/value与独立金标准对应，value可为字符串、数值、数组或JSON对象；display只负责显示。scene只接受已实现的两种数学组件，不执行模型代码。图片图注缺失不被答案补齐。
 
+number-line的params固定为`{left,right,targetSum?,targetMinimum?,parameterName?:'a',parameterValue?}`；参数a探索时由受控函数计算left=-a、right=3，老师示范状态独立。triangle-count固定为`{lower,upper,previewRows?}`；Q26为22/24，小点阵2至8层，原题增量23+24=47。
+
 LearningEvent: `{id,questionId,questionRevision,lessonVersion,partId,kind,authorKind,text,payload,createdAt}`。authorKind为learner/system-observation/system；kind为note/observation/lesson-part-viewed/question-finished/help-used/answer-exposed。
 Session: `{questionId,questionRevision,lessonVersion,sessionRevision,partId,stepIndex,mode,sceneState,reflection,returnTarget,updatedAt}`。mode为teacher/explore/exercise；returnTarget保存原模式、步骤、小问、参数和草稿。
 
@@ -30,14 +32,16 @@ Session: `{questionId,questionRevision,lessonVersion,sessionRevision,partId,step
 | POST /api/papers | multipart files[]与title；最多10图/20页PDF/100MB | `{paper:Paper,job:Job}`，已保存原页并开始真实识别 |
 | POST /api/sample-import | 无 | 同上；真实读取两张原照，不装载金标准题面 |
 | GET /api/papers/{id} | 无 | `{paper,questions:Question[],coverage}` |
-| PATCH /api/questions/{id} | `{expectedRevision,stem,options,figureDescription,missingFields,parts,confirm:boolean}` | `{question}`；不符版本409；缺项不能confirmed；修题停止旧结果发布 |
+| PATCH /api/questions/{id} | `{expectedRevision,stem,options,figureDescription,missingFields,parts,sourceRegions?,confirm:boolean}` | `{question}`；不符版本409；缺项不能confirmed；修题停止旧结果发布 |
 | POST /api/papers/{id}/confirm-all | 无 | `{questions,coverage}`；只确认无missingFields的题 |
 | POST /api/questions/{id}/lesson | `{expectedRevision}` | `{job}`；未确认409，缺项422；当前就绪包复用 |
-| POST /api/papers/{id}/lessons | 无 | `{job}`；只处理当前已确认完整题；两并发上限 |
+| POST /api/papers/{id}/lessons | 无 | `{job}`；只处理当前已确认完整题；整卷每批6题；全局AI请求8并发上限，任务调度最多2个job |
 | GET /api/questions/{id}/lesson | 无 | `{lesson:TeachingPackage|null}`；过期不得当ready |
-| POST /api/questions/{id}/ask | `{questionRevision,lessonVersion,partId,stepId,mode,snapshot,text}` | `{id,questionId,questionRevision,lessonVersion,partId,text,answer,status,evidence,createdAt}`，status为checked/needs_review；答疑绑定提交快照，持久保存 |
+| POST /api/questions/{id}/ask | `{questionRevision,lessonVersion,partId,stepId,mode,snapshot,text}`；snapshot顶层为当前小问的x/a/rows，并保留sceneState、stepIndex与reflection | `{id,questionId,questionRevision,lessonVersion,partId,text,answer,status,evidence,createdAt}`，status为checked/needs_review；答疑绑定提交快照，持久保存 |
+| GET /api/questions/{id}/asks | 无 | `{items}`，本题已保存追问，保留旧题面版本标记 |
 | GET /api/jobs/{id} | 无 | `{job}` |
 | POST /api/jobs/{id}/cancel | 无 | `{job}`；取消请求与完成分开 |
+| POST /api/jobs/{id}/retry | 无；仅failed/cancelled可重试 | `{job}`；创建新任务与lease，不能发布旧调用结果 |
 | GET /api/records | 可选paperId | `{items:LearningEvent[]}` |
 | POST /api/events | LearningEvent除id/createdAt | `{event}`；原话与观察分别记录 |
 | GET /api/sessions/{questionId} | 无 | `{session:Session|null}` |
@@ -45,3 +49,7 @@ Session: `{questionId,questionRevision,lessonVersion,sessionRevision,partId,step
 | GET /api/papers/{id}/coverage | 无 | `{coverage,questions:[{number,questionId,revision,parts:[{partId,status,issues}]}]}` |
 
 HTTP错误统一`{detail:string}`。前端轮询任务后重新读取当前题面和教案，不能把老响应装回新版本。API密钥不得出现在前端、返回或日志。
+
+无密钥仍可保存原图，返回实际paper及明确失败的配置任务，题面为空；页面标原图已保存/尚未识别。配好密钥后重试才调用AI，不能用金标准填补空题面。
+
+后台Pro采用高推理；追问及答疑复核采用低推理并独立审核。stepIndex的0/1分别为读题与选方法，2起映射当前真实步骤，最后一页为检验收束；stepId须与这个位置相符，前两页/收束页为null。无效位置或不符的步骤返回422，模型上下文记录当前教学页及真实步骤，不能以旧步骤解释新页。
