@@ -1,20 +1,31 @@
 import os
+import shutil
+from dataclasses import replace
 import pytest
 from fastapi.testclient import TestClient
 
-from zhijian.config import load_environment
+from zhijian.config import Settings, load_environment
 
 
 load_environment()
 
 
 @pytest.fixture
-def client(monkeypatch):
+def client(monkeypatch, tmp_path):
     url = os.getenv("TEST_DATABASE_URL")
     if not url:
         pytest.skip("isolated TEST_DATABASE_URL unavailable")
     monkeypatch.setenv("DATABASE_URL", url)
     monkeypatch.setenv("DEEPSEEK_API_KEY", "")
+    settings = Settings.from_environment()
+    sample_dir = tmp_path / "sample-images"
+    sample_dir.mkdir()
+    for index in (1, 2):
+        source = settings.data_dir / "sample-images" / f"page-{index}.jpg"
+        if source.exists():
+            shutil.copy2(source, sample_dir / source.name)
+    isolated = replace(settings, data_dir=tmp_path)
+    monkeypatch.setattr(Settings, "from_environment", classmethod(lambda cls: isolated))
     from zhijian.app import create_app
     with TestClient(create_app(start_worker=False)) as test_client:
         yield test_client

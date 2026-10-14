@@ -10,10 +10,15 @@
   },
   "dependencies": {
     "@fontsource-variable/noto-sans-sc": "^5.3.1",
+    "@remotion/bundler": "4.0.534",
+    "@remotion/cli": "4.0.534",
+    "@remotion/player": "4.0.534",
+    "@remotion/renderer": "4.0.534",
     "katex": "^0.19.0",
     "lucide-react": "^0.468.0",
     "react": "^19.2.0",
-    "react-dom": "^19.2.0"
+    "react-dom": "^19.2.0",
+    "remotion": "4.0.534"
   },
   "devDependencies": {
     "@types/katex": "^0.16.7",

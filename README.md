@@ -38,12 +38,23 @@ Docker Compose V2可用时，新机器可以`docker compose up -d db`建立本�
 
 这条命令只读取真实服务数据并生成逐小问差异报告，不填入参考答案、不生成课程、不改题。运行证据保存在`data/runtime/evidence`，不入Git。金标准是独立验收材料，真实OCR、生成内容、人工校对及学习效果分别报告。
 
+## 连续讲授与视频
+
+进入老师课堂后，首次自动沿同一块板书讲授；可以暂停、拖动整课时间线、回看步骤、调速或进入探索。当前数学动画覆盖三角形数与绝对值距离，其他题采用条件和累计推理板书。输入笔记/疑问、页面隐藏及课程结束会暂停；读过记录仍需明确操作。
+
+课堂由Remotion Player驱动，网页与本机MP4导出共用同一个Lesson composition和数学计算。在“把这节课带走”选择正常讲解/紧凑回顾，导出当前小问完整教案。下载为720p、30fps的图文动画视频，暂不含配音；使用已有核验课程，不再次调用AI生成解答。
+
+开发预览在web目录执行 `npx remotion studio src/remotion/entry.tsx --no-open`。真实教案props只保存在私有运行目录，按需传 `--props ../data/runtime/evidence/remotion-q26-props.json`。Studio是开发工具，用完停止；家庭学习页面仍为5178。
+
 ## 设计与接口
 
 - [实施计划](docs/superpowers/plans/2026-10-14-sample-core.md)
 - [API契约](docs/api-contract.md)
 - [原图与39小问基准](docs/sample-ground-truth.md)
 - [DeepSeek官方接入依据](docs/deepseek-integration.md)
-- [真实运行验收记录](docs/core-runtime-report.md)
+- [原核心运行验收记录](docs/core-runtime-report.md)
+- [连续课堂与Remotion设计](docs/guided-classroom-design.md)
+- [本轮课堂及视频验收](docs/guided-classroom-acceptance.md)
+- [第19题讲解更正记录](docs/q19-teaching-correction-20261014.md)
 
 最终设计源位于`../deliverables/math-teacher-design-20261013/12-final-system-design.md`。数据不默认公开；原照只供当前家庭私用。

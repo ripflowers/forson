@@ -8,13 +8,14 @@ from fastapi import FastAPI, File, Form, HTTPException, Request, UploadFile
 from fastapi.exceptions import RequestValidationError
 from fastapi.responses import FileResponse, JSONResponse
 
-from .config import Settings
+from .config import ROOT, Settings
 from .jobs import DATA_SYSTEM, JobRunner
 from .media import MAX_BYTES, save_uploads
 from .models import AskRequest, EventRequest, LessonRequest, PatchQuestion, SessionRequest
 from .provider import AIError, AIUnavailable, Provider
 from .rules import check_question
 from .store import Conflict, Invalid, Missing, Store, uid
+from .videos import VideoRequest, VideoRunner, VideoStore
 
 
 def public_paper(paper):
@@ -49,13 +50,23 @@ def scene_facts(part, snapshot):
         facts.update(lower=lower, upper=upper, addedRows=list(range(lower + 1, upper + 1)),
                      difference=(upper * (upper + 1) - lower * (lower + 1)) // 2)
         rows = state.get("rows", params.get("previewRows", 6))
-        if type(rows) is not int or not 2 <= rows <= 8:
-            raise Invalid("小点阵现场层数须为2至8的整数")
+        growth = snapshot.get("teacherAnimation") is True and snapshot.get("teacherPhase") == "growth"
+        original = snapshot.get("teacherAnimation") is True and snapshot.get("teacherPhase") == "original"
+        if type(rows) is not int or (rows != upper if original else not (1 if growth else 2) <= rows <= 8):
+            raise Invalid("原题点阵行数须与题面一致；成长须为1至8行，探索须为2至8行")
         facts["originalComparison"] = {"label": "原题比较，省略共同部分", "lower": lower, "upper": upper,
                                        "addedRows": list(range(lower + 1, upper + 1)), "difference": facts["difference"]}
-        facts["previewComparison"] = {"label": "当前可见小点阵示例，和原题层数分开", "rows": rows, "previousRows": rows - 2,
-                                      "totalPoints": rows * (rows + 1) // 2, "sharedPoints": (rows - 2) * (rows - 1) // 2,
-                                      "addedRows": [rows - 1, rows], "difference": rows * 2 - 1}
+        if original:
+            facts["visibleOriginal"] = {"rows": upper, "visibleRowCounts": list(range(lower + 1, upper + 1)),
+                                        "visiblePoints": facts["difference"], "commonPoints": lower * (lower + 1) // 2,
+                                        "totalPoints": upper * (upper + 1) // 2}
+        elif growth:
+            facts["growth"] = {"label": "教师当前逐行成长的点阵，尚未进行相减比较", "rows": rows,
+                               "totalPoints": rows * (rows + 1) // 2, "rowCounts": list(range(1, rows + 1))}
+        else:
+            facts["previewComparison"] = {"label": "当前可见小点阵示例，和原题层数分开", "rows": rows, "previousRows": rows - 2,
+                                          "totalPoints": rows * (rows + 1) // 2, "sharedPoints": (rows - 2) * (rows - 1) // 2,
+                                          "addedRows": [rows - 1, rows], "difference": rows * 2 - 1}
     return facts
 
 
@@ -85,6 +96,8 @@ def create_app(*, start_worker=True):
     store = Store(settings.database_url)
     provider = Provider(settings)
     runner = JobRunner(store, provider, settings)
+    video_store = VideoStore(settings.data_dir)
+    video_runner = VideoRunner(video_store, ROOT)
 
     @asynccontextmanager
     async def lifespan(app):
@@ -96,7 +109,12 @@ def create_app(*, start_worker=True):
         except psycopg.Error:
             # Health remains inspectable without exposing connection strings or passwords.
             pass
+        if start_worker:
+            video_runner.start()
+        else:
+            video_store.initialize()
         yield
+        await video_runner.stop()
         await runner.stop()
         if task:
             task.cancel()
@@ -104,6 +122,8 @@ def create_app(*, start_worker=True):
 
     app = FastAPI(title="知间真实核心流程", lifespan=lifespan)
     app.state.store = store
+    app.state.video_store = video_store
+    app.state.video_runner = video_runner
 
     @app.exception_handler(Conflict)
     async def conflict_handler(request, exc):
@@ -223,6 +243,21 @@ def create_app(*, start_worker=True):
     @app.get("/api/questions/{question_id}/lesson")
     def lesson(question_id: str):
         return {"lesson": store.lesson(question_id)}
+
+    @app.post("/api/questions/{question_id}/videos")
+    def export_video(question_id: str, request: VideoRequest):
+        return {"video": video_store.create(store.question(question_id), store.lesson(question_id), request)}
+
+    @app.get("/api/videos/{video_id}")
+    def video(video_id: str):
+        return {"video": video_store.get(video_id)}
+
+    @app.get("/api/videos/{video_id}/file")
+    def video_file(video_id: str):
+        exported = video_store.get(video_id)
+        filename = f"lesson-r{exported['questionRevision']}-v{exported['lessonVersion']}.mp4"
+        return FileResponse(video_store.file(video_id), media_type="video/mp4", filename=filename,
+                            headers={"Cache-Control": "private, no-store"})
 
     @app.get("/api/jobs/{job_id}")
     def job(job_id: str):

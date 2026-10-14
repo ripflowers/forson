@@ -6,7 +6,8 @@ const bareCommands=new Set(['frac','sqrt','cdot','times','div','pm','mp','le','l
 function supportedBareMath(value:string){
   if(value.length>2048||/\{\s*\}/.test(value)||value.includes('\\\\')||/^[=_*/^]|[=+\-*/^_]$/.test(value))return false;
   const commands=[...value.matchAll(/\\([A-Za-z]+)/g)];
-  if(!commands.length||commands.some(command=>!bareCommands.has(command[1])))return false;
+  if(commands.some(command=>!bareCommands.has(command[1])))return false;
+  if(!commands.length&&(!/^[A-Za-z0-9{}()[\]|_^+\-*=, \t]+$/.test(value)||!/[A-Za-z][_^]/.test(value)||/[_^][+\-]/.test(value)))return false;
   const plain=value.replace(/\\[A-Za-z]+/g,'');
   if(plain.includes('\\')||[...plain.matchAll(/[A-Za-z]+/g)].some(word=>word[0].length>1))return false;
   const brackets:string[]=[];
@@ -26,7 +27,7 @@ function splitBareText(text:string):Segment[]{
     if(!supportedBareMath(formula))continue;
     const start=match.index!+leading,end=start+formula.length;
     if(start>cursor)segments.push({kind:'text',text:text.slice(cursor,start)});
-    segments.push({kind:'math',text:formula,display:false});cursor=end;
+    segments.push({kind:'math',text:formula.replace(/([_^])(\d{2,})/g,'$1{$2}'),display:false});cursor=end;
   }
   if(cursor<text.length)segments.push({kind:'text',text:text.slice(cursor)});
   return segments.length?segments:[{kind:'text',text}];
@@ -46,8 +47,15 @@ export function splitMathText(text:string):Segment[]{
     if(!open){index++;continue;}
     let end=text.indexOf(close,index+open.length);
     while(end>=0&&(escaped(end)||(close==='$'&&(text[end-1]==='$'||text[end+1]==='$'||/\d/.test(text[end+1]??'')))))end=text.indexOf(close,end+close.length);
-    if(end<0)break;
+    // An unfinished marker belongs to the source text; later formulas still render.
+    if(end<0){index+=open.length;continue;}
     const formula=text.slice(index+open.length,end);
+    if(close==='$'){
+      const plain=formula.replace(/\\(?:text|mbox)\{[^{}]*\}/g,'').replace(/\\[A-Za-z]+/g,'');
+      const looksLikePrice=/^\s*\d/.test(formula)&&/[\u3400-\u9fff]|(?:^|[ \t])[A-Za-z]{2,}(?:[ \t]|$)/.test(plain);
+      const extraDollar=[...formula.matchAll(/\$/g)].some(match=>!escaped(index+open.length+match.index!));
+      if(extraDollar||/[\r\n]/.test(formula)||looksLikePrice){index+=open.length;continue;}
+    }
     if(!formula.trim()){index=end+close.length;continue;}
     if(index>cursor)segments.push({kind:'text',text:text.slice(cursor,index)});
     segments.push({kind:'math',text:formula,display});
