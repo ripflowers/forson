@@ -1,0 +1,123 @@
+{
+  "schemaVersion": 1,
+  "title": "三角形数 · 看见共同与新增",
+  "subject": "math",
+  "author": "Codex",
+  "target": {
+    "questionId": "80abf784-834c-4ef1-89dc-b3309b4ec9cd",
+    "questionRevision": 4,
+    "lessonVersion": 3,
+    "partId": "main",
+    "lessonHash": "55a4dd7c16f97abd6ac3e4933c879af309c18b867dfc377ecaf4eaa33d3b217e"
+  },
+  "concepts": [
+    {
+      "id": "row-and-total",
+      "label": "行号与总数",
+      "explanation": "第n个三角形有n行，第r行有r个点。序号、行数和总点数表示不同的量。"
+    },
+    {
+      "id": "sum-model",
+      "label": "把图写成和式",
+      "explanation": "逐行数点：第1行贡献1，第2行贡献2，直到第n行；合在一起就是1+2+…+n。"
+    },
+    {
+      "id": "common-part",
+      "label": "共同部分抵消",
+      "explanation": "比较两个总数时，一一对应的相同部分在相减中不计入差；原来的石子仍然存在。"
+    },
+    {
+      "id": "new-rows",
+      "label": "差是新增的点数",
+      "explanation": "从22行长到24行增加的是两行，两行各有23和24个点，必须把两行都计入。"
+    },
+    {
+      "id": "independent-check",
+      "label": "换方法独立验算",
+      "explanation": "分别代入求和公式算两个总数，再相减；验算不把已经得到的差当作计算依据。"
+    },
+    {
+      "id": "transfer-route",
+      "label": "可迁移的解题路线",
+      "explanation": "观察结构、表示总数、找共同部分、计算新增部分，再换方法检查，适用于有共同结构的求差问题。"
+    }
+  ],
+  "stages": [
+    {
+      "stageIndex": 0,
+      "template": "triangle-grow",
+      "title": "从一行长成一个三角形",
+      "conceptIds": [
+        "row-and-total"
+      ],
+      "focus": "看新增的一行，和总点数怎样一起变化。",
+      "explanation": "旧行保留，新行依次进入。当前第几行、这一行多少点、合计多少点分别标出，先看懂数列从哪里来。"
+    },
+    {
+      "stageIndex": 1,
+      "template": "triangle-compare",
+      "title": "用看得清的小例找共同",
+      "conceptIds": [
+        "common-part",
+        "row-and-total"
+      ],
+      "focus": "比较第6个与第4个：哪些点能一一配对？",
+      "explanation": "这是小例。两份点阵的前4行相同；相减时它们配对抵消，剩下第5行和第6行，不能把小例的结果带入原题。"
+    },
+    {
+      "stageIndex": 2,
+      "template": "triangle-sum",
+      "title": "把每一行连接到和式",
+      "conceptIds": [
+        "sum-model"
+      ],
+      "focus": "一行对应一个加数：第r行贡献r个点。",
+      "explanation": "以第6个三角形为示意，把1到6行的标签连接到求和项。把图的结构写进算式，就能处理画不下的大三角形。"
+    },
+    {
+      "stageIndex": 3,
+      "template": "triangle-expand",
+      "title": "把原题拆成共同块和新增行",
+      "conceptIds": [
+        "sum-model",
+        "common-part",
+        "new-rows"
+      ],
+      "focus": "先找两份相同的前22行，再看第23、24行。",
+      "explanation": "两块相同的省略区域各代表22行253个点，不是22个点。原题新增的两行完整画出，分别对应和式中的23和24。"
+    },
+    {
+      "stageIndex": 4,
+      "template": "triangle-cancel",
+      "title": "相同部分抵消，留下新增两行",
+      "conceptIds": [
+        "common-part",
+        "new-rows"
+      ],
+      "focus": "行数只多2行，点数应该怎样算？",
+      "explanation": "两份共同块同时变淡并保留轮廓，表示相减时不计入差。把留下的两行与加数连接：行数的差和点数的差要带不同单位。"
+    },
+    {
+      "stageIndex": 5,
+      "template": "triangle-verify",
+      "title": "从两个总数独立复算",
+      "conceptIds": [
+        "independent-check"
+      ],
+      "focus": "先各自算出两个总数，最后才相减。",
+      "explanation": "按顺序展开求和公式，分别代入24和22。两个总数算完后再显示差式，与前面的结构法比较，检查是否漏掉新增的一行。"
+    },
+    {
+      "stageIndex": 6,
+      "template": "triangle-recap",
+      "title": "把解题路线带走",
+      "conceptIds": [
+        "transfer-route",
+        "row-and-total",
+        "new-rows"
+      ],
+      "focus": "回看方法：观察 → 表示 → 找共同 → 算新增 → 检验。",
+      "explanation": "以后遇到两个有共同结构的大数求差，先找共同部分。说清在数行还是数点，比只记住这道题的答案更有用。"
+    }
+  ]
+}

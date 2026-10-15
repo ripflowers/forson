@@ -3,19 +3,23 @@ import {interpolate,spring} from 'remotion';
 import {distanceState,fmt,parseScene,triangleState} from '../domain';
 import type {NumberScene,TriangleScene} from '../domain';
 import type {LessonPart} from '../types';
+import type {MotionPack} from '../motion-resources';
 import {Formula} from './Formula';
+import {TriangleMotionLesson,type MotionView} from './TriangleMotionLesson';
 import './teaching-visual.css';
 
-type Props={part:LessonPart;stepIndex:number;localFrame?:number;fps?:number;pace?:number;reducedMotion:boolean};
+type Props={part:LessonPart;stepIndex:number;localFrame?:number;fps?:number;pace?:number;reducedMotion:boolean;motionPack?:MotionPack|null;motionView?:MotionView};
 type Timing={localFrame:number;fps:number;pace:number;reducedMotion:boolean};
 const clamped={extrapolateLeft:'clamp',extrapolateRight:'clamp'} as const;
 const seconds=({localFrame,fps,pace}:Timing)=>Math.max(0,localFrame)*Math.max(.1,pace)/Math.max(1,fps);
 const progress=(time:number,start:number,duration:number)=>interpolate(time,[start,start+duration],[0,1],clamped);
 const arrival=(timing:Timing,start:number)=>timing.reducedMotion?1:spring({frame:Math.max(0,(seconds(timing)-start)*timing.fps),fps:timing.fps,config:{damping:24,stiffness:180}});
 
-export function TeachingVisual({part,stepIndex,localFrame=0,fps=30,pace=1,reducedMotion}:Props){
+export function TeachingVisual({part,stepIndex,localFrame=0,fps=30,pace=1,reducedMotion,motionPack,motionView='space'}:Props){
   const scene=parseScene(part.scene),timing={localFrame,fps,pace,reducedMotion};
   if(!scene)return null;
+  const template=['triangle-grow','triangle-compare','triangle-sum','triangle-expand','triangle-cancel','triangle-verify','triangle-recap'][stepIndex];
+  if(scene.kind==='triangle-count'&&scene.lower===22&&scene.upper===24&&motionPack?.target.partId===part.partId&&motionPack.stages.some(stage=>stage.stageIndex===stepIndex&&stage.template===template))return <TriangleMotionLesson scene={scene} stageIndex={stepIndex} localFrame={localFrame} fps={fps} pace={pace} reducedMotion={reducedMotion} pack={motionPack} view={motionView}/>;
   return scene.kind==='triangle-count'
     ?<TriangleTeaching scene={scene} stage={stepIndex} timing={timing}/>
     :<DistanceTeaching scene={scene} phase={distanceTeachingPhase(part,stepIndex)} timing={timing}/>;

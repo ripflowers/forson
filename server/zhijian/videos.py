@@ -8,6 +8,7 @@ import shutil
 import signal
 import threading
 from pathlib import Path
+from typing import Literal
 from uuid import UUID
 
 from pydantic import BaseModel, ConfigDict, Field
@@ -22,6 +23,8 @@ class VideoRequest(BaseModel):
     partId: str = Field(min_length=1, max_length=80)
     pace: int = Field(default=1, strict=True, ge=1, le=2)
     narrationId: str | None = Field(default=None, min_length=36, max_length=36)
+    motionPackId: str | None = Field(default=None, min_length=36, max_length=36)
+    motionView: Literal["space", "flat"] = "space"
 
 
 def write_json(path, value):
@@ -87,7 +90,7 @@ class VideoStore:
         except (OSError, ValueError, KeyError, TypeError):
             raise Missing("教学视频不存在或记录不完整") from None
 
-    def create(self, question, lesson, request: VideoRequest, narration=None, clip_path=None):
+    def create(self, question, lesson, request: VideoRequest, narration=None, clip_path=None, motion_pack=None):
         if question["revision"] != request.expectedRevision:
             raise Conflict("题面已有新版本，请重新加载后导出")
         if question["state"] != "confirmed" or question.get("missingFields"):
@@ -110,6 +113,13 @@ class VideoStore:
                 raise ValueError()
         except (KeyError, TypeError, ValueError):
             raise Invalid("老师讲解内容不完整，不能导出") from None
+        frozen_motion = None
+        if request.motionPackId:
+            from .motion_resources import validate_motion_pack
+
+            if not motion_pack or motion_pack.get("id") != request.motionPackId:
+                raise Invalid("尚未找到所选教学资源包，请重新导入后导出")
+            frozen_motion = validate_motion_pack(motion_pack, question, lesson, request.lessonVersion, request.partId)
         audio_files = []
         if request.narrationId:
             if not narration or not clip_path or narration.get("id") != request.narrationId or narration.get("state") != "ready":
@@ -134,7 +144,10 @@ class VideoStore:
                 audio_files.append((clip["id"], raw))
         snapshot = {"questionId": question["id"], "questionRevision": question["revision"],
                     "lessonVersion": lesson["lessonVersion"], "partId": request.partId,
-                    "inputProps": {"part": part, "pace": request.pace, "canvasOnly": False, "reducedMotion": False}}
+                    "inputProps": {"part": part, "pace": request.pace, "canvasOnly": False, "reducedMotion": False,
+                                   "motionView": request.motionView}}
+        if frozen_motion:
+            snapshot["inputProps"]["motionPack"] = frozen_motion
         if request.narrationId:
             voice = json.loads(json.dumps(narration, ensure_ascii=False))
             for clip in voice["clips"]:
@@ -148,7 +161,8 @@ class VideoStore:
                  "questionId": question["id"], "questionRevision": question["revision"],
                  "lessonVersion": lesson["lessonVersion"], "partId": request.partId, "pace": request.pace,
                  "snapshotHash": hashlib.sha256(serialized.encode()).hexdigest(), "createdAt": now(),
-                 "width": 1280, "height": 720, "hasAudio": bool(request.narrationId), "narrationId": request.narrationId}
+                 "width": 1280, "height": 720, "hasAudio": bool(request.narrationId), "narrationId": request.narrationId,
+                 "motionPackId": request.motionPackId, "motionView": request.motionView}
         with self.lock:
             folder = self.directory(video["id"])
             folder.mkdir(mode=0o700)

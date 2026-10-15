@@ -65,3 +65,5 @@ Docker Compose V2可用时，新机器可以`docker compose up -d db`建立本�
 - [第26题有声课堂设计与运行记录](docs/q26-voice-classroom-20261015.md)
 
 最终设计源位于`../deliverables/math-teacher-design-20261013/12-final-system-design.md`。数据不默认公开；原照只供当前家庭私用。
+
+第26题支持知识驱动的空间/平面教学动画，以及 Codex 备课资源的本机导入。流程、版本门禁和能力边界见 [Codex 教学资源说明](docs/codex-teaching-resources-20261015.md)。课堂中的“老师备课台”也可导出资料、导入JSON包，无需重新调用解题模型。

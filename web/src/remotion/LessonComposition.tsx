@@ -2,6 +2,7 @@ import {useEffect,useLayoutEffect,useRef,useState} from 'react';
 import {AbsoluteFill,Html5Audio,Sequence,continueRender,delayRender,interpolate,staticFile,useCurrentFrame,useVideoConfig} from 'remotion';
 import type {LessonPart} from '../types';
 import type {Narration} from '../narration';
+import {revealedMotionStepCount,type MotionPack,type MotionView} from '../motion-resources';
 import {TeachingVisual} from '../components/TeachingVisual';
 import {Formula} from '../components/Formula';
 import {MathText} from '../components/MathText';
@@ -11,7 +12,7 @@ import 'katex/dist/katex.min.css';
 import '@fontsource-variable/noto-sans-sc';
 import './lesson-composition.css';
 
-export type LessonCompositionProps={part:LessonPart|null;pace?:number;reducedMotion?:boolean;canvasOnly?:boolean;narration?:Narration|null;muted?:boolean;onAudioError?:(error:Error)=>void;onCanvasHeight?:(height:number)=>void};
+export type LessonCompositionProps={part:LessonPart|null;pace?:number;reducedMotion?:boolean;canvasOnly?:boolean;narration?:Narration|null;muted?:boolean;onAudioError?:(error:Error)=>void;onCanvasHeight?:(height:number)=>void;motionPack?:MotionPack|null;motionView?:MotionView};
 
 // Split only outside formula delimiters, preserving every character of the source.
 export function chunkNarration(text:string,limit=170){
@@ -59,7 +60,7 @@ function FormulaLedger({steps}:{steps:LessonPart['steps']}){
   return <section className="lc-formula-ledger" aria-label="已经形成的关键公式">{steps.slice(-2).map((item,i)=><div key={item.id}><span>{Math.max(0,steps.length-2)+i+1}</span><VideoFormula latex={item.formulaLatex}/></div>)}</section>;
 }
 
-export function LessonComposition({part,pace=1,reducedMotion=false,canvasOnly=false,narration=null,muted=false,onAudioError,onCanvasHeight}:LessonCompositionProps){
+export function LessonComposition({part,pace=1,reducedMotion=false,canvasOnly=false,narration=null,muted=false,onAudioError,onCanvasHeight,motionPack=null,motionView='space'}:LessonCompositionProps){
   const frame=useCurrentFrame(),{fps}=useVideoConfig();
   const canvas=useRef<HTMLDivElement>(null);
   useLessonFonts(part);
@@ -92,14 +93,14 @@ export function LessonComposition({part,pace=1,reducedMotion=false,canvasOnly=fa
   let pageIndex=0,accumulated=weights[0];
   while(pageIndex<pages.length-1&&time.progress*totalWeight>=accumulated){pageIndex++;accumulated+=weights[pageIndex];}
   const page=pages[pageIndex];
-  const hasVisual=Boolean(parseScene(part.scene)),shownFormulas=part.steps.slice(0,Math.max(0,index-1)).filter(item=>item.formulaLatex);
+  const hasVisual=Boolean(parseScene(part.scene)),shownFormulas=part.steps.slice(0,motionPack?.stages.some(stage=>stage.template==='triangle-grow')?revealedMotionStepCount(index,time.visualFrame,fps,reducedMotion):Math.max(0,index-1)).filter(item=>item.formulaLatex);
   return <AbsoluteFill ref={canvas} className={`lesson-composition ${canvasOnly?'lc-canvas-only':'lc-video'} ${voice?'lc-voiced':''}`}>
     {voice&&timedNarrationClips(voice,fps,pace).map(({clip,from,durationInFrames})=><Sequence key={clip.id} name={`老师口述 · ${clip.id}`} from={from} durationInFrames={durationInFrames} premountFor={fps} style={{pointerEvents:'none'}}><Html5Audio src={clip.audioPath?staticFile(clip.audioPath):clip.audioUrl} data-narration-clip={clip.id} playbackRate={pace} preservePitch muted={muted} pauseWhenBuffering acceptableTimeShiftInSeconds={.12} onError={onAudioError}/></Sequence>)}
     <header className="lc-header"><div><span className="lc-brand">知间 · 老师课堂</span><h1><MathText text={lessonStageLabel(part,index)}/></h1></div><span className="lc-stage-number">{index+1} / {part.steps.length+3}</span></header>
     <div className="lc-knowledge" aria-label="本课会用到的知识点">{part.prerequisites.slice(0,3).map((concept,i)=><span key={i}><MathText text={concept}/></span>)}</div>
     <main className="lc-main">
       <section className="lc-board" style={{opacity:reducedMotion?1:interpolate(time.localFrame,[0,Math.max(1,fps*.25/pace)],[.88,1],{extrapolateRight:'clamp',extrapolateLeft:'clamp'})}}>
-        {hasVisual?<TeachingVisual part={part} stepIndex={index} localFrame={time.visualFrame} fps={fps} pace={voice?1:pace} reducedMotion={reducedMotion}/>:<GenericBoard part={part} index={index}/>}
+        {hasVisual?<TeachingVisual part={part} stepIndex={index} localFrame={time.visualFrame} fps={fps} pace={voice?1:pace} reducedMotion={reducedMotion} motionPack={motionPack} motionView={motionView}/>:<GenericBoard part={part} index={index}/>}
         {canvasOnly&&hasVisual&&shownFormulas.length>0&&<div className="lc-visual-proof" aria-label="已经形成的关键公式">{shownFormulas.map(item=><Formula key={item.id} latex={item.formulaLatex}/>)}</div>}
       </section>
       {!canvasOnly&&<aside className="lc-narrator" aria-label="此刻的老师讲解"><span className="lc-narrator-label">{page.label}</span><div className="lc-narration-text"><MathText text={page.text}/></div>{voice&&hasVisual&&shownFormulas.length>0&&<FormulaLedger steps={shownFormulas}/>}<span className="lc-page-number">{pages.length>1?`讲解 ${pageIndex+1} / ${pages.length}`:'条件 → 方法 → 推理 → 检验'}</span><div className="lc-narration-progress"><span style={{width:`${time.progress*100}%`}}/></div></aside>}

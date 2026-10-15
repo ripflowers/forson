@@ -23,11 +23,11 @@ const writeProgress = (value) => {
 let stage = 'bundling';
 try {
   const request = JSON.parse(readFileSync(join(directory, 'snapshot.json'), 'utf8'));
-  const {part, pace, narration} = request.inputProps;
+  const {part, pace, narration, motionPack, motionView} = request.inputProps;
   if (!part || !Array.isArray(part.steps) || !part.steps.length || ![1, 2].includes(pace)) {
     throw new Error('Reviewed lesson snapshot required');
   }
-  const inputProps = {part, pace, narration: narration ?? null, canvasOnly: false, reducedMotion: false};
+  const inputProps = {part, pace, narration: narration ?? null, canvasOnly: false, reducedMotion: false, motionPack: motionPack ?? null, motionView: motionView ?? 'space'};
   const require = createRequire(join(webRoot, 'package.json'));
   const {bundle} = await import(pathToFileURL(require.resolve('@remotion/bundler')).href);
   const {ensureBrowser, selectComposition, renderMedia} = await import(pathToFileURL(require.resolve('@remotion/renderer')).href);

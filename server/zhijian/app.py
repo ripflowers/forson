@@ -12,6 +12,7 @@ from .config import ROOT, Settings
 from .jobs import DATA_SYSTEM, JobRunner
 from .media import MAX_BYTES, save_uploads
 from .models import AskRequest, EventRequest, LessonRequest, PatchQuestion, SessionRequest
+from .motion_resources import MotionPackInput, MotionResourceStore
 from .narration import NarrationRequest, NarrationStore, NarrationUnavailable, content_hash, current_part
 from .provider import AIError, AIUnavailable, Provider
 from .rules import check_question
@@ -100,6 +101,7 @@ def create_app(*, start_worker=True):
     video_store = VideoStore(settings.data_dir)
     video_runner = VideoRunner(video_store, ROOT)
     narration_store = NarrationStore(settings.data_dir)
+    motion_store = MotionResourceStore(settings.data_dir)
 
     @asynccontextmanager
     async def lifespan(app):
@@ -116,6 +118,7 @@ def create_app(*, start_worker=True):
         else:
             video_store.initialize()
         narration_store.initialize()
+        motion_store.initialize()
         yield
         await video_runner.stop()
         await runner.stop()
@@ -128,6 +131,7 @@ def create_app(*, start_worker=True):
     app.state.video_store = video_store
     app.state.video_runner = video_runner
     app.state.narration = narration_store
+    app.state.motion_resources = motion_store
 
     @app.exception_handler(Conflict)
     async def conflict_handler(request, exc):
@@ -255,8 +259,27 @@ def create_app(*, start_worker=True):
     @app.post("/api/questions/{question_id}/videos")
     def export_video(question_id: str, request: VideoRequest):
         narration = narration_store.get(request.narrationId) if request.narrationId else None
+        motion_pack = motion_store.get(request.motionPackId) if request.motionPackId else None
         return {"video": video_store.create(store.question(question_id), store.lesson(question_id), request,
-                                           narration, narration_store.clip_path)}
+                                           narration, narration_store.clip_path, motion_pack)}
+
+    @app.get("/api/questions/{question_id}/motion-resource")
+    def current_motion_resource(question_id: str, lessonVersion: int = Query(ge=1),
+                                partId: str = Query(default="main", min_length=1, max_length=80)):
+        return {"motionPack": motion_store.current(store.question(question_id), store.lesson(question_id), lessonVersion, partId)}
+
+    @app.get("/api/questions/{question_id}/teaching-context")
+    def teaching_context(question_id: str, lessonVersion: int = Query(ge=1),
+                         partId: str = Query(default="main", min_length=1, max_length=80)):
+        return motion_store.context(store.question(question_id), store.lesson(question_id), lessonVersion, partId)
+
+    @app.post("/api/questions/{question_id}/motion-resources")
+    def import_motion_resource(question_id: str, request: MotionPackInput):
+        return {"motionPack": motion_store.create(store.question(question_id), store.lesson(question_id), request)}
+
+    @app.get("/api/motion-resources/{pack_id}")
+    def motion_resource(pack_id: str):
+        return {"motionPack": motion_store.get(pack_id)}
 
     @app.get("/api/videos/{video_id}")
     def video(video_id: str):

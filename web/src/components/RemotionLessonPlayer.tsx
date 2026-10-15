@@ -2,14 +2,15 @@ import {forwardRef,useCallback,useEffect,useImperativeHandle,useMemo,useRef,useS
 import {Player,type PlayerRef,type CallbackListener} from '@remotion/player';
 import type {LessonPart} from '../types';
 import type {Narration} from '../narration';
+import type {MotionPack,MotionView} from '../motion-resources';
 import {LessonComposition} from '../remotion/LessonComposition';
 import {LESSON_FPS,lessonFrameState,lessonTimeline,type LessonTime} from '../remotion/timeline';
 import './remotion-lesson-player.css';
 
 export type RemotionLessonPlayerHandle={seekStage:(index:number)=>void;seekFrame:(frame:number)=>void;restart:()=>void;play:(event?:SyntheticEvent)=>void;pause:()=>void;pauseAndSnapshot:()=>Record<string,unknown>;getFrame:()=>number};
-export type RemotionLessonPlayerProps={part:LessonPart|null;stageIndex:number;playing:boolean;speed:number;reducedMotion:boolean;onTime:(time:LessonTime)=>void;narration?:Narration|null;muted?:boolean;onAudioError?:(error:Error)=>void;onPlaybackError?:(error:Error)=>void};
+export type RemotionLessonPlayerProps={part:LessonPart|null;stageIndex:number;playing:boolean;speed:number;reducedMotion:boolean;onTime:(time:LessonTime)=>void;narration?:Narration|null;muted?:boolean;onAudioError?:(error:Error)=>void;onPlaybackError?:(error:Error)=>void;motionPack?:MotionPack|null;motionView?:MotionView};
 
-export const RemotionLessonPlayer=forwardRef<RemotionLessonPlayerHandle,RemotionLessonPlayerProps>(function RemotionLessonPlayer({part,stageIndex,playing,speed,reducedMotion,onTime,narration=null,muted=false,onAudioError,onPlaybackError},ref){
+export const RemotionLessonPlayer=forwardRef<RemotionLessonPlayerHandle,RemotionLessonPlayerProps>(function RemotionLessonPlayer({part,stageIndex,playing,speed,reducedMotion,onTime,narration=null,muted=false,onAudioError,onPlaybackError,motionPack=null,motionView='space'},ref){
   const player=useRef<PlayerRef>(null),surface=useRef<HTMLDivElement>(null),callback=useRef(onTime);
   const audioFailure=useRef(onAudioError),playbackFailure=useRef(onPlaybackError);
   callback.current=onTime;
@@ -18,7 +19,7 @@ export const RemotionLessonPlayer=forwardRef<RemotionLessonPlayerHandle,Remotion
   const [width,setWidth]=useState(800),[contentHeight,setContentHeight]=useState(0);
   const timeline=useMemo(()=>lessonTimeline(part,LESSON_FPS,1,narration),[part,narration]);
   const playerKey=useMemo(()=>`${JSON.stringify(part)}:${narration?.id??''}`,[part,narration?.id]);
-  const inputProps=useMemo(()=>({part,pace:1,reducedMotion,canvasOnly:true,narration,muted,onAudioError:audioError,onCanvasHeight:setContentHeight}),[part,reducedMotion,narration,muted,audioError]);
+  const inputProps=useMemo(()=>({part,pace:1,reducedMotion,canvasOnly:true,narration,muted,onAudioError:audioError,onCanvasHeight:setContentHeight,motionPack,motionView}),[part,reducedMotion,narration,muted,audioError,motionPack,motionView]);
   const height=Math.max(width<560?800:660,contentHeight);
   const report=useCallback((frame:number)=>{
     const time=lessonFrameState(part,frame,LESSON_FPS,1,reducedMotion,narration);

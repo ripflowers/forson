@@ -121,3 +121,9 @@ NarrationRequest拒绝额外字段，不能从网页指定voice/rate/script、�
 同questionId/revision/lessonVersion/partId的历史checked答复可按精确askId调用补讲接口；缓存身份继续包含该askId及answerHash，不能复用另一条答复的声音。网页切换历史答复前先停止主课和旧补讲，保留历史现场标签；重新听历史解释不触发新答疑生成，也不表示当前新的追问已经成功。
 
 配音使用在线Edge TTS，准备需联网；已完成音频由本机私有文件接口播放。当前没有面向多人生产使用的语音SLA，其他科目配音未在本轮实现。设计与逐项运行证据见[q26有声课堂记录](q26-voice-classroom-20261015.md)；原无声视频报告保留为历史证据。
+
+## Codex 教学动画资源
+
+`GET /questions/{id}/teaching-context?lessonVersion=&partId=` 返回原题、已批准教案、小问绑定target与精确模板约束。`POST /questions/{id}/motion-resources`接收纯JSON的`schemaVersion/title/subject/author/target/concepts/stages`，严格校验当前题面revision、教案version/内容hash、小问、完整阶段和模板顺序。`GET /questions/{id}/motion-resource?lessonVersion=&partId=`返回`{motionPack:null|当前包}`；`GET /motion-resources/{id}`读取具体包。
+
+服务补充资源`id/createdAt/packHash`，不改变教案或配音缓存。`POST /questions/{id}/videos`可附加`motionPackId`与`motionView:space|flat`；服务验证并冻结完整包进入视频snapshot。资源属于Codex制作、本机结构校验，不能标为教师审核。具体格式与CLI见`docs/codex-teaching-resources-20261015.md`。
