@@ -20,7 +20,7 @@ export const RemotionLessonPlayer=forwardRef<RemotionLessonPlayerHandle,Remotion
   const timeline=useMemo(()=>lessonTimeline(part,LESSON_FPS,1,narration),[part,narration]);
   const playerKey=useMemo(()=>`${JSON.stringify(part)}:${narration?.id??''}`,[part,narration?.id]);
   const inputProps=useMemo(()=>({part,pace:1,reducedMotion,canvasOnly:true,narration,muted,onAudioError:audioError,onCanvasHeight:setContentHeight,motionPack,motionView}),[part,reducedMotion,narration,muted,audioError,motionPack,motionView]);
-  const height=Math.max(width<560?800:660,contentHeight);
+  const height=Math.max(380,contentHeight);
   const report=useCallback((frame:number)=>{
     const time=lessonFrameState(part,frame,LESSON_FPS,1,reducedMotion,narration);
     callback.current(time);return time;
@@ -45,7 +45,7 @@ export const RemotionLessonPlayer=forwardRef<RemotionLessonPlayerHandle,Remotion
 
   useEffect(()=>{
     if(!surface.current)return;
-    const observer=new ResizeObserver(entries=>{const next=Math.max(240,Math.round(entries[0].contentRect.width));setWidth(current=>current===next?current:next);});
+    const observer=new ResizeObserver(entries=>{const measured=entries[0].contentRect.width;if(measured<=0)return;const next=Math.max(240,Math.round(measured));setWidth(current=>current===next?current:next);});
     observer.observe(surface.current);return()=>observer.disconnect();
   },[]);
 
