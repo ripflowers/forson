@@ -1,0 +1,104 @@
+{
+  "schemaVersion": 1,
+  "title": "固定跨度的窗口，枚举中间数",
+  "subject": "math",
+  "author": "Codex",
+  "target": {
+    "questionId": "c204ce4a-c180-4342-b0b5-6d1ddf20632f",
+    "questionRevision": 4,
+    "lessonVersion": 5,
+    "partId": "3",
+    "lessonHash": "284a7310430476366c8944414a7f32400477d776169b6e625b6c919710112d62"
+  },
+  "concepts": [
+    {
+      "id": "k0",
+      "label": "知识 1",
+      "explanation": "计数乘法原理"
+    },
+    {
+      "id": "k1",
+      "label": "知识 2",
+      "explanation": "固定极差的组合思想"
+    }
+  ],
+  "stages": [
+    {
+      "stageIndex": 0,
+      "template": "paper-q18-3-v1",
+      "title": "三个数先按从小到大排列",
+      "conceptIds": [
+        "k0",
+        "k1"
+      ],
+      "focus": "窗口宽度 5；先选左端点，再选内部的一个整数。",
+      "explanation": "求从正整数 1 到 10 中选取 3 个互不相同整数组成数组，使得距离系数 k=5 的数组个数"
+    },
+    {
+      "stageIndex": 1,
+      "template": "paper-q18-3-v1",
+      "title": "用最小数唯一标记每一组",
+      "conceptIds": [
+        "k0",
+        "k1"
+      ],
+      "focus": "窗口宽度 5；先选左端点，再选内部的一个整数。",
+      "explanation": "距离系数固定为 5，说明所选三个数中最大值与最小值的差为 5；固定最小值和最大值，中间数有 4 种选择，再对可能的最小值计数。"
+    },
+    {
+      "stageIndex": 2,
+      "template": "paper-q18-3-v1",
+      "title": "最大数必须是 a+5",
+      "conceptIds": [
+        "k0",
+        "k1"
+      ],
+      "focus": "窗口宽度 5；先选左端点，再选内部的一个整数。",
+      "explanation": "距离系数是最大减最小，正好等于 5。"
+    },
+    {
+      "stageIndex": 3,
+      "template": "paper-q18-3-v1",
+      "title": "窗口起点有 5 个",
+      "conceptIds": [
+        "k0",
+        "k1"
+      ],
+      "focus": "窗口宽度 5；先选左端点，再选内部的一个整数。",
+      "explanation": "候选数范围限制最小值和最大值的可能位置。"
+    },
+    {
+      "stageIndex": 4,
+      "template": "paper-q18-3-v1",
+      "title": "窗口内中间数有 4 个",
+      "conceptIds": [
+        "k0",
+        "k1"
+      ],
+      "focus": "窗口宽度 5；先选左端点，再选内部的一个整数。",
+      "explanation": "因为要求三个数互不相同，且 $b$ 不能等于端点；中间有 $4$ 个整数可选。"
+    },
+    {
+      "stageIndex": 5,
+      "template": "paper-q18-3-v1",
+      "title": "填满 5×4 的计数表",
+      "conceptIds": [
+        "k0",
+        "k1"
+      ],
+      "focus": "窗口宽度 5；先选左端点，再选内部的一个整数。",
+      "explanation": "每一组的最小值和最大值唯一确定，不会交叉重复。"
+    },
+    {
+      "stageIndex": 6,
+      "template": "paper-q18-3-v1",
+      "title": "20 组，不计排列重复",
+      "conceptIds": [
+        "k0",
+        "k1"
+      ],
+      "focus": "窗口宽度 5；先选左端点，再选内部的一个整数。",
+      "explanation": "固定极差求数组个数时，先固定最小值，再数中间数的选择数，注意排除端点重复。"
+    }
+  ]
+}

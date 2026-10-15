@@ -1,0 +1,93 @@
+{
+  "schemaVersion": 1,
+  "title": "第三个整数从两侧拉开跨度",
+  "subject": "math",
+  "author": "Codex",
+  "target": {
+    "questionId": "c204ce4a-c180-4342-b0b5-6d1ddf20632f",
+    "questionRevision": 4,
+    "lessonVersion": 5,
+    "partId": "2",
+    "lessonHash": "6b7e13d94c086548f6b020cd4e8fa26c16429742540a14de1e80edf36f7d2f04"
+  },
+  "concepts": [
+    {
+      "id": "k0",
+      "label": "知识 1",
+      "explanation": "绝对值方程"
+    },
+    {
+      "id": "k1",
+      "label": "知识 2",
+      "explanation": "分类讨论"
+    }
+  ],
+  "stages": [
+    {
+      "stageIndex": 0,
+      "template": "paper-q18-2-v1",
+      "title": "x 必须与 1、2 不同",
+      "conceptIds": [
+        "k0",
+        "k1"
+      ],
+      "focus": "固定 1、2，移动 x，找跨度为 3 的两个位置。",
+      "explanation": "已知数组为 1，2，x，且 k=3，求 x 的值"
+    },
+    {
+      "stageIndex": 1,
+      "template": "paper-q18-2-v1",
+      "title": "用最左与最右计算跨度",
+      "conceptIds": [
+        "k0",
+        "k1"
+      ],
+      "focus": "固定 1、2，移动 x，找跨度为 3 的两个位置。",
+      "explanation": "距离系数等于最大值减最小值，所以极差为 3；根据 x 与 1、2 的大小关系分两类讨论，列方程求解。"
+    },
+    {
+      "stageIndex": 2,
+      "template": "paper-q18-2-v1",
+      "title": "先排除重复元素 1 与 2",
+      "conceptIds": [
+        "k0",
+        "k1"
+      ],
+      "focus": "固定 1、2，移动 x，找跨度为 3 的两个位置。",
+      "explanation": "这是题目给出的互不相等条件的直接使用。"
+    },
+    {
+      "stageIndex": 3,
+      "template": "paper-q18-2-v1",
+      "title": "跨度为 3，把端点差写出来",
+      "conceptIds": [
+        "k0",
+        "k1"
+      ],
+      "focus": "固定 1、2，移动 x，找跨度为 3 的两个位置。",
+      "explanation": "若 $x$ 在 $1$ 和 $2$ 之间，没有整数可选，并且极差仍是 $2-1=1\\neq3$；所以必须位于两侧。"
+    },
+    {
+      "stageIndex": 4,
+      "template": "paper-q18-2-v1",
+      "title": "左右两侧分别求解",
+      "conceptIds": [
+        "k0",
+        "k1"
+      ],
+      "focus": "固定 1、2，移动 x，找跨度为 3 的两个位置。",
+      "explanation": "在每种情况下明确最大最小值，列出关于 x 的一次方程。"
+    },
+    {
+      "stageIndex": 5,
+      "template": "paper-q18-2-v1",
+      "title": "代回 −1 和 4，确认全部解",
+      "conceptIds": [
+        "k0",
+        "k1"
+      ],
+      "focus": "固定 1、2，移动 x，找跨度为 3 的两个位置。",
+      "explanation": "含未知数的数组距离系数问题，先确定极差，再分未知数可能在最小侧或最大侧列方程求解。"
+    }
+  ]
+}

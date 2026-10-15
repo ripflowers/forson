@@ -1,0 +1,128 @@
+{
+  "schemaVersion": 1,
+  "title": "移动原点，筛选符号条件",
+  "subject": "math",
+  "author": "Codex",
+  "target": {
+    "questionId": "e2d3a079-c2bd-4732-ae54-bfe063d1b4f2",
+    "questionRevision": 5,
+    "lessonVersion": 2,
+    "partId": "main",
+    "lessonHash": "f129cab3eae8cc76719c86f0f8c7709cff81c27225655c4959d29b079548f937"
+  },
+  "concepts": [
+    {
+      "id": "k0",
+      "label": "知识 1",
+      "explanation": "数轴上左边的点表示的数小于右边的点表示的数。"
+    },
+    {
+      "id": "k1",
+      "label": "知识 2",
+      "explanation": "有理数乘法法则：异号得负。"
+    },
+    {
+      "id": "k2",
+      "label": "知识 3",
+      "explanation": "有理数加法中，异号两数相加，和的符号与绝对值较大的加数相同。"
+    },
+    {
+      "id": "k3",
+      "label": "知识 4",
+      "explanation": "数轴上点x到原点的距离为|x|。"
+    }
+  ],
+  "stages": [
+    {
+      "stageIndex": 0,
+      "template": "paper-q2-main-v1",
+      "title": "先辨认点的次序",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2",
+        "k3"
+      ],
+      "focus": "固定图中点的相对顺序，移动原点看乘积与和。",
+      "explanation": "判断原点在数轴上的可能位置是A、B、C、D中的哪一个。"
+    },
+    {
+      "stageIndex": 1,
+      "template": "paper-q2-main-v1",
+      "title": "用两个条件一起筛选",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2",
+        "k3"
+      ],
+      "focus": "固定图中点的相对顺序，移动原点看乘积与和。",
+      "explanation": "先由ab<0判断a、b异号；结合a在b左边确定a<0<b。再由a+b<0判断负数a的绝对值较大，即原点离a较远、离b较近。最后在A、B、C、D中先排除同号情形的A、D，再根据B离a近、C离b近排除B并确定C。"
+    },
+    {
+      "stageIndex": 2,
+      "template": "paper-q2-main-v1",
+      "title": "读出 A、a、B、C、b、D 的次序",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2",
+        "k3"
+      ],
+      "focus": "固定图中点的相对顺序，移动原点看乘积与和。",
+      "explanation": "数轴正方向向右，越靠右的点表示的数越大。"
+    },
+    {
+      "stageIndex": 3,
+      "template": "paper-q2-main-v1",
+      "title": "乘积为负，要跨过原点",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2",
+        "k3"
+      ],
+      "focus": "固定图中点的相对顺序，移动原点看乘积与和。",
+      "explanation": "有理数乘法中异号得负；数轴上左边的数小于右边的数。"
+    },
+    {
+      "stageIndex": 4,
+      "template": "paper-q2-main-v1",
+      "title": "和为负，负数距离更长",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2",
+        "k3"
+      ],
+      "focus": "固定图中点的相对顺序，移动原点看乘积与和。",
+      "explanation": "异号加法法则和绝对值的几何意义。"
+    },
+    {
+      "stageIndex": 5,
+      "template": "paper-q2-main-v1",
+      "title": "只有 C 同时满足",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2",
+        "k3"
+      ],
+      "focus": "固定图中点的相对顺序，移动原点看乘积与和。",
+      "explanation": "利用点到原点的距离比较绝对值；先排除同号点，再比较B、C与a、b的距离。"
+    },
+    {
+      "stageIndex": 6,
+      "template": "paper-q2-main-v1",
+      "title": "逐个排除其余位置",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2",
+        "k3"
+      ],
+      "focus": "固定图中点的相对顺序，移动原点看乘积与和。",
+      "explanation": "遇到数轴上用符号条件判断原点位置的问题，先根据乘积符号判断两点是否同侧，结合左右位置确定正负；再根据加法符号判断绝对值谁大，最后用“原点离绝对值较大的数更远”的原则在可选点中排除。"
+    }
+  ]
+}

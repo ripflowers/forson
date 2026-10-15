@@ -1,0 +1,141 @@
+{
+  "schemaVersion": 1,
+  "title": "正负位置与离原点的距离",
+  "subject": "math",
+  "author": "Codex",
+  "target": {
+    "questionId": "4f4dab03-d347-438e-bef3-3a5001856260",
+    "questionRevision": 5,
+    "lessonVersion": 4,
+    "partId": "main",
+    "lessonHash": "c2528c11225084d82e46cc57f0afc06acc5f928205ad816c79788637b406f05f"
+  },
+  "concepts": [
+    {
+      "id": "k0",
+      "label": "知识 1",
+      "explanation": "数轴上右边的点表示的数比左边的大"
+    },
+    {
+      "id": "k1",
+      "label": "知识 2",
+      "explanation": "异号两数相加，取绝对值较大的加数的符号，并用较大的绝对值减去较小的绝对值"
+    },
+    {
+      "id": "k2",
+      "label": "知识 3",
+      "explanation": "$|x|$ 表示数轴上点 $x$ 到原点的距离"
+    },
+    {
+      "id": "k3",
+      "label": "知识 4",
+      "explanation": "同向不等式可以相加：若 $x<y$ 且 $u<v$，则 $x+u<y+v$"
+    }
+  ],
+  "stages": [
+    {
+      "stageIndex": 0,
+      "template": "paper-q1-main-v1",
+      "title": "标出两个开区间",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2",
+        "k3"
+      ],
+      "focus": "在开区间内移动 a、b，比较方向与长度。",
+      "explanation": "从数轴位置判断四个结论哪个正确"
+    },
+    {
+      "stageIndex": 1,
+      "template": "paper-q1-main-v1",
+      "title": "先比较符号，再比较距离",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2",
+        "k3"
+      ],
+      "focus": "在开区间内移动 a、b，比较方向与长度。",
+      "explanation": "先不靠图形比例猜，而是把图中位置翻译成严格不等式；再逐个选项用这些不等式进行大小比较或距离比较，判断真假。这样对 $a,b$ 的全部允许位置都成立，不是只代入一个特殊值。"
+    },
+    {
+      "stageIndex": 2,
+      "template": "paper-q1-main-v1",
+      "title": "先把图中位置写成不等式",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2",
+        "k3"
+      ],
+      "focus": "在开区间内移动 a、b，比较方向与长度。",
+      "explanation": "数轴上越靠右的数越大；图中位置没有等号，因此写成严格不等式。"
+    },
+    {
+      "stageIndex": 3,
+      "template": "paper-q1-main-v1",
+      "title": "a 始终在 −1 左边",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2",
+        "k3"
+      ],
+      "focus": "在开区间内移动 a、b，比较方向与长度。",
+      "explanation": "只读题设区间即可，不需要额外条件。"
+    },
+    {
+      "stageIndex": 4,
+      "template": "paper-q1-main-v1",
+      "title": "正负相加，谁的绝对值大",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2",
+        "k3"
+      ],
+      "focus": "在开区间内移动 a、b，比较方向与长度。",
+      "explanation": "使用同向不等式相加是初中可直接使用的不等式性质：若 $x<y$ 且 $u<v$，则 $x+u<y+v$。这里 $y=-1$, $v=1$，所以 $a+b<-1+1=0$。这样由题设范围推出所有允许的 $a,b$ 都满足 $a+b<0$，结论不成立。"
+    },
+    {
+      "stageIndex": 5,
+      "template": "paper-q1-main-v1",
+      "title": "减去正数，继续向左",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2",
+        "k3"
+      ],
+      "focus": "在开区间内移动 a、b，比较方向与长度。",
+      "explanation": "数轴上左边的点小于右边的点；也可以由 $a<-1$ 且 $b>0$，直接得到 $a<b$。"
+    },
+    {
+      "stageIndex": 6,
+      "template": "paper-q1-main-v1",
+      "title": "比较两条距离带",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2",
+        "k3"
+      ],
+      "focus": "在开区间内移动 a、b，比较方向与长度。",
+      "explanation": "绝对值的几何意义是比较到原点的距离，不看正负号。由 $a\\in(-2,-1)$ 可得 $-a=|a|\\in(1,2)$；由 $b\\in(0,1)$ 可得 $|b|\\in(0,1)$，两个区间没有重叠，且前者整体大于后者。"
+    },
+    {
+      "stageIndex": 7,
+      "template": "paper-q1-main-v1",
+      "title": "回到四个选项",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2",
+        "k3"
+      ],
+      "focus": "在开区间内移动 a、b，比较方向与长度。",
+      "explanation": "遇到数轴上的点判断大小或式子的题，先把每个点的位置写成严格不等式；对和可用同向不等式相加得到全范围；对差转化为比较大小；对绝对值则比较点到原点的距离。这样做能覆盖题目允许的所有位置，且能看出不等式端点是否取等号。"
+    }
+  ]
+}

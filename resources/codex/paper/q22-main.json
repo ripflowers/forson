@@ -1,0 +1,128 @@
+{
+  "schemaVersion": 1,
+  "title": "负带分数拆成两项，负号跟着走",
+  "subject": "math",
+  "author": "Codex",
+  "target": {
+    "questionId": "e7bd7991-c96d-47a4-a5a0-957678c0433c",
+    "questionRevision": 4,
+    "lessonVersion": 1,
+    "partId": "main",
+    "lessonHash": "fc2236ebdf6c2abf0b107dcd09b2aa7ff4b7bac6de25191e7d195cdbcee0ccd0"
+  },
+  "concepts": [
+    {
+      "id": "k0",
+      "label": "知识 1",
+      "explanation": "带分数表示整数加真分数；负带分数要整体带负号。"
+    },
+    {
+      "id": "k1",
+      "label": "知识 2",
+      "explanation": "异分母分数相加需通分。"
+    },
+    {
+      "id": "k2",
+      "label": "知识 3",
+      "explanation": "有理数加法交换律、结合律。"
+    }
+  ],
+  "stages": [
+    {
+      "stageIndex": 0,
+      "template": "paper-q22-main-v1",
+      "title": "四项都是带着符号的整体",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2"
+      ],
+      "focus": "整数一组、分数一组；先抵消大数，再通分小数。",
+      "explanation": "仿照拆项法计算 (-2026 2/3)+2025 3/4+(-2024 5/6)+2023 1/7 的结果。"
+    },
+    {
+      "stageIndex": 1,
+      "template": "paper-q22-main-v1",
+      "title": "整数与分数分别收集",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2"
+      ],
+      "focus": "整数一组、分数一组；先抵消大数，再通分小数。",
+      "explanation": "按照示例的拆项法，把每一项拆成整数+分数；整数先加，分数通分后加；最后合并。理由：这四项整数部分相消容易先算，分数部分通分后也能化成较简分数；拆开不会改变数的大小。"
+    },
+    {
+      "stageIndex": 2,
+      "template": "paper-q22-main-v1",
+      "title": "负号同时作用到两部分",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2"
+      ],
+      "focus": "整数一组、分数一组；先抵消大数，再通分小数。",
+      "explanation": "带分数 2026 2/3 表示 2026+2/3；整体加负号后等于 -2026-2/3，所以分数部分也是负的。"
+    },
+    {
+      "stageIndex": 3,
+      "template": "paper-q22-main-v1",
+      "title": "按整数、分数分成两条轨道",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2"
+      ],
+      "focus": "整数一组、分数一组；先抵消大数，再通分小数。",
+      "explanation": "分组后整数计算、分数通分互不干扰，过程更清楚；这是拆项法的核心。"
+    },
+    {
+      "stageIndex": 4,
+      "template": "paper-q22-main-v1",
+      "title": "整数配对后只剩 −2",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2"
+      ],
+      "focus": "整数一组、分数一组；先抵消大数，再通分小数。",
+      "explanation": "同号相加取相同符号并把绝对值相加；异号相加用较大绝对值减较小绝对值，再取绝对值较大的符号。这里两两分组更直观。"
+    },
+    {
+      "stageIndex": 5,
+      "template": "paper-q22-main-v1",
+      "title": "分数通分到 84",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2"
+      ],
+      "focus": "整数一组、分数一组；先抵消大数，再通分小数。",
+      "explanation": "异分母分数不能直接相加，需通分；约分是为了达到最简分数。"
+    },
+    {
+      "stageIndex": 6,
+      "template": "paper-q22-main-v1",
+      "title": "合成 −73/28",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2"
+      ],
+      "focus": "整数一组、分数一组；先抵消大数，再通分小数。",
+      "explanation": "整数和分数部分都算完后合并；两个负数相加，结果为负，绝对值相加。"
+    },
+    {
+      "stageIndex": 7,
+      "template": "paper-q22-main-v1",
+      "title": "用整项通分再核验",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2"
+      ],
+      "focus": "整数一组、分数一组；先抵消大数，再通分小数。",
+      "explanation": "遇到带分数连加连减时，先把每个带分数拆成整数部分和真分数部分；负带分数的分数部分要取负。整数部分合并，分数部分通分合并，最后再合并。这样能利用整数相消和分数通分简化计算。"
+    }
+  ]
+}

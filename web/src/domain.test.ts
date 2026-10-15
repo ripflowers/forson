@@ -41,6 +41,12 @@ describe('追问晚回与原卷小问身份',()=>{
     expect(isCurrentReply(reply,session,{...current,x:5})).toBe(false);
     expect(isCurrentReply(reply,{...session,mode:'teacher'},current)).toBe(false);
   });
+  it('专属探索按参数值比较，不受数据库对象键顺序影响',()=>{
+    const snapshot={stepIndex:2,paperResource:'paper-q16-main-v1',paperInputs:{a:-1.5,x:-1.25}};
+    const result={...reply,snapshot};
+    expect(isCurrentReply(result,session,{...snapshot,paperInputs:{x:-1.25,a:-1.5}})).toBe(true);
+    expect(isCurrentReply(result,session,{...snapshot,paperInputs:{x:6,a:-1.5}})).toBe(false);
+  });
   it('用户填写的卷内标记规范化为语义小问，而非随机身份',()=>{
     expect(normalizePartLabel('（2）②')).toBe('2.2');
     expect(normalizePartLabel('(2)③')).toBe('2.3');

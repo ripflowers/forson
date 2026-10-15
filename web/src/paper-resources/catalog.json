@@ -1,0 +1,2703 @@
+[
+  {
+    "number": 1,
+    "partId": "main",
+    "title": "正负位置与离原点的距离",
+    "action": "在开区间内移动 a、b，比较方向与长度。",
+    "labels": [
+      "标出两个开区间",
+      "先比较符号，再比较距离",
+      "先把图中位置写成不等式",
+      "a 始终在 −1 左边",
+      "正负相加，谁的绝对值大",
+      "减去正数，继续向左",
+      "比较两条距离带",
+      "回到四个选项"
+    ],
+    "controls": [
+      {
+        "key": "a",
+        "label": "移动 a",
+        "min": -1.9,
+        "max": -1.1,
+        "step": 0.1,
+        "value": -1.5
+      },
+      {
+        "key": "b",
+        "label": "移动 b",
+        "min": 0.1,
+        "max": 0.9,
+        "step": 0.1,
+        "value": 0.5
+      }
+    ],
+    "states": [
+      {
+        "a": -1.5,
+        "b": 0.5
+      },
+      {
+        "a": -1.5,
+        "b": 0.5
+      },
+      {
+        "a": -1.5,
+        "b": 0.5
+      },
+      {
+        "a": -1.2,
+        "b": 0.5
+      },
+      {
+        "a": -1.8,
+        "b": 0.8
+      },
+      {
+        "a": -1.5,
+        "b": 0.8
+      },
+      {
+        "a": -1.1,
+        "b": 0.9
+      },
+      {
+        "a": -1.5,
+        "b": 0.5
+      }
+    ],
+    "task": "把两个点都移到最靠近 1 个单位的位置。哪条关系仍一定成立？",
+    "choices": [
+      "a+b=0",
+      "|a|>|b|",
+      "a−b>0"
+    ],
+    "correct": 1,
+    "feedback": [
+      "a 的绝对值严格大于 1，b 的绝对值严格小于 1，无法抵消。",
+      "正确。两个开区间保证 |a|>1>|b|，数值试验只是帮助看见这个界。",
+      "负数减正数仍为负，箭头继续朝左。"
+    ],
+    "key": "paper-q1-main-v1",
+    "target": {
+      "questionId": "4f4dab03-d347-438e-bef3-3a5001856260",
+      "questionRevision": 5,
+      "lessonVersion": 4,
+      "partId": "main",
+      "lessonHash": "c2528c11225084d82e46cc57f0afc06acc5f928205ad816c79788637b406f05f"
+    },
+    "stageCount": 8
+  },
+  {
+    "number": 2,
+    "partId": "main",
+    "title": "移动原点，筛选符号条件",
+    "action": "固定图中点的相对顺序，移动原点看乘积与和。",
+    "labels": [
+      "先辨认点的次序",
+      "用两个条件一起筛选",
+      "读出 A、a、B、C、b、D 的次序",
+      "乘积为负，要跨过原点",
+      "和为负，负数距离更长",
+      "只有 C 同时满足",
+      "逐个排除其余位置"
+    ],
+    "controls": [
+      {
+        "key": "origin",
+        "label": "把哪个点作为原点",
+        "min": 0,
+        "max": 3,
+        "step": 1,
+        "value": 2,
+        "options": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ]
+      }
+    ],
+    "states": [
+      {
+        "origin": 0
+      },
+      {
+        "origin": 1
+      },
+      {
+        "origin": 0
+      },
+      {
+        "origin": 1
+      },
+      {
+        "origin": 2
+      },
+      {
+        "origin": 2
+      },
+      {
+        "origin": 3
+      }
+    ],
+    "task": "依次试四个原点。为什么原点不能在 B？",
+    "choices": [
+      "a、b 同号",
+      "负数那一段较短，a+b>0",
+      "只要 ab<0 就可以"
+    ],
+    "correct": 1,
+    "feedback": [
+      "原点在 B 时，a 在左、b 在右，二者异号。",
+      "正确。B 靠近 a，负数的绝对值小于正数，所以和为正。",
+      "题目还要求 a+b<0，两个条件必须同时满足。"
+    ],
+    "key": "paper-q2-main-v1",
+    "target": {
+      "questionId": "e2d3a079-c2bd-4732-ae54-bfe063d1b4f2",
+      "questionRevision": 5,
+      "lessonVersion": 2,
+      "partId": "main",
+      "lessonHash": "f129cab3eae8cc76719c86f0f8c7709cff81c27225655c4959d29b079548f937"
+    },
+    "stageCount": 7
+  },
+  {
+    "number": 3,
+    "partId": "main",
+    "title": "和固定为 1，较大的数在哪里",
+    "action": "让 a 与 b 联动，保持 a+b=1 和 a<b。",
+    "labels": [
+      "读懂 a 在 b 左边",
+      "用中点分开大小",
+      "次序给出 a<b",
+      "中点是 1/2，b 在它右边",
+      "检查四个式子的符号",
+      "一定为正的是 b+1"
+    ],
+    "controls": [
+      {
+        "key": "b",
+        "label": "移动较大的数 b",
+        "min": 0.6,
+        "max": 2.5,
+        "step": 0.1,
+        "value": 0.8
+      }
+    ],
+    "states": [
+      {
+        "b": 0.8
+      },
+      {
+        "b": 0.8
+      },
+      {
+        "b": 1.5
+      },
+      {
+        "b": 0.6
+      },
+      {
+        "b": 1.6
+      },
+      {
+        "b": 0.8
+      }
+    ],
+    "task": "试 b=0.6 和 b=1.6。哪个式子一直为正？",
+    "choices": [
+      "a",
+      "−a",
+      "b+1"
+    ],
+    "correct": 2,
+    "feedback": [
+      "b 增大超过 1 后，a=1−b 会变成负数。",
+      "b 小于 1 时 a 为正，−a 就为负。",
+      "正确。b>1/2，因此 b+1>3/2。这是对全部情况的推理。"
+    ],
+    "key": "paper-q3-main-v1",
+    "target": {
+      "questionId": "9ffe2a6f-e949-4d93-9db7-698f40f099ca",
+      "questionRevision": 4,
+      "lessonVersion": 3,
+      "partId": "main",
+      "lessonHash": "911a92e93c74aeb7c9c47a7e469f2acda9ce1d203e87ed47e0e7ddb4c2b4a547"
+    },
+    "stageCount": 6
+  },
+  {
+    "number": 4,
+    "partId": "main",
+    "title": "等距离把 D 锁定在中点",
+    "action": "移动 C，两条相等的距离带同步伸缩。",
+    "labels": [
+      "把绝对值读成距离",
+      "找到等距离的点",
+      "两边分别是 DB 与 DC",
+      "D 位于 C 与 B 的中点",
+      "C 的范围限制 D 的范围",
+      "D 总在 O 与 B 之间",
+      "用两段等长检验"
+    ],
+    "controls": [
+      {
+        "key": "c",
+        "label": "移动 C",
+        "min": -4.8,
+        "max": -0.2,
+        "step": 0.2,
+        "value": -3
+      }
+    ],
+    "states": [
+      {
+        "c": -3
+      },
+      {
+        "c": -3
+      },
+      {
+        "c": -2
+      },
+      {
+        "c": -4
+      },
+      {
+        "c": -0.4
+      },
+      {
+        "c": -4.8
+      },
+      {
+        "c": -3
+      }
+    ],
+    "task": "C 从 −4 移到 −2，D 移动了多少？",
+    "choices": [
+      "1 个单位",
+      "2 个单位",
+      "D 不动"
+    ],
+    "correct": 0,
+    "feedback": [
+      "正确。D=(5+c)/2，C 向右 2，D 向右 1；两段距离始终相等。",
+      "D 是中点，只移动 C 位移的一半。",
+      "B 固定，但另一个端点 C 移动，中点也会移动。"
+    ],
+    "key": "paper-q4-main-v1",
+    "target": {
+      "questionId": "81777131-9a5f-4088-841f-b6fca18c3942",
+      "questionRevision": 5,
+      "lessonVersion": 2,
+      "partId": "main",
+      "lessonHash": "0cef60f5086d64b7036b0de17f1df4e2989b86aac02f4560ce3b14a428544a34"
+    },
+    "stageCount": 7
+  },
+  {
+    "number": 5,
+    "partId": "main",
+    "title": "折叠数轴，分开奇偶两条线",
+    "action": "用反射展示 A(k+1)=2k−Ak，再观察奇偶项。",
+    "labels": [
+      "从 A₀=−2 开始",
+      "一次折叠是一对等距点",
+      "围绕 k 做反射",
+      "把前几项排成两行",
+      "两步推进，验证奇偶规律",
+      "定位第 2027 项",
+      "递推验证，不只猜规律"
+    ],
+    "controls": [
+      {
+        "key": "k",
+        "label": "查看第 k 次反射",
+        "min": 0,
+        "max": 7,
+        "step": 1,
+        "value": 0
+      }
+    ],
+    "states": [
+      {
+        "k": 0
+      },
+      {
+        "k": 0
+      },
+      {
+        "k": 1
+      },
+      {
+        "k": 3
+      },
+      {
+        "k": 4
+      },
+      {
+        "k": 5
+      },
+      {
+        "k": 6
+      }
+    ],
+    "task": "A₄=2，围绕数 4 折叠后 A₅ 在哪里？",
+    "choices": [
+      "−2",
+      "6",
+      "4"
+    ],
+    "correct": 1,
+    "feedback": [
+      "反射中心是 4，不是原点。新旧坐标之和应为 8。",
+      "正确。2 与 6 到中心 4 都是 2 个单位。",
+      "4 是折叠中心；除非原点就在中心，否则不会折到中心。"
+    ],
+    "key": "paper-q5-main-v1",
+    "target": {
+      "questionId": "ccb0c46c-380b-42c3-838b-6ce35539f38b",
+      "questionRevision": 5,
+      "lessonVersion": 5,
+      "partId": "main",
+      "lessonHash": "022021cb5db672e1624a96557666ecb8b011a1ee995b1f19c97450670ddce7f2"
+    },
+    "stageCount": 7
+  },
+  {
+    "number": 6,
+    "partId": "main",
+    "title": "先分两侧，再一起向左移动",
+    "action": "到原点的距离为 3，对应两个位置。",
+    "labels": [
+      "距离给出两个 A",
+      "每条分支都执行左移",
+      "到原点距离 3，有两个 A",
+      "A=3 时，B=1",
+      "A=−3 时，B=−5",
+      "保留两个结果",
+      "把距离和方向分别检查"
+    ],
+    "controls": [
+      {
+        "key": "branch",
+        "label": "选择 A 的位置",
+        "min": 0,
+        "max": 1,
+        "step": 1,
+        "value": 0,
+        "options": [
+          "A=3",
+          "A=−3"
+        ]
+      }
+    ],
+    "states": [
+      {
+        "branch": 0
+      },
+      {
+        "branch": 1
+      },
+      {
+        "branch": 0
+      },
+      {
+        "branch": 0
+      },
+      {
+        "branch": 1
+      },
+      {
+        "branch": 0
+      },
+      {
+        "branch": 1
+      }
+    ],
+    "task": "题目没有说 A 在原点右侧，B 的全部可能值是什么？",
+    "choices": [
+      "只有 1",
+      "只有 −5",
+      "1 和 −5"
+    ],
+    "correct": 2,
+    "feedback": [
+      "还要检查 A=−3 的情况。",
+      "还要检查 A=3 的情况。",
+      "正确。距离给出两条分支，向左 2 是每条分支都要做的同一个动作。"
+    ],
+    "key": "paper-q6-main-v1",
+    "target": {
+      "questionId": "02d80c3c-72b0-4e2b-96af-3676d073e98c",
+      "questionRevision": 4,
+      "lessonVersion": 2,
+      "partId": "main",
+      "lessonHash": "19311f47ce384134e4cdabbbe18c624a723bc16e1fcfd7507c43f084771cd010"
+    },
+    "stageCount": 7
+  },
+  {
+    "number": 7,
+    "partId": "main",
+    "title": "把 x、x²、x³ 放在同一条数轴",
+    "action": "改变 x，观察三个数的顺序何时满足严格不等式。",
+    "labels": [
+      "三个点的顺序就是条件",
+      "把两条不等式分别考虑",
+      "先把三点次序写成两个不等式",
+      "x³<x² 给出 x<1 且 x≠0",
+      "再求交集，留下 (−1,0)",
+      "用边界与区间内数检验",
+      "严格不等号不能取端点"
+    ],
+    "controls": [
+      {
+        "key": "x",
+        "label": "改变 x",
+        "min": -2,
+        "max": 2,
+        "step": 0.1,
+        "value": -0.5
+      }
+    ],
+    "states": [
+      {
+        "x": -0.5
+      },
+      {
+        "x": -1.5
+      },
+      {
+        "x": -0.5
+      },
+      {
+        "x": 0.5
+      },
+      {
+        "x": -0.5
+      },
+      {
+        "x": -1
+      },
+      {
+        "x": 0
+      }
+    ],
+    "task": "为什么 x=−1 和 x=0 都不能取？",
+    "choices": [
+      "负数都不可以",
+      "两端出现相等，不再严格小于",
+      "因为 x² 不能为 0"
+    ],
+    "correct": 1,
+    "feedback": [
+      "−1 与 0 之间的负数恰好满足题意。",
+      "正确。x=−1 时 x=x³；x=0 时三者相等。",
+      "0 的平方可以是 0，但本题要求严格的大小顺序。"
+    ],
+    "key": "paper-q7-main-v1",
+    "target": {
+      "questionId": "dd16f234-a49f-4d8e-88d4-7b54de63591e",
+      "questionRevision": 5,
+      "lessonVersion": 2,
+      "partId": "main",
+      "lessonHash": "140f9139cf17e767980325c14c9498c645f0c9bc840c7fbb9910976ddf2778a8"
+    },
+    "stageCount": 7
+  },
+  {
+    "number": 8,
+    "partId": "1",
+    "title": "先看 b 的符号，再执行定义",
+    "action": "b≥0 时始终右移 2，移动量不是 b。",
+    "labels": [
+      "读清关联点的定义",
+      "先选择分支",
+      "b=4，进入非负分支",
+      "从 −1 右移 2",
+      "在数轴上标出 P=1",
+      "检验移动量"
+    ],
+    "controls": [
+      {
+        "key": "b",
+        "label": "试不同的 b",
+        "min": -5,
+        "max": 5,
+        "step": 1,
+        "value": 4
+      }
+    ],
+    "states": [
+      {
+        "b": 4
+      },
+      {
+        "b": 4
+      },
+      {
+        "b": 4
+      },
+      {
+        "b": 4
+      },
+      {
+        "b": 4
+      },
+      {
+        "b": 0
+      }
+    ],
+    "task": "把 b 从 4 换成 5，A 仍为 −1。P 变吗？",
+    "choices": [
+      "变成 4",
+      "仍是 1",
+      "变成 −6"
+    ],
+    "correct": 1,
+    "feedback": [
+      "非负分支的位移固定为 2，不是 b。",
+      "正确。只要 b≥0，就从 A 右移 2；b=0 也属于这个分支。",
+      "左移 |b| 只适用于 b<0。"
+    ],
+    "key": "paper-q8-1-v1",
+    "target": {
+      "questionId": "f09a0c95-3251-4809-8b54-9dd04fc7f14b",
+      "questionRevision": 4,
+      "lessonVersion": 2,
+      "partId": "1",
+      "lessonHash": "f926851342630dd1fa94778731cd364fc88c5c027ee4c9d8e4ab65fd6c9de2ea"
+    },
+    "stageCount": 6
+  },
+  {
+    "number": 8,
+    "partId": "2.1",
+    "title": "从起点 7 按时间向左运动",
+    "action": "用一秒一个单位的运动建立 b=7−t。",
+    "labels": [
+      "确定起点、方向和速度",
+      "位置等于起点减路程",
+      "写出 B 的运动式",
+      "播放到 t=3",
+      "代回位置核验"
+    ],
+    "controls": [
+      {
+        "key": "t",
+        "label": "经过时间 t（秒）",
+        "min": 0,
+        "max": 10,
+        "step": 0.5,
+        "value": 3
+      }
+    ],
+    "states": [
+      {
+        "t": 0
+      },
+      {
+        "t": 1
+      },
+      {
+        "t": 2
+      },
+      {
+        "t": 3
+      },
+      {
+        "t": 3
+      }
+    ],
+    "task": "从 7 出发向左走 3 秒，位置为什么是 4？",
+    "choices": [
+      "7−3×1=4",
+      "7+3=10",
+      "只看路程，位置是 3"
+    ],
+    "correct": 0,
+    "feedback": [
+      "正确。坐标从起点算起，向左的路程要减去。",
+      "向右才加；题目是向左运动。",
+      "路程是 3，位置要在起点 7 的基础上计算。"
+    ],
+    "key": "paper-q8-2-1-v1",
+    "target": {
+      "questionId": "f09a0c95-3251-4809-8b54-9dd04fc7f14b",
+      "questionRevision": 4,
+      "lessonVersion": 2,
+      "partId": "2.1",
+      "lessonHash": "48618a94a9cafb49255ca9717451641f2bf90348368bfb3e88db8047665b0ba1"
+    },
+    "stageCount": 5
+  },
+  {
+    "number": 8,
+    "partId": "2.2",
+    "title": "运动过程中，分支会在 t=7 改变",
+    "action": "同时跟踪 A、B、P；特别比较 7 秒前、恰好 7 秒、7 秒后。",
+    "labels": [
+      "三个点各自表示什么",
+      "按 B 的正负拆时间段",
+      "A=t−1，B=7−t",
+      "t≤7：P=t+1；t>7：P=6",
+      "求 P=0，并检查时间限制",
+      "没有合法的相遇时刻",
+      "检查 t=7 的分支边界"
+    ],
+    "controls": [
+      {
+        "key": "t",
+        "label": "经过时间 t（秒）",
+        "min": 0,
+        "max": 10,
+        "step": 0.1,
+        "value": 6.9
+      }
+    ],
+    "states": [
+      {
+        "t": 0
+      },
+      {
+        "t": 6.9
+      },
+      {
+        "t": 3
+      },
+      {
+        "t": 7
+      },
+      {
+        "t": 7.1
+      },
+      {
+        "t": 9
+      },
+      {
+        "t": 7
+      }
+    ],
+    "task": "t=7 时 B=0，应使用哪一段？",
+    "choices": [
+      "负数分支，P=6",
+      "非负分支，P=8",
+      "两个分支都可以"
+    ],
+    "correct": 1,
+    "feedback": [
+      "定义把 b=0 归入 b≥0，此时 P=A+2=8。",
+      "正确。恰好 7 秒 P=8；刚过 7 秒则 P=6，不能画成连续滑动。",
+      "两段条件不重叠：b≥0 与 b<0 必须分清。"
+    ],
+    "key": "paper-q8-2-2-v1",
+    "target": {
+      "questionId": "f09a0c95-3251-4809-8b54-9dd04fc7f14b",
+      "questionRevision": 4,
+      "lessonVersion": 2,
+      "partId": "2.2",
+      "lessonHash": "aa40958fc11825c9f8b2f26d4cb54dcdc7a198fedafeab7b759783ed1d443e5b"
+    },
+    "stageCount": 7
+  },
+  {
+    "number": 9,
+    "partId": "main",
+    "title": "和为零，把不等式变成符号约束",
+    "action": "在满足条件的范围内移动 a，看 c 是否一定小于 0。",
+    "labels": [
+      "把绝对值看成非负长度",
+      "先确定 b，再确定 a",
+      "−b>｜c｜，所以 b<0",
+      "a≥−b，所以 a>0",
+      "c=−(a+b)，可能等于 0",
+      "用边界值防止漏掉等号",
+      "整理三个数的符号"
+    ],
+    "controls": [
+      {
+        "key": "a",
+        "label": "保持 b=−1，改变 a",
+        "min": 1,
+        "max": 1.9,
+        "step": 0.1,
+        "value": 1.5
+      }
+    ],
+    "states": [
+      {
+        "a": 1.5
+      },
+      {
+        "a": 1.2
+      },
+      {
+        "a": 1.5
+      },
+      {
+        "a": 1.8
+      },
+      {
+        "a": 1
+      },
+      {
+        "a": 1
+      },
+      {
+        "a": 1.5
+      }
+    ],
+    "task": "a=1、b=−1、c=0 满足原条件吗？",
+    "choices": [
+      "满足，所以 c≤0",
+      "不满足，c 必须为负",
+      "不满足，绝对值不能为 0"
+    ],
+    "correct": 0,
+    "feedback": [
+      "正确。1≥1>0 且和为 0；所以不能把 c≤0 写成 c<0。",
+      "a≥−b 允许取等号，这时 c=0。",
+      "绝对值可以等于 0；严格大于它的是 −b。"
+    ],
+    "key": "paper-q9-main-v1",
+    "target": {
+      "questionId": "b8cd65e1-a1da-4441-a87c-416cff01292a",
+      "questionRevision": 4,
+      "lessonVersion": 3,
+      "partId": "main",
+      "lessonHash": "8a3f73b544a5846a8871981e6c010dc1e0ee989a8bba60a1ebdce90c35f4640c"
+    },
+    "stageCount": 7
+  },
+  {
+    "number": 10,
+    "partId": "main",
+    "title": "三个判断，分别用顺序、符号和方向验证",
+    "action": "切换检验对象，观察相反数、符号商和同向相加。",
+    "labels": [
+      "数轴先定符号与距离",
+      "三个命题分开检验",
+      "整理 b<a<0<c",
+      "相反数移到原点另一侧",
+      "正商为 1，负商为 −1",
+      "两个负数同向相加",
+      "统计：只有③成立",
+      "把符号与大小分开看"
+    ],
+    "controls": [
+      {
+        "key": "case",
+        "label": "选择要检验的式子",
+        "min": 0,
+        "max": 2,
+        "step": 1,
+        "value": 0,
+        "options": [
+          "① 大小顺序",
+          "② 两个符号商",
+          "③ 和的绝对值"
+        ]
+      }
+    ],
+    "states": [
+      {
+        "case": 0
+      },
+      {
+        "case": 0
+      },
+      {
+        "case": 0
+      },
+      {
+        "case": 0
+      },
+      {
+        "case": 1
+      },
+      {
+        "case": 2
+      },
+      {
+        "case": 2
+      },
+      {
+        "case": 1
+      }
+    ],
+    "task": "ab 为正、ac 为负，ab/|ab|−ac/|ac| 是多少？",
+    "choices": [
+      "0",
+      "2",
+      "−2"
+    ],
+    "correct": 1,
+    "feedback": [
+      "负数除以它的绝对值得 −1，不是 1。",
+      "正确。是 1−(−1)=2，外面的减号也要保留。",
+      "第一项为 1，第二项为 −1，两者相减得到 2。"
+    ],
+    "key": "paper-q10-main-v1",
+    "target": {
+      "questionId": "b1e2d5ac-5c41-424e-91e3-9fc6b87f8748",
+      "questionRevision": 6,
+      "lessonVersion": 6,
+      "partId": "main",
+      "lessonHash": "5287fb5ef7c29162c07262fea30814ae9950a02ed16cfac6afdfa349925b728e"
+    },
+    "stageCount": 8
+  },
+  {
+    "number": 12,
+    "partId": "main",
+    "title": "四个候选原点，比较距离和的范围",
+    "action": "切换原点，让 a、b 在开区间内变化。",
+    "labels": [
+      "相邻整数间距为 1",
+      "原点只能选四个整数点",
+      "分别将 M、N、P、R 移到 0",
+      "外侧原点能达到距离和 3",
+      "内侧原点的和严格小于 3",
+      "留下 M 和 R",
+      "示例验证可行，区间界排除不可行"
+    ],
+    "controls": [
+      {
+        "key": "origin",
+        "label": "原点候选",
+        "min": 0,
+        "max": 3,
+        "step": 1,
+        "value": 0,
+        "options": [
+          "M",
+          "N",
+          "P",
+          "R"
+        ]
+      },
+      {
+        "key": "u",
+        "label": "a 在 MN 中的位置",
+        "min": 0.1,
+        "max": 0.9,
+        "step": 0.1,
+        "value": 0.5
+      },
+      {
+        "key": "v",
+        "label": "b 在 PR 中的位置",
+        "min": 0.1,
+        "max": 0.9,
+        "step": 0.1,
+        "value": 0.5
+      }
+    ],
+    "states": [
+      {
+        "origin": 0
+      },
+      {
+        "origin": 1
+      },
+      {
+        "origin": 3
+      },
+      {
+        "origin": 0
+      },
+      {
+        "origin": 1
+      },
+      {
+        "origin": 3
+      },
+      {
+        "origin": 2
+      }
+    ],
+    "task": "原点在 N 时，把 a、b 尽量向外移，能刚好达到 3 吗？",
+    "choices": [
+      "能，取端点即可",
+      "不能，两个区间都不含端点",
+      "和恒等于 3"
+    ],
+    "correct": 1,
+    "feedback": [
+      "题目说“之间”，不能把 a、b 放到端点。",
+      "正确。|a|<1 且 |b|<2，故总和严格小于 3。",
+      "两点移动会改变距离和，但上界 3 不能取到。"
+    ],
+    "key": "paper-q12-main-v1",
+    "target": {
+      "questionId": "c90376f1-1432-43d0-b99c-20f540524f73",
+      "questionRevision": 4,
+      "lessonVersion": 2,
+      "partId": "main",
+      "lessonHash": "078e032bf7ec87f4d01a44486a72eb4da6070b8d6b993ab17f0d8343e7905126"
+    },
+    "stageCount": 7
+  },
+  {
+    "number": 13,
+    "partId": "main",
+    "title": "两条折线相交，分支里找等式",
+    "action": "比较 |2a+1| 与 3|a|−2；图形帮助观察，分段推理负责求全部解。",
+    "labels": [
+      "两个表达式分别计算",
+      "右边非负先筛掉中间",
+      "留下 a≤−2/3 或 a≥2/3",
+      "左分支交于 a=−1",
+      "右分支交于 a=3",
+      "两根分别代回",
+      "图形与代数互相核对"
+    ],
+    "controls": [
+      {
+        "key": "a",
+        "label": "移动 a",
+        "min": -3,
+        "max": 4,
+        "step": 0.1,
+        "value": 0
+      }
+    ],
+    "states": [
+      {
+        "a": 0
+      },
+      {
+        "a": 0.2
+      },
+      {
+        "a": -0.5
+      },
+      {
+        "a": -1
+      },
+      {
+        "a": 3
+      },
+      {
+        "a": -1
+      },
+      {
+        "a": 3
+      }
+    ],
+    "task": "a=0 为什么连候选解都不是？",
+    "choices": [
+      "左边是 1，右边是 −2，不可能相等",
+      "因为 a 不能是整数",
+      "因为绝对值内必须为正"
+    ],
+    "correct": 0,
+    "feedback": [
+      "正确。左边非负；右边负的整段都可以先排除。",
+      "原题没有禁止整数，两个正确的解也都是整数。",
+      "绝对值内部可以为负，绝对值的结果才是非负。"
+    ],
+    "key": "paper-q13-main-v1",
+    "target": {
+      "questionId": "34b6126d-3a9e-416e-a137-ff9063e2348f",
+      "questionRevision": 4,
+      "lessonVersion": 3,
+      "partId": "main",
+      "lessonHash": "9e3b37ff85858126912d1cfe5cd2e94432d687a2d68db4740a6e65eca1bd755c"
+    },
+    "stageCount": 7
+  },
+  {
+    "number": 14,
+    "partId": "main",
+    "title": "两个界把绝对值夹到 3",
+    "action": "把平方的非负性变成上下界，再展开 b 的两个分支。",
+    "labels": [
+      "把两式的非负项标出来",
+      "同一个量同时受两个界限制",
+      "上下两个界相遇：|b−3|=3",
+      "c=1，b 有 0 和 6 两个分支",
+      "平方为零，确定 a",
+      "保留 b=0 和 b=6 两个结果",
+      "逐组代入验算"
+    ],
+    "controls": [
+      {
+        "key": "branch",
+        "label": "选择 b 的分支",
+        "min": 0,
+        "max": 1,
+        "step": 1,
+        "value": 0,
+        "options": [
+          "b=0",
+          "b=6"
+        ]
+      }
+    ],
+    "states": [
+      {
+        "branch": 0
+      },
+      {
+        "branch": 0
+      },
+      {
+        "branch": 1
+      },
+      {
+        "branch": 0
+      },
+      {
+        "branch": 0
+      },
+      {
+        "branch": 1
+      },
+      {
+        "branch": 1
+      }
+    ],
+    "task": "|b−3|=3 说明 b 有几个可能位置？",
+    "choices": [
+      "只取 b=6",
+      "b=0 或 b=6",
+      "b=3"
+    ],
+    "correct": 1,
+    "feedback": [
+      "距离 3 左右各有一个位置，不能只保留右侧。",
+      "正确。b−3=±3；两组都使两个平方为 0。",
+      "b=3 时距离为 0，不是题目要求的 3。"
+    ],
+    "key": "paper-q14-main-v1",
+    "target": {
+      "questionId": "5d337254-c1d9-43bb-8d6f-30a86045ce1a",
+      "questionRevision": 4,
+      "lessonVersion": 2,
+      "partId": "main",
+      "lessonHash": "f580c6814b90c71be00926ec5dffd7086564158aa40182b3cea899bdb505c991"
+    },
+    "stageCount": 7
+  },
+  {
+    "number": 15,
+    "partId": "main",
+    "title": "只有一个负数，三张符号卡逐一试",
+    "action": "先用和为零换掉绝对值内部，再枚举负数的位置。",
+    "labels": [
+      "三个分式包含什么信息",
+      "和为零把三项改成符号",
+      "b+c=−a，循环替换",
+      "乘积负且和零：恰一个负数",
+      "分别让 a、b、c 为负",
+      "从 −4、−2、6 找最值",
+      "最大最小相乘为 −24"
+    ],
+    "controls": [
+      {
+        "key": "negative",
+        "label": "哪个字母为负",
+        "min": 0,
+        "max": 2,
+        "step": 1,
+        "value": 0,
+        "options": [
+          "a 为负",
+          "b 为负",
+          "c 为负"
+        ]
+      }
+    ],
+    "states": [
+      {
+        "negative": 0
+      },
+      {
+        "negative": 1
+      },
+      {
+        "negative": 0
+      },
+      {
+        "negative": 2
+      },
+      {
+        "negative": 1
+      },
+      {
+        "negative": 2
+      },
+      {
+        "negative": 1
+      }
+    ],
+    "task": "为什么不需要再算“三个都是负数”？",
+    "choices": [
+      "因为乘积会为正",
+      "因为三负数相加不可能为 0",
+      "因为分母不能是负数"
+    ],
+    "correct": 1,
+    "feedback": [
+      "三个负数的乘积是负，单靠 abc<0 还不能排除。",
+      "正确。还要同时使用 a+b+c=0，两条条件共同限制符号。",
+      "分母可以为负，只是不能为 0。"
+    ],
+    "key": "paper-q15-main-v1",
+    "target": {
+      "questionId": "b68c335a-c3a7-41a2-8541-360bc625aa69",
+      "questionRevision": 4,
+      "lessonVersion": 2,
+      "partId": "main",
+      "lessonHash": "e000e50a64f34f62f11052b27e45c40bf551b4aaf4f509052bddda8768644bf9"
+    },
+    "stageCount": 7
+  },
+  {
+    "number": 16,
+    "partId": "main",
+    "title": "加权距离的最低平台",
+    "action": "两条到 a 的距离都要计入；移动 x，观察最低值和取得区间。",
+    "labels": [
+      "三处零点决定分类",
+      "把 a 放到区间内或两侧",
+      "分别检查 a 的三种位置",
+      "a 在中间时最低只有 7",
+      "a 在左侧，分成四段",
+      "左侧平台最低为 5−2a",
+      "a 在右侧，分成四段",
+      "右侧平台最低为 2a−5",
+      "两侧分别得到 −1.5 与 6.5",
+      "最低值 8，不代表只有一个 x"
+    ],
+    "controls": [
+      {
+        "key": "a",
+        "label": "改变参数 a",
+        "min": -3,
+        "max": 8,
+        "step": 0.5,
+        "value": -1.5
+      },
+      {
+        "key": "x",
+        "label": "移动点 x",
+        "min": -4,
+        "max": 9,
+        "step": 0.25,
+        "value": -1.25
+      }
+    ],
+    "states": [
+      {
+        "a": 2,
+        "x": 0
+      },
+      {
+        "a": 2,
+        "x": 2
+      },
+      {
+        "a": -2,
+        "x": 0
+      },
+      {
+        "a": 2,
+        "x": 2
+      },
+      {
+        "a": -1.5,
+        "x": -2
+      },
+      {
+        "a": -1.5,
+        "x": -1.25
+      },
+      {
+        "a": 6.5,
+        "x": 7
+      },
+      {
+        "a": 6.5,
+        "x": 6.25
+      },
+      {
+        "a": -1.5,
+        "x": -1
+      },
+      {
+        "a": 6.5,
+        "x": 6.25
+      }
+    ],
+    "task": "a=−1.5 时，x=−1.5 与 x=−1 都取得最小值吗？",
+    "choices": [
+      "只有 x=a 才取得",
+      "两者都取得，之间是一段平台",
+      "最小值是 7"
+    ],
+    "correct": 1,
+    "feedback": [
+      "当 a 在 −1 左侧时，a 到 −1 之间的距离增加和减少相互抵消。",
+      "正确。a=−1.5 时，x∈[−1.5,−1] 都使总和为 8。",
+      "中间固定距离是 7，但还要计入到 a 的双倍距离。"
+    ],
+    "key": "paper-q16-main-v1",
+    "target": {
+      "questionId": "8052b0e2-5662-4f62-8964-0dc4de2387cb",
+      "questionRevision": 4,
+      "lessonVersion": 4,
+      "partId": "main",
+      "lessonHash": "f9dc1328587d76e273f8168aa31837f8bdf953ac5138dc396336710416c60c92"
+    },
+    "stageCount": 10
+  },
+  {
+    "number": 17,
+    "partId": "1",
+    "title": "区间平移与关于零点反射",
+    "action": "b−1 是把 b 左移 1；−c 是把 c 关于原点翻转。",
+    "labels": [
+      "先画 b 与 c 的两个区间",
+      "不同运算对应不同移动",
+      "b−1 落入 (−1,0)",
+      "−c 落入 (−3,−2)",
+      "两个区间完全分开",
+      "右边的数始终更大"
+    ],
+    "controls": [
+      {
+        "key": "b",
+        "label": "改变 b",
+        "min": 0.1,
+        "max": 0.9,
+        "step": 0.1,
+        "value": 0.5
+      },
+      {
+        "key": "c",
+        "label": "改变 c",
+        "min": 2.1,
+        "max": 2.9,
+        "step": 0.1,
+        "value": 2.5
+      }
+    ],
+    "states": [
+      {
+        "b": 0.5,
+        "c": 2.5
+      },
+      {
+        "b": 0.5,
+        "c": 2.5
+      },
+      {
+        "b": 0.2
+      },
+      {
+        "c": 2.8
+      },
+      {
+        "b": 0.1,
+        "c": 2.1
+      },
+      {
+        "b": 0.9,
+        "c": 2.9
+      }
+    ],
+    "task": "让 b−1 尽量小、−c 尽量大，还能倒过来吗？",
+    "choices": [
+      "可以",
+      "不可以，两个区间仍隔着 1 个单位以上",
+      "只能相等"
+    ],
+    "correct": 1,
+    "feedback": [
+      "b−1>−1，而 −c<−2，它们的区间始终不相交。",
+      "正确。用整个区间比较，才保证对所有 b、c 都成立。",
+      "开区间不相交，没有相等的位置。"
+    ],
+    "key": "paper-q17-1-v1",
+    "target": {
+      "questionId": "d3b21541-d39a-48b7-834d-b7a3ff5232fb",
+      "questionRevision": 4,
+      "lessonVersion": 5,
+      "partId": "1",
+      "lessonHash": "f237f20f520950ec05c7c0a5e70a53d0fa783af286d2ebc377d63a7dd5979267"
+    },
+    "stageCount": 6
+  },
+  {
+    "number": 17,
+    "partId": "2",
+    "title": "绝对值化简前，先给内部定号",
+    "action": "用三个位置运算分别看 a−c、b+c、b−1。",
+    "labels": [
+      "确认 a、b、c 的区间",
+      "先定号，后去绝对值",
+      "a 在 c 左边，a−c<0",
+      "两个正数相加，b+c>0",
+      "b<1，所以 b−1<0",
+      "三个符号缺一不可"
+    ],
+    "controls": [
+      {
+        "key": "a",
+        "label": "改变 a",
+        "min": -1.9,
+        "max": -1.1,
+        "step": 0.1,
+        "value": -1.5
+      },
+      {
+        "key": "b",
+        "label": "改变 b",
+        "min": 0.1,
+        "max": 0.9,
+        "step": 0.1,
+        "value": 0.5
+      },
+      {
+        "key": "c",
+        "label": "改变 c",
+        "min": 2.1,
+        "max": 2.9,
+        "step": 0.1,
+        "value": 2.5
+      }
+    ],
+    "states": [
+      {},
+      {},
+      {},
+      {},
+      {},
+      {}
+    ],
+    "task": "三个内部表达式的符号依次是什么？",
+    "choices": [
+      "负、正、负",
+      "正、正、负",
+      "负、负、正"
+    ],
+    "correct": 0,
+    "feedback": [
+      "正确。a<c、b+c>0、b<1，分别控制三个表达式。",
+      "a<c，因此 a−c 必须为负。",
+      "b 与 c 都为正；b−1 则因 b<1 而为负。"
+    ],
+    "key": "paper-q17-2-v1",
+    "target": {
+      "questionId": "d3b21541-d39a-48b7-834d-b7a3ff5232fb",
+      "questionRevision": 4,
+      "lessonVersion": 5,
+      "partId": "2",
+      "lessonHash": "1b234553b7a73cbb7963407d895908c3d324864e08995bd388785d1fe6335db0"
+    },
+    "stageCount": 6
+  },
+  {
+    "number": 17,
+    "partId": "3",
+    "title": "打开绝对值，外面的减号仍保留",
+    "action": "先翻转负的内部，再分配括号外的负号，最后抵消 c。",
+    "labels": [
+      "从上一问的三个符号出发",
+      "负的取相反数，正的保持",
+      "第一项变成 c−a",
+      "第二项内部为正",
+      "第三项变成 1−b",
+      "外部减号作用到 b 和 c",
+      "c 与 −c 抵消",
+      "结果 1−a−2b 与 c 无关"
+    ],
+    "controls": [
+      {
+        "key": "a",
+        "label": "改变 a",
+        "min": -1.9,
+        "max": -1.1,
+        "step": 0.1,
+        "value": -1.5
+      },
+      {
+        "key": "b",
+        "label": "改变 b",
+        "min": 0.1,
+        "max": 0.9,
+        "step": 0.1,
+        "value": 0.5
+      },
+      {
+        "key": "c",
+        "label": "只改变 c 观察抵消",
+        "min": 2.1,
+        "max": 2.9,
+        "step": 0.1,
+        "value": 2.5
+      }
+    ],
+    "states": [
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {
+        "c": 2.1
+      },
+      {
+        "c": 2.9
+      }
+    ],
+    "task": "为什么只改变 c，整个式子的值不变？",
+    "choices": [
+      "因为 c 总是 0",
+      "因为 +c 与 −c 成对抵消",
+      "因为所有绝对值都不变"
+    ],
+    "correct": 1,
+    "feedback": [
+      "c 在 (2,3) 内，绝不是 0。",
+      "正确。各绝对值会变化，但变化量互相抵消；最终式不含 c。",
+      "每一项的值可能变化，总和因抵消保持不变。"
+    ],
+    "key": "paper-q17-3-v1",
+    "target": {
+      "questionId": "d3b21541-d39a-48b7-834d-b7a3ff5232fb",
+      "questionRevision": 4,
+      "lessonVersion": 5,
+      "partId": "3",
+      "lessonHash": "16339aeb457078632d88ca753732ec9315a01913d13c235e2f9147b76ad54902"
+    },
+    "stageCount": 8
+  },
+  {
+    "number": 18,
+    "partId": "1",
+    "title": "所有点对中，最远的是两个端点",
+    "action": "比较三段距离，把最大的一段留下。",
+    "labels": [
+      "把数组 {1,−2,3} 放到数轴",
+      "距离系数看最远两点",
+      "比较三个点对",
+      "最大距离为 3−(−2)=5",
+      "最大值减最小值"
+    ],
+    "controls": [
+      {
+        "key": "pair",
+        "label": "选择点对",
+        "min": 0,
+        "max": 2,
+        "step": 1,
+        "value": 0,
+        "options": [
+          "−2 与 1",
+          "1 与 3",
+          "−2 与 3"
+        ]
+      }
+    ],
+    "states": [
+      {
+        "pair": 0
+      },
+      {
+        "pair": 1
+      },
+      {
+        "pair": 2
+      },
+      {
+        "pair": 2
+      },
+      {
+        "pair": 0
+      }
+    ],
+    "task": "距离系数是不是所有点对距离的和？",
+    "choices": [
+      "是，等于 10",
+      "不是，只取最大距离 5",
+      "是数组元素的和 2"
+    ],
+    "correct": 1,
+    "feedback": [
+      "定义要求最大值，不是把 3、2、5 相加。",
+      "正确。最左与最右之间覆盖了其他所有点对。",
+      "距离系数衡量跨度，与元素之和不同。"
+    ],
+    "key": "paper-q18-1-v1",
+    "target": {
+      "questionId": "c204ce4a-c180-4342-b0b5-6d1ddf20632f",
+      "questionRevision": 4,
+      "lessonVersion": 5,
+      "partId": "1",
+      "lessonHash": "2611c3d14b97d921eb73709e2a42ed6084f9ca8aeea240ffa69cf5aeac9fb9c0"
+    },
+    "stageCount": 5
+  },
+  {
+    "number": 18,
+    "partId": "2",
+    "title": "第三个整数从两侧拉开跨度",
+    "action": "固定 1、2，移动 x，找跨度为 3 的两个位置。",
+    "labels": [
+      "x 必须与 1、2 不同",
+      "用最左与最右计算跨度",
+      "先排除重复元素 1 与 2",
+      "跨度为 3，把端点差写出来",
+      "左右两侧分别求解",
+      "代回 −1 和 4，确认全部解"
+    ],
+    "controls": [
+      {
+        "key": "x",
+        "label": "移动整数 x",
+        "min": -3,
+        "max": 6,
+        "step": 1,
+        "value": 0
+      }
+    ],
+    "states": [
+      {
+        "x": 0
+      },
+      {
+        "x": 3
+      },
+      {
+        "x": 1
+      },
+      {
+        "x": -1
+      },
+      {
+        "x": 4
+      },
+      {
+        "x": -1
+      }
+    ],
+    "task": "全部合法的 x 是哪些？",
+    "choices": [
+      "只取 4",
+      "−1 和 4",
+      "−2 和 3"
+    ],
+    "correct": 1,
+    "feedback": [
+      "x 在 1 左侧也能把跨度扩到 3。",
+      "正确。x=−1 时跨度 2−(−1)=3；x=4 时跨度 4−1=3。",
+      "分别代入，跨度为 4 与 2，不是 3。"
+    ],
+    "key": "paper-q18-2-v1",
+    "target": {
+      "questionId": "c204ce4a-c180-4342-b0b5-6d1ddf20632f",
+      "questionRevision": 4,
+      "lessonVersion": 5,
+      "partId": "2",
+      "lessonHash": "6b7e13d94c086548f6b020cd4e8fa26c16429742540a14de1e80edf36f7d2f04"
+    },
+    "stageCount": 6
+  },
+  {
+    "number": 18,
+    "partId": "3",
+    "title": "固定跨度的窗口，枚举中间数",
+    "action": "窗口宽度 5；先选左端点，再选内部的一个整数。",
+    "labels": [
+      "三个数先按从小到大排列",
+      "用最小数唯一标记每一组",
+      "最大数必须是 a+5",
+      "窗口起点有 5 个",
+      "窗口内中间数有 4 个",
+      "填满 5×4 的计数表",
+      "20 组，不计排列重复"
+    ],
+    "controls": [
+      {
+        "key": "left",
+        "label": "窗口左端点 a",
+        "min": 1,
+        "max": 5,
+        "step": 1,
+        "value": 1
+      },
+      {
+        "key": "middle",
+        "label": "中间数比 a 多多少",
+        "min": 1,
+        "max": 4,
+        "step": 1,
+        "value": 1
+      }
+    ],
+    "states": [
+      {
+        "left": 1,
+        "middle": 1
+      },
+      {
+        "left": 1
+      },
+      {
+        "left": 2
+      },
+      {
+        "left": 5
+      },
+      {
+        "middle": 3
+      },
+      {
+        "left": 4,
+        "middle": 4
+      },
+      {
+        "left": 5,
+        "middle": 4
+      }
+    ],
+    "task": "同一组三个数换个顺序，是否再计一组？",
+    "choices": [
+      "是，再乘 6",
+      "不是，按最小数和中间数唯一计数",
+      "只用数 5 个窗口"
+    ],
+    "correct": 1,
+    "feedback": [
+      "数组元素组成相同就不是新组合，不能按排列重复计算。",
+      "正确。每组恰好对应表中的一格，既不遗漏也不重复。",
+      "每个窗口中间数还有 4 种选择。"
+    ],
+    "key": "paper-q18-3-v1",
+    "target": {
+      "questionId": "c204ce4a-c180-4342-b0b5-6d1ddf20632f",
+      "questionRevision": 4,
+      "lessonVersion": 5,
+      "partId": "3",
+      "lessonHash": "284a7310430476366c8944414a7f32400477d776169b6e625b6c919710112d62"
+    },
+    "stageCount": 7
+  },
+  {
+    "number": 18,
+    "partId": "4",
+    "title": "端点决定最大跨度，与选数个数不同",
+    "action": "在 m 个连续整数中保留两个端点，再补足内部点。",
+    "labels": [
+      "m 个整数只有 m−1 个间隔",
+      "先看最大可能跨度",
+      "从 a 排到 a+m−1",
+      "两端的差为 m−1",
+      "选两端即可达到上界",
+      "再多选内部点，跨度不变",
+      "上界能达到才叫最大值"
+    ],
+    "controls": [
+      {
+        "key": "m",
+        "label": "连续整数个数 m",
+        "min": 3,
+        "max": 10,
+        "step": 1,
+        "value": 6
+      },
+      {
+        "key": "n",
+        "label": "想选的个数 n（超过 m 时按 m）",
+        "min": 2,
+        "max": 10,
+        "step": 1,
+        "value": 3
+      }
+    ],
+    "states": [
+      {
+        "m": 6,
+        "n": 2
+      },
+      {},
+      {},
+      {},
+      {
+        "n": 2
+      },
+      {
+        "n": 5
+      },
+      {
+        "m": 8,
+        "n": 3
+      }
+    ],
+    "task": "m=6，选 n=3 个数，距离系数最大是多少？",
+    "choices": [
+      "2",
+      "5",
+      "6"
+    ],
+    "correct": 1,
+    "feedback": [
+      "n−1 只是所选数也连续时的跨度；可以选两个最外端点。",
+      "正确。选 1、2、6 就达到 5；任何选法都不能超过 6−1。",
+      "6 个整数之间只有 5 个单位间隔。"
+    ],
+    "key": "paper-q18-4-v1",
+    "target": {
+      "questionId": "c204ce4a-c180-4342-b0b5-6d1ddf20632f",
+      "questionRevision": 4,
+      "lessonVersion": 5,
+      "partId": "4",
+      "lessonHash": "8dfa847c5c3f5f450a96958f0213ee332f1c5b4337a025c4ee2e159d348a79f9"
+    },
+    "stageCount": 7
+  },
+  {
+    "number": 19,
+    "partId": "1",
+    "title": "两段距离拼成固定线段",
+    "action": "P 在两端之间时，一增一减；走到外面会多走一个来回。",
+    "labels": [
+      "把两个绝对值画成路径",
+      "总长度与端点间距比较",
+      "两段路径分别对应 PA、PB",
+      "在线段上没有折返",
+      "整个闭区间都取得最小值",
+      "端点也要检验"
+    ],
+    "controls": [
+      {
+        "key": "x",
+        "label": "移动 P 的坐标 x",
+        "min": -4,
+        "max": 5,
+        "step": 0.25,
+        "value": 0
+      }
+    ],
+    "states": [
+      {
+        "x": 0
+      },
+      {
+        "x": -2
+      },
+      {
+        "x": 1
+      },
+      {
+        "x": -2
+      },
+      {
+        "x": 2
+      },
+      {
+        "x": -1
+      }
+    ],
+    "task": "最小值只在中点取得吗？",
+    "choices": [
+      "只在中点",
+      "在 [−1,2] 的每一点",
+      "只有两个端点"
+    ],
+    "correct": 1,
+    "feedback": [
+      "中点只是一种位置，一段增大时另一段会等量减小。",
+      "正确。包括端点，区间内距离和恒等于 3。",
+      "区间内部也不会折返，距离和仍为 3。"
+    ],
+    "key": "paper-q19-1-v1",
+    "target": {
+      "questionId": "4eb514f2-b858-4b44-b840-51de7495eab9",
+      "questionRevision": 6,
+      "lessonVersion": 8,
+      "partId": "1",
+      "lessonHash": "fc00be392663d39b7593a7d37de19400f9c048b76eb7464a6d04460df08479d6"
+    },
+    "stageCount": 6
+  },
+  {
+    "number": 19,
+    "partId": "2.1",
+    "title": "换一对端点，找整段最小区间",
+    "action": "先把 x+2 读成到 −2 的距离，防止固定点读反。",
+    "labels": [
+      "找准 −2 与 4 两个固定点",
+      "在两端之间拼接距离",
+      "x+2 对应点 −2",
+      "端点距离是 6",
+      "整个 [−2,4] 都最小",
+      "外侧多出的长度是两倍"
+    ],
+    "controls": [
+      {
+        "key": "x",
+        "label": "移动 P 的坐标 x",
+        "min": -5,
+        "max": 7,
+        "step": 0.25,
+        "value": 1
+      }
+    ],
+    "states": [
+      {
+        "x": 1
+      },
+      {
+        "x": -3
+      },
+      {
+        "x": -2
+      },
+      {
+        "x": 4
+      },
+      {
+        "x": 0
+      },
+      {
+        "x": 5
+      }
+    ],
+    "task": "|x+2| 对应哪个固定点？",
+    "choices": [
+      "2",
+      "−2",
+      "0"
+    ],
+    "correct": 1,
+    "feedback": [
+      "需要写成 |x−固定点|，所以是 x−(−2)。",
+      "正确。加 2 等于减去 −2；固定点是 −2。",
+      "|x| 才是到 0 的距离。"
+    ],
+    "key": "paper-q19-2-1-v1",
+    "target": {
+      "questionId": "4eb514f2-b858-4b44-b840-51de7495eab9",
+      "questionRevision": 6,
+      "lessonVersion": 8,
+      "partId": "2.1",
+      "lessonHash": "08e1a84a0a9268061c8ee6442026f74f8570bbffc76e8f0e6e19f117171f94a7"
+    },
+    "stageCount": 6
+  },
+  {
+    "number": 19,
+    "partId": "2.2",
+    "title": "比最短距离多 2，就向外多走 1",
+    "action": "分别考察左、中、右三段，找两个目标位置。",
+    "labels": [
+      "先看固定端点与目标 8",
+      "按左右和中间分三段",
+      "基准距离为 6",
+      "外侧会多出两倍路程",
+      "中间整段只有 6，排除",
+      "左侧多走 1，x=−3",
+      "右侧多走 1，x=5",
+      "保留并检验两根",
+      "两个分支都不能漏"
+    ],
+    "controls": [
+      {
+        "key": "x",
+        "label": "移动 P 的坐标 x",
+        "min": -5,
+        "max": 7,
+        "step": 0.25,
+        "value": -3
+      }
+    ],
+    "states": [
+      {
+        "x": 0
+      },
+      {
+        "x": -4
+      },
+      {
+        "x": 1
+      },
+      {
+        "x": 5
+      },
+      {
+        "x": 2
+      },
+      {
+        "x": -3
+      },
+      {
+        "x": 5
+      },
+      {
+        "x": -3
+      },
+      {
+        "x": 5
+      }
+    ],
+    "task": "目标比 6 多 2，P 应离最近端点多远？",
+    "choices": [
+      "2",
+      "1",
+      "4"
+    ],
+    "correct": 1,
+    "feedback": [
+      "外侧的路被走了两遍，所以额外总长 2 要除以 2。",
+      "正确。两个方向都能向外多走 1，得到 −3 与 5。",
+      "额外总长只有 2，不能再乘 2。"
+    ],
+    "key": "paper-q19-2-2-v1",
+    "target": {
+      "questionId": "4eb514f2-b858-4b44-b840-51de7495eab9",
+      "questionRevision": 6,
+      "lessonVersion": 8,
+      "partId": "2.2",
+      "lessonHash": "447e49370980906d1c395cf4fb6b7a61baa469ef85a5753626a54639bb74ae4b"
+    },
+    "stageCount": 9
+  },
+  {
+    "number": 19,
+    "partId": "2.3",
+    "title": "先确定端点，再反推参数的两种可能",
+    "action": "移动 −a，保持另一个端点为 3；目标是端点间距为 2。",
+    "labels": [
+      "参数 a 控制的点其实是 −a",
+      "最小值只由两端距离决定",
+      "先定位 −a 与 3",
+      "两点间距是 ｜a+3｜",
+      "把间距设为 2",
+      "3 的两侧各找一个端点",
+      "从端点反推 a=−1 或 −5",
+      "分别检验最小值"
+    ],
+    "controls": [
+      {
+        "key": "a",
+        "label": "改变参数 a",
+        "min": -6,
+        "max": 0,
+        "step": 0.5,
+        "value": -1
+      },
+      {
+        "key": "x",
+        "label": "移动 P 的坐标 x",
+        "min": -1,
+        "max": 7,
+        "step": 0.5,
+        "value": 2
+      }
+    ],
+    "states": [
+      {
+        "a": -1
+      },
+      {
+        "a": -5
+      },
+      {
+        "a": -2
+      },
+      {
+        "a": -4
+      },
+      {
+        "a": -1
+      },
+      {
+        "a": -5
+      },
+      {
+        "a": -1
+      },
+      {
+        "a": -5,
+        "x": 4
+      }
+    ],
+    "task": "另一个端点取 5 时，a 是多少？",
+    "choices": [
+      "5",
+      "−5",
+      "−2"
+    ],
+    "correct": 1,
+    "feedback": [
+      "端点表示的是 −a，不是 a。",
+      "正确。−a=5 得 a=−5，与 3 的间距正好为 2。",
+      "5 与 3 的距离是 2，但参数由 −a=5 决定。"
+    ],
+    "key": "paper-q19-2-3-v1",
+    "target": {
+      "questionId": "4eb514f2-b858-4b44-b840-51de7495eab9",
+      "questionRevision": 6,
+      "lessonVersion": 8,
+      "partId": "2.3",
+      "lessonHash": "48c8469cb50b66df85801e109405033d4907bde193af301b8f9894063bb41427"
+    },
+    "stageCount": 8
+  },
+  {
+    "number": 20,
+    "partId": "main",
+    "title": "四条等价路径，寻找最容易约分的一条",
+    "action": "拆分不改变数值；挑与分母 16 能直接约分的两项。",
+    "labels": [
+      "目标是简便，不是判断等不等",
+      "留意乘数的分母 16",
+      "四种拆分都等于原数",
+      "展开比较，D 的两项都约去 16",
+      "算出 18/7 并核对",
+      "等价变形不等于同样简便"
+    ],
+    "controls": [
+      {
+        "key": "path",
+        "label": "比较拆分方法",
+        "min": 0,
+        "max": 3,
+        "step": 1,
+        "value": 0,
+        "options": [
+          "A：13+5/7",
+          "B：14−2/7",
+          "C：10+26/7",
+          "D：16−16/7"
+        ]
+      }
+    ],
+    "states": [
+      {
+        "path": 0
+      },
+      {
+        "path": 3
+      },
+      {
+        "path": 1
+      },
+      {
+        "path": 3
+      },
+      {
+        "path": 3
+      },
+      {
+        "path": 2
+      }
+    ],
+    "task": "为什么选择 D？",
+    "choices": [
+      "其他三项不等于原数",
+      "D 的两项乘法都能直接约去 16",
+      "因为 D 最长"
+    ],
+    "correct": 1,
+    "feedback": [
+      "四个拆分都正确，题目问的是哪一个计算最简便。",
+      "正确。得到 3−3/7，省去较大分母的通分。",
+      "判断简便要看计算动作，不是文字长短。"
+    ],
+    "key": "paper-q20-main-v1",
+    "target": {
+      "questionId": "559fc372-f32c-473a-8379-bdfda107e1b5",
+      "questionRevision": 4,
+      "lessonVersion": 2,
+      "partId": "main",
+      "lessonHash": "3893fa26d75438f638044fcb9e519837bc7ea0a876151db43d77a2ccd141d611"
+    },
+    "stageCount": 6
+  },
+  {
+    "number": 21,
+    "partId": "main",
+    "title": "把 12 分配给每一项，再正负抵消",
+    "action": "12 格为一个整体，分别取 1/6、1/4，再减去 1/2。",
+    "labels": [
+      "先看每一项的符号",
+      "12 要乘到括号内每一项",
+      "三条分配箭头缺一不可",
+      "得到 +2、+3、−6",
+      "5 个正单位抵掉 5 个负单位",
+      "剩下 1 个负单位"
+    ],
+    "controls": [
+      {
+        "key": "phase",
+        "label": "查看运算动作",
+        "min": 0,
+        "max": 2,
+        "step": 1,
+        "value": 0,
+        "options": [
+          "分配 12",
+          "分别约分",
+          "正负抵消"
+        ]
+      }
+    ],
+    "states": [
+      {
+        "phase": 0
+      },
+      {
+        "phase": 0
+      },
+      {
+        "phase": 0
+      },
+      {
+        "phase": 1
+      },
+      {
+        "phase": 2
+      },
+      {
+        "phase": 2
+      }
+    ],
+    "task": "算成 2+3+6 的错误在哪里？",
+    "choices": [
+      "漏乘 12",
+      "丢掉第三项前面的负号",
+      "分母没有通分"
+    ],
+    "correct": 1,
+    "feedback": [
+      "三项都已经乘了 12，问题在符号。",
+      "正确。分配乘法时，每一项原来的正负号必须跟着走。",
+      "可以先分配再约分，不必先通分。"
+    ],
+    "key": "paper-q21-main-v1",
+    "target": {
+      "questionId": "d5b22996-a1fc-420b-ab56-e9bb12825b27",
+      "questionRevision": 4,
+      "lessonVersion": 2,
+      "partId": "main",
+      "lessonHash": "e490a2ec75469cf85254eaec580729c7776da05cdf5bdf767acbeadc3c1b2c4c"
+    },
+    "stageCount": 6
+  },
+  {
+    "number": 22,
+    "partId": "main",
+    "title": "负带分数拆成两项，负号跟着走",
+    "action": "整数一组、分数一组；先抵消大数，再通分小数。",
+    "labels": [
+      "四项都是带着符号的整体",
+      "整数与分数分别收集",
+      "负号同时作用到两部分",
+      "按整数、分数分成两条轨道",
+      "整数配对后只剩 −2",
+      "分数通分到 84",
+      "合成 −73/28",
+      "用整项通分再核验"
+    ],
+    "controls": [
+      {
+        "key": "phase",
+        "label": "查看拆项过程",
+        "min": 0,
+        "max": 3,
+        "step": 1,
+        "value": 0,
+        "options": [
+          "拆开四项",
+          "整数配对",
+          "分数通分",
+          "重新合并"
+        ]
+      }
+    ],
+    "states": [
+      {
+        "phase": 0
+      },
+      {
+        "phase": 0
+      },
+      {
+        "phase": 0
+      },
+      {
+        "phase": 1
+      },
+      {
+        "phase": 1
+      },
+      {
+        "phase": 2
+      },
+      {
+        "phase": 3
+      },
+      {
+        "phase": 3
+      }
+    ],
+    "task": "−2026 又 2/3 应如何拆？",
+    "choices": [
+      "−2026+2/3",
+      "−2026−2/3",
+      "2026−2/3"
+    ],
+    "correct": 1,
+    "feedback": [
+      "负号属于整个带分数，分数部分也要是负的。",
+      "正确。−(2026+2/3)=−2026−2/3。",
+      "整数部分的负号不能丢。"
+    ],
+    "key": "paper-q22-main-v1",
+    "target": {
+      "questionId": "e7bd7991-c96d-47a4-a5a0-957678c0433c",
+      "questionRevision": 4,
+      "lessonVersion": 1,
+      "partId": "main",
+      "lessonHash": "fc2236ebdf6c2abf0b107dcd09b2aa7ff4b7bac6de25191e7d195cdbcee0ccd0"
+    },
+    "stageCount": 8
+  },
+  {
+    "number": 23,
+    "partId": "1",
+    "title": "提取公因数后，四分之一块正负抵消",
+    "action": "把共同的 25 提到外面，再比较括号内的三份和三份。",
+    "labels": [
+      "把每项的符号留下",
+      "三项都含有 25",
+      "将负号移到分数前",
+      "只提取一个共同的 25",
+      "3/4 与 2/4+1/4 抵消",
+      "25 乘以 0",
+      "原式逐项计算也为 0"
+    ],
+    "controls": [
+      {
+        "key": "phase",
+        "label": "查看化简动作",
+        "min": 0,
+        "max": 2,
+        "step": 1,
+        "value": 0,
+        "options": [
+          "标出共同因数",
+          "提取 25",
+          "四分之一块抵消"
+        ]
+      }
+    ],
+    "states": [
+      {
+        "phase": 0
+      },
+      {
+        "phase": 0
+      },
+      {
+        "phase": 0
+      },
+      {
+        "phase": 1
+      },
+      {
+        "phase": 2
+      },
+      {
+        "phase": 2
+      },
+      {
+        "phase": 2
+      }
+    ],
+    "task": "提取 25 后，括号应该是什么？",
+    "choices": [
+      "3/4+1/2−1/4",
+      "3/4−1/2−1/4",
+      "3/4−1/2+1/4"
+    ],
+    "correct": 1,
+    "feedback": [
+      "第二项原本是负数，不能提取后变成正数。",
+      "正确。共同因数是正 25，另外两项的负号都保留在括号里。",
+      "第三项原本也为负。"
+    ],
+    "key": "paper-q23-1-v1",
+    "target": {
+      "questionId": "2ec23e62-b860-44f3-9d42-4a136ce0a6ee",
+      "questionRevision": 5,
+      "lessonVersion": 5,
+      "partId": "1",
+      "lessonHash": "1dc6adea6eeacc7e1b663e5718ceaebe3ddbdd7aa53076456822f5592bd4efb0"
+    },
+    "stageCount": 7
+  },
+  {
+    "number": 23,
+    "partId": "2",
+    "title": "带分数变假分数，只翻转除数",
+    "action": "两个带分数分别转换，除法门只把第二个数变成倒数。",
+    "labels": [
+      "先确认整数部分与分数部分",
+      "除以非零数等于乘其倒数",
+      "999×7+6=6999",
+      "负号保留，除数是 −10/7",
+      "只把除数翻成 −7/10",
+      "约掉 7，留下 −6999/10",
+      "乘回除数验证"
+    ],
+    "controls": [
+      {
+        "key": "phase",
+        "label": "查看变形过程",
+        "min": 0,
+        "max": 2,
+        "step": 1,
+        "value": 0,
+        "options": [
+          "转成假分数",
+          "取除数的倒数",
+          "约分得到结果"
+        ]
+      }
+    ],
+    "states": [
+      {
+        "phase": 0
+      },
+      {
+        "phase": 0
+      },
+      {
+        "phase": 0
+      },
+      {
+        "phase": 0
+      },
+      {
+        "phase": 1
+      },
+      {
+        "phase": 2
+      },
+      {
+        "phase": 2
+      }
+    ],
+    "task": "除以 −10/7 应改写成什么？",
+    "choices": [
+      "乘 −7/10",
+      "乘 7/10",
+      "乘 −10/7"
+    ],
+    "correct": 0,
+    "feedback": [
+      "正确。分子分母互换，负号保留；被除数不翻转。",
+      "倒数仍为负，不能丢负号。",
+      "除法变乘法后，除数必须取倒数。"
+    ],
+    "key": "paper-q23-2-v1",
+    "target": {
+      "questionId": "2ec23e62-b860-44f3-9d42-4a136ce0a6ee",
+      "questionRevision": 5,
+      "lessonVersion": 5,
+      "partId": "2",
+      "lessonHash": "c9809e20cb7d9a5c4f73dce758f19ada3bedac1bcb1294fba800a78bf4c66148"
+    },
+    "stageCount": 7
+  },
+  {
+    "number": 24,
+    "partId": "main",
+    "title": "递推数字成对出现，验证后推到远处",
+    "action": "从前项得到后项，再把偶数项与后一奇数项配对。",
+    "labels": [
+      "先把递推规则写清",
+      "每一步：相加、绝对值、取相反数",
+      "明确第 n 项用 n−1",
+      "前几项按次序算出",
+      "相邻两项合成一个编号组",
+      "下一组仍成立，规律得到证明",
+      "2027 落在第 1013 组",
+      "回代前一项核对"
+    ],
+    "controls": [
+      {
+        "key": "n",
+        "label": "查看项数 n",
+        "min": 1,
+        "max": 10,
+        "step": 1,
+        "value": 5
+      }
+    ],
+    "states": [
+      {
+        "n": 1
+      },
+      {
+        "n": 2
+      },
+      {
+        "n": 3
+      },
+      {
+        "n": 5
+      },
+      {
+        "n": 6
+      },
+      {
+        "n": 8
+      },
+      {
+        "n": 9
+      },
+      {
+        "n": 7
+      }
+    ],
+    "task": "第 6 项与第 7 项为什么相同？",
+    "choices": [
+      "每一项都相同",
+      "它们分别是 2k 与 2k+1，k=3",
+      "因为 6=7"
+    ],
+    "correct": 1,
+    "feedback": [
+      "相邻组的值会继续减小，不是整列恒定。",
+      "正确。这一对都等于 −3；还需用递推证明每一组都这样。",
+      "相同的是项的值，不是项数。"
+    ],
+    "key": "paper-q24-main-v1",
+    "target": {
+      "questionId": "7e792cb1-f298-4795-af16-831d58b37ba5",
+      "questionRevision": 4,
+      "lessonVersion": 1,
+      "partId": "main",
+      "lessonHash": "40de7d69232bd6935a6f9925b13cc3c4067a22dc21dca361f2341c71036412dd"
+    },
+    "stageCount": 8
+  },
+  {
+    "number": 25,
+    "partId": "main",
+    "title": "四步回到起点，用余数定位",
+    "action": "每次严格执行 2/(2−a)，看状态何时第一次回到 3。",
+    "labels": [
+      "从 3 进入递推环",
+      "每个箭头都使用同一规则",
+      "写清下一项如何产生",
+      "走完 3、−2、1/2、4/3",
+      "回到 3 后，后续也重复",
+      "2026 除以 4 余 2",
+      "余数 0 对应环的第 4 位"
+    ],
+    "controls": [
+      {
+        "key": "n",
+        "label": "查看第 n 项",
+        "min": 1,
+        "max": 12,
+        "step": 1,
+        "value": 2
+      }
+    ],
+    "states": [
+      {
+        "n": 1
+      },
+      {
+        "n": 2
+      },
+      {
+        "n": 2
+      },
+      {
+        "n": 4
+      },
+      {
+        "n": 5
+      },
+      {
+        "n": 6
+      },
+      {
+        "n": 8
+      }
+    ],
+    "task": "若项数正好是 4 的倍数，应落在哪个值？",
+    "choices": [
+      "3",
+      "−2",
+      "4/3"
+    ],
+    "correct": 2,
+    "feedback": [
+      "3 在每组的第 1 位，而不是第 4 位。",
+      "−2 在每组第 2 位。",
+      "正确。余数 0 表示一组的最后一项，对应第 4 位。"
+    ],
+    "key": "paper-q25-main-v1",
+    "target": {
+      "questionId": "a7777018-263f-4c19-bb77-d600aab4fbc1",
+      "questionRevision": 4,
+      "lessonVersion": 1,
+      "partId": "main",
+      "lessonHash": "9299f6623f719a9fb1fb293f00f02a81a9aec8c88b079d9a0e0988998c347b72"
+    },
+    "stageCount": 7
+  },
+  {
+    "number": 27,
+    "partId": "1",
+    "title": "每次减去一半，余下的继续化简",
+    "action": "从最大幂往下，半块移走，另一半留下。",
+    "labels": [
+      "最后的 2 就是 2¹",
+      "相邻幂差仍是较小的幂",
+      "指数统一后顺次相减",
+      "128−64 留下 64",
+      "继续逐次减半",
+      "最后留下 2",
+      "用数值逐项核对"
+    ],
+    "controls": [
+      {
+        "key": "k",
+        "label": "已经减去几项",
+        "min": 0,
+        "max": 6,
+        "step": 1,
+        "value": 0
+      }
+    ],
+    "states": [
+      {
+        "k": 0
+      },
+      {
+        "k": 1
+      },
+      {
+        "k": 0
+      },
+      {
+        "k": 1
+      },
+      {
+        "k": 4
+      },
+      {
+        "k": 6
+      },
+      {
+        "k": 6
+      }
+    ],
+    "task": "为什么最后不是 0？",
+    "choices": [
+      "因为只减到 2，还剩另一个 2",
+      "因为负号不能用",
+      "因为指数不能相减"
+    ],
+    "correct": 0,
+    "feedback": [
+      "正确。4−2=2，原式后面没有再减 2 或减 1。",
+      "负号当然要用，关键是按原式逐项计算。",
+      "这里是幂的数值相减，不是直接减指数。"
+    ],
+    "key": "paper-q27-1-v1",
+    "target": {
+      "questionId": "67ba8153-af47-477c-a0a9-4f76300f37bc",
+      "questionRevision": 4,
+      "lessonVersion": 1,
+      "partId": "1",
+      "lessonHash": "d6d3f8d0f234a82a4af347e23a6e981e086303fdf5596abe61c4d4bf7d2b7ccf"
+    },
+    "stageCount": 7
+  },
+  {
+    "number": 27,
+    "partId": "2",
+    "title": "两行错位，逐对抵消中间的幂",
+    "action": "将和式乘 2 后向右移动一格，再按列相减。",
+    "labels": [
+      "先用小指数看结构",
+      "把求和部分命名为 S",
+      "一行从 1 加到最高项",
+      "乘 2 后，每项右移一格",
+      "中间成对抵消，只留两端",
+      "S 减去下一次幂，剩 −1",
+      "回到指数 2029，结构完全相同"
+    ],
+    "controls": [
+      {
+        "key": "n",
+        "label": "示例的最高指数 n",
+        "min": 2,
+        "max": 7,
+        "step": 1,
+        "value": 4
+      }
+    ],
+    "states": [
+      {
+        "n": 3
+      },
+      {
+        "n": 3
+      },
+      {
+        "n": 4
+      },
+      {
+        "n": 4
+      },
+      {
+        "n": 5
+      },
+      {
+        "n": 5
+      },
+      {
+        "n": 6
+      }
+    ],
+    "task": "2S−S 后没有被抵消的是哪些项？",
+    "choices": [
+      "只有最高项",
+      "最高项减去 1",
+      "最高项加上 1"
+    ],
+    "correct": 1,
+    "feedback": [
+      "下行最左端的 1 没有配对，还要减去它。",
+      "正确。中间每一列一正一负，最后是 2^(n+1)−1。",
+      "做的是 2S−S，下行的 1 带着减号。"
+    ],
+    "key": "paper-q27-2-v1",
+    "target": {
+      "questionId": "67ba8153-af47-477c-a0a9-4f76300f37bc",
+      "questionRevision": 4,
+      "lessonVersion": 1,
+      "partId": "2",
+      "lessonHash": "385a88c8d4e0e89b4fc20e3ae899b3a8158a5062dfe3ffe25b995b7a1ba1c87b"
+    },
+    "stageCount": 7
+  }
+]

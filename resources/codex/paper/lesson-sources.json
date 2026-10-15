@@ -1,0 +1,3645 @@
+[
+  {
+    "question": {
+      "id": "4f4dab03-d347-438e-bef3-3a5001856260",
+      "revision": 5,
+      "number": 1,
+      "state": "confirmed",
+      "missingFields": [],
+      "parts": [
+        {
+          "id": "main",
+          "label": "主问题",
+          "prompt": "选择正确结论"
+        }
+      ]
+    },
+    "lesson": {
+      "questionId": "4f4dab03-d347-438e-bef3-3a5001856260",
+      "questionRevision": 5,
+      "lessonVersion": 4,
+      "status": "ready",
+      "checks": {
+        "issues": [],
+        "coverage": true,
+        "partIdMap": {
+          "main": "main"
+        },
+        "repairAttempt": 1,
+        "answerVerified": true,
+        "inputConfirmed": true,
+        "reasoningReviewed": true
+      },
+      "coveredPartIds": [
+        "main"
+      ],
+      "parts": [
+        {
+          "partId": "main",
+          "label": "主问题",
+          "goal": "从数轴位置判断四个结论哪个正确",
+          "known": [
+            "实数 $a,b$ 在数轴上的位置如图所示",
+            "点 $a$ 位于 $-2$ 与 $-1$ 之间，即 $-2<a<-1$",
+            "点 $b$ 位于 $0$ 与 $1$ 之间，即 $0<b<1$",
+            "$-1$ 与 $0$ 是题面图中给出的固定刻度点"
+          ],
+          "prerequisites": [
+            "数轴上右边的点表示的数比左边的大",
+            "异号两数相加，取绝对值较大的加数的符号，并用较大的绝对值减去较小的绝对值",
+            "$|x|$ 表示数轴上点 $x$ 到原点的距离",
+            "同向不等式可以相加：若 $x<y$ 且 $u<v$，则 $x+u<y+v$"
+          ],
+          "method": "先不靠图形比例猜，而是把图中位置翻译成严格不等式；再逐个选项用这些不等式进行大小比较或距离比较，判断真假。这样对 $a,b$ 的全部允许位置都成立，不是只代入一个特殊值。",
+          "verification": "把D代回题设范围检验：由 $-2<a<-1$ 得 $1<-a=|a|<2$；由 $0<b<1$ 得 $|b|=b<1$。因此必有 $|a|>1>|b|$，与选项D一致。再排除其他选项：A与 $-2<a<-1$ 矛盾；B由 $a<-1,b<1$ 相加得 $a+b<0$，不可能为0；C由 $a<b$ 得 $a-b<0$，不可能大于0。所有判断对 $a,b$ 的全体允许范围成立，不依赖特殊取值。",
+          "summary": "遇到数轴上的点判断大小或式子的题，先把每个点的位置写成严格不等式；对和可用同向不等式相加得到全范围；对差转化为比较大小；对绝对值则比较点到原点的距离。这样做能覆盖题目允许的所有位置，且能看出不等式端点是否取等号。",
+          "steps": [
+            {
+              "id": "p1-step1",
+              "title": "把图中位置写成严格不等式",
+              "explanation": "由数轴顺序可知，点 $a$ 在 $-2$ 与 $-1$ 之间，且两端点不能取，所以 $-2<a<-1$；点 $b$ 在 $0$ 与 $1$ 之间，且两端点不能取，所以 $0<b<1$。后续所有判断都从这两个真实条件出发。",
+              "reason": "数轴上越靠右的数越大；图中位置没有等号，因此写成严格不等式。",
+              "formulaLatex": "-2<a<-1,\\quad 0<b<1"
+            },
+            {
+              "id": "p1-step2",
+              "title": "判断A：能否有 $a>-1$",
+              "explanation": "由 $-2<a<-1$ 可知 $a$ 始终小于 $-1$，因此 $a>-1$ 一定不成立。",
+              "reason": "只读题设区间即可，不需要额外条件。",
+              "formulaLatex": "a<-1 \\Rightarrow a>-1\\text{ 为假}"
+            },
+            {
+              "id": "p1-step3",
+              "title": "判断B：$a+b$ 是否等于0",
+              "explanation": "先由 $-2<a<-1$ 得 $a<-1$；由 $0<b<1$ 得 $b<1$。两个同向不等式相加，得 $a+b<0$。（注意：这里 $b<1$ 中的 $1$ 是严格小于，所以 $a+b$ 严格小于 $0$。）因此 $a+b$ 不可能等于 $0$。",
+              "reason": "使用同向不等式相加是初中可直接使用的不等式性质：若 $x<y$ 且 $u<v$，则 $x+u<y+v$。这里 $y=-1$, $v=1$，所以 $a+b<-1+1=0$。这样由题设范围推出所有允许的 $a,b$ 都满足 $a+b<0$，结论不成立。",
+              "formulaLatex": "a<-1,\\ b<1\\Rightarrow a+b<0 \\Rightarrow a+b\\ne 0"
+            },
+            {
+              "id": "p1-step4",
+              "title": "判断C：$a-b$ 的符号",
+              "explanation": "$a-b>0$ 等价于 $a>b$。由已知，$a<-1<0<b<1$，所以 $a<b$，因此 $a-b<0$，选项C不成立。",
+              "reason": "数轴上左边的点小于右边的点；也可以由 $a<-1$ 且 $b>0$，直接得到 $a<b$。",
+              "formulaLatex": "a<-1<0<b<1 \\Rightarrow a<b \\Rightarrow a-b<0"
+            },
+            {
+              "id": "p1-step5",
+              "title": "判断D：比较 $|a|$ 与 $|b|$",
+              "explanation": "因为 $a$ 在 $-2$ 与 $-1$ 之间，所以 $a$ 到原点的距离在 $1$ 与 $2$ 之间，即 $1<|a|<2$；因为 $b$ 在 $0$ 与 $1$ 之间，所以 $b$ 到原点的距离在 $0$ 与 $1$ 之间，即 $0<|b|<1$。因此 $|a|>1>|b|$，所以 $|a|>|b|$ 成立。",
+              "reason": "绝对值的几何意义是比较到原点的距离，不看正负号。由 $a\\in(-2,-1)$ 可得 $-a=|a|\\in(1,2)$；由 $b\\in(0,1)$ 可得 $|b|\\in(0,1)$，两个区间没有重叠，且前者整体大于后者。",
+              "formulaLatex": "1<|a|<2,\\quad 0<|b|<1 \\Rightarrow |a|>|b|"
+            }
+          ],
+          "answer": {
+            "kind": "choice",
+            "value": "D",
+            "display": "D：$|a|>|b|$"
+          },
+          "misconceptions": [
+            {
+              "mistake": "看到 $a$ 与 $b$ 分别在原点两侧，容易误以为 $a+b=0$，即认为两点关于原点对称。",
+              "correction": "关于原点对称需要 $b=-a$；但 $a$ 到原点距离大于 $1$，$b$ 到原点距离小于 $1$，并不对称。同向不等式相加也证明 $a+b<0$，不可能等于 $0$。"
+            },
+            {
+              "mistake": "认为比较绝对值就是直接比较 $a$ 和 $b$ 的数大小，可能因 $a$ 是负数而误判 $|a|<|b|$。",
+              "correction": "绝对值表示到原点的距离。由 $a$ 在 $-2$ 与 $-1$ 之间得 $|a|>1$，而 $b$ 在 $0$ 与 $1$ 之间得 $|b|<1$，所以 $|a|>|b|$。"
+            },
+            {
+              "mistake": "把 $a-b>0$ 看作“左边点减右边点应该大于0”。",
+              "correction": "$a-b>0$ 的含义是 $a>b$，但数轴上 $a$ 在 $b$ 左侧，应有 $a<b$，所以 $a-b<0$。"
+            }
+          ],
+          "scene": null
+        }
+      ]
+    }
+  },
+  {
+    "question": {
+      "id": "e2d3a079-c2bd-4732-ae54-bfe063d1b4f2",
+      "revision": 5,
+      "number": 2,
+      "state": "confirmed",
+      "missingFields": [],
+      "parts": [
+        {
+          "id": "main",
+          "label": "主问题",
+          "prompt": "选择原点可能位置"
+        }
+      ]
+    },
+    "lesson": {
+      "questionId": "e2d3a079-c2bd-4732-ae54-bfe063d1b4f2",
+      "questionRevision": 5,
+      "lessonVersion": 2,
+      "status": "ready",
+      "checks": {
+        "issues": [],
+        "coverage": true,
+        "partIdMap": {
+          "main": "main"
+        },
+        "repairAttempt": 0,
+        "answerVerified": true,
+        "inputConfirmed": true,
+        "reasoningReviewed": true
+      },
+      "coveredPartIds": [
+        "main"
+      ],
+      "parts": [
+        {
+          "partId": "main",
+          "label": "主问题",
+          "goal": "判断原点在数轴上的可能位置是A、B、C、D中的哪一个。",
+          "known": [
+            "实数a、b在数轴上的对应点位置如图所示；从左到右为A、a、B、C、b、D，且B更靠近a，C更靠近b。",
+            "a+b<0。",
+            "ab<0。"
+          ],
+          "prerequisites": [
+            "数轴上左边的点表示的数小于右边的点表示的数。",
+            "有理数乘法法则：异号得负。",
+            "有理数加法中，异号两数相加，和的符号与绝对值较大的加数相同。",
+            "数轴上点x到原点的距离为|x|。"
+          ],
+          "method": "先由ab<0判断a、b异号；结合a在b左边确定a<0<b。再由a+b<0判断负数a的绝对值较大，即原点离a较远、离b较近。最后在A、B、C、D中先排除同号情形的A、D，再根据B离a近、C离b近排除B并确定C。",
+          "verification": "把原点放在C检查：a<0<b，所以ab<0；C离b近，则|b|<|a|，又a负、b正，所以a+b=-(|a|-|b|)<0，全部满足。若放B则|a|<|b|，会使a+b>0；放A或D会使a、b同号，ab>0。",
+          "summary": "遇到数轴上用符号条件判断原点位置的问题，先根据乘积符号判断两点是否同侧，结合左右位置确定正负；再根据加法符号判断绝对值谁大，最后用“原点离绝对值较大的数更远”的原则在可选点中排除。",
+          "steps": [
+            {
+              "id": "main-step1",
+              "title": "把图中的位置关系转化为不等式",
+              "explanation": "图中点从左到右是A、a、B、C、b、D，所以A<a<B<C<b<D；同时B更靠近a，C更靠近b。",
+              "reason": "数轴正方向向右，越靠右的点表示的数越大。",
+              "formulaLatex": "A<a<B<C<b<D"
+            },
+            {
+              "id": "main-step2",
+              "title": "由ab<0确定a、b的正负",
+              "explanation": "ab<0说明a、b一正一负。又因为a在b的左边，所以a是负数，b是正数。",
+              "reason": "有理数乘法中异号得负；数轴上左边的数小于右边的数。",
+              "formulaLatex": "ab<0\\Rightarrow a<0<b"
+            },
+            {
+              "id": "main-step3",
+              "title": "由a+b<0比较绝对值大小",
+              "explanation": "a+b<0，说明和的符号为负。异号两数相加时，和的符号与绝对值较大的加数相同，所以|a|>|b|。原点O到a的距离是|a|，到b的距离是|b|，因此原点离b更近。",
+              "reason": "异号加法法则和绝对值的几何意义。",
+              "formulaLatex": "a+b<0\\Rightarrow |a|>|b|"
+            },
+            {
+              "id": "main-step4",
+              "title": "在A、B、C、D中确定原点",
+              "explanation": "若原点在A或D，则a、b都在原点同侧，ab>0，与已知矛盾，排除A、D。若原点在B，则B离a近，所以|a|=B-a，|b|=b-B，且B-a<b-B，得|a|<|b|，与|a|>|b|矛盾，排除B。若原点在C，则C离b近，所以|a|=C-a，|b|=b-C，且b-C<C-a，得|b|<|a|，正好符合条件，因此原点可能在C。",
+              "reason": "利用点到原点的距离比较绝对值；先排除同号点，再比较B、C与a、b的距离。",
+              "formulaLatex": "B-a<b-B\\Rightarrow |a|<|b|;\\quad b-C<C-a\\Rightarrow |b|<|a|"
+            }
+          ],
+          "answer": {
+            "kind": "choice",
+            "value": "C",
+            "display": "C（点C）"
+          },
+          "misconceptions": [
+            {
+              "mistake": "只看ab<0，认为原点只要在a、b之间即可，可能选B或C。",
+              "correction": "还需要利用a+b<0比较绝对值，原点必须离b更近，所以在B、C中只能选C。"
+            },
+            {
+              "mistake": "把a+b<0直接理解为a<b。",
+              "correction": "a<b只说明a在b左边；a+b<0在a<0<b的条件下等价于|a|>|b|，要用异号加法法则判断。"
+            }
+          ],
+          "scene": null
+        }
+      ]
+    }
+  },
+  {
+    "question": {
+      "id": "9ffe2a6f-e949-4d93-9db7-698f40f099ca",
+      "revision": 4,
+      "number": 3,
+      "state": "confirmed",
+      "missingFields": [],
+      "parts": [
+        {
+          "id": "main",
+          "label": "主问题",
+          "prompt": "选择一定是正数的式子"
+        }
+      ]
+    },
+    "lesson": {
+      "questionId": "9ffe2a6f-e949-4d93-9db7-698f40f099ca",
+      "questionRevision": 4,
+      "lessonVersion": 3,
+      "status": "ready",
+      "checks": {
+        "issues": [],
+        "coverage": true,
+        "partIdMap": {
+          "main": "main"
+        },
+        "repairAttempt": 0,
+        "answerVerified": true,
+        "inputConfirmed": true,
+        "reasoningReviewed": true
+      },
+      "coveredPartIds": [
+        "main"
+      ],
+      "parts": [
+        {
+          "partId": "main",
+          "label": "主问题",
+          "goal": "判断四个式子中哪一个的值一定是正数。",
+          "known": [
+            "点A在点B左侧，数轴正方向向右，所以A表示的数a小于B表示的数b，即a<b。",
+            "a+b=1。",
+            "四个选项分别为a、-b、b+1、-a。",
+            "题图未给出原点或具体刻度，不能额外假设a、b的具体正负。"
+          ],
+          "prerequisites": [
+            "数轴上右边点表示的数大于左边点表示的数。",
+            "不等式两边同加一个数不改变方向。",
+            "判断“一定是”时，一个满足条件的反例就能否定某选项。"
+          ],
+          "method": "把“A在B左”转化为a<b，再与a+b=1组合推出b的范围；只要证明b+1始终为正，并用反例说明其他式子不是一定正数。",
+          "verification": "选C后独立检验：任取满足a<b且a+b=1的一组数，如a=0.4,b=0.6，有0.4<0.6、0.4+0.6=1，b+1=1.6>0；再取a=-99,b=100，有-99<100、-99+100=1，b+1=101>0。这些检验与前面由a<b和a+b=1推出的b>1/2一致，C恒正；其他选项已被反例排除。",
+          "summary": "遇到数轴位置与等式结合的选择题，先把“左、右”转化为不等式；再用不等式性质与等式推出变量范围；说明“一定成立”需要一般推导，否定“一定成立”只需一个反例。",
+          "steps": [
+            {
+              "id": "p1-step1",
+              "title": "把数轴位置写成大小关系",
+              "explanation": "数轴正方向向右，左边的点表示的数较小。图中A在B左侧，所以A表示的数a小于B表示的数b，得到a<b。",
+              "reason": "这一步把图形条件变成代数不等式，后续才能与a+b=1联立推理。",
+              "formulaLatex": "a<b"
+            },
+            {
+              "id": "p1-step2",
+              "title": "由a<b和a+b=1推出b的范围",
+              "explanation": "在a<b两边同时加上b，得到a+b<2b。又已知a+b=1，所以1<2b，两边同除以2得b>1/2。",
+              "reason": "把两个已知条件结合，能确定b的大小范围，从而判断含b的式子的符号。",
+              "formulaLatex": "a<b \\Rightarrow a+b<2b \\Rightarrow 1<2b \\Rightarrow b>\\frac{1}{2}"
+            },
+            {
+              "id": "p1-step3",
+              "title": "检查各选项的符号",
+              "explanation": "由b>1/2可知b+1>3/2>0，所以C选项b+1一定是正数。B选项-b因为b>0而一定为负，不是正数。A选项a可以取负也可以取正，例如a=-1,b=2满足条件，此时a<0；a=0.4,b=0.6也满足条件，此时a>0。D选项-a同样不一定为正，a=0.4时-a=-0.4<0，a=-1时-a=1>0。",
+              "reason": "对于“一定是正数”，只有C能被条件推出恒正；其余选项只要存在一个满足条件的反例，就不能保证一定是正数。",
+              "formulaLatex": "b+1>\\frac{3}{2}>0,\\quad -b<0"
+            }
+          ],
+          "answer": {
+            "kind": "choice",
+            "value": "C",
+            "display": "C：b+1"
+          },
+          "misconceptions": [
+            {
+              "mistake": "只看a+b=1，误以为a、b至少一正，就直接选a或-b。",
+              "correction": "a+b=1只说明和为1，a可以为负。例如a=-1,b=2满足条件，但a不是正数。必须结合a<b推出b>1/2，才能确定b+1恒正。"
+            },
+            {
+              "mistake": "忽略图中A在B左侧这个条件，只凭a+b=1无法排除b为负数。",
+              "correction": "利用a<b得到a+b<2b，配合a+b=1推出b>1/2，说明b不能为负数或0，这是本题关键。"
+            },
+            {
+              "mistake": "把反例当成证明，用一两个数值例子说明C选项一定成立。",
+              "correction": "C选项成立依靠由a<b和a+b=1推出b>1/2的一般证明；数值例子只用来检验或否定其他选项。"
+            }
+          ],
+          "scene": null
+        }
+      ]
+    }
+  },
+  {
+    "question": {
+      "id": "81777131-9a5f-4088-841f-b6fca18c3942",
+      "revision": 5,
+      "number": 4,
+      "state": "confirmed",
+      "missingFields": [],
+      "parts": [
+        {
+          "id": "main",
+          "label": "主问题",
+          "prompt": "选择正确叙述"
+        }
+      ]
+    },
+    "lesson": {
+      "questionId": "81777131-9a5f-4088-841f-b6fca18c3942",
+      "questionRevision": 5,
+      "lessonVersion": 2,
+      "status": "ready",
+      "checks": {
+        "issues": [],
+        "coverage": true,
+        "partIdMap": {
+          "main": "main"
+        },
+        "repairAttempt": 0,
+        "answerVerified": true,
+        "inputConfirmed": true,
+        "reasoningReviewed": true
+      },
+      "coveredPartIds": [
+        "main"
+      ],
+      "parts": [
+        {
+          "partId": "main",
+          "label": "主问题",
+          "goal": "判断满足 |d-5|=|d-c| 的点 D 在四个区间中的位置",
+          "known": [
+            "数轴从左到右为 A=-5，C=c（-5<c<0），O=0，B=5",
+            "点 D 表示的数 d 满足 |d-5|=|d-c|"
+          ],
+          "prerequisites": [
+            "数轴上两点距离表示成绝对值",
+            "绝对值相等的几何意义：到两点距离相等",
+            "中点坐标公式：数轴上 a、b 中点为 (a+b)/2"
+          ],
+          "method": "把绝对值条件理解为 D 到 B(5) 和到 C(c) 的距离相等；D 就是线段 BC 的垂直平分线与数轴的交点，即 B、C 所表示数的中点。再用 c 的范围确定 d 的范围，对照选项。",
+          "verification": "把 d=(5+c)/2 代回原式：|d-5|=|(5+c)/2-5|=|(c-5)/2|，|d-c|=|(5+c)/2-c|=|(5-c)/2|。因为 c<5，所以 |(c-5)/2|=(5-c)/2，|(5-c)/2|=(5-c)/2，两边相等。或取图内一个可能 c=-2，得 d=1.5，|1.5-5|=3.5，|1.5-(-2)|=3.5，成立；但一般范围由中点唯一保证。",
+          "summary": "遇到数轴上找满足到两点距离相等的点，先想中点：若到 a、b 距离相等，则点的坐标为 (a+b)/2；再结合已知字母范围判断该中点落在哪两个整数点之间。",
+          "steps": [
+            {
+              "id": "p1-step1",
+              "title": "把绝对值条件转化为距离",
+              "explanation": "|d-5| 表示点 D 到表示 5 的点 B 的距离；|d-c| 表示点 D 到表示 c 的点 C 的距离。题目条件就是 D 到 B 与到 C 的距离相等。",
+              "reason": "数轴上 |x-a| 表示 x 与 a 两点间距离，因此可以脱离符号直接看出几何关系。",
+              "formulaLatex": "|d-5|=DB,\\quad |d-c|=DC"
+            },
+            {
+              "id": "p1-step2",
+              "title": "由距离相等得 d 为 5 与 c 的中点",
+              "explanation": "到 B(5) 和 C(c) 距离相等的点，在数轴上只能是 5 和 c 的中点。所以 d=(5+c)/2。",
+              "reason": "数轴上到两点距离相等的点唯一，就是这两点所表示数的平均数；也可通过解方程验证。",
+              "formulaLatex": "d=\\frac{5+c}{2}"
+            },
+            {
+              "id": "p1-step3",
+              "title": "利用 c 的范围确定 d 的范围",
+              "explanation": "图中 C 在 A(-5) 和 O(0) 之间，所以 -5<c<0。把 c 代入中点式：当 c 接近 -5 时，d 接近 (5-5)/2=0；当 c 接近 0 时，d 接近 (5+0)/2=2.5。因此 0<d<2.5。",
+              "reason": "因为 c 严格在 -5 和 0 之间，不取端点，所以 d 也严格在 0 和 2.5 之间。",
+              "formulaLatex": "-5<c<0 \\Rightarrow 0=\\frac{5+(-5)}{2}<\\frac{5+c}{2}<\\frac{5+0}{2}=2.5"
+            },
+            {
+              "id": "p1-step4",
+              "title": "对照选项确定位置",
+              "explanation": "0<d<2.5，而 O 表示 0，B 表示 5，所以点 D 位于 O 与 B 之间，且不落在 O 或 B 上。对应选项 D。",
+              "reason": "需要严格比较 d 与 0、5 的大小；d 大于 0 小于 5，且在 B 左侧，故在 O、B 之间。",
+              "formulaLatex": "0<d<2.5<5"
+            }
+          ],
+          "answer": {
+            "kind": "choice",
+            "value": "D",
+            "display": "选 D：介于点 O,B 之间"
+          },
+          "misconceptions": [
+            {
+              "mistake": "直接把 |d-5|=|d-c| 写成 d-5=d-c 或 d-5=-(d-c) 后乱约，或误认为 d=5 或 d=c。",
+              "correction": "绝对值相等应理解为距离相等；到两定点距离相等的点是中点，不是两定点本身。若解方程，需先平方或分情况，并注意 c≠5，得到唯一解 d=(5+c)/2。"
+            },
+            {
+              "mistake": "看到 c 在 A 与 O 之间，就认为中点也在 A 与 O 之间。",
+              "correction": "中点横坐标是 (5+c)/2，不是 c 附近；必须代入 c 的范围计算 d，得到 d 在 0 到 2.5 之间，所以是 O、B 之间。"
+            }
+          ],
+          "scene": null
+        }
+      ]
+    }
+  },
+  {
+    "question": {
+      "id": "ccb0c46c-380b-42c3-838b-6ce35539f38b",
+      "revision": 5,
+      "number": 5,
+      "state": "confirmed",
+      "missingFields": [],
+      "parts": [
+        {
+          "id": "main",
+          "label": "主问题",
+          "prompt": "求点$A_{2027}$表示的数"
+        }
+      ]
+    },
+    "lesson": {
+      "questionId": "ccb0c46c-380b-42c3-838b-6ce35539f38b",
+      "questionRevision": 5,
+      "lessonVersion": 5,
+      "status": "ready",
+      "checks": {
+        "issues": [],
+        "coverage": true,
+        "partIdMap": {
+          "main": "main"
+        },
+        "repairAttempt": 0,
+        "answerVerified": true,
+        "inputConfirmed": true,
+        "reasoningReviewed": true
+      },
+      "coveredPartIds": [
+        "main"
+      ],
+      "parts": [
+        {
+          "partId": "main",
+          "label": "第5题 主问题",
+          "goal": "求点$A_{2027}$表示的数。",
+          "known": [
+            "点$A_0$表示的数为$-2$。",
+            "点$A_0$与$A_1$到数轴上$0$对应的点的距离相等，且$A_1\\neq A_0$；点$A_1$与$A_2$到$1$对应的点的距离相等，且$A_2\\neq A_1$；一般地，点$A_k$与$A_{k+1}$到$k$对应的点的距离相等，且$A_{k+1}\\neq A_k$。",
+            "题目选项为：A. $2025$，B. $2026$，C. $2027$，D. $2028$。"
+          ],
+          "prerequisites": [
+            "数轴上到定点距离相等的两个不重合点关于该定点对称。",
+            "若两个不重合点$x,y$关于点$c$对称，则$c=\\frac{x+y}{2}$，等价于$y=2c-x$。",
+            "通过递推公式与奇偶分类求通项。"
+          ],
+          "method": "把每步等距看成关于中心$k$的对称，写出递推式$A_{k+1}=2k-A_k$；先算前几项发现奇偶规律，再用归纳法证明规律对所有$n$成立，最后代入$n=2027$。这样不是只靠前几项猜测，而是能覆盖题目的大下标。",
+          "verification": "把相邻项代回中点关系检验：由偶数项公式得$A_{2028}=2028-2=2026$，则$A_{2027}$与$A_{2028}$关于$2027$对称，因为$\\frac{2028+2026}{2}=2027$；又$A_{2026}=2024$，$A_{2026}$与$A_{2027}$关于$2026$对称，因为$\\frac{2024+2028}{2}=2026$。相邻两步均满足中点条件，说明$A_{2027}=2028$与递推规律一致。",
+          "summary": "遇到数轴上不断关于不同中心对称的问题，先把等距条件写成$A_{k+1}=2k-A_k$，再通过前几项观察奇偶规律并用归纳法证明通项；最后判断下标奇偶后代入。",
+          "steps": [
+            {
+              "id": "p1-step1",
+              "title": "把等距关系写成对称公式",
+              "explanation": "第$k$步的中心是数轴上表示$k$的点。点$A_k$和$A_{k+1}$到该中心的距离相等且不重合，所以它们关于$k$对称。于是两点的平均数等于$k$：$\\frac{A_k+A_{k+1}}{2}=k$，变形为$A_{k+1}=2k-A_k$。",
+              "reason": "到同一点距离相等且不重合的两个点，只能是关于该点对称的两点，因此对称中心是两点的中点。",
+              "formulaLatex": "A_{k+1}=2k-A_k"
+            },
+            {
+              "id": "p1-step2",
+              "title": "代入前几项并整理规律",
+              "explanation": "先求$A_1$：把$k=0,A_0=-2$代入，得$A_1=2\\times0-(-2)=2$。继续计算：$A_2=2\\times1-2=0$，$A_3=2\\times2-0=4$，$A_4=2\\times3-4=2$，$A_5=2\\times4-2=6$。初步观察可归纳为：偶数项$A_{2m}=2m-2$，奇数项$A_{2m+1}=2m+2$。",
+              "reason": "从递推式反复代入得到具体项，能看出奇偶分类；下一步用归纳证明该规律不只适用于前几项。",
+              "formulaLatex": "A_0=-2,\\ A_1=2,\\ A_2=0,\\ A_3=4,\\ A_4=2,\\ A_5=6"
+            },
+            {
+              "id": "p1-step3",
+              "title": "用归纳证明奇偶规律",
+              "explanation": "设$m\\ge0$。要证明$A_{2m}=2m-2$，$A_{2m+1}=2m+2$。基础：$m=0$时，$A_0=-2=0-2$，$A_1=2=0+2$。假设$A_{2m}=2m-2$，则对中心$2m$的下一步：$A_{2m+1}=2(2m)-A_{2m}=4m-(2m-2)=2m+2$。再对中心$2m+1$的下一步：$A_{2m+2}=2(2m+1)-A_{2m+1}=4m+2-(2m+2)=2m$，而$2(m+1)-2=2m$，所以下一偶数项也符合。",
+              "reason": "递推关系对所有$k$成立，所以可以从任意相邻两项向下一项传递；奇偶两步同时验证后，规律覆盖所有非负整数$m$。",
+              "formulaLatex": "A_{2m}=2m-2,\\quad A_{2m+1}=2m+2"
+            },
+            {
+              "id": "p1-step4",
+              "title": "代入$2027$求答案",
+              "explanation": "$2027$是奇数，写成$2027=2m+1$时$m=1013$。用奇数项公式得$A_{2027}=2m+2=2\\times1013+2=2028$。也可写成奇数项公式$A_n=n+1$，所以$A_{2027}=2027+1=2028$。",
+              "reason": "先判断下标奇偶，再使用对应通项，避免把偶数项的$n-2$错误套到奇数项上。",
+              "formulaLatex": "2027=2\\times1013+1,\\quad A_{2027}=2\\times1013+2=2028"
+            }
+          ],
+          "answer": {
+            "kind": "choice",
+            "value": "D",
+            "display": "D. 2028"
+          },
+          "misconceptions": [
+            {
+              "mistake": "把第一步等距误认为$A_1=0$，以为与$A_0$到$0$的距离相等时只能取$0$。",
+              "correction": "与$-2$到$0$距离相等且不与$-2$重合的点是$2$，因为数轴上关于$0$对称的点是$-2$和$2$。"
+            },
+            {
+              "mistake": "只算出前几项就认为$A_n=n+1$，忽略偶数项不符合。",
+              "correction": "$A_2=0$而不是$2+1=3$；必须按奇偶分类，奇数项才是$n+1$，本题$2027$恰好是奇数项。"
+            },
+            {
+              "mistake": "把中心编号搞混，例如求$A_3$时用中心$3$而不是$2$。",
+              "correction": "求$A_{k+1}$时使用中心$k$；$A_3$应由$A_2$和中心$2$决定，即$A_3=2\\times2-A_2$。"
+            }
+          ],
+          "scene": null
+        }
+      ]
+    }
+  },
+  {
+    "question": {
+      "id": "02d80c3c-72b0-4e2b-96af-3676d073e98c",
+      "revision": 4,
+      "number": 6,
+      "state": "confirmed",
+      "missingFields": [],
+      "parts": [
+        {
+          "id": "main",
+          "label": "主问题",
+          "prompt": "求点$B$表示的数"
+        }
+      ]
+    },
+    "lesson": {
+      "questionId": "02d80c3c-72b0-4e2b-96af-3676d073e98c",
+      "questionRevision": 4,
+      "lessonVersion": 2,
+      "status": "ready",
+      "checks": {
+        "issues": [],
+        "coverage": true,
+        "partIdMap": {
+          "main": "main"
+        },
+        "repairAttempt": 0,
+        "answerVerified": true,
+        "inputConfirmed": true,
+        "reasoningReviewed": true
+      },
+      "coveredPartIds": [
+        "main"
+      ],
+      "parts": [
+        {
+          "partId": "main",
+          "label": "主问题",
+          "goal": "求点B表示的数",
+          "known": [
+            "点A和B都是数轴上的点",
+            "点A到原点的距离等于3",
+            "点B在点A左侧",
+            "点B与A的距离为2个单位长度"
+          ],
+          "prerequisites": [
+            "数轴上到原点距离为3的点有两个：3和-3",
+            "数轴上左侧的坐标比右侧小"
+          ],
+          "method": "先根据“到原点的距离等于3”确定A的两种可能坐标；再根据“B在A左侧且距离A点2个单位长度”，把B表示为A-2，分别代入A的两个值，得到全部B的可能值。",
+          "verification": "代回检验：若A=3，则B=1，点A到原点距离|3|=3，B在A左侧且|3-1|=2；若A=-3，则B=-5，点A到原点距离|-3|=3，B在A左侧且|-3-(-5)|=2。两种情况都满足全部条件。",
+          "summary": "遇到数轴上的距离条件，先由绝对值确定对称的位置，再按方向移动求另一点，最后逐一检验每个可能结果。",
+          "steps": [
+            {
+              "id": "p6-step1",
+              "title": "确定点A的可能坐标",
+              "explanation": "点A到原点的距离等于3，说明A可能在原点右侧3个单位处，也可能在原点左侧3个单位处，所以A表示的数是3或-3。",
+              "reason": "数轴上点P到原点的距离等于|p|，因此|a|=3。",
+              "formulaLatex": "|a|=3 \\Rightarrow a=3 \\text{ 或 } a=-3"
+            },
+            {
+              "id": "p6-step2",
+              "title": "当A=3时求B",
+              "explanation": "若A表示的数是3，点B在A左侧且与A距离2个单位，左侧表示坐标更小，所以B的坐标是3减2，等于1。",
+              "reason": "左侧距离2个单位就是沿数轴向负方向移动2个单位。",
+              "formulaLatex": "a=3,\\ b=a-2=3-2=1"
+            },
+            {
+              "id": "p6-step3",
+              "title": "当A=-3时求B",
+              "explanation": "若A表示的数是-3，点B在A左侧且距离2个单位，所以B的坐标是-3减2，等于-5。",
+              "reason": "无论A是3还是-3，左侧都对应坐标减小2。",
+              "formulaLatex": "a=-3,\\ b=a-2=-3-2=-5"
+            },
+            {
+              "id": "p6-step4",
+              "title": "合并所有可能结果",
+              "explanation": "A的两种可能坐标都满足条件，因此B可以表示-5，也可以表示1。",
+              "reason": "题中没有条件限定A在原点哪一侧，分类讨论得到的两种情况都必须保留。",
+              "formulaLatex": "B=-5 \\text{ 或 } B=1"
+            }
+          ],
+          "answer": {
+            "kind": "numbers",
+            "value": [
+              -5,
+              1
+            ],
+            "display": "-5或1"
+          },
+          "misconceptions": [
+            {
+              "mistake": "只考虑A=3，从而只得到B=1，漏掉A=-3。",
+              "correction": "到原点距离为3的点有两个位置，必须分类讨论并保留全部可能结果。"
+            },
+            {
+              "mistake": "把“左侧”误当成右侧移动，例如A=3时写成B=5。",
+              "correction": "左侧表示数变小，应由A的坐标减去距离2。"
+            }
+          ],
+          "scene": null
+        }
+      ]
+    }
+  },
+  {
+    "question": {
+      "id": "dd16f234-a49f-4d8e-88d4-7b54de63591e",
+      "revision": 5,
+      "number": 7,
+      "state": "confirmed",
+      "missingFields": [],
+      "parts": [
+        {
+          "id": "main",
+          "label": "主问题",
+          "prompt": "请写出一个满足条件的 $x$ 的值：____。"
+        }
+      ]
+    },
+    "lesson": {
+      "questionId": "dd16f234-a49f-4d8e-88d4-7b54de63591e",
+      "questionRevision": 5,
+      "lessonVersion": 2,
+      "status": "ready",
+      "checks": {
+        "issues": [],
+        "coverage": true,
+        "partIdMap": {
+          "main": "main"
+        },
+        "repairAttempt": 0,
+        "answerVerified": true,
+        "inputConfirmed": true,
+        "reasoningReviewed": true
+      },
+      "coveredPartIds": [
+        "main"
+      ],
+      "parts": [
+        {
+          "partId": "main",
+          "label": "主问题",
+          "goal": "写出一个使数轴上从左到右为 x、x³、x² 的 x 值。",
+          "known": [
+            "数轴正方向向右，右边的点表示的数较大",
+            "图中从左到右的标记依次是 x、x³、x²",
+            "x³ 与 x² 之间有一个未标出标签的点，不能把它猜作原点"
+          ],
+          "prerequisites": [
+            "数轴上右点对应的实数大于左点对应的实数",
+            "有理数乘方的符号规律",
+            "一元不等式组的解法"
+          ],
+          "method": "把图中左右顺序转化为严格不等式 x < x³ < x²。先由 x³ < x² 缩小范围，再由 x < x³ 进一步限制，最后取交集得到 -1 < x < 0，并从中选一个便于验算的值。",
+          "verification": "把 x = -1/2 代入：x = -1/2，x³ = -1/8，x² = 1/4。在数轴上比较：-1/2 < -1/8 < 1/4，符合图中从左到右 x、x³、x² 的顺序。因此 x = -1/2 是满足条件的一个值。",
+          "summary": "解这类“根据数轴上点的位置求字母值”的问题，先把左右顺序写成严格不等式，再结合乘方、乘积的符号分区间求解。若只要求写出一个值，从解集中选一个易算的数并代回验证即可。",
+          "steps": [
+            {
+              "id": "p1-step1",
+              "title": "把数轴顺序写成不等式",
+              "explanation": "图中从左到右依次是 x、x³、x²，且数轴向右越来越大，所以三个数的大小关系必须满足 x < x³ < x²。",
+              "reason": "数轴上的左右顺序与实数大小顺序一致。",
+              "formulaLatex": "x < x^3 < x^2"
+            },
+            {
+              "id": "p1-step2",
+              "title": "先解 x³ < x²",
+              "explanation": "把 x³ < x² 变形为 x²(1-x) > 0。因为 x = 0 时左右相等，不合题意；当 x ≠ 0 时，x² 恒为正，所以要 1 - x > 0，即 x < 1。因此这一步得到 x < 1 且 x ≠ 0。",
+              "reason": "利用 x² 的非负性判断符号，避免漏掉 x = 0 的特殊情况。",
+              "formulaLatex": "x^2(1-x)>0 \\Rightarrow x<1,\\ x\\ne 0"
+            },
+            {
+              "id": "p1-step3",
+              "title": "再解 x < x³ 并取交集",
+              "explanation": "把 x < x³ 变形为 x³ - x > 0，即 x(x-1)(x+1) > 0。按区间判断符号：x < -1 时为负；-1 < x < 0 时为正；0 < x < 1 时为负；x > 1 时为正。所以 x < x³ 的解为 -1 < x < 0 或 x > 1。再与 x < 1 且 x ≠ 0 取交集，只剩下 -1 < x < 0。",
+              "reason": "两个条件必须同时成立，所以要取交集，不能只用一个不等式判断。",
+              "formulaLatex": "x(x-1)(x+1)>0 \\Rightarrow -1<x<0 \\text{ 或 } x>1"
+            },
+            {
+              "id": "p1-step4",
+              "title": "从解集中取一个值",
+              "explanation": "-1 < x < 0 中的任何实数都满足题意。取 x = -1/2 是因为它容易计算 x³ 和 x²。",
+              "reason": "题目只要求写出一个满足条件的值，不必写出全部解。",
+              "formulaLatex": "x=-\\frac{1}{2}"
+            }
+          ],
+          "answer": {
+            "kind": "numbers",
+            "value": -0.5,
+            "display": "可取 x=-\\frac{1}{2}（答案不唯一，任意 -1<x<0 均可）"
+          },
+          "misconceptions": [
+            {
+              "mistake": "把 x³ 与 x² 之间未标标签的点猜作原点，进而认为 x 是正数或 0。",
+              "correction": "图中未标出原点，不能猜。正确做法是由不等式 x < x³ < x² 推出 -1 < x < 0，此时 x 是负数。"
+            },
+            {
+              "mistake": "只比较 x³ < x²，忽略 x < x³，可能取到 -2 等值。",
+              "correction": "必须三项同时满足。例如 x = -2 时，x³ = -8，x² = 4，数轴顺序为 x³ < x < x²，不符合图中顺序。"
+            },
+            {
+              "mistake": "取 x = -1、x = 0 或 x = 1 等端点。",
+              "correction": "题目要求严格小于，端点处会出现相等或顺序不对，代入检验会发现不满足 x < x³ < x²。"
+            }
+          ],
+          "scene": null
+        }
+      ]
+    }
+  },
+  {
+    "question": {
+      "id": "f09a0c95-3251-4809-8b54-9dd04fc7f14b",
+      "revision": 4,
+      "number": 8,
+      "state": "confirmed",
+      "missingFields": [],
+      "parts": [
+        {
+          "id": "1",
+          "label": "(1)",
+          "prompt": "在图中画出当 $b=4$ 时，点 $A$ 关于点 $B$ 的“联动点”$P$。"
+        },
+        {
+          "id": "2.1",
+          "label": "(2)①",
+          "prompt": "当 $t=3$ 时，点 $B$ 表示的数为____；"
+        },
+        {
+          "id": "2.2",
+          "label": "(2)②",
+          "prompt": "是否存在 $t$，使得此时点 $A$ 关于点 $B$ 的“联动点”$P$ 恰好与原点重合？若存在，请求出 $t$ 的值；若不存在，请说明理由。"
+        }
+      ]
+    },
+    "lesson": {
+      "questionId": "f09a0c95-3251-4809-8b54-9dd04fc7f14b",
+      "questionRevision": 4,
+      "lessonVersion": 2,
+      "status": "ready",
+      "checks": {
+        "issues": [],
+        "coverage": true,
+        "partIdMap": {
+          "1": "1",
+          "2.1": "2.1",
+          "2.2": "2.2"
+        },
+        "repairAttempt": 0,
+        "answerVerified": true,
+        "inputConfirmed": true,
+        "reasoningReviewed": true
+      },
+      "coveredPartIds": [
+        "1",
+        "2.1",
+        "2.2"
+      ],
+      "parts": [
+        {
+          "partId": "1",
+          "label": "(1)",
+          "goal": "在数轴上画出当b=4时点A关于点B的联动点P",
+          "known": [
+            "点A表示的数为-1",
+            "b=4",
+            "定义：b≥0时，点A向右移动2个单位得到P"
+          ],
+          "prerequisites": [
+            "数轴上向右移动是加对应长度",
+            "比较数的大小"
+          ],
+          "method": "先根据b=4判断属于b≥0的情况，再按定义从A向右移2个单位，最后在数轴上标点。",
+          "verification": "b=4≥0，按定义右移2个单位；-1到1正好2个单位，方向向右，符合条件。",
+          "summary": "遇到新定义题，先判断定义中的条件属于哪一类，再按对应规则移动，最后检查位置。",
+          "steps": [
+            {
+              "id": "p1-step1",
+              "title": "判断b的符号",
+              "explanation": "题给b=4，满足b≥0，所以应把点A向右移动2个单位长度。",
+              "reason": "联动点定义首先看b是否非负，这决定移动方向。",
+              "formulaLatex": "b=4≥0"
+            },
+            {
+              "id": "p1-step2",
+              "title": "从A向右移动2个单位",
+              "explanation": "点A表示-1，向右移动2个单位，依次经过0到1。",
+              "reason": "数轴上向右移动就是加上移动的单位长度。",
+              "formulaLatex": "P=-1+2=1"
+            },
+            {
+              "id": "p1-step3",
+              "title": "在图上标出P",
+              "explanation": "在数轴刻度1处标出点P。",
+              "reason": "联动点P就是移动后到达的位置。",
+              "formulaLatex": "P=1"
+            }
+          ],
+          "answer": {
+            "kind": "numbers",
+            "value": 1,
+            "display": "点P表示的数为1，画在数轴1处"
+          },
+          "misconceptions": [
+            {
+              "mistake": "把b=4误当成移动4个单位，或向左移动4个单位。",
+              "correction": "定义规定b≥0时只向右移动2个单位，不是移动b个单位；b<0才向左移动|b|个单位。"
+            },
+            {
+              "mistake": "计算-1+2时误得-3。",
+              "correction": "数轴向右是增大，-1+2=1，不是-3。"
+            }
+          ],
+          "scene": null
+        },
+        {
+          "partId": "2.1",
+          "label": "(2)①",
+          "goal": "求t=3时点B表示的数",
+          "known": [
+            "点B从数轴上表示7的位置出发",
+            "点B以每秒1个单位长度向左运动",
+            "t=3秒"
+          ],
+          "prerequisites": [
+            "数轴上向左移动对应减法",
+            "速度×时间=路程"
+          ],
+          "method": "用“起点-速度×时间”表示点B向左运动后的位置，再代入t=3。",
+          "verification": "t=0时B在7，3秒向左走3个单位，7-1×3=4，与B(3)=4一致。",
+          "summary": "数轴上的运动问题，先判断方向确定加减，再用“起点±速度×时间”列式。",
+          "steps": [
+            {
+              "id": "p2.1-step1",
+              "title": "写点B的运动表达式",
+              "explanation": "点B从7出发，每秒向左移动1个单位，t秒后位置为7-t。",
+              "reason": "向左移动使数变小，所以用减法；1个单位/秒乘t秒是移动距离。",
+              "formulaLatex": "B(t)=7-t"
+            },
+            {
+              "id": "p2.1-step2",
+              "title": "代入t=3",
+              "explanation": "把t=3代入B(t)，得到7-3=4。",
+              "reason": "求某一时刻的位置只需把时间代入位置表达式。",
+              "formulaLatex": "B(3)=7-3=4"
+            }
+          ],
+          "answer": {
+            "kind": "numbers",
+            "value": 4,
+            "display": "点B表示的数为4"
+          },
+          "misconceptions": [
+            {
+              "mistake": "把向左运动误写成加3，得10。",
+              "correction": "数轴正方向向右，向左应减小，B(3)=7-3=4。"
+            },
+            {
+              "mistake": "把点A的运动也代入，算成A(3)=2。",
+              "correction": "本题只问点B表示的数，应单独写B(t)并代入。"
+            }
+          ],
+          "scene": null
+        },
+        {
+          "partId": "2.2",
+          "label": "(2)②",
+          "goal": "判断是否存在t使联动点P恰好与原点重合，并说明理由",
+          "known": [
+            "点A从-1出发向右，速度1，A(t)=-1+t",
+            "点B从7出发向左，速度1，B(t)=7-t",
+            "t≥0",
+            "联动点定义：当b=B(t)≥0时，P=A+2；当b<0时，P=A-|b|",
+            "原点重合即P=0"
+          ],
+          "prerequisites": [
+            "用t表示数轴上的点",
+            "绝对值化简",
+            "分情况讨论",
+            "解一元一次方程并检验范围"
+          ],
+          "method": "先写出A、B与t的关系，再按B(t)的符号分两类列P的表达式，分别令P=0求解，并检验t是否在对应时间范围内。",
+          "verification": "抽查：t=0时B=7≥0，P=1；t=7时B=0，P=8；t=8时B=-1<0，P=6。归类与公式一致，且原点0未出现，边界t=7也已检查。",
+          "summary": "含绝对值或分段定义的存在性问题，先列表达式，按条件分类讨论；每一类解出后必须带回该类的范围检验，分类边界也要单独明确。",
+          "steps": [
+            {
+              "id": "p2.2-step1",
+              "title": "写出A、B关于t的表达式",
+              "explanation": "点A从-1出发向右，A(t)=-1+t；点B从7出发向左，B(t)=7-t；t≥0。",
+              "reason": "两个点都在运动，而联动点P由点A位置和点B表示的数共同决定，所以要先用t表示它们。",
+              "formulaLatex": "A(t)=-1+t，B(t)=7-t，t≥0"
+            },
+            {
+              "id": "p2.2-step2",
+              "title": "按B(t)的符号分两类",
+              "explanation": "由定义，b=B(t)=7-t。当t≤7时，b≥0，P=A+2=t+1；当t>7时，b<0，|b|=t-7，P=A-|b|=-1+t-(t-7)=6。",
+              "reason": "联动点定义按b的符号分为两种移动方式，必须分类才能正确列式；t=7时b=0属于第一类。",
+              "formulaLatex": "b=7-t；t≤7时P=t+1；t>7时P=6"
+            },
+            {
+              "id": "p2.2-step3",
+              "title": "在每类中令P=0验证",
+              "explanation": "第一类t≤7：令t+1=0，得t=-1，但t≥0且t≤7，矛盾，舍去。第二类t>7：P恒等于6，不可能等于0。",
+              "reason": "存在性要求解必须同时满足方程和对应的时间范围；第二类中t已消去，说明P不随t改变。",
+              "formulaLatex": "t+1=0⇒t=-1；P=6≠0"
+            },
+            {
+              "id": "p2.2-step4",
+              "title": "写出结论",
+              "explanation": "两类均没有满足条件的t，所以不存在t使联动点P与原点重合。",
+              "reason": "两类覆盖了所有t≥0，因此可以下完整结论。",
+              "formulaLatex": "不存在t"
+            }
+          ],
+          "answer": {
+            "kind": "text",
+            "value": "不存在",
+            "display": "不存在t"
+          },
+          "misconceptions": [
+            {
+              "mistake": "只解t≤7时的方程t+1=0，得t=-1，就断定无解，未讨论t>7。",
+              "correction": "必须继续讨论t>7的情况，才能说明分类完备、结论可靠。"
+            },
+            {
+              "mistake": "t>7时把|7-t|写成7-t，导致P=-1+t-(7-t)=2t-8，误以为可能有解。",
+              "correction": "t>7时7-t<0，所以|7-t|=t-7，化简后t抵消，P恒为6。"
+            }
+          ],
+          "scene": null
+        }
+      ]
+    }
+  },
+  {
+    "question": {
+      "id": "b8cd65e1-a1da-4441-a87c-416cff01292a",
+      "revision": 4,
+      "number": 9,
+      "state": "confirmed",
+      "missingFields": [],
+      "parts": [
+        {
+          "id": "main",
+          "label": "主问题",
+          "prompt": "则 $a$，$b$，$c$ 满足的条件是(    )"
+        }
+      ]
+    },
+    "lesson": {
+      "questionId": "b8cd65e1-a1da-4441-a87c-416cff01292a",
+      "questionRevision": 4,
+      "lessonVersion": 3,
+      "status": "ready",
+      "checks": {
+        "issues": [],
+        "coverage": true,
+        "partIdMap": {
+          "main": "main"
+        },
+        "repairAttempt": 0,
+        "answerVerified": true,
+        "inputConfirmed": true,
+        "reasoningReviewed": true
+      },
+      "coveredPartIds": [
+        "main"
+      ],
+      "parts": [
+        {
+          "partId": "main",
+          "label": "主问题",
+          "goal": "从条件判断 a、b、c 的符号以及 c 是否可为0",
+          "known": [
+            "a，b，c 为有理数",
+            "a+b+c=0",
+            "a≥-b>|c|"
+          ],
+          "prerequisites": [
+            "|c|≥0，且仅当 c=0 时取等号",
+            "不等式传递性：若 x>y≥z，则 x>z",
+            "等式变形：c=-a-b=-(a+b)"
+          ],
+          "method": "先由 -b>|c|≥0 得到 -b>0，故 b<0；同时 a≥-b>0，故 a>0。再把 c 写成 -(a+b)，利用 a≥-b 得 a+b≥0，从而 c≤0。最后检查 c=0 是否真的可能，避免把 c≤0 误缩成 c<0。",
+          "verification": "证明已由三步符号推导得到 a>0，b<0，c≤0，故选 C。边界检查：取 a=1，b=-1，c=0，满足所有条件，说明 c 可为0，因此 A 中 c<0 过强；取 a=3/2，b=-1，c=-1/2，满足 a+b+c=0，a≥-b 且 -b>|c|，说明 c 可为负，因此 D 中 c≥0 不能涵盖所有解；B 要求 c>0，与已证的 c≤0 矛盾。",
+          "summary": "遇到不等式链时，先从绝对非负的项入手确定符号；遇到“≥”要区分严格与不严格，并单独验证等号能否取到；再用等式把第三个量表示出来，判断范围。",
+          "steps": [
+            {
+              "id": "p1-step1",
+              "title": "由绝对值和不等式确定 b 的符号",
+              "explanation": "条件给出 -b>|c|。绝对值 |c| 总是非负数，所以 -b 大于一个非负数，当然 -b>0。两边同乘 -1 要变号，得到 b<0。",
+              "reason": "这一步把隐藏的绝对值条件转化为明确符号，是判断 b 的直接依据。",
+              "formulaLatex": "|c|\\geq 0,\\quad -b>|c|\\Rightarrow -b>0\\Rightarrow b<0."
+            },
+            {
+              "id": "p1-step2",
+              "title": "由不等关系确定 a 的符号",
+              "explanation": "条件还给出 a≥-b。上一步已知 -b>0，所以 a≥ 一个正数，因此 a>0。注意 a 可以等于 -b，但 -b 已经是正的，所以 a 仍然为正。",
+              "reason": "利用已知 -b>0 作为桥梁，直接得到 a 的正负。",
+              "formulaLatex": "-b>0,\\quad a\\geq -b\\Rightarrow a>0."
+            },
+            {
+              "id": "p1-step3",
+              "title": "由和为0判断 c 的符号",
+              "explanation": "把 a+b+c=0 变形为 c=-a-b=-(a+b)。又因为 a≥-b，两边加 b 得 a+b≥0。因此 c=-(a+b) 是 0 或负数，即 c≤0。",
+              "reason": "符号判断不能跳过等式条件；这里将 c 用 a、b 表示，再使用已知不等关系。",
+              "formulaLatex": "a+b+c=0\\Rightarrow c=-a-b=-(a+b);\\quad a\\geq -b\\Rightarrow a+b\\geq 0\\Rightarrow c\\leq 0."
+            },
+            {
+              "id": "p1-step4",
+              "title": "检验等号边界并选择选项",
+              "explanation": "由前三步得 a>0，b<0，c≤0。还要确认 c=0 能否取到。取 a=1，b=-1，c=0，则 a+b+c=0，且 a≥-b 为 1≥1，-b>|c| 为 1>0，全部成立。所以 c 可以等于0，不能把结论缩成 c<0。结合选项，应选 C。",
+              "reason": "出现≥时等号边界必须单独验证，防止误判范围。",
+              "formulaLatex": "a=1,\\ b=-1,\\ c=0:\\quad 1+(-1)+0=0,\\quad a\\geq -b=1,\\quad -b=1>|0|=0."
+            }
+          ],
+          "answer": {
+            "kind": "choice",
+            "value": "C",
+            "display": "C：a>0，b<0，c≤0"
+          },
+          "misconceptions": [
+            {
+              "mistake": "由 -b>|c|≥0 只写 -b≥0，丢掉了严格大于，进而写成 b≤0",
+              "correction": "应写 -b>0，故 b<0；严格不等号不能丢。"
+            },
+            {
+              "mistake": "由 a≥-b 且 -b>0，误认为 a≥0，可能包含 a=0",
+              "correction": "因为 -b 是正数，a≥正数，所以 a 一定大于0，不可能是0。"
+            },
+            {
+              "mistake": "由 a≥-b 推出 a+b>0，从而 c<0，忽略了等号",
+              "correction": "a+b 可以等于0，此时 c=0；要保留 c≤0，并单独验证等号边界能取到。"
+            }
+          ],
+          "scene": null
+        }
+      ]
+    }
+  },
+  {
+    "question": {
+      "id": "b1e2d5ac-5c41-424e-91e3-9fc6b87f8748",
+      "revision": 6,
+      "number": 10,
+      "state": "confirmed",
+      "missingFields": [],
+      "parts": [
+        {
+          "id": "main",
+          "label": "主问题",
+          "prompt": "其中正确的有(    )"
+        }
+      ]
+    },
+    "lesson": {
+      "questionId": "b1e2d5ac-5c41-424e-91e3-9fc6b87f8748",
+      "questionRevision": 6,
+      "lessonVersion": 6,
+      "status": "ready",
+      "checks": {
+        "issues": [],
+        "coverage": true,
+        "partIdMap": {
+          "main": "main"
+        },
+        "repairAttempt": 1,
+        "answerVerified": true,
+        "inputConfirmed": true,
+        "reasoningReviewed": true
+      },
+      "coveredPartIds": [
+        "main"
+      ],
+      "parts": [
+        {
+          "partId": "main",
+          "label": "主问题",
+          "goal": "判断①、②、③中正确的个数，并选出正确答案。",
+          "known": [
+            "有理数 a、b、c 在数轴上的对应点位置为 b<a<0<c。",
+            "条件给出 |a|<|c|<|b|。"
+          ],
+          "prerequisites": [
+            "数轴上原点左侧的点表示负数，右侧的点表示正数。",
+            "绝对值的非负性：|x|≥0；一个负数的相反数是正数。",
+            "同号两数相乘得正，异号两数相乘得负。",
+            "两个负数比较大小：绝对值大的反而小。"
+          ],
+          "method": "先由点的位置和绝对值大小确定各数的符号及离原点的远近，再按“先定号，再化简绝对值或比较大小”的顺序逐个检验三个式子；最后统计正确个数。",
+          "verification": "逐项复核：①中 -a>0，-c<0，且 |b|>|c| 得 b<-c，所以 b<-c<0<-a，①不成立；②中 ab>0 得 ab/|ab|=1，ac<0 得 ac/|ac|=-1，差为 2，②不成立；③中 a+b<0，|a+b|=-(a+b)=|a|+|b|，③成立。因此正确个数为 1，选项 B 对应无误。",
+          "summary": "处理数轴与绝对值的判断选择题时，先根据点的位置定符号并运用绝对值大小比较负数，再对乘法、相反数、和的绝对值分别先定号再化简。判断“和的绝对值”时，先看加数是否同号：同号相加，绝对值相加；异号相加，才作差。",
+          "steps": [
+            {
+              "id": "p1-step1",
+              "title": "整理已知的符号与距离关系",
+              "explanation": "数轴上从左到右依次是 b、a、0、c，所以 b<a<0<c。再看 |a|<|c|<|b|：它表示 a 离原点最近，c 次之，b 离原点最远。于是 b 是非零负数，a 也是负数且比 b 更靠近原点，c 是正数。",
+              "reason": "数轴上点的左右顺序就是有理数的大小顺序；绝对值的大小用来比较负数离原点的远近。",
+              "formulaLatex": "b<a<0<c,\\quad |a|<|c|<|b|"
+            },
+            {
+              "id": "p1-step2",
+              "title": "判断①：$b>-c>-a$ 是否成立",
+              "explanation": "因为 a<0，所以 -a>0；因为 c>0，所以 -c<0；又 b<0。要比较两个负数 b 和 -c，利用 |b|>|c|，负数绝对值大的反而小，所以 b<-c。于是三个数的大小顺序为 b<-c<0<-a，因此 b>-c>-a 不成立。",
+              "reason": "两个负数比较，绝对值大的反而小；-a 是正数，不可能排在两个负数左边。",
+              "formulaLatex": "-a>0,\\quad -c<0,\\quad b<-c,\\quad \\text{故 } b<-c<0<-a"
+            },
+            {
+              "id": "p1-step3",
+              "title": "判断②：$\\frac{ab}{|ab|}-\\frac{ac}{|ac|}=0$ 是否成立",
+              "explanation": "a<0 且 b<0，同号相乘得正，所以 ab>0，于是 |ab|=ab，因此 ab/|ab|=1。a<0 且 c>0，异号相乘得负，所以 ac<0，于是 |ac|=-ac，因此 ac/|ac|=-1。代入原式得 1-(-1)=2，不等于 0。",
+              "reason": "绝对值化简前必须先判断内部整体的符号；同号相乘得正，异号相乘得负。",
+              "formulaLatex": "\\frac{ab}{|ab|}=1,\\quad \\frac{ac}{|ac|}=-1,\\quad \\frac{ab}{|ab|}-\\frac{ac}{|ac|}=2\\ne0"
+            },
+            {
+              "id": "p1-step4",
+              "title": "判断③：$|a+b|=|a|+|b|$ 是否成立",
+              "explanation": "因为 a<0 且 b<0，所以 a+b<0。去掉绝对值要取其相反数：|a+b|=-(a+b)=(-a)+(-b)。又因为 a、b 都是负数，所以 -a=|a|、-b=|b|，于是 |a+b|=|a|+|b|，等式成立。",
+              "reason": "两个负数相加仍为负数，方向相同没有正负抵消，和的绝对值等于各自绝对值之和。",
+              "formulaLatex": "a+b<0,\\quad |a+b|=-(a+b)=(-a)+(-b)=|a|+|b|"
+            },
+            {
+              "id": "p1-step5",
+              "title": "统计正确个数并选择答案",
+              "explanation": "①不成立，②不成立，③成立，所以三个式子中只有 1 个正确。题目要求选择正确的个数，应选 B。",
+              "reason": "三个命题已经逐项检验完毕，按正确个数对应选项作答。",
+              "formulaLatex": "\\text{正确个数}=1"
+            }
+          ],
+          "answer": {
+            "kind": "choice",
+            "value": "B",
+            "display": "B：1个"
+          },
+          "misconceptions": [
+            {
+              "mistake": "把 -a 当作负数，误认为 -a 排在负数一侧，从而可能认为①成立。",
+              "correction": "a 本身是负数，-a 是正数；判断相反数符号要看原数的符号，不能只看是否有负号。"
+            },
+            {
+              "mistake": "在②中直接约分或把 ac/|ac| 误算成 1，认为两项相减为 0。",
+              "correction": "先判断乘积符号：ab 为正得 1，ac 为负得 -1，所以差为 2，不等于 0。"
+            },
+            {
+              "mistake": "在③中误认为 |a+b| 等于 |a|-|b| 或 |b|-|a|。",
+              "correction": "a、b 同号相加，方向相同，没有抵消；分别取相反数后绝对值相加，即 |a+b|=|a|+|b|。"
+            }
+          ],
+          "scene": null
+        }
+      ]
+    }
+  },
+  {
+    "question": {
+      "id": "309e3faa-905e-4639-b5a1-6ab507620a6d",
+      "revision": 3,
+      "number": 11,
+      "state": "needs_completion",
+      "missingFields": [
+        "上缘裁切：m、n与x的完整定义及定义适用条件"
+      ],
+      "parts": [
+        {
+          "id": "main",
+          "label": "主问题",
+          "prompt": "选择正确的所有结论"
+        }
+      ]
+    },
+    "lesson": null
+  },
+  {
+    "question": {
+      "id": "c90376f1-1432-43d0-b99c-20f540524f73",
+      "revision": 4,
+      "number": 12,
+      "state": "confirmed",
+      "missingFields": [],
+      "parts": [
+        {
+          "id": "main",
+          "label": "主问题",
+          "prompt": "确定原点的位置"
+        }
+      ]
+    },
+    "lesson": {
+      "questionId": "c90376f1-1432-43d0-b99c-20f540524f73",
+      "questionRevision": 4,
+      "lessonVersion": 2,
+      "status": "ready",
+      "checks": {
+        "issues": [],
+        "coverage": true,
+        "partIdMap": {
+          "main": "main"
+        },
+        "repairAttempt": 0,
+        "answerVerified": true,
+        "inputConfirmed": true,
+        "reasoningReviewed": true
+      },
+      "coveredPartIds": [
+        "main"
+      ],
+      "parts": [
+        {
+          "partId": "main",
+          "label": "主问题",
+          "goal": "确定原点在 M,N,P,R 中的可能位置",
+          "known": [
+            "M,N,P,R 是数轴上从左到右四个整数点，且 MN=NP=PR=1",
+            "四点中恰有一点是原点",
+            "a 对应的点在 M 与 N 之间（不取 M,N 两点）",
+            "b 对应的点在 P 与 R 之间（不取 P,R 两点）",
+            "|a|+|b|=3"
+          ],
+          "prerequisites": [
+            "相邻整数点间距离为1时，四点坐标连续",
+            "绝对值表示数轴上点到原点的距离",
+            "用正负号去掉绝对值讨论范围"
+          ],
+          "method": "把 M,N,P,R 设成连续整数 x,x+1,x+2,x+3。由其中一个为原点，x 只有四种取值，对应原点分别为 M,N,P,R。对每种原点写出 a,b 所在开区间，求 |a|+|b| 的上界。等于 3 是否可能，关键看 3 是否落在真实取值范围内，尤其注意 a,b 不取端点时 3 只能作为开区间端点则不可取。",
+          "verification": "代入验证：若原点 M，取 a=1/2（在0与1之间）、b=5/2（在2与3之间），则 |a|+|b|=1/2+5/2=3，满足。若原点 R，取 a=-5/2（在-3与-2之间）、b=-1/2（在-1与0之间），则 |a|+|b|=5/2+1/2=3，满足。再排除另一类：若原点 N，任何 a∈(-1,0)、b∈(1,2) 都有 |a|+|b|<1+2=3；若原点 P，任何 a∈(-2,-1)、b∈(0,1) 都有 |a|+|b|<2+1=3。所以答案 A 正确。",
+          "summary": "连续整数点中有原点时，先把四点坐标用最左点表示；遇到绝对值和等于定值，按原点可能位置分类求 |a|+|b| 的范围。特别检查端点：若定值等于某开区间端点，则无法取到，需要排除。",
+          "steps": [
+            {
+              "id": "p1-step1",
+              "title": "设四点坐标并列出原点可能",
+              "explanation": "因为 MN=NP=PR=1，且顺序为 M,N,P,R，所以可设 M=x，N=x+1，P=x+2，R=x+3。又因为四点是整数点且其中一点是原点，所以这四个连续整数里必须有一个为 0，因此 x 只能是 -3,-2,-1,0。这四种 x 分别对应：R 为原点（x=-3）、P 为原点（x=-2）、N 为原点（x=-1）、M 为原点（x=0）。",
+              "reason": "连续整数点夹住原点，最左点 x 必须使 0 落在 x 到 x+3 之间。",
+              "formulaLatex": "M=x,\\ N=x+1,\\ P=x+2,\\ R=x+3,\\quad x\\in\\{-3,-2,-1,0\\}"
+            },
+            {
+              "id": "p1-step2",
+              "title": "原点是 M 或 R 时可行",
+              "explanation": "若原点为 M，则 M=0,N=1,P=2,R=3，a 在 0 与 1 之间，b 在 2 与 3 之间。此时 |a|+|b|=a+b，范围是 (2,4)，3 可以取到，如 a=1/2，b=5/2。若原点为 R，则 M=-3,N=-2,P=-1,R=0，a 在 -3 与 -2 之间，b 在 -1 与 0 之间。此时 |a|+|b|=-a-b，范围仍是 (2,4)，3 可以取到，如 a=-5/2，b=-1/2。因此原点 M 或 R 都可使条件成立。",
+              "reason": "这两个情况下 3 落在 a,b 允许范围内，且给出的具体有理数不在端点上，符合“在两点之间”的要求。",
+              "formulaLatex": "M\\text{原点}: a\\in(0,1),\\ b\\in(2,3),\\ |a|+|b|=a+b\\in(2,4);\\quad R\\text{原点}: a\\in(-3,-2),\\ b\\in(-1,0),\\ |a|+|b|=-a-b\\in(2,4)"
+            },
+            {
+              "id": "p1-step3",
+              "title": "原点是 N 或 P 时排除",
+              "explanation": "若原点为 N，则 M=-1,N=0,P=1,R=2，a 在 -1 与 0 之间，b 在 1 与 2 之间。因为 a 不能等于 -1，所以 |a|<1；因为 b 不能等于 2，所以 |b|<2，因此 |a|+|b|<3，不能等于 3。若原点为 P，则 M=-2,N=-1,P=0,R=1，a 在 -2 与 -1 之间，b 在 0 与 1 之间。因为 a 不能等于 -2，所以 |a|<2；因为 b 不能等于 1，所以 |b|<1，因此 |a|+|b|<3，同样不能等于 3。",
+              "reason": "3 只能作为这两个情况取端点时的极限，但端点不允许取，所以必须排除。",
+              "formulaLatex": "N\\text{原点}:\\ 0<|a|<1,\\ 1<|b|<2\\Rightarrow |a|+|b|<3;\\quad P\\text{原点}:\\ 1<|a|<2,\\ 0<|b|<1\\Rightarrow |a|+|b|<3"
+            },
+            {
+              "id": "p1-step4",
+              "title": "综合得到选项",
+              "explanation": "四种原点情况全部检查后，只有 M 或 R 能使 |a|+|b|=3 成立，N 或 P 被严格排除。因此选择 A：M 或 R。",
+              "reason": "分类无遗漏，且排除了端点取等情况，结论唯一。",
+              "formulaLatex": "\\text{原点是 }M\\text{ 或 }R"
+            }
+          ],
+          "answer": {
+            "kind": "choice",
+            "value": "A",
+            "display": "M或R"
+          },
+          "misconceptions": [
+            {
+              "mistake": "误选 N或P，只想到 a=-1,b=2 或 a=-2,b=1 时 |a|+|b|=3。",
+              "correction": "但这两个 a,b 恰好落在端点 M,N,P,R 上，不符合题设“a 在 M 与 N 之间、b 在 P 与 R 之间”的不取端点要求，因此这些取到3的位置不合法。"
+            },
+            {
+              "mistake": "只判断 |a| 或 |b| 的范围，忘记把两个不等式相加来排除。",
+              "correction": "应分别得到 |a| 和 |b| 的最严格上界，再相加；若相加仍严格小于 3，就能排除，不需要举反例。"
+            }
+          ],
+          "scene": null
+        }
+      ]
+    }
+  },
+  {
+    "question": {
+      "id": "34b6126d-3a9e-416e-a137-ff9063e2348f",
+      "revision": 4,
+      "number": 13,
+      "state": "confirmed",
+      "missingFields": [],
+      "parts": [
+        {
+          "id": "main",
+          "label": "主问题",
+          "prompt": "求$a$的值"
+        }
+      ]
+    },
+    "lesson": {
+      "questionId": "34b6126d-3a9e-416e-a137-ff9063e2348f",
+      "questionRevision": 4,
+      "lessonVersion": 3,
+      "status": "ready",
+      "checks": {
+        "issues": [],
+        "coverage": true,
+        "partIdMap": {
+          "main": "main"
+        },
+        "repairAttempt": 0,
+        "answerVerified": true,
+        "inputConfirmed": true,
+        "reasoningReviewed": true
+      },
+      "coveredPartIds": [
+        "main"
+      ],
+      "parts": [
+        {
+          "partId": "main",
+          "label": "主问题",
+          "goal": "求 a 的值",
+          "known": [
+            "|2a+1|=3|a|-2"
+          ],
+          "prerequisites": [
+            "绝对值定义：|x|=x（x≥0），|x|=-x（x<0）",
+            "解一元一次方程",
+            "分类讨论并检验解是否落在所设范围内"
+          ],
+          "method": "先利用绝对值非负得到右边也必须非负，从而把 a 限制在 a≤-2/3 或 a≥2/3；在这两个区间内 2a+1 与 a 的符号都唯一，可直接去掉绝对值求解，最后代回原方程验根。",
+          "verification": "从原方程左边非负得到 |a|≥2/3，候选解 a=-1、a=3 均满足；代回原式：a=-1 得 1=1，a=3 得 7=7，等式均成立。中间 -2/3<a<2/3 不满足右边非负，已排除，因此无其他解。",
+          "summary": "解含多个绝对值的方程时，先利用绝对值非负找必要条件缩小范围，再在确定符号的区间内去绝对值，每个候选解都要既落在讨论区间内又能代回原式成立。",
+          "steps": [
+            {
+              "id": "p1-step1",
+              "title": "先看右边必须非负",
+              "explanation": "因为 |2a+1|≥0 恒成立，所以原式右边也要满足 3|a|-2≥0。移项得 |a|≥2/3，即 a≤-2/3 或 a≥2/3。这个条件能帮我们排除中间不可能有解的区间。",
+              "reason": "绝对值的最小值是 0，若右边为负数，左边非负数不可能等于负数。",
+              "formulaLatex": "|2a+1|\\ge0 \\Rightarrow 3|a|-2\\ge0 \\Rightarrow |a|\\ge\\frac{2}{3} \\Rightarrow a\\le -\\frac{2}{3} \\ \\text{或} \\ a\\ge\\frac{2}{3}"
+            },
+            {
+              "id": "p1-step2",
+              "title": "在 a≤-2/3 中解方程",
+              "explanation": "当 a≤-2/3 时，2a+1<0，并且 a<0。因此 |2a+1|=-(2a+1)，|a|=-a。代入原方程得 -(2a+1)=3(-a)-2，化简为 -2a-1=-3a-2，移项得 a=-1。a=-1 满足 a≤-2/3，所以是候选解。",
+              "reason": "去绝对值必须根据该范围内 2a+1 和 a 的实际符号。",
+              "formulaLatex": "-(2a+1)=3(-a)-2 \\Rightarrow -2a-1=-3a-2 \\Rightarrow a=-1"
+            },
+            {
+              "id": "p1-step3",
+              "title": "在 a≥2/3 中解方程",
+              "explanation": "当 a≥2/3 时，2a+1>0，a>0。因此 |2a+1|=2a+1，|a|=a。代入原方程得 2a+1=3a-2，移项得 a=3。a=3 满足 a≥2/3，所以是候选解。",
+              "reason": "该区间内绝对值内部都为正，可直接去掉绝对值符号。",
+              "formulaLatex": "2a+1=3a-2 \\Rightarrow a=3"
+            },
+            {
+              "id": "p1-step4",
+              "title": "代回原方程验根",
+              "explanation": "把候选解分别代回：当 a=-1 时，左边=|2(-1)+1|=1，右边=3|-1|-2=1，成立；当 a=3 时，左边=|2(3)+1|=7，右边=3|3|-2=7，成立。",
+              "reason": "分类讨论得到的候选值必须满足原方程，不能只看满足区间。",
+              "formulaLatex": "a=-1:\\ |2(-1)+1|=1=3|-1|-2;\\quad a=3:\\ |2(3)+1|=7=3|3|-2"
+            }
+          ],
+          "answer": {
+            "kind": "numbers",
+            "value": [
+              -1,
+              3
+            ],
+            "display": "a=-1 或 a=3"
+          },
+          "misconceptions": [
+            {
+              "mistake": "直接用零点 a=-1/2、a=0 分三段，可能在中间段算出 a=-3/5，却忘记它不满足原方程。",
+              "correction": "凡是由去绝对值后得到的 a 值，都要检查是否落在分类区间内，并代回原方程；a=-3/5 会使右边 3|a|-2 为负，舍去。"
+            },
+            {
+              "mistake": "没有先判断右边必须非负，凭空讨论符号。",
+              "correction": "先由 |2a+1|≥0 推出 3|a|-2≥0，即可得到 |a|≥2/3，提前筛掉不可能区间。"
+            }
+          ],
+          "scene": null
+        }
+      ]
+    }
+  },
+  {
+    "question": {
+      "id": "5d337254-c1d9-43bb-8d6f-30a86045ce1a",
+      "revision": 4,
+      "number": 14,
+      "state": "confirmed",
+      "missingFields": [],
+      "parts": [
+        {
+          "id": "main",
+          "label": "主问题",
+          "prompt": "求代数式的值"
+        }
+      ]
+    },
+    "lesson": {
+      "questionId": "5d337254-c1d9-43bb-8d6f-30a86045ce1a",
+      "questionRevision": 4,
+      "lessonVersion": 2,
+      "status": "ready",
+      "checks": {
+        "issues": [],
+        "coverage": true,
+        "partIdMap": {
+          "main": "main"
+        },
+        "repairAttempt": 0,
+        "answerVerified": true,
+        "inputConfirmed": true,
+        "reasoningReviewed": true
+      },
+      "coveredPartIds": [
+        "main"
+      ],
+      "parts": [
+        {
+          "partId": "main",
+          "label": "主问题",
+          "goal": "求 ac+2bc 的所有可能值",
+          "known": [
+            "a、b、c 是有理数",
+            "(a+2)^2 - |b-3| = -3",
+            "|b-3| + (c-1)^2 = 3"
+          ],
+          "prerequisites": [
+            "实数的平方都大于等于 0",
+            "绝对值都大于等于 0",
+            "等式两边可以移项、代入"
+          ],
+          "method": "两个等式都含有公共项 |b-3|，先利用平方和绝对值的非负性把 |b-3| 的取值范围从两边夹住，确定 |b-3| 的值；再回代求 c 和 a，最后按 b 的两个分支分别计算目标式。不能只代入一个分支就下结论。",
+          "verification": "当 a=-2、b=6、c=1 时，第一式左边=(0)-3=-3，第二式左边=3+0=3，目标式=(-2)(1)+2(6)(1)=10；当 a=-2、b=0、c=1 时，第一式左边=0-3=-3，第二式左边=3+0=3，目标式=(-2)(1)+2(0)(1)=-2。两组都完全满足原条件，所以两个结果都成立。",
+          "summary": "含多个方程和公共项时，先借非负性夹出公共项；解绝对值方程要写清两支；最后把所有合法分支分别代入目标式，不能遗漏多解。",
+          "steps": [
+            {
+              "id": "p1-step1",
+              "title": "夹出 |b-3| 的唯一可能值",
+              "explanation": "由第二个等式可得 |b-3| = 3 - (c-1)^2，因为 (c-1)^2 ≥ 0，所以 |b-3| ≤ 3；由第一个等式移项得 (a+2)^2 = |b-3| - 3，因为 (a+2)^2 ≥ 0，所以 |b-3| ≥ 3。同时满足 ≤3 和 ≥3，只能等于 3。",
+              "reason": "这一步用到平方和绝对值非负，把两个不等式合起来，才能避免只猜一个值。",
+              "formulaLatex": "|b-3|=3-(c-1)^2\\le 3; \\quad (a+2)^2=|b-3|-3\\ge 0 \\Rightarrow |b-3|\\ge 3; \\quad \\therefore |b-3|=3"
+            },
+            {
+              "id": "p1-step2",
+              "title": "由 |b-3|=3 求 c 和 b",
+              "explanation": "把 |b-3|=3 代入第二个等式：3 + (c-1)^2 = 3，所以 (c-1)^2 = 0，得到 c=1。绝对值 |b-3|=3 有两支：b-3=3 或 b-3=-3，所以 b=6 或 b=0。",
+              "reason": "绝对值等于正数时必须分两种情况讨论，否则会漏解。",
+              "formulaLatex": "3+(c-1)^2=3 \\Rightarrow (c-1)^2=0 \\Rightarrow c=1; \\quad |b-3|=3 \\Rightarrow b-3=3\\text{ 或 }b-3=-3 \\Rightarrow b=6\\text{ 或 }b=0"
+            },
+            {
+              "id": "p1-step3",
+              "title": "回代第一式求 a",
+              "explanation": "把 |b-3|=3 代入第一式： (a+2)^2 - 3 = -3，所以 (a+2)^2=0，因此 a=-2。这个结果不依赖 b 具体是 6 还是 0。",
+              "reason": "第一式只含有 |b-3|，不含 b 的符号分支，所以 a 是确定的。",
+              "formulaLatex": "(a+2)^2-3=-3 \\Rightarrow (a+2)^2=0 \\Rightarrow a=-2"
+            },
+            {
+              "id": "p1-step4",
+              "title": "分别计算两个分支下的目标式",
+              "explanation": "目标式 ac+2bc = c(a+2b)。代入 a=-2、c=1，得到 -2+2b。若 b=6，结果为 -2+12=10；若 b=0，结果为 -2+0=-2。所以 ac+2bc 有两个合法值。",
+              "reason": "b 有两个分支，必须分别代入目标式；不能因为两个 b 都满足条件就随意只取一个。",
+              "formulaLatex": "ac+2bc=c(a+2b)=1((-2)+2b)=2b-2; \\quad b=6\\Rightarrow 10; \\quad b=0\\Rightarrow -2"
+            }
+          ],
+          "answer": {
+            "kind": "numbers",
+            "value": [
+              -2,
+              10
+            ],
+            "display": "-2 或 10"
+          },
+          "misconceptions": [
+            {
+              "mistake": "只由第二个等式就写 |b-3|=3-(c-1)^2，然后直接猜 |b-3|=3，没有用第一个等式说明为什么不能小于 3。",
+              "correction": "需要从第一个等式得到 (a+2)^2=|b-3|-3≥0，于是 |b-3|≥3；再结合第二个等式得到 |b-3|≤3，才能严格推出 |b-3|=3。"
+            },
+            {
+              "mistake": "解 |b-3|=3 时只得到 b=6，漏了 b=0。",
+              "correction": "绝对值 |x|=3 应分 x=3 和 x=-3 两支，这里 x=b-3，所以 b-3=-3 也得 b=0。"
+            },
+            {
+              "mistake": "看到 b 有两个值后，仍把目标式当成唯一值，只算一个分支。",
+              "correction": "两个分支都满足原条件，因此目标式也应有对应的两个值，必须分别代入并保留全部结果。"
+            }
+          ],
+          "scene": null
+        }
+      ]
+    }
+  },
+  {
+    "question": {
+      "id": "b68c335a-c3a7-41a2-8541-360bc625aa69",
+      "revision": 4,
+      "number": 15,
+      "state": "confirmed",
+      "missingFields": [],
+      "parts": [
+        {
+          "id": "main",
+          "label": "主问题",
+          "prompt": "求$x$的最大值与最小值的乘积"
+        }
+      ]
+    },
+    "lesson": {
+      "questionId": "b68c335a-c3a7-41a2-8541-360bc625aa69",
+      "questionRevision": 4,
+      "lessonVersion": 2,
+      "status": "ready",
+      "checks": {
+        "issues": [],
+        "coverage": true,
+        "partIdMap": {
+          "main": "main"
+        },
+        "repairAttempt": 0,
+        "answerVerified": true,
+        "inputConfirmed": true,
+        "reasoningReviewed": true
+      },
+      "coveredPartIds": [
+        "main"
+      ],
+      "parts": [
+        {
+          "partId": "main",
+          "label": "主问题",
+          "goal": "求x的最大值与最小值的乘积",
+          "known": [
+            "abc<0",
+            "a+b+c=0",
+            "x=\\frac{|b+c|}{a}+\\frac{2|a+c|}{b}-\\frac{3|a+b|}{c}"
+          ],
+          "prerequisites": [
+            "绝对值的非负性：|t|/t 当 t≠0 时等于 t 的符号",
+            "两数和为零时互为相反数",
+            "三个数乘积为负说明负号个数为奇数"
+          ],
+          "method": "先用a+b+c=0把绝对值内的和式化为单个字母的绝对值，再用|字母|/字母化为符号，接着由abc<0与和为零推出a,b,c只能两正一负，最后分三类讨论得到x的所有可能值，比较出最大和最小。",
+          "verification": "分类理论上已穷尽：由符号分布只有三类，且每一类都能找到满足a+b+c=0、abc<0的具体数。例如a=-2,b=1,c=1时，abc=-2<0，和0，代入x=|1+1|/(-2)+2|(-2)+1|/1-3|(-2)+1|/1=2/(-2)+2*1/1-3*1/1=-1+2-3=-2；a=1,b=-2,c=1时，abc=-2<0，和0，代入得-4；a=1,b=1,c=-2时，abc=-2<0，和0，代入得6。三类对应的值确定可达到，所以最值无误。",
+          "summary": "遇到含绝对值的分式且已知和为零、积为负时，先把绝对值内和式化为相反数，再把|t|/t写成符号函数；结合乘积符号与和为零确定正负个数，分类穷尽求最值。",
+          "steps": [
+            {
+              "id": "p1-step1",
+              "title": "化简绝对值内的和式",
+              "explanation": "因为a+b+c=0，所以b+c=-a，a+c=-b，a+b=-c。把这三个关系代入x的表达式，绝对值内的和式就变成单个字母的绝对值。",
+              "reason": "化简后每个绝对值只关于一个字母，方便直接判断符号。",
+              "formulaLatex": "x=\\frac{|b+c|}{a}+\\frac{2|a+c|}{b}-\\frac{3|a+b|}{c} = \\frac{|-a|}{a}+\\frac{2|-b|}{b}-\\frac{3|-c|}{c} = \\frac{|a|}{a}+\\frac{2|b|}{b}-\\frac{3|c|}{c}"
+            },
+            {
+              "id": "p1-step2",
+              "title": "判断a,b,c的符号分布",
+              "explanation": "由abc<0可知负数个数为1个或3个；又a+b+c=0，若三个都为负数则和小于0，不可能等于0，所以只能是1个负数、2个正数。",
+              "reason": "这一步排除三负情形，确保后续分类没有遗漏也没有多余。",
+              "formulaLatex": "abc<0 \\Rightarrow 负数个数为1或3；a+b+c=0 \\Rightarrow 不可能3个负数；故 a,b,c 中恰有1负2正"
+            },
+            {
+              "id": "p1-step3",
+              "title": "分三类讨论并计算x",
+              "explanation": "设 s_a=\\frac{|a|}{a}，s_b=\\frac{|b|}{b}，s_c=\\frac{|c|}{c}。由于a,b,c均不为0，s_a,s_b,s_c只取1或-1。于是x=s_a+2s_b-3s_c。情况1：a<0,b>0,c>0，则s_a=-1,s_b=1,s_c=1，x=-1+2-3=-2；情况2：a>0,b<0,c>0，则x=1-2-3=-4；情况3：a>0,b>0,c<0，则x=1+2+3=6。",
+              "reason": "两正一负共有三种不同位置，分类计算x的所有可能值。",
+              "formulaLatex": "x=s_a+2s_b-3s_c,\\quad s_a,s_b,s_c\\in\\{1,-1\\}; \\quad \\text{三类结果：}-2,-4,6"
+            },
+            {
+              "id": "p1-step4",
+              "title": "比较得最值并求乘积",
+              "explanation": "x的所有可能值为-4、-2、6，所以最大值是6，最小值是-4，乘积为6×(-4)=-24。",
+              "reason": "分类已穷尽所有符合条件的情形，因此最值可靠。",
+              "formulaLatex": "\\max x=6,\\quad \\min x=-4,\\quad 6\\times(-4)=-24"
+            }
+          ],
+          "answer": {
+            "kind": "numbers",
+            "value": -24,
+            "display": "-24"
+          },
+          "misconceptions": [
+            {
+              "mistake": "直接认为|b+c|、|a+c|、|a+b|都是正数而去掉绝对值，没有考虑除以的a,b,c本身的符号。",
+              "correction": "应先利用a+b+c=0转化为|a|/a等形式，并分符号讨论，不能随意去绝对值。"
+            },
+            {
+              "mistake": "只看abc<0就认为可能三个负数，忘记a+b+c=0排除了三负情形。",
+              "correction": "若三数均为负，其和必小于0，不可能等于0，所以只能是两正一负。"
+            },
+            {
+              "mistake": "分类时只算了一两种，漏掉某一负号位置，导致最值有误。",
+              "correction": "两正一负共有三种位置，必须三类都计算后再比较。"
+            }
+          ],
+          "scene": null
+        }
+      ]
+    }
+  },
+  {
+    "question": {
+      "id": "8052b0e2-5662-4f62-8964-0dc4de2387cb",
+      "revision": 4,
+      "number": 16,
+      "state": "confirmed",
+      "missingFields": [],
+      "parts": [
+        {
+          "id": "main",
+          "label": "主问题",
+          "prompt": "求$a$的值"
+        }
+      ]
+    },
+    "lesson": {
+      "questionId": "8052b0e2-5662-4f62-8964-0dc4de2387cb",
+      "questionRevision": 4,
+      "lessonVersion": 4,
+      "status": "ready",
+      "checks": {
+        "issues": [],
+        "coverage": true,
+        "partIdMap": {
+          "main": "main"
+        },
+        "repairAttempt": 0,
+        "answerVerified": true,
+        "inputConfirmed": true,
+        "reasoningReviewed": true
+      },
+      "coveredPartIds": [
+        "main"
+      ],
+      "parts": [
+        {
+          "partId": "main",
+          "label": "主问题",
+          "goal": "求所有使 $|x+1|+2|x-a|+|x-6|$ 的最小值为 $8$ 的有理数 $a$。",
+          "known": [
+            "已知函数为 $f(x)=|x+1|+2|x-a|+|x-6|$。",
+            "该函数在全体实数 $x$ 上的最小值等于 $8$。",
+            "$a$ 是有理数。"
+          ],
+          "prerequisites": [
+            "绝对值的定义与去绝对值方法",
+            "一次函数斜率的正负与增减性",
+            "三角不等式 $|m|+|n|\\ge |m-n|$"
+          ],
+          "method": "先按 $a$ 与固定零点 $-1$、$6$ 的位置关系分类讨论。零点顺序不同，去绝对值后的分段表达式不同。再根据每段斜率确定函数在哪里取最小值，令最小值为 $8$ 反解 $a$，最后检验解是否落在对应分类区间。",
+          "verification": "把 $a=-\\dfrac{3}{2}$ 代入得 $f(x)=|x+1|+2|x+\\dfrac{3}{2}|+|x-6|$。在区间 $[-\\dfrac{3}{2},-1]$ 上，任取 $x=-\\dfrac{5}{4}$ 检验：$|x+1|=\\dfrac{1}{4}$，$2|x+\\dfrac{3}{2}|=\\dfrac{1}{2}$，$|x-6|=\\dfrac{29}{4}$，和为 $8$；区间左侧和右侧的函数值都大于 $8$，所以最小值为 $8$。把 $a=\\dfrac{13}{2}$ 代入得 $f(x)=|x+1|+2|x-\\dfrac{13}{2}|+|x-6|$。在区间 $[6,\\dfrac{13}{2}]$ 上，任取 $x=\\dfrac{25}{4}$ 检验：$|x+1|=\\dfrac{29}{4}$，$2|x-\\dfrac{13}{2}|=\\dfrac{1}{2}$，$|x-6|=\\dfrac{1}{4}$，和为 $8$；区间外函数值也大于 $8$。两个解均成立。",
+          "summary": "带系数的绝对值函数求最值时，先按绝对值零点固定好分段区间，并注意参数 $a$ 会影响零点顺序。去绝对值后看每一段的一次函数斜率：负斜率段下降，正常数段为最小值，正斜率段上升。令最小值等于已知值反解参数后，务必检验参数是否落在当前分类范围内。",
+          "steps": [
+            {
+              "id": "p1-step1",
+              "title": "明确分类依据",
+              "explanation": "函数中有三个绝对值零点：$-1$、$a$、$6$。其中 $a$ 可能落在 $-1$ 左侧、$-1$ 与 $6$ 之间，或 $6$ 右侧。把 $a=-1$、$a=6$ 也归入中间情况，分类为：$a<-1$、$-1\\le a\\le6$、$a>6$。",
+              "reason": "去绝对值时必须知道 $a$ 与 $-1$、$6$ 的大小关系；不同顺序会得到不同的分段表达式。",
+              "formulaLatex": "分类：a<-1,\\quad -1\\le a\\le6,\\quad a>6"
+            },
+            {
+              "id": "p1-step2",
+              "title": "排除 $a$ 在 $[-1,6]$ 内的情况",
+              "explanation": "若 $-1\\le a\\le6$，先给出下界：对任意 $x$，$|x+1|+|x-6|\\ge |(x+1)-(x-6)|=7$，且 $2|x-a|\\ge0$，所以 $f(x)\\ge7$。另一方面，取 $x=a$ 时，$f(a)=|a+1|+0+|a-6|$。因为 $-1\\le a\\le6$，所以 $|a+1|=a+1$，$|a-6|=6-a$，故 $f(a)=7$。",
+              "reason": "三角不等式给出全域下界，取 $x=a$ 又能达到这个下界，因此最小值恰好为 $7$，与题给最小值 $8$ 矛盾。",
+              "formulaLatex": "|x+1|+|x-6|\\ge |(x+1)-(x-6)|=7,\\quad 2|x-a|\\ge0\\Rightarrow f(x)\\ge7;\n f(a)=a+1+6-a=7"
+            },
+            {
+              "id": "p1-step3",
+              "title": "分类一：$a<-1$ 时写出分段表达式",
+              "explanation": "当 $a<-1$ 时，三个零点从左到右为 $a$、$-1$、$6$。依次去掉绝对值并合并同类项，得到四段表达式。",
+              "reason": "每个区间内绝对值内式子的符号固定，所以能化为一次函数或常数。",
+              "formulaLatex": "f(x)=\\begin{cases}\n-4x+2a+5,& x<a,\\\\\n5-2a,& a\\le x\\le -1,\\\\\n2x+7-2a,& -1<x<6,\\\\\n4x-2a-5,& x\\ge6.\n\\end{cases}"
+            },
+            {
+              "id": "p1-step4",
+              "title": "分类一：判断最小值并解 $a$",
+              "explanation": "第一段斜率为 $-4$，函数下降；第二段为常数 $5-2a$；第三、四段斜率分别为 $2$、$4$，函数上升。因此最小值就是常数段的值 $5-2a$。令 $5-2a=8$，解得 $a=-\\dfrac{3}{2}$。",
+              "reason": "斜率为负时函数随 $x$ 增大而减小，斜率为正时增大；所以恰在第二段取最小值。",
+              "formulaLatex": "\\min f(x)=5-2a=8\\Rightarrow -2a=3\\Rightarrow a=-\\frac{3}{2}"
+            },
+            {
+              "id": "p1-step5",
+              "title": "分类二：$a>6$ 时写出分段表达式",
+              "explanation": "当 $a>6$ 时，三个零点从左到右为 $-1$、$6$、$a$。同样去绝对值并合并，得到四段表达式。",
+              "reason": "零点顺序改变，导致中间段是否为常数段的位置也改变，必须重新分段。",
+              "formulaLatex": "f(x)=\\begin{cases}\n-4x+2a+5,& x<-1,\\\\\n-2x+2a+7,& -1\\le x\\le6,\\\\\n2a-5,& 6\\le x\\le a,\\\\\n4x-2a-5,& x>a.\n\\end{cases}"
+            },
+            {
+              "id": "p1-step6",
+              "title": "分类二：判断最小值并解 $a$",
+              "explanation": "左侧两段斜率分别为 $-4$、$-2$，函数先下降；第三段为常数 $2a-5$；最后一段斜率为 $4$，函数上升。因此最小值是 $2a-5$。令 $2a-5=8$，解得 $a=\\dfrac{13}{2}$。",
+              "reason": "函数从左边下降到 $x=6$ 后进入常数段，之后才开始上升，所以最小值在常数段取得。",
+              "formulaLatex": "\\min f(x)=2a-5=8\\Rightarrow 2a=13\\Rightarrow a=\\frac{13}{2}"
+            },
+            {
+              "id": "p1-step7",
+              "title": "检验范围并综合答案",
+              "explanation": "$a=-\\dfrac{3}{2}$ 满足 $a<-1$；$a=\\dfrac{13}{2}$ 满足 $a>6$。两者均为有理数，都符合题意。",
+              "reason": "分类讨论中的解必须回代到分类前提中验证，否则可能产生无效解。",
+              "formulaLatex": "-\\frac{3}{2}<-1,\\quad \\frac{13}{2}>6"
+            }
+          ],
+          "answer": {
+            "kind": "numbers",
+            "value": [
+              -1.5,
+              6.5
+            ],
+            "display": "$a=-\\dfrac{3}{2}$ 或 $a=\\dfrac{13}{2}$"
+          },
+          "misconceptions": [
+            {
+              "mistake": "把 $2|x-a|$ 的系数 $2$ 丢掉，按三个点各权 $1$ 的普通绝对值距离分析，误认为最小值一定在中间零点附近取得。",
+              "correction": "系数 $2$ 表示 $a$ 点的权重更大，经过 $x=a$ 时斜率变化为 $4$，不是普通等权三点的斜率变化。必须保留系数进行分段讨论。"
+            },
+            {
+              "mistake": "解出 $a$ 后没有回代到分类条件中，例如在 $a<-1$ 的情形解出某个值后未确认它是否真的小于 $-1$。",
+              "correction": "分类讨论的每一个解都必须满足该类的范围；本题两个解分别满足 $a<-1$ 和 $a>6$，所以都保留。"
+            },
+            {
+              "mistake": "以为 $a$ 在 $-1$ 和 $6$ 之间时还能通过调整 $x$ 使最小值变成 $8$。",
+              "correction": "此时 $f(x)\\ge7$ 且 $x=a$ 时真的取到 $7$，所以最小值固定为 $7$，不可能等于 $8$。"
+            }
+          ],
+          "scene": null
+        }
+      ]
+    }
+  },
+  {
+    "question": {
+      "id": "d3b21541-d39a-48b7-834d-b7a3ff5232fb",
+      "revision": 4,
+      "number": 17,
+      "state": "confirmed",
+      "missingFields": [],
+      "parts": [
+        {
+          "id": "1",
+          "label": "(1)",
+          "prompt": "比较大小：$b-1$______$-c$（填“$>$”“$<$”或“$=$”）。",
+          "missingFields": []
+        },
+        {
+          "id": "2",
+          "label": "(2)",
+          "prompt": "判断：$a-c$______$0$，$b+c$______$0$，$b-1$______$0$（填“$>$”“$<$”或“$=$”）。",
+          "missingFields": []
+        },
+        {
+          "id": "3",
+          "label": "(3)",
+          "prompt": "化简：$|a-c|-|b+c|+|b-1|$。",
+          "missingFields": []
+        }
+      ]
+    },
+    "lesson": {
+      "questionId": "d3b21541-d39a-48b7-834d-b7a3ff5232fb",
+      "questionRevision": 4,
+      "lessonVersion": 5,
+      "status": "ready",
+      "checks": {
+        "issues": [],
+        "coverage": true,
+        "partIdMap": {
+          "1": "1",
+          "2": "2",
+          "3": "3"
+        },
+        "repairAttempt": 0,
+        "answerVerified": true,
+        "inputConfirmed": true,
+        "reasoningReviewed": true
+      },
+      "coveredPartIds": [
+        "1",
+        "2",
+        "3"
+      ],
+      "parts": [
+        {
+          "partId": "1",
+          "label": "(1)",
+          "goal": "判断 b-1 与 -c 的大小关系并填符号",
+          "known": [
+            "a 在 -2 与 -1 之间：-2<a<-1",
+            "b 在 0 与 1 之间：0<b<1",
+            "c 在 2 与 3 之间：2<c<3"
+          ],
+          "prerequisites": [
+            "不等式两边同加、同减，不等号方向不变",
+            "不等式两边同乘负数，不等号方向改变"
+          ],
+          "method": "先把 b-1 和 -c 分别化为只含已知范围的区间，再比较两个区间的位置：如果一个区间的左端都大于另一个区间的右端，则这个式子的值整体大于另一个式子。",
+          "verification": "用数值检验：取 b=0.5，c=2.5，则 b-1=-0.5，-c=-2.5，-0.5>-2.5，与结论一致。范围证明已覆盖所有可能取值：b-1 整体大于 -1，-c 整体小于 -2，而 -1>-2。",
+          "summary": "比较含参式子大小，可先求其范围；区间完全分离时可直接比端点。",
+          "steps": [
+            {
+              "id": "p1-step1",
+              "title": "求 b-1 的范围",
+              "explanation": "由 0<b<1，两边同时减 1，得 -1<b-1<0。所以 b-1 是大于 -1 且小于 0 的数。",
+              "reason": "不等式两边同减 1，不等号方向不变。",
+              "formulaLatex": "0<b<1\\Rightarrow -1<b-1<0"
+            },
+            {
+              "id": "p1-step2",
+              "title": "求 -c 的范围",
+              "explanation": "由 2<c<3，两边同时乘 -1，不等号反向，得 -3<-c<-2。所以 -c 是小于 -2 的数。",
+              "reason": "不等式两边乘负数会改变大小关系。",
+              "formulaLatex": "2<c<3\\Rightarrow -3<-c<-2"
+            },
+            {
+              "id": "p1-step3",
+              "title": "比较两个区间",
+              "explanation": "b-1 总大于 -1；-c 总小于 -2；又 -1 大于 -2，因此 b-1 一定大于 -c。填“>”。",
+              "reason": "借助中间值 -1 和 -2 过渡，避免只看两边都是负数就下结论。",
+              "formulaLatex": "b-1>-1>-2>-c"
+            }
+          ],
+          "answer": {
+            "kind": "text",
+            "value": ">",
+            "display": "b-1>-c"
+          },
+          "misconceptions": [
+            {
+              "mistake": "看到两个负数，以为要比较绝对值或直接猜符号。",
+              "correction": "先把两个式子分别限制到区间，再比较区间上下界。本题 b-1 在 (-1,0)，-c 在 (-3,-2)，区间位置明显。"
+            }
+          ],
+          "scene": null
+        },
+        {
+          "partId": "2",
+          "label": "(2)",
+          "goal": "判断 a-c、b+c、b-1 分别与 0 的大小关系",
+          "known": [
+            "a 在 -2 与 -1 之间：-2<a<-1",
+            "b 在 0 与 1 之间：0<b<1",
+            "c 在 2 与 3 之间：2<c<3"
+          ],
+          "prerequisites": [
+            "数轴上右边的数大于左边的数",
+            "正数加正数仍为正数",
+            "小数减大数为负数"
+          ],
+          "method": "直接用已知范围判断每个式子的符号：a 小于 c，所以 a-c<0；b 和 c 都大于 0，所以 b+c>0；b 小于 1，所以 b-1<0。",
+          "verification": "取一组允许值 a=-1.5，b=0.5，c=2.5，则 a-c=-4<0，b+c=3>0，b-1=-0.5<0，与符号判断一致。范围推理已说明不是只靠举例。",
+          "summary": "判断代数式与 0 的大小，要先找已知不等关系，再通过加减变形得到符号。",
+          "steps": [
+            {
+              "id": "p2-step1",
+              "title": "判断 a-c 的符号",
+              "explanation": "由数轴位置，a 在 0 左侧，c 在 0 右侧，所以 a<c。两边同时减 c，得 a-c<0。",
+              "reason": "负数减正数，结果一定小于 0；也可由 a<c 直接推出。",
+              "formulaLatex": "a<0<c\\Rightarrow a-c<0"
+            },
+            {
+              "id": "p2-step2",
+              "title": "判断 b+c 的符号",
+              "explanation": "b>0，c>0，所以 b+c>0。",
+              "reason": "两个正数相加仍为正数；这里 c 还大于 2，结论更稳定。",
+              "formulaLatex": "b>0,\\ c>0\\Rightarrow b+c>0"
+            },
+            {
+              "id": "p2-step3",
+              "title": "判断 b-1 的符号",
+              "explanation": "已知 b<1，两边同时减 1，得 b-1<0。",
+              "reason": "小于 1 的数减去 1，结果一定小于 0。",
+              "formulaLatex": "b<1\\Rightarrow b-1<0"
+            }
+          ],
+          "answer": {
+            "kind": "text",
+            "value": {
+              "a-c": "<",
+              "b+c": ">",
+              "b-1": "<"
+            },
+            "display": "a-c<0；b+c>0；b-1<0"
+          },
+          "misconceptions": [
+            {
+              "mistake": "认为 b-1 与 0 的关系需要知道 b 和 1 的具体大小，其实条件已给 b<1。",
+              "correction": "直接使用 b<1 推出 b-1<0；同理使用 a<c 推出 a-c<0。"
+            },
+            {
+              "mistake": "把 b+c 符号想复杂，例如考虑 c 是否可能负。",
+              "correction": "题面已给 c 在 2 与 3 之间，是正数；b 也是正数，所以 b+c>0。"
+            }
+          ],
+          "scene": null
+        },
+        {
+          "partId": "3",
+          "label": "(3)",
+          "goal": "化简 |a-c|-|b+c|+|b-1|",
+          "known": [
+            "-2<a<-1",
+            "0<b<1",
+            "2<c<3",
+            "a-c<0",
+            "b+c>0",
+            "b-1<0"
+          ],
+          "prerequisites": [
+            "绝对值的代数定义：正数和 0 的绝对值是它本身，负数的绝对值是它的相反数",
+            "去括号法则",
+            "合并同类项"
+          ],
+          "method": "先根据已知符号去掉每个绝对值，抄成不含绝对值的式子，再去括号、合并同类项，得到最简结果。",
+          "verification": "数值检验：取 a=-1.5，b=0.5，c=2.5，原式 | -1.5-2.5|-|0.5+2.5|+|0.5-1|=4-3+0.5=1.5；化简式 1-(-1.5)-2×0.5=1+1.5-1=1.5，两次结果一致。符号判断由已知范围保证，因此化简对题设所有 a、b、c 都成立。",
+          "summary": "绝对值化简的关键是先确定绝对值内式子的正负，再按定义去绝对值，最后认真去括号、合并同类项。",
+          "steps": [
+            {
+              "id": "p3-step1",
+              "title": "处理 |a-c|",
+              "explanation": "因为 a-c<0，所以 |a-c| 等于它的相反数，即 -(a-c)=c-a。",
+              "reason": "负数的绝对值等于它的相反数。",
+              "formulaLatex": "a-c<0\\Rightarrow |a-c|=-(a-c)=c-a"
+            },
+            {
+              "id": "p3-step2",
+              "title": "处理 |b+c|",
+              "explanation": "因为 b+c>0，所以 |b+c|=b+c。",
+              "reason": "正数的绝对值等于它本身。",
+              "formulaLatex": "b+c>0\\Rightarrow |b+c|=b+c"
+            },
+            {
+              "id": "p3-step3",
+              "title": "处理 |b-1|",
+              "explanation": "因为 b-1<0，所以 |b-1| 等于它的相反数，即 -(b-1)=1-b。",
+              "reason": "负数的绝对值等于它的相反数。",
+              "formulaLatex": "b-1<0\\Rightarrow |b-1|=1-b"
+            },
+            {
+              "id": "p3-step4",
+              "title": "代入原式并去括号",
+              "explanation": "原式变为 (c-a)-(b+c)+(1-b)。去括号得 c-a-b-c+1-b。",
+              "reason": "括号前是减号时，去括号后括号内各项要变号；括号前是加号则不变号。",
+              "formulaLatex": "|a-c|-|b+c|+|b-1|=(c-a)-(b+c)+(1-b)"
+            },
+            {
+              "id": "p3-step5",
+              "title": "合并同类项",
+              "explanation": "c 与 -c 抵消；-b 与 -b 合并为 -2b；其余为 1 和 -a。化简得 1-a-2b。",
+              "reason": "按字母 a、b 整理，常数项单独合并。",
+              "formulaLatex": "c-a-b-c+1-b=1-a-2b"
+            }
+          ],
+          "answer": {
+            "kind": "expression",
+            "value": "1-a-2*b",
+            "display": "1-a-2b"
+          },
+          "misconceptions": [
+            {
+              "mistake": "把 |b-1| 写成 b-1，忘记 b-1<0。",
+              "correction": "遇到绝对值内为负数时，必须变成相反数，即 |b-1|=1-b。"
+            },
+            {
+              "mistake": "去 -(b+c) 的括号时漏变号，错写成 -b+c。",
+              "correction": "括号前是减号，括号内每一项都要变号：-(b+c)=-b-c。"
+            }
+          ],
+          "scene": null
+        }
+      ]
+    }
+  },
+  {
+    "question": {
+      "id": "c204ce4a-c180-4342-b0b5-6d1ddf20632f",
+      "revision": 4,
+      "number": 18,
+      "state": "confirmed",
+      "missingFields": [],
+      "parts": [
+        {
+          "id": "1",
+          "label": "(1)",
+          "prompt": "对数组A：1，-2，3，k是______。"
+        },
+        {
+          "id": "2",
+          "label": "(2)",
+          "prompt": "对数组A：1，2，x，若$k=3$，求x的值。"
+        },
+        {
+          "id": "3",
+          "label": "(3)",
+          "prompt": "从正整数1，2，3，…，10中选取3个互不相同的整数组成数组A，若$k=5$，则满足条件的数组A有______个。"
+        },
+        {
+          "id": "4",
+          "label": "(4)",
+          "prompt": "已知m（m是大于等于3的整数）个连续整数中，从中选取n个（n是大于等于2的整数）不同的整数组成数组A，则k的最大值为______。"
+        }
+      ]
+    },
+    "lesson": {
+      "questionId": "c204ce4a-c180-4342-b0b5-6d1ddf20632f",
+      "questionRevision": 4,
+      "lessonVersion": 5,
+      "status": "ready",
+      "checks": {
+        "issues": [],
+        "coverage": true,
+        "partIdMap": {
+          "1": "1",
+          "2": "2",
+          "3": "3",
+          "4": "4"
+        },
+        "repairAttempt": 0,
+        "answerVerified": true,
+        "inputConfirmed": true,
+        "reasoningReviewed": true
+      },
+      "coveredPartIds": [
+        "1",
+        "2",
+        "3",
+        "4"
+      ],
+      "parts": [
+        {
+          "partId": "1",
+          "label": "(1)",
+          "goal": "求数组 1，-2，3 的距离系数 k",
+          "known": [
+            "数组 A 由 1，-2，3 三个互不相等的整数组成",
+            "距离系数定义为任意两个整数差的绝对值的最大值"
+          ],
+          "prerequisites": [
+            "绝对值的计算",
+            "最大值与最小值的概念"
+          ],
+          "method": "距离系数等于数组中的最大值减去最小值，所以先找出最大值和最小值，再作差。",
+          "verification": "列举所有差值：$|1-(-2)|=3$，$|3-1|=2$，$|3-(-2)|=5$，最大值为 $5$，与结果一致。",
+          "summary": "求距离系数只需找数组中的最大值和最小值，作差即可。",
+          "steps": [
+            {
+              "id": "p1-step1",
+              "title": "确定最大值和最小值",
+              "explanation": "把三个数按大小排列：$-2 < 1 < 3$，所以最大值是 $3$，最小值是 $-2$。",
+              "reason": "距离系数是任意两个数差的绝对值的最大可能值，这个最大值一定出现在最大值与最小值之间。",
+              "formulaLatex": "\\max\\{1,-2,3\\}=3,\\quad \\min\\{1,-2,3\\}=-2"
+            },
+            {
+              "id": "p1-step2",
+              "title": "计算距离系数",
+              "explanation": "用最大值减去最小值：$k = 3 - (-2) = 5$。",
+              "reason": "任意两个数的差的绝对值不会超过最大值与最小值的差，因此这个差就是距离系数。",
+              "formulaLatex": "k = 3 - (-2) = 5"
+            }
+          ],
+          "answer": {
+            "kind": "numbers",
+            "value": 5,
+            "display": "5"
+          },
+          "misconceptions": [
+            {
+              "mistake": "直接把最大的数 3 当成距离系数，或者忘记减去负数时取绝对值。",
+              "correction": "距离系数是最大值减最小值，不是单个元素；$-2$ 到 $3$ 的距离是 $|3-(-2)|=5$。"
+            }
+          ],
+          "scene": null
+        },
+        {
+          "partId": "2",
+          "label": "(2)",
+          "goal": "已知数组为 1，2，x，且 k=3，求 x 的值",
+          "known": [
+            "数组由 1，2，x 三个互不相等的整数组成",
+            "距离系数 k=3，即任意两数差的绝对值的最大值是 3"
+          ],
+          "prerequisites": [
+            "绝对值方程",
+            "分类讨论"
+          ],
+          "method": "距离系数等于最大值减最小值，所以极差为 3；根据 x 与 1、2 的大小关系分两类讨论，列方程求解。",
+          "verification": "当 $x=-1$ 时，数组为 $-1,1,2$，最大值 $2$ 减最小值 $-1$ 得 $3$；当 $x=4$ 时，数组为 $1,2,4$，最大值 $4$ 减最小值 $1$ 得 $3$。两种都满足 $k=3$。",
+          "summary": "含未知数的数组距离系数问题，先确定极差，再分未知数可能在最小侧或最大侧列方程求解。",
+          "steps": [
+            {
+              "id": "p2-step1",
+              "title": "明确 x 不能等于 1 或 2",
+              "explanation": "因为三个整数互不相等，所以 $x \\neq 1$ 且 $x \\neq 2$。",
+              "reason": "这是题目给出的互不相等条件的直接使用。",
+              "formulaLatex": "x \\neq 1, \\quad x \\neq 2"
+            },
+            {
+              "id": "p2-step2",
+              "title": "由距离系数得极差为 3",
+              "explanation": "距离系数 $k=3$ 意味着这组数中最大值与最小值的差是 $3$。已知 $1$ 和 $2$ 的差是 $1$，所以 $x$ 必定使极差扩大，因此 $x$ 要么小于 $1$，要么大于 $2$。",
+              "reason": "若 $x$ 在 $1$ 和 $2$ 之间，没有整数可选，并且极差仍是 $2-1=1\\neq3$；所以必须位于两侧。",
+              "formulaLatex": "\\max\\{1,2,x\\} - \\min\\{1,2,x\\} = 3"
+            },
+            {
+              "id": "p2-step3",
+              "title": "分类讨论 x 的位置",
+              "explanation": "情况一：若 $x < 1$，则最小值为 $x$，最大值为 $2$，所以 $2-x=3$，解得 $x=-1$。\n情况二：若 $x > 2$，则最小值为 $1$，最大值为 $x$，所以 $x-1=3$，解得 $x=4$。",
+              "reason": "在每种情况下明确最大最小值，列出关于 x 的一次方程。",
+              "formulaLatex": "x<1: 2-x=3 \\Rightarrow x=-1; \\quad x>2: x-1=3 \\Rightarrow x=4"
+            }
+          ],
+          "answer": {
+            "kind": "numbers",
+            "value": [
+              -1,
+              4
+            ],
+            "display": "x = -1 或 x = 4"
+          },
+          "misconceptions": [
+            {
+              "mistake": "只求出一种情况，忽略另一种。",
+              "correction": "由于绝对值方程可能有两个解，要分 x 小于最小已知数和大于最大已知数两种情况讨论。"
+            },
+            {
+              "mistake": "把 x 等于 1 或 2 代入，但题目要求互不相等。",
+              "correction": "先排除 x=1,2，再看两侧。"
+            }
+          ],
+          "scene": null
+        },
+        {
+          "partId": "3",
+          "label": "(3)",
+          "goal": "求从正整数 1 到 10 中选取 3 个互不相同整数组成数组，使得距离系数 k=5 的数组个数",
+          "known": [
+            "候选整数为 1,2,...,10",
+            "选取 3 个互不相同的整数",
+            "距离系数 k=5，即最大值减最小值等于 5"
+          ],
+          "prerequisites": [
+            "计数乘法原理",
+            "固定极差的组合思想"
+          ],
+          "method": "距离系数固定为 5，说明所选三个数中最大值与最小值的差为 5；固定最小值和最大值，中间数有 4 种选择，再对可能的最小值计数。",
+          "verification": "可以列举：最小 1 最大 6 有 4 种，最小 2 最大 7 有 4 种，...，最小 5 最大 10 有 4 种，共 5×4=20，与计数结果一致。",
+          "summary": "固定极差求数组个数时，先固定最小值，再数中间数的选择数，注意排除端点重复。",
+          "steps": [
+            {
+              "id": "p3-step1",
+              "title": "固定最小值和最大值",
+              "explanation": "设三个数中最小数为 $a$，最大数为 $a+5$。因为距离系数为 $5$，所以 $a+5 - a = 5$。",
+              "reason": "距离系数是最大减最小，正好等于 5。",
+              "formulaLatex": "a+5-a=5"
+            },
+            {
+              "id": "p3-step2",
+              "title": "确定 a 的取值范围",
+              "explanation": "因为 $a$ 和 $a+5$ 都在 $1$ 到 $10$ 之间，所以 $a \\geq 1$ 且 $a+5 \\leq 10$，即 $a=1,2,3,4,5$。",
+              "reason": "候选数范围限制最小值和最大值的可能位置。",
+              "formulaLatex": "1 \\leq a \\leq 5"
+            },
+            {
+              "id": "p3-step3",
+              "title": "计算中间数的选择数",
+              "explanation": "对于固定的 $a$，第三个数 $b$ 必须满足 $a < b < a+5$，且为整数，所以 $b$ 可取 $a+1, a+2, a+3, a+4$，共 $4$ 种。",
+              "reason": "因为要求三个数互不相同，且 $b$ 不能等于端点；中间有 $4$ 个整数可选。",
+              "formulaLatex": "b \\in \\{a+1, a+2, a+3, a+4\\}"
+            },
+            {
+              "id": "p3-step4",
+              "title": "乘法原理求总数",
+              "explanation": "每个 $a$ 对应 $4$ 种选择，且不同的 $a$ 得到的三元组不会重复，所以总数为 $5 \\times 4 = 20$。",
+              "reason": "每一组的最小值和最大值唯一确定，不会交叉重复。",
+              "formulaLatex": "5 \\times 4 = 20"
+            }
+          ],
+          "answer": {
+            "kind": "numbers",
+            "value": 20,
+            "display": "20"
+          },
+          "misconceptions": [
+            {
+              "mistake": "认为数组与顺序有关，计算排列数导致结果偏大。",
+              "correction": "题目只关心三个整数的集合，距离系数与顺序无关，用组合计数。"
+            },
+            {
+              "mistake": "忽略了中间数不能等于最小值或最大值，导致每个 a 多算两个。",
+              "correction": "中间数必须严格在两端之间，只有 4 个可选整数。"
+            }
+          ],
+          "scene": null
+        },
+        {
+          "partId": "4",
+          "label": "(4)",
+          "goal": "求在 m 个连续整数中选取 n 个不同整数组成数组时，距离系数 k 的最大值",
+          "known": [
+            "有 m 个连续整数（m≥3 的整数）",
+            "从中选取 n 个不同整数（n≥2 的整数）",
+            "距离系数为所选整数中最大值减最小值"
+          ],
+          "prerequisites": [
+            "连续整数的表示",
+            "最大最小值的性质"
+          ],
+          "method": "距离系数取决于所选数中的最大值和最小值；为了使 k 最大，应选取原连续序列中的最小数和最大数，此时极差为原序列的跨度 m-1。",
+          "verification": "例如当 m=5 时，连续整数为 1,2,3,4,5，选 n=2 可取 1,5 得 k=4；选 n=3 可取 1,4,5 得 k=4；任何选法都不会超过 4，与 m-1=4 一致。",
+          "summary": "已知连续整数总数求距离系数最大值，关键是端点距离，即总数减一。",
+          "steps": [
+            {
+              "id": "p4-step1",
+              "title": "表示连续整数",
+              "explanation": "设这 m 个连续整数为 $a, a+1, a+2, \\ldots, a+m-1$。",
+              "reason": "连续整数可以写成首项为 a、公差为 1 的等差数列。",
+              "formulaLatex": "a, a+1, \\ldots, a+m-1"
+            },
+            {
+              "id": "p4-step2",
+              "title": "原序列的极差",
+              "explanation": "原序列中最大值是 $a+m-1$，最小值是 $a$，它们的差为 $(a+m-1)-a = m-1$。",
+              "reason": "这是整个连续数组的跨度。",
+              "formulaLatex": "(a+m-1)-a = m-1"
+            },
+            {
+              "id": "p4-step3",
+              "title": "选取端点可使 k 达到 m-1",
+              "explanation": "因为 $n \\geq 2$，我们可以选取 $a$ 和 $a+m-1$ 这两个数（当 $n>2$ 时再任选其他 $n-2$ 个数），此时所选数组的距离系数为 $m-1$。",
+              "reason": "距离系数由所选数中的最大值和最小值决定，选到这两个端点时极差最大。",
+              "formulaLatex": "k = (a+m-1)-a = m-1"
+            },
+            {
+              "id": "p4-step4",
+              "title": "证明不能超过 m-1",
+              "explanation": "任何从原序列中选取的 n 个数，其最大值 $\\leq a+m-1$，最小值 $\\geq a$，所以距离系数 $k = 最大值-最小值 \\leq (a+m-1)-a = m-1$。因此 $m-1$ 是最大值。",
+              "reason": "这是对 k 的上界证明，确保没有更大的可能。",
+              "formulaLatex": "k \\leq m-1"
+            }
+          ],
+          "answer": {
+            "kind": "expression",
+            "value": "m-1",
+            "display": "$m-1$"
+          },
+          "misconceptions": [
+            {
+              "mistake": "误认为 k 的最大值与 n 有关，比如认为 n 越小 k 越大，或者 n 越大 k 越大。",
+              "correction": "只要 n≥2，总可以选到原序列的最小值和最大值，所以 k 的最大值始终是 m-1，与 n 无关。"
+            },
+            {
+              "mistake": "把 m 个连续整数的长度误当作 m-1 或 m+1。",
+              "correction": "连续整数的首项和末项差为 m-1，因为共有 m 个数，间隔有 m-1 段。"
+            }
+          ],
+          "scene": null
+        }
+      ]
+    }
+  },
+  {
+    "question": {
+      "id": "4eb514f2-b858-4b44-b840-51de7495eab9",
+      "revision": 6,
+      "number": 19,
+      "state": "confirmed",
+      "missingFields": [],
+      "parts": [
+        {
+          "id": "1",
+          "label": "(1)",
+          "prompt": "【探究问题】如图，数轴上，点A，B，P分别表示数-1，2，x。填空：因为$|x+1|+|x-2|$的几何意义是线段PA与PB的长度之和，而当点P在线段AB上时，$PA+PB=3$，当点P在点A的左侧或点B的右侧时，$PA+PB>3$，所以$|x+1|+|x-2|$的最小值是______。"
+        },
+        {
+          "id": "2.1",
+          "label": "(2)①",
+          "prompt": "直接写出式子$|x-4|+|x+2|$的最小值为______；"
+        },
+        {
+          "id": "2.2",
+          "label": "(2)②",
+          "prompt": "若满足$|x-4|+|x+2|=8$，则x的值是______；"
+        },
+        {
+          "id": "2.3",
+          "label": "(2)③",
+          "prompt": "当a为______时，$|x+a|+|x-3|$的最小值是2（直接写出结果）。"
+        }
+      ]
+    },
+    "lesson": {
+      "questionId": "4eb514f2-b858-4b44-b840-51de7495eab9",
+      "questionRevision": 6,
+      "lessonVersion": 8,
+      "status": "ready",
+      "checks": {
+        "issues": [],
+        "coverage": true,
+        "partIdMap": {
+          "1": "1",
+          "2.1": "2.1",
+          "2.2": "2.2",
+          "2.3": "2.3"
+        },
+        "repairAttempt": 1,
+        "answerVerified": true,
+        "inputConfirmed": true,
+        "reasoningReviewed": true
+      },
+      "coveredPartIds": [
+        "1",
+        "2.1",
+        "2.2",
+        "2.3"
+      ],
+      "parts": [
+        {
+          "partId": "1",
+          "label": "(1)",
+          "goal": "求 |x+1|+|x-2| 的最小值。",
+          "known": [
+            "点A表示数-1，点B表示数2，点P表示数x。",
+            "|x+1| 表示PA，|x-2| 表示PB。",
+            "当点P在线段AB上时，PA+PB=3；当点P在点A左侧或点B右侧时，PA+PB>3。"
+          ],
+          "prerequisites": [
+            "绝对值的几何意义：|x-c| 表示数轴上点x与点c的距离。",
+            "两点-1和2的距离为|2-(-1)|=3。"
+          ],
+          "method": "用数形结合，把两个绝对值之和看成点P到两个固定点的距离和；距离和的最小值等于两固定点之间的线段长度。",
+          "verification": "取 $x=0$ 在线段AB上：$|0+1|+|0-2|=1+2=3$；取 $x=-2$ 在左侧：$1+4=5>3$；取 $x=3$ 在右侧：$4+1=5>3$。说明外侧确实比3大。",
+          "summary": "形如 $|x-a|+|x-b|$ 的式子，其最小值为 $|a-b|$，取得范围是 $a$ 与 $b$ 之间的闭区间。",
+          "steps": [
+            {
+              "id": "19-1-step1",
+              "title": "把绝对值写成距离",
+              "explanation": "由定义，$|x+1|=|x-(-1)|$ 表示PA，$|x-2|$ 表示PB，所以原式就是 $PA+PB$。",
+              "reason": "绝对值内部相减的两数的差正好对应数轴上两点的距离。",
+              "formulaLatex": "|x+1|+|x-2|=PA+PB"
+            },
+            {
+              "id": "19-1-step2",
+              "title": "比较点P在不同位置的距离和",
+              "explanation": "若点P在线段AB上，则 $PA+PB=AB=3$；若点P在A左侧，则 $PB=PA+AB$，所以 $PA+PB=2PA+AB>3$；若点P在B右侧，同理 $PA+PB=2PB+AB>3$。",
+              "reason": "当点P夹在两固定点之间时，两段距离刚好拼成整条线段，不会多出一段；落在外侧时，会额外多出一段离最近端点的往返长度。",
+              "formulaLatex": "PA+PB≥AB=3"
+            },
+            {
+              "id": "19-1-step3",
+              "title": "得出最小值及取得范围",
+              "explanation": "因此最小值为3，且当点P在线段AB上即 $-1≤x≤2$ 时取得。",
+              "reason": "线段AB上的任意点都能使距离和等于线段长度，外侧则严格变大。",
+              "formulaLatex": "-1≤x≤2 ⇒ |x+1|+|x-2|=3"
+            }
+          ],
+          "answer": {
+            "kind": "minimum",
+            "value": {
+              "minimum": 3,
+              "attainedWhen": {
+                "max": 2,
+                "min": -1,
+                "includeMax": true,
+                "includeMin": true
+              }
+            },
+            "display": "3（当 -1≤x≤2 时取得）"
+          },
+          "misconceptions": [
+            {
+              "mistake": "认为最小值只在端点 $x=-1$ 或 $x=2$ 取得。",
+              "correction": "只要点P在线段AB上，$PA+PB$ 都等于3；闭区间 $[-1,2]$ 内任意x都取得最小值。"
+            }
+          ],
+          "scene": {
+            "kind": "number-line",
+            "params": {
+              "left": -1,
+              "right": 2,
+              "targetMinimum": 3
+            }
+          }
+        },
+        {
+          "partId": "2.1",
+          "label": "(2)①",
+          "goal": "求 |x-4|+|x+2| 的最小值。",
+          "known": [
+            "|x-4| 表示点x到4的距离。",
+            "|x+2|=|x-(-2)| 表示点x到-2的距离。",
+            "两个固定点为-2和4，其距离为6。"
+          ],
+          "prerequisites": [
+            "绝对值的几何意义。",
+            "两点距离公式：数轴上两点a、b的距离为|a-b|。"
+          ],
+          "method": "同第(1)问的数形结合思路：两个绝对值之和是点到两个固定点的距离和，最小值就是两个固定点之间的距离。",
+          "verification": "取 $x=1$：$|1-4|+|1+2|=3+3=6$；取 $x=5$：$|5-4|+|5+2|=1+7=8>6$；取 $x=-3$：$|-3-4|+|-3+2|=7+1=8>6$。",
+          "summary": "求 $|x-a|+|x-b|$ 的最小值时，先找两个固定点a、b，最小值就是 $|a-b|$。",
+          "steps": [
+            {
+              "id": "19-2-1-step1",
+              "title": "找出两个固定点",
+              "explanation": "把 $|x+2|$ 改写成 $|x-(-2)|$，所以两个固定点是 $-2$ 和 $4$。",
+              "reason": "绝对值 $|x-c|$ 的几何意义是点x到点c的距离。",
+              "formulaLatex": "|x-4|+|x+2|=|x-4|+|x-(-2)|"
+            },
+            {
+              "id": "19-2-1-step2",
+              "title": "计算两固定点的距离",
+              "explanation": "数轴上点4与点-2的距离为 $4-(-2)=6$。",
+              "reason": "当点x位于这两个固定点之间时，两段距离和正好等于这条线段的长度。",
+              "formulaLatex": "4-(-2)=6"
+            },
+            {
+              "id": "19-2-1-step3",
+              "title": "写出最小值及取得范围",
+              "explanation": "所以最小值为6，当 $-2≤x≤4$ 时取得。",
+              "reason": "点x在线段[-2,4]上时，两段距离拼成完整线段；在线段外会额外多出一段。",
+              "formulaLatex": "-2≤x≤4 ⇒ |x-4|+|x+2|=6"
+            }
+          ],
+          "answer": {
+            "kind": "minimum",
+            "value": {
+              "minimum": 6,
+              "attainedWhen": {
+                "max": 4,
+                "min": -2,
+                "includeMax": true,
+                "includeMin": true
+              }
+            },
+            "display": "6（当 -2≤x≤4 时取得）"
+          },
+          "misconceptions": [
+            {
+              "mistake": "把 $|x+2|$ 的固定点写成2，算出最小值为 $|4-2|=2$。",
+              "correction": "$|x+2|=|x-(-2)|$，所以固定点是 $-2$，最小值为 $|4-(-2)|=6$。"
+            }
+          ],
+          "scene": {
+            "kind": "number-line",
+            "params": {
+              "left": -2,
+              "right": 4,
+              "targetMinimum": 6
+            }
+          }
+        },
+        {
+          "partId": "2.2",
+          "label": "(2)②",
+          "goal": "求满足 |x-4|+|x+2|=8 的所有 x 值。",
+          "known": [
+            "|x-4| 表示点x到4的距离。",
+            "|x+2|=|x-(-2)| 表示点x到-2的距离。",
+            "固定点-2与4的距离为6。",
+            "方程要求这两个距离之和等于8。"
+          ],
+          "prerequisites": [
+            "绝对值的分段化简：根据x与固定点的大小关系去绝对值。",
+            "解一元一次方程并检验解是否在对应范围内。"
+          ],
+          "method": "把两个绝对值看成距离，先分三段写出无绝对值的表达式；中段距离和恒为6，所以解只能发生在左右两段，分别解一元一次方程并验根。",
+          "verification": "代入 $x=-3$：$|-3-4|+|-3+2|=7+1=8$；代入 $x=5$：$|5-4|+|5+2|=1+7=8$。都满足原方程。",
+          "summary": "已知距离和大于两固定点距离时，解一定在区间外；按左右两侧分段去绝对值，并检查解是否在对应范围内。",
+          "steps": [
+            {
+              "id": "19-2-2-step1",
+              "title": "确定两个固定点和基准距离",
+              "explanation": "两个固定点是 $-2$ 和 $4$，它们之间的距离是 $|4-(-2)|=6$。",
+              "reason": "$|x-4|$ 是 x 到 4 的距离，$|x+2|$ 是 x 到 -2 的距离；基准距离 6 是当 x 位于两点之间时距离和的最小可能值。",
+              "formulaLatex": "|x-4|+|x+2|=|x-4|+|x-(-2)|"
+            },
+            {
+              "id": "19-2-2-step2",
+              "title": "分三段去绝对值写出表达式",
+              "explanation": "按 x 与 -2、4 的位置分三段：当 $x<-2$ 时，$x-4$ 和 $x+2$ 都为负，所以和 = $(4-x)+(-x-2)=2-2x$；当 $-2≤x≤4$ 时，$x+2≥0$ 而 $x-4≤0$，所以和 = $(4-x)+(x+2)=6$；当 $x>4$ 时，两者都为正，所以和 = $(x-4)+(x+2)=2x-2$。",
+              "reason": "去绝对值必须根据每个绝对值内表达式的正负号决定；不同区间得到的线性表达式不同，这是解绝对值方程的基础。",
+              "formulaLatex": "(4-x)+(-x-2)=2-2x; (4-x)+(x+2)=6; (x-4)+(x+2)=2x-2"
+            },
+            {
+              "id": "19-2-2-step3",
+              "title": "在中段 [-2,4] 检查原方程",
+              "explanation": "当 $-2≤x≤4$ 时，距离和恒为6；方程要求等于8，所以该区间内任何 x 都不满足。",
+              "reason": "中段表达式已经化简为常量6，而8不等于6，因此中段不可能有解。",
+              "formulaLatex": "-2≤x≤4 ⇒ |x-4|+|x+2|=6≠8"
+            },
+            {
+              "id": "19-2-2-step4",
+              "title": "解左段 x<-2",
+              "explanation": "左段距离和为 $2-2x$，令 $2-2x=8$，解得 $x=-3$；因为 $-3<-2$，所以 $x=-3$ 是该段的一个解。",
+              "reason": "左段表达式的适用条件是 $x<-2$，所得根必须落回这个范围，不能只看方程结果。",
+              "formulaLatex": "2-2x=8 ⇒ x=-3"
+            },
+            {
+              "id": "19-2-2-step5",
+              "title": "解右段 x>4",
+              "explanation": "右段距离和为 $2x-2$，令 $2x-2=8$，解得 $x=5$；因为 $5>4$，所以 $x=5$ 是该段的一个解。",
+              "reason": "同理，根必须落回 $x>4$ 的范围；不在范围的要舍去。",
+              "formulaLatex": "2x-2=8 ⇒ x=5"
+            },
+            {
+              "id": "19-2-2-step6",
+              "title": "合并所有解",
+              "explanation": "所以方程的全部解为 $x=-3$ 或 $x=5$。",
+              "reason": "三段中只有左、右两段各产生一个满足范围限制的根；中段无解，因此最终是两个解。",
+              "formulaLatex": "x=-3 或 x=5"
+            }
+          ],
+          "answer": {
+            "kind": "numbers",
+            "value": [
+              -3,
+              5
+            ],
+            "display": "-3 或 5"
+          },
+          "misconceptions": [
+            {
+              "mistake": "只考虑 $x>4$ 一侧，漏掉 $x<-2$ 的解。",
+              "correction": "距离和为8，大于固定点距离6，说明x可能在左、右两侧，两边都要检查。"
+            },
+            {
+              "mistake": "在 $x<-2$ 时把 $|x+2|$ 写成 $x+2$，导致符号错误。",
+              "correction": "当 $x<-2$ 时，$x+2<0$，所以 $|x+2|=-(x+2)=-x-2$。"
+            }
+          ],
+          "scene": {
+            "kind": "number-line",
+            "params": {
+              "left": -2,
+              "right": 4,
+              "targetSum": 8
+            }
+          }
+        },
+        {
+          "partId": "2.3",
+          "label": "(2)③",
+          "goal": "求参数a，使 |x+a|+|x-3| 的最小值为2。",
+          "known": [
+            "|x+a|=|x-(-a)| 表示点x到 -a 的距离。",
+            "|x-3| 表示点x到3的距离。",
+            "题目已给这两个距离之和的最小值为2。"
+          ],
+          "prerequisites": [
+            "绝对值的几何意义。",
+            "两点距离的最小值等于两个固定点之间的距离。",
+            "解绝对值方程 |u|=m（m>0），得到 u=m 或 u=-m。"
+          ],
+          "method": "把参数a放入固定点-a，利用“距离和最小值=两固定点距离”建立关于a的绝对值方程，再解出全部参数解。",
+          "verification": "当 $a=-1$ 时，$|x-1|+|x-3|$ 的最小值为 $|1-3|=2$；当 $a=-5$ 时，$|x-5|+|x-3|$ 的最小值为 $|5-3|=2$。",
+          "summary": "当题目给出 $|x+a|+|x-3|$ 的最小值时，先把 $|x+a|$ 改写成 $|x-(-a)|$，再令两个固定点距离等于已知最小值，解绝对值方程即可。",
+          "steps": [
+            {
+              "id": "19-2-3-step1",
+              "title": "写出两个固定点",
+              "explanation": "把 $|x+a|$ 改写成 $|x-(-a)|$，所以两个固定点是 $-a$ 和 $3$。",
+              "reason": "绝对值 $|x-c|$ 的几何意义是点x到点c的距离。",
+              "formulaLatex": "|x+a|+|x-3|=|x-(-a)|+|x-3|"
+            },
+            {
+              "id": "19-2-3-step2",
+              "title": "用两点距离表示最小值",
+              "explanation": "当 x 位于两个固定点 $-a$ 与 $3$ 之间时，两段距离和正好等于这两个固定点的距离；当 x 在两点外侧时，距离和会多出一段离最近端点的往返长度，因此更大。所以最小值为 $|-a-3|$，也就是 $|a+3|$。",
+              "reason": "两段距离之和的最小值，就是两点之间的线段长度；该长度等于两点坐标差的绝对值。",
+              "formulaLatex": "min(|x+a|+|x-3|)=|-a-3|=|a+3|"
+            },
+            {
+              "id": "19-2-3-step3",
+              "title": "由题意建立方程",
+              "explanation": "题目给出最小值为2，所以令两点距离等于2，得到 $|a+3|=2$。",
+              "reason": "把已知最小值和两点距离表达式画等号，即可反求参数。",
+              "formulaLatex": "|a+3|=2"
+            },
+            {
+              "id": "19-2-3-step4",
+              "title": "解绝对值方程",
+              "explanation": "$|a+3|=2$ 表示 $a+3$ 到0的距离为2，所以 $a+3=2$ 或 $a+3=-2$，解得 $a=-1$ 或 $a=-5$。",
+              "reason": "绝对值方程有两个方向，必须两边都考虑，才能得到全部参数解。",
+              "formulaLatex": "a+3=2 或 a+3=-2 ⇒ a=-1 或 a=-5"
+            },
+            {
+              "id": "19-2-3-step5",
+              "title": "检验两个参数值",
+              "explanation": "当 $a=-1$ 时，两个固定点为1和3，距离为2；当 $a=-5$ 时，两个固定点为5和3，距离也为2。两个值都符合题意。",
+              "reason": "回代确认最小值确实为2，防止绝对值变形时丢解。",
+              "formulaLatex": "a=-1: |1-3|=2；a=-5: |5-3|=2"
+            }
+          ],
+          "answer": {
+            "kind": "numbers",
+            "value": [
+              -5,
+              -1
+            ],
+            "display": "a=-5 或 -1"
+          },
+          "misconceptions": [
+            {
+              "mistake": "把 $|x+a|$ 的固定点写成 $a$，而不是 $-a$，得到 $|a-3|=2$，会求出错误参数。",
+              "correction": "$|x+a|=|x-(-a)|$，所以固定点是 $-a$，最小值为 $|-a-3|=|a+3|$。"
+            },
+            {
+              "mistake": "解 $|a+3|=2$ 时只取 $a+3=2$，漏掉 $a+3=-2$。",
+              "correction": "$|a+3|=2$ 表示 $a+3$ 到0的距离为2，有两个方向，所以有两个解。"
+            }
+          ],
+          "scene": {
+            "kind": "number-line",
+            "params": {
+              "left": 1,
+              "right": 3,
+              "parameterName": "a",
+              "parameterValue": -1,
+              "targetMinimum": 2
+            }
+          }
+        }
+      ]
+    }
+  },
+  {
+    "question": {
+      "id": "559fc372-f32c-473a-8379-bdfda107e1b5",
+      "revision": 4,
+      "number": 20,
+      "state": "confirmed",
+      "missingFields": [],
+      "parts": [
+        {
+          "id": "main",
+          "label": "主问题",
+          "prompt": "选择变形最简便的选项"
+        }
+      ]
+    },
+    "lesson": {
+      "questionId": "559fc372-f32c-473a-8379-bdfda107e1b5",
+      "questionRevision": 4,
+      "lessonVersion": 2,
+      "status": "ready",
+      "checks": {
+        "issues": [],
+        "coverage": true,
+        "partIdMap": {
+          "main": "main"
+        },
+        "repairAttempt": 1,
+        "answerVerified": true,
+        "inputConfirmed": true,
+        "reasoningReviewed": true
+      },
+      "coveredPartIds": [
+        "main"
+      ],
+      "parts": [
+        {
+          "partId": "main",
+          "label": "主问题",
+          "goal": "判断在四个选项中，哪种变形运用分配律计算 13\\frac{5}{7}\\times\\frac{3}{16} 最简便。",
+          "known": [
+            "算式为 13\\frac{5}{7}\\times\\frac{3}{16}",
+            "四个选项都把 13\\frac{5}{7} 拆成和或差的形式",
+            "题目要求运用分配律并选择最简便的变形"
+          ],
+          "prerequisites": [
+            "带分数可化为假分数，也可写为整数与真分数的和或差",
+            "分配律：a(b+c)=ab+ac，a(b-c)=ab-ac",
+            "分数乘法可以先约分再乘；分母较大时通分较繁"
+          ],
+          "method": "把四个选项分别按分配律展开，观察拆出的每一项与 \\frac{3}{16} 相乘后能否直接约分。D 把 13\\frac{5}{7} 写成 16-\\frac{16}{7}，两项都含有因数 16，能与 \\frac{3}{16} 约分，无需通分，因此最简便。",
+          "verification": "把 D 的拆分代入展开：16\\times\\frac{3}{16}=3，2\\frac{2}{7}=\\frac{16}{7}，\\frac{16}{7}\\times\\frac{3}{16}=\\frac{3}{7}，所以 D 得 3-\\frac{3}{7}=\\frac{18}{7}。原式 13\\frac{5}{7}=\\frac{96}{7}，乘 \\frac{3}{16} 得 \\frac{18}{7}，结果一致。其余选项虽也能得到 \\frac{18}{7}，但其展开过程中出现112或56这类较大公分母，需要更多通分步骤，所以不如D简便。",
+          "summary": "选择分配律的简便变形时，先确认拆分等价，再把每一项与已知因数相乘，优先选择能直接约去分母的项。计算时遇到乘\\frac{3}{16}，尽量凑分母16的倍数或含因数16的数，能大幅减少通分。",
+          "steps": [
+            {
+              "id": "p1-step1",
+              "title": "确认四个选项的拆分都与原数相等",
+              "explanation": "先把原带分数化为假分数：13\\frac{5}{7}=\\frac{13\\times 7+5}{7}=\\frac{96}{7}。再逐一检查选项：A为13+\\frac{5}{7}，显然等于原数；B为14-\\frac{2}{7}=\\frac{98}{7}-\\frac{2}{7}=\\frac{96}{7}；C为10+3\\frac{5}{7}=10+\\frac{26}{7}=\\frac{70}{7}+\\frac{26}{7}=\\frac{96}{7}；D为16-2\\frac{2}{7}=16-\\frac{16}{7}=\\frac{112}{7}-\\frac{16}{7}=\\frac{96}{7}。四个选项只是把同一个数拆成不同形式，没有改变数值。",
+              "reason": "只有先确认拆分前后数值相等，后续比较简便性才有意义；否则可能是错误变形。",
+              "formulaLatex": "13\\frac{5}{7}=\\frac{96}{7},\\quad B:14-\\frac{2}{7}=\\frac{96}{7},\\quad C:10+\\frac{26}{7}=\\frac{96}{7},\\quad D:16-\\frac{16}{7}=\\frac{96}{7}"
+            },
+            {
+              "id": "p1-step2",
+              "title": "用分配律展开四个选项，比较是否需要通分",
+              "explanation": "A：(13+\\frac{5}{7})\\times\\frac{3}{16}=13\\times\\frac{3}{16}+\\frac{5}{7}\\times\\frac{3}{16}=\\frac{39}{16}+\\frac{15}{112}，合并时要通分到112。B：(14-\\frac{2}{7})\\times\\frac{3}{16}=14\\times\\frac{3}{16}-\\frac{2}{7}\\times\\frac{3}{16}=\\frac{21}{8}-\\frac{3}{56}，合并时要通分到56。C：(10+3\\frac{5}{7})\\times\\frac{3}{16}=10\\times\\frac{3}{16}+\\frac{26}{7}\\times\\frac{3}{16}=\\frac{15}{8}+\\frac{39}{56}，合并时也要通分到56。D：(16-2\\frac{2}{7})\\times\\frac{3}{16}=16\\times\\frac{3}{16}-\\frac{16}{7}\\times\\frac{3}{16}=3-\\frac{3}{7}，两项都直接约去了16，没有出现大分母。",
+              "reason": "简便运算的关键是展开后尽量避免把异分母分数通分。A、B、C的展开项中都至少有一项不能与16完全约分，导致后续需要112或56这样的较大公分母；D的两项直接约分，所以计算最简便。",
+              "formulaLatex": "A:\\frac{39}{16}+\\frac{15}{112},\\quad B:\\frac{21}{8}-\\frac{3}{56},\\quad C:\\frac{15}{8}+\\frac{39}{56},\\quad D:3-\\frac{3}{7}"
+            },
+            {
+              "id": "p1-step3",
+              "title": "完成D选项的计算并与原式核对",
+              "explanation": "D选项继续计算：3-\\frac{3}{7}=\\frac{21}{7}-\\frac{3}{7}=\\frac{18}{7}。原式直接计算：\\frac{96}{7}\\times\\frac{3}{16}=\\frac{288}{112}=\\frac{18}{7}。两者结果相同。这说明D不只是形式简洁，而且确实等于原式的值。",
+              "reason": "简便变形必须保证结果不变；代回原式计算可以排除只是恰好形式简单但答案错误的选项。",
+              "formulaLatex": "D:3-\\frac{3}{7}=\\frac{18}{7},\\quad 原式:\\frac{96}{7}\\times\\frac{3}{16}=\\frac{18}{7}"
+            }
+          ],
+          "answer": {
+            "kind": "choice",
+            "value": "D",
+            "display": "D：（16-2\\frac{2}{7}）\\times\\frac{3}{16}"
+          },
+          "misconceptions": [
+            {
+              "mistake": "看到A或B中的整数与真分数，就直接认为已经简便，没有展开比较约分。",
+              "correction": "应把每个选项按分配律展开，看每一项与\\frac{3}{16}相乘后是否要通分。A、B在合并时都要通分，而D两项都能直接约分，所以D最简便。"
+            },
+            {
+              "mistake": "把 2\\frac{2}{7} 忘记化为假分数 \\frac{16}{7}，从而看不出它能与分母16约分。",
+              "correction": "带分数参与乘法时，通常先化为假分数。2\\frac{2}{7}=\\frac{16}{7}，与\\frac{3}{16}相乘时约去16得\\frac{3}{7}。"
+            },
+            {
+              "mistake": "以为“最简便”只看结果是否最简分数，而不看计算过程。",
+              "correction": "本题四个选项最终都等于\\frac{18}{7}，最简结果相同；要比的是中间过程是否需要大分母通分。D的过程最直接。"
+            }
+          ],
+          "scene": null
+        }
+      ]
+    }
+  },
+  {
+    "question": {
+      "id": "d5b22996-a1fc-420b-ab56-e9bb12825b27",
+      "revision": 4,
+      "number": 21,
+      "state": "confirmed",
+      "missingFields": [],
+      "parts": [
+        {
+          "id": "main",
+          "label": "主问题",
+          "prompt": "计算 $(\\frac{1}{6}+\\frac{1}{4}-\\frac{1}{2})\\times12$"
+        }
+      ]
+    },
+    "lesson": {
+      "questionId": "d5b22996-a1fc-420b-ab56-e9bb12825b27",
+      "questionRevision": 4,
+      "lessonVersion": 2,
+      "status": "ready",
+      "checks": {
+        "issues": [],
+        "coverage": true,
+        "partIdMap": {
+          "main": "main"
+        },
+        "repairAttempt": 1,
+        "answerVerified": true,
+        "inputConfirmed": true,
+        "reasoningReviewed": true
+      },
+      "coveredPartIds": [
+        "main"
+      ],
+      "parts": [
+        {
+          "partId": "main",
+          "label": "主问题",
+          "goal": "计算 \\((\\frac{1}{6}+\\frac{1}{4}-\\frac{1}{2})\\times12\\) 的值。",
+          "known": [
+            "原式为 \\((\\frac{1}{6}+\\frac{1}{4}-\\frac{1}{2})\\times12\\)。",
+            "括号内是三个异分母分数相加减。"
+          ],
+          "prerequisites": [
+            "分数加减法需要先通分。",
+            "乘法分配律：\\(a(b+c)=ab+ac\\)，对减法同样成立。",
+            "有理数乘法中，先确定符号，再约分计算。"
+          ],
+          "method": "因为括号外的 12 正好是 6、4、2 的公倍数，所以优先使用乘法分配律，把 12 分别乘进括号里的每一项。这样每一项都能直接约分成整数，避免先通分再相乘的繁琐计算。",
+          "verification": "用另一种方法检验：先通分括号内，\\(\\frac{1}{6}+\\frac{1}{4}-\\frac{1}{2}=\\frac{2}{12}+\\frac{3}{12}-\\frac{6}{12}=-\\frac{1}{12}\\)，再乘以 12，得 \\(-\\frac{1}{12}\\times12=-1\\)。两种方法结果一致，说明答案正确。",
+          "summary": "遇到分数加减乘混合计算时，如果括号外的乘数是各分母的公倍数，优先用乘法分配律展开，逐项约分能大幅简化计算。展开时每一项的符号必须保留，尤其是负数项。",
+          "steps": [
+            {
+              "id": "p1-step1",
+              "title": "用乘法分配律展开",
+              "explanation": "把括号外的 12 分别乘到 \\(\\frac{1}{6}\\)、\\(\\frac{1}{4}\\) 和 \\(-\\frac{1}{2}\\) 上，符号要跟着原来的项走。",
+              "reason": "乘法分配律可以用于括号内有加减法的式子；12 是三个分母的公倍数，展开后每一项都容易约分。",
+              "formulaLatex": "(\\frac{1}{6}+\\frac{1}{4}-\\frac{1}{2})\\times12=\\frac{1}{6}\\times12+\\frac{1}{4}\\times12-\\frac{1}{2}\\times12"
+            },
+            {
+              "id": "p1-step2",
+              "title": "逐项约分并计算",
+              "explanation": "分别计算：\\(\\frac{1}{6}\\times12=2\\)，\\(\\frac{1}{4}\\times12=3\\)，\\(\\frac{1}{2}\\times12=6\\)，所以式子变为 \\(2+3-6\\)。",
+              "reason": "每一项中，12 都与对应分母约分，得到整数，再按从左到右进行加减。",
+              "formulaLatex": "\\frac{1}{6}\\times12+\\frac{1}{4}\\times12-\\frac{1}{2}\\times12=2+3-6"
+            },
+            {
+              "id": "p1-step3",
+              "title": "合并得到结果",
+              "explanation": "先算 \\(2+3=5\\)，再算 \\(5-6=-1\\)，所以最终结果是 \\(-1\\)。",
+              "reason": "按有理数加减法从左到右合并，注意最后一步是 \\(5-6\\)，结果为负数。",
+              "formulaLatex": "2+3-6=-1"
+            }
+          ],
+          "answer": {
+            "kind": "numbers",
+            "value": -1,
+            "display": "-1"
+          },
+          "misconceptions": [
+            {
+              "mistake": "把 \\(-\\frac{1}{2}\\times12\\) 误算成 \\(-2\\)。",
+              "correction": "\\(\\frac{1}{2}\\times12=6\\)，负号保留，所以结果是 \\(-6\\)，不是 \\(-2\\)。"
+            },
+            {
+              "mistake": "括号内通分时忘记把 \\(-\\frac{1}{2}\\) 写成 \\(-\\frac{6}{12}\\)，而错写成 \\(+\\frac{6}{12}\\)。",
+              "correction": "\\(\\frac{1}{2}=\\frac{6}{12}\\)，但原式是减 \\(\\frac{1}{2}\\)，所以应写为 \\(-\\frac{6}{12}\\)。"
+            }
+          ],
+          "scene": null
+        }
+      ]
+    }
+  },
+  {
+    "question": {
+      "id": "e7bd7991-c96d-47a4-a5a0-957678c0433c",
+      "revision": 4,
+      "number": 22,
+      "state": "confirmed",
+      "missingFields": [],
+      "parts": [
+        {
+          "id": "main",
+          "label": "主问题",
+          "prompt": "仿照拆项法计算$(-2026\\frac{2}{3})+2025\\frac{3}{4}+(-2024\\frac{5}{6})+2023\\frac{1}{7}$的结果"
+        }
+      ]
+    },
+    "lesson": {
+      "questionId": "e7bd7991-c96d-47a4-a5a0-957678c0433c",
+      "questionRevision": 4,
+      "lessonVersion": 1,
+      "status": "ready",
+      "checks": {
+        "issues": [],
+        "coverage": true,
+        "partIdMap": {
+          "main": "main"
+        },
+        "repairAttempt": 0,
+        "answerVerified": true,
+        "inputConfirmed": true,
+        "reasoningReviewed": true
+      },
+      "coveredPartIds": [
+        "main"
+      ],
+      "parts": [
+        {
+          "partId": "main",
+          "label": "主问题",
+          "goal": "仿照拆项法计算 (-2026 2/3)+2025 3/4+(-2024 5/6)+2023 1/7 的结果。",
+          "known": [
+            "题目给出四项带分数相加：-2026 2/3、2025 3/4、-2024 5/6、2023 1/7。",
+            "示例使用拆项法：把每个带分数拆成整数部分和分数部分，再分别相加。",
+            "最终求一个数。"
+          ],
+          "prerequisites": [
+            "带分数表示整数加真分数；负带分数要整体带负号。",
+            "异分母分数相加需通分。",
+            "有理数加法交换律、结合律。"
+          ],
+          "method": "按照示例的拆项法，把每一项拆成整数+分数；整数先加，分数通分后加；最后合并。理由：这四项整数部分相消容易先算，分数部分通分后也能化成较简分数；拆开不会改变数的大小。",
+          "verification": "用假分数直接通分核验：-2026 2/3=-6080/3；2025 3/4=8103/4；-2024 5/6=-12149/6；2023 1/7=14162/7。通分到84后分子为：-170240+170163-170086+169944=-219，得 -219/84=-73/28。与拆项法结果一致。",
+          "summary": "遇到带分数连加连减时，先把每个带分数拆成整数部分和真分数部分；负带分数的分数部分要取负。整数部分合并，分数部分通分合并，最后再合并。这样能利用整数相消和分数通分简化计算。",
+          "steps": [
+            {
+              "id": "p1-step1",
+              "title": "拆项并保留符号",
+              "explanation": "把每个带符号带分数写成“整数部分 + 分数部分”。注意负号同时属于整数和分数，所以 -2026 2/3 拆成 (-2026)+(-2/3)，-2024 5/6 拆成 (-2024)+(-5/6)。",
+              "reason": "带分数 2026 2/3 表示 2026+2/3；整体加负号后等于 -2026-2/3，所以分数部分也是负的。",
+              "formulaLatex": "(-2026\\frac{2}{3})+2025\\frac{3}{4}+(-2024\\frac{5}{6})+2023\\frac{1}{7}=[(-2026)+(-\\frac{2}{3})]+(2025+\\frac{3}{4})+[(-2024)+(-\\frac{5}{6})]+(2023+\\frac{1}{7})"
+            },
+            {
+              "id": "p1-step2",
+              "title": "整数与分数分组",
+              "explanation": "利用加法交换律和结合律，把四个整数部分放在一起，四个分数部分放在一起。",
+              "reason": "分组后整数计算、分数通分互不干扰，过程更清楚；这是拆项法的核心。",
+              "formulaLatex": "=[(-2026)+2025+(-2024)+2023]+[(-\\frac{2}{3})+\\frac{3}{4}+(-\\frac{5}{6})+\\frac{1}{7}]"
+            },
+            {
+              "id": "p1-step3",
+              "title": "计算整数部分",
+              "explanation": "先算 -2026+2025，得 -1；再算 -2024+2023，得 -1；最后 -1+(-1)=-2。",
+              "reason": "同号相加取相同符号并把绝对值相加；异号相加用较大绝对值减较小绝对值，再取绝对值较大的符号。这里两两分组更直观。",
+              "formulaLatex": "(-2026+2025)+(-2024+2023)=(-1)+(-1)=-2"
+            },
+            {
+              "id": "p1-step4",
+              "title": "通分计算分数部分",
+              "explanation": "分母 3、4、6、7 的最小公倍数是 84。把各分数化成以 84 为分母：-2/3=-56/84，3/4=63/84，-5/6=-70/84，1/7=12/84。分子相加：-56+63-70+12=-51，所以得 -51/84，再约 3 得 -17/28。",
+              "reason": "异分母分数不能直接相加，需通分；约分是为了达到最简分数。",
+              "formulaLatex": "-\\frac{2}{3}+\\frac{3}{4}-\\frac{5}{6}+\\frac{1}{7}=-\\frac{56}{84}+\\frac{63}{84}-\\frac{70}{84}+\\frac{12}{84}=-\\frac{51}{84}=-\\frac{17}{28}"
+            },
+            {
+              "id": "p1-step5",
+              "title": "合并整数部分与分数部分",
+              "explanation": "把 -2 与 -17/28 相加。把 -2 写成 -56/28，得到 -56/28-17/28=-73/28，也就是 -2又17/28。",
+              "reason": "整数和分数部分都算完后合并；两个负数相加，结果为负，绝对值相加。",
+              "formulaLatex": "-2+(-\\frac{17}{28})=-\\frac{56}{28}-\\frac{17}{28}=-\\frac{73}{28}"
+            }
+          ],
+          "answer": {
+            "kind": "numbers",
+            "value": {
+              "fraction": "-73/28"
+            },
+            "display": "-2\\frac{17}{28}（或 -\\frac{73}{28}）"
+          },
+          "misconceptions": [
+            {
+              "mistake": "把 -2026 2/3 拆成 -2026+2/3。",
+              "correction": "-2026 2/3 表示 -(2026+2/3)，应拆成 -2026-2/3，所以拆项后分数部分为 -2/3；同理 -2024 5/6 的分数部分为 -5/6。"
+            },
+            {
+              "mistake": "通分时漏掉分子前的负号，如把 -5/6 写成 70/84。",
+              "correction": "通分时符号跟着分子走：-5/6= -70/84。所有分数带上符号后再加减。"
+            },
+            {
+              "mistake": "最后把 -2 与 -17/28 合并成 -1又17/28。",
+              "correction": "-2+(-17/28) 是两个负数相加，结果应更小，为 -73/28，即 -2又17/28。"
+            }
+          ],
+          "scene": null
+        }
+      ]
+    }
+  },
+  {
+    "question": {
+      "id": "2ec23e62-b860-44f3-9d42-4a136ce0a6ee",
+      "revision": 5,
+      "number": 23,
+      "state": "confirmed",
+      "missingFields": [],
+      "parts": [
+        {
+          "id": "1",
+          "label": "(1)",
+          "prompt": "$25\\times\\frac{3}{4}+(-25)\\times\\frac{1}{2}-25\\times\\frac{1}{4}$"
+        },
+        {
+          "id": "2",
+          "label": "(2)",
+          "prompt": "$999\\frac{6}{7}\\div(-1\\frac{3}{7})$"
+        }
+      ]
+    },
+    "lesson": {
+      "questionId": "2ec23e62-b860-44f3-9d42-4a136ce0a6ee",
+      "questionRevision": 5,
+      "lessonVersion": 5,
+      "status": "ready",
+      "checks": {
+        "issues": [],
+        "coverage": true,
+        "partIdMap": {
+          "1": "1",
+          "2": "2"
+        },
+        "repairAttempt": 1,
+        "answerVerified": true,
+        "inputConfirmed": true,
+        "reasoningReviewed": true
+      },
+      "coveredPartIds": [
+        "1",
+        "2"
+      ],
+      "parts": [
+        {
+          "partId": "1",
+          "label": "(1)",
+          "goal": "简便计算 $25\\times\\frac{3}{4}+(-25)\\times\\frac{1}{2}-25\\times\\frac{1}{4}$。",
+          "known": [
+            "原式为 $25\\times\\frac{3}{4}+(-25)\\times\\frac{1}{2}-25\\times\\frac{1}{4}$。",
+            "第二项 $(-25)\\times\\frac{1}{2}$ 可写成 $25\\times(-\\frac{1}{2})$。",
+            "第三项 $-25\\times\\frac{1}{4}$ 可写成 $25\\times(-\\frac{1}{4})$。",
+            "三项变形后都含有因数 $25$。"
+          ],
+          "prerequisites": [
+            "乘法分配律：$a(b+c)=ab+ac$。",
+            "有理数乘法符号法则：异号相乘得负。",
+            "分数的通分与减法。",
+            "任何数乘以 $0$ 都得 $0$。"
+          ],
+          "method": "三项表面符号不同，但都含有数值 $25$ 的因子。先利用有理数乘法符号法则把负号写进分数中：$(-25)\\times\\frac{1}{2}=25\\times(-\\frac{1}{2})$，$-25\\times\\frac{1}{4}=25\\times(-\\frac{1}{4})$，使三项统一为 $25$ 乘以某个分数的形式。再逆用乘法分配律提取公因数 $25$，括号内分数分别为 $\\frac{3}{4}$、$-\\frac{1}{2}$、$-\\frac{1}{4}$。由于分母都可通分为 $4$，括号内计算恰好为 $0$，所以结果直接为 $0$。若不统一因数而逐项先乘后加减，计算量较大。",
+          "verification": "逐项代回原式检验：$25\\times\\frac{3}{4}=\\frac{75}{4}=18.75$，$(-25)\\times\\frac{1}{2}=-12.5$，$-25\\times\\frac{1}{4}=-6.25$；于是 $18.75-12.5-6.25=0$，与提取公因数后的结果一致。",
+          "summary": "遇到多项都含有同一因数的式子时，可以先把负号统一收入分数或项中，使公因数一致，再逆用分配律提取公因数；括号内的分数先通分再相减，常能直接抵消简化计算。",
+          "steps": [
+            {
+              "id": "p1-step1",
+              "title": "把三项都写成含公共因数25的形式",
+              "explanation": "第二项 $(-25)\\times\\frac{1}{2}$ 可看作 $25\\times(-\\frac{1}{2})$；第三项 $-25\\times\\frac{1}{4}$ 可看作 $25\\times(-\\frac{1}{4})$。这样原式变为三项都有因数 $25$ 的形式。",
+              "reason": "有理数乘法中异号相乘得负，所以 $(-25)\\times\\frac{1}{2}=25\\times(-\\frac{1}{2})$，$-25\\times\\frac{1}{4}=25\\times(-\\frac{1}{4})$。变形只改变书写形式，不改变值。",
+              "formulaLatex": "25\\times\\frac{3}{4}+25\\times\\left(-\\frac{1}{2}\\right)+25\\times\\left(-\\frac{1}{4}\\right)"
+            },
+            {
+              "id": "p1-step2",
+              "title": "逆用乘法分配律提取公因数25",
+              "explanation": "三项都含因数 $25$，把 $25$ 提到括号外。",
+              "reason": "逆用乘法分配律：$25\\times a+25\\times b+25\\times c=25(a+b+c)$。这里 $a=\\frac{3}{4}$，$b=-\\frac{1}{2}$，$c=-\\frac{1}{4}$。",
+              "formulaLatex": "=25\\left(\\frac{3}{4}-\\frac{1}{2}-\\frac{1}{4}\\right)"
+            },
+            {
+              "id": "p1-step3",
+              "title": "计算括号内分数减法",
+              "explanation": "把 $\\frac{1}{2}$ 通分为 $\\frac{2}{4}$，再逐项相减。",
+              "reason": "分母相同才能直接相减；通分后分母统一为 $4$。",
+              "formulaLatex": "\\frac{3}{4}-\\frac{1}{2}-\\frac{1}{4}=\\frac{3}{4}-\\frac{2}{4}-\\frac{1}{4}=\\frac{3-2-1}{4}=0"
+            },
+            {
+              "id": "p1-step4",
+              "title": "完成乘法",
+              "explanation": "括号内为 $0$，所以结果为 $0$。",
+              "reason": "任何数乘以 $0$ 都等于 $0$。",
+              "formulaLatex": "25\\times0=0"
+            }
+          ],
+          "answer": {
+            "kind": "numbers",
+            "value": 0,
+            "display": "$0$"
+          },
+          "misconceptions": [
+            {
+              "mistake": "把 $(-25)\\times\\frac{1}{2}$ 误写成 $25\\times\\frac{1}{2}$，丢失负号，导致三项不能抵消。",
+              "correction": "应写成 $25\\times(-\\frac{1}{2})$，即 $(-25)\\times\\frac{1}{2}=25\\times(-\\frac{1}{2})$，负号保留在分数中。"
+            },
+            {
+              "mistake": "计算括号内分数减法时忘记通分，例如把 $\\frac{1}{2}$ 当作 $\\frac{1}{4}$ 直接相减。",
+              "correction": "$\\frac{1}{2}=\\frac{2}{4}$，因此 $\\frac{3}{4}-\\frac{2}{4}-\\frac{1}{4}=0$。"
+            },
+            {
+              "mistake": "提取公因数后第三项符号混乱，把 $-\\frac{1}{4}$ 写成 $+\\frac{1}{4}$。",
+              "correction": "第三项为 $-25\\times\\frac{1}{4}$，提取 $25$ 后应写成 $25\\times(-\\frac{1}{4})$，括号内对应 $-\\frac{1}{4}$。"
+            }
+          ],
+          "scene": null
+        },
+        {
+          "partId": "2",
+          "label": "(2)",
+          "goal": "简便计算 $999\\frac{6}{7}\\div(-1\\frac{3}{7})$。",
+          "known": [
+            "原式为 $999\\frac{6}{7}\\div(-1\\frac{3}{7})$。",
+            "被除数是带分数 $999\\frac{6}{7}$。",
+            "除数是负带分数 $-1\\frac{3}{7}$。",
+            "除以一个不为 $0$ 的数等于乘它的倒数。"
+          ],
+          "prerequisites": [
+            "带分数化假分数：整数部分乘分母加分子作新分子，分母不变。",
+            "求一个非零数的倒数。",
+            "有理数除法法则：$a\\div b=a\\times\\frac{1}{b}$，其中 $b\\neq 0$。",
+            "分数乘法与约分。"
+          ],
+          "method": "带分数乘除时，化成假分数是常用算法，便于统一约分和处理符号。本题被除数和除数分母都是 $7$，化为假分数后分别为 $\\frac{6999}{7}$ 和 $-\\frac{10}{7}$；再将除法转化为乘法并约去 $7$，得到 $-\\frac{6999}{10}$。也可以先把 $999\\frac{6}{7}$ 拆成 $1000-\\frac{1}{7}$ 再使用分配律，但化假分数更直接。",
+          "verification": "用逆运算检验：$-\\frac{6999}{10}\\times(-\\frac{10}{7})=\\frac{6999}{10}\\times\\frac{10}{7}=\\frac{6999}{7}=999\\frac{6}{7}$，符合原被除数。另一合法检验：把 $999\\frac{6}{7}$ 写成 $1000-\\frac{1}{7}$，则原式等于 $(1000-\\frac{1}{7})\\times(-\\frac{7}{10})=-700+\\frac{1}{10}=-699.9$，也与结果一致。",
+          "summary": "带分数除法可以先把带分数化为假分数，再将除法转化为乘法，约分计算；如果带分数接近某个整数，也可以拆成整数减分数后使用分配律，但无论哪种方法都要注意符号和带分数化法的正确性。",
+          "steps": [
+            {
+              "id": "p2-step1",
+              "title": "把被除数化为假分数",
+              "explanation": "$999\\frac{6}{7}$ 的整数部分 $999$ 乘分母 $7$ 再加分子 $6$，得到新分子 $6999$，所以是 $\\frac{6999}{7}$。",
+              "reason": "带分数 $a\\frac{b}{c}$ 化成假分数为 $\\frac{a\\times c+b}{c}$，这里 $a=999$，$b=6$，$c=7$。",
+              "formulaLatex": "999\\frac{6}{7}=\\frac{999\\times 7+6}{7}=\\frac{6993+6}{7}=\\frac{6999}{7}"
+            },
+            {
+              "id": "p2-step2",
+              "title": "把除数化为负假分数",
+              "explanation": "$1\\frac{3}{7}$ 化成假分数为 $\\frac{10}{7}$，保留前面的负号，所以除数为 $-\\frac{10}{7}$。",
+              "reason": "负带分数可以先写成带负号的假分数：$-1\\frac{3}{7}=-\\frac{1\\times 7+3}{7}=-\\frac{10}{7}$。",
+              "formulaLatex": "-1\\frac{3}{7}=-\\frac{10}{7}"
+            },
+            {
+              "id": "p2-step3",
+              "title": "把除法转化为乘法",
+              "explanation": "除以 $-\\frac{10}{7}$ 等于乘它的倒数 $-\\frac{7}{10}$。",
+              "reason": "除以一个非零分数等于乘这个分数的倒数。",
+              "formulaLatex": "\\frac{6999}{7}\\div\\left(-\\frac{10}{7}\\right)=\\frac{6999}{7}\\times\\left(-\\frac{7}{10}\\right)"
+            },
+            {
+              "id": "p2-step4",
+              "title": "约分并完成乘法",
+              "explanation": "分子和分母中的 $7$ 约去；$6999$ 乘以 $-1$ 后除以 $10$，得到 $-\\frac{6999}{10}$。",
+              "reason": "分数乘法中可约去公因数 $7$；异号相乘得负，所以结果带负号。",
+              "formulaLatex": "=-\\frac{6999}{10}"
+            }
+          ],
+          "answer": {
+            "kind": "numbers",
+            "value": -699.9,
+            "display": "$-\\frac{6999}{10}$（即 $-699.9$）"
+          },
+          "misconceptions": [
+            {
+              "mistake": "化带分数时误写成 $\\frac{999+6}{7}$，漏乘整数部分。",
+              "correction": "$999\\frac{6}{7}$ 应化为 $\\frac{999\\times 7+6}{7}=\\frac{6999}{7}$，不能只把整数部分和分子相加。"
+            },
+            {
+              "mistake": "除以负数时忘记变号，结果误写为正数。",
+              "correction": "除数为 $-\\frac{10}{7}$，异号相除得负，所以结果应有负号。"
+            },
+            {
+              "mistake": "约分时误把 $6999$ 与 $10$ 约分。",
+              "correction": "$6999$ 不能被 $2$ 或 $5$ 整除，与 $10$ 没有公因数，只能约去分子分母都含有的因数 $7$。"
+            }
+          ],
+          "scene": null
+        }
+      ]
+    }
+  },
+  {
+    "question": {
+      "id": "7e792cb1-f298-4795-af16-831d58b37ba5",
+      "revision": 4,
+      "number": 24,
+      "state": "confirmed",
+      "missingFields": [],
+      "parts": [
+        {
+          "id": "main",
+          "label": "主问题",
+          "prompt": "求 $a_{2027}$ 的值"
+        }
+      ]
+    },
+    "lesson": {
+      "questionId": "7e792cb1-f298-4795-af16-831d58b37ba5",
+      "questionRevision": 4,
+      "lessonVersion": 1,
+      "status": "ready",
+      "checks": {
+        "issues": [],
+        "coverage": true,
+        "partIdMap": {
+          "main": "main"
+        },
+        "repairAttempt": 0,
+        "answerVerified": true,
+        "inputConfirmed": true,
+        "reasoningReviewed": true
+      },
+      "coveredPartIds": [
+        "main"
+      ],
+      "parts": [
+        {
+          "partId": "main",
+          "label": "主问题",
+          "goal": "求 a_2027 的值，并从四个选项中选出正确答案",
+          "known": [
+            "a_1=0",
+            "a_2=-|a_1+1|",
+            "a_3=-|a_2+2|",
+            "a_4=-|a_3+3|",
+            "依此类推，一般递推式为 a_n=-|a_{n-1}+(n-1)|，其中 n≥2",
+            "要求的是 a_2027"
+          ],
+          "prerequisites": [
+            "绝对值的定义：|x| 表示 x 到 0 的距离，结果非负",
+            "求相反数",
+            "根据递推式计算若干项，观察规律并用归纳验证"
+          ],
+          "method": "先按递推式算出前几项，发现相邻两组值成对重复；再用数学归纳法证明 a_{2k}=a_{2k+1}=-k，从而避免直接算到 2027。",
+          "verification": "若 a_2027=-1013，则因为 2026=2×1013，由规律 a_2026=-1013。把它代回递推式：a_2027=-|a_2026+2026|=-|-1013+2026|=-|1013|=-1013，与结论一致。这个独立检查确认结果没有计算错误。",
+          "summary": "遇到递推式中的绝对值，先算前几项观察是否成对重复或呈现简单模式，再把序号拆成奇偶形式，并用归纳法证明规律。最后把目标项的序号代入规律求值。",
+          "steps": [
+            {
+              "id": "p1-step1",
+              "title": "写出一般递推式",
+              "explanation": "题目说“依此类推”，所以第 n 项是由前一项 a_{n-1} 加上 n-1 后取绝对值，再取相反数。也就是 a_n=-|a_{n-1}+(n-1)|。",
+              "reason": "只有先明确每一项如何由前一项得到，才能进行后续计算和找规律。",
+              "formulaLatex": "a_n=-|a_{n-1}+(n-1)| \\quad (n\\ge 2)"
+            },
+            {
+              "id": "p1-step2",
+              "title": "计算前几项，形成规律表",
+              "explanation": "从 a_1=0 开始逐项计算：\na_2=-|0+1|=-1；\na_3=-|-1+2|=-|1|=-1；\na_4=-|-1+3|=-|2|=-2；\na_5=-|-2+4|=-|2|=-2；\na_6=-|-2+5|=-|3|=-3；\na_7=-|-3+6|=-|3|=-3。\n可以看到：a_2 和 a_3 都是 -1，a_4 和 a_5 都是 -2，a_6 和 a_7 都是 -3。",
+              "reason": "算前几项能直观看出成对重复的规律，为归纳证明提供依据。",
+              "formulaLatex": "a_1=0,\\ a_2=-1,\\ a_3=-1,\\ a_4=-2,\\ a_5=-2,\\ a_6=-3,\\ a_7=-3"
+            },
+            {
+              "id": "p1-step3",
+              "title": "发现并写出规律",
+              "explanation": "第 2、3 项相同，第 4、5 项相同，第 6、7 项相同。也就是说，对 k=1,2,3,...，有 a_{2k}=a_{2k+1}=-k。例如 k=1 时，a_2=a_3=-1；k=2 时，a_4=a_5=-2；k=3 时，a_6=a_7=-3。",
+              "reason": "把“成对重复”抽象成统一公式，才能快速定位到 a_2027。",
+              "formulaLatex": "a_{2k}=a_{2k+1}=-k \\quad (k=1,2,3,\\ldots)"
+            },
+            {
+              "id": "p1-step4",
+              "title": "用数学归纳法证明规律",
+              "explanation": "先验证基础情形：当 k=1 时，a_2=-1，a_3=-1，规律成立。\n再假设当 k=m 时规律成立，即 a_{2m}=a_{2m+1}=-m。\n计算 a_{2m+2}：\na_{2m+2}=-|a_{2m+1}+(2m+1)|=-|-m+2m+1|=-|m+1|=-(m+1)。\n再计算 a_{2m+3}：\na_{2m+3}=-|a_{2m+2}+(2m+2)|=-|-(m+1)+2m+2|=-|m+1|=-(m+1)。\n所以 k=m+1 时也成立。因此规律对任意 k≥1 都成立。",
+              "reason": "仅凭前几项举例不能证明所有情况，必须用归纳法说明规律能够一直传递下去。",
+              "formulaLatex": "a_{2m+2}=-(m+1),\\quad a_{2m+3}=-(m+1)"
+            },
+            {
+              "id": "p1-step5",
+              "title": "确定 2027 对应的 k 并求值",
+              "explanation": "2027 是奇数，可以写成 2027=2×1013+1，所以 k=1013。由规律 a_{2k+1}=-k，得 a_2027=-1013。",
+              "reason": "把目标项的序号代入已经证明的规律，直接得到结果。",
+              "formulaLatex": "2027=2\\times 1013+1,\\quad a_{2027}=-1013"
+            }
+          ],
+          "answer": {
+            "kind": "choice",
+            "value": "C",
+            "display": "C. \\(-1013\\)"
+          },
+          "misconceptions": [
+            {
+              "mistake": "把 a_n 直接写成 -|n-1|，例如误以为 a_2027=-|2026|=-2026。",
+              "correction": "递推式中的绝对值内部是前一项 a_{n-1} 加上 n-1，不是从 0 开始加 n-1。前一项通常已经是负数，会抵消一部分，所以不能直接得到 -(n-1)。"
+            },
+            {
+              "mistake": "只算前几项就说规律成立，缺少对所有项都成立的证明。",
+              "correction": "前几项只能作为发现规律的线索，需要用数学归纳法证明 a_{2k}=a_{2k+1}=-k 对任意 k≥1 都成立，才能安全地用于 a_2027。"
+            }
+          ],
+          "scene": null
+        }
+      ]
+    }
+  },
+  {
+    "question": {
+      "id": "a7777018-263f-4c19-bb77-d600aab4fbc1",
+      "revision": 4,
+      "number": 25,
+      "state": "confirmed",
+      "missingFields": [],
+      "parts": [
+        {
+          "id": "main",
+          "label": "主问题",
+          "prompt": "求 $a_{2026}$ 的值"
+        }
+      ]
+    },
+    "lesson": {
+      "questionId": "a7777018-263f-4c19-bb77-d600aab4fbc1",
+      "questionRevision": 4,
+      "lessonVersion": 1,
+      "status": "ready",
+      "checks": {
+        "issues": [],
+        "coverage": true,
+        "partIdMap": {
+          "main": "main"
+        },
+        "repairAttempt": 0,
+        "answerVerified": true,
+        "inputConfirmed": true,
+        "reasoningReviewed": true
+      },
+      "coveredPartIds": [
+        "main"
+      ],
+      "parts": [
+        {
+          "partId": "main",
+          "label": "主问题",
+          "goal": "求 a_{2026} 的值",
+          "known": [
+            "哈利数定义：对任意 a≠2，哈利数为 2/(2-a)",
+            "a_1=3",
+            "a_{n+1} 是 a_n 的哈利数，即 a_{n+1}=2/(2-a_n)",
+            "选项 A 3；B -2；C 1/2；D 4/3"
+          ],
+          "prerequisites": [
+            "分式求值",
+            "分母不为0",
+            "递推关系",
+            "用带余除法确定周期位置"
+          ],
+          "method": "新定义的数列只需按递推式先算前几项，观察是否出现重复；只要某一项与前面某相同，因递推只依赖前一项，后面就会按同样顺序循环。用前几项找到周期后，再用2026除以周期取余数定位，可避免逐项算到2026。",
+          "verification": "把 -2 放回递推式检验：a_2=-2，则 a_3=2/(2-(-2))=1/2；a_4=2/(2-1/2)=4/3；a_5=2/(2-4/3)=3，与 a_1=3 一致，说明周期4正确。2026=4×506+2，余2，所以 a_2026=a_2=-2，选B。",
+          "summary": "遇到新定义数列，先写出递推式，算前几项直到重复；重复后周期确定，再用目标序号除以周期取余数定位。这样不用逐项算到很大序号。",
+          "steps": [
+            {
+              "id": "main-step1",
+              "title": "写出递推关系",
+              "explanation": "把“哈利数”翻译成式子：如果 a_n 已知，则下一项 a_{n+1} 是 a_n 的哈利数，即 2 除以 (2-a_n)。题目给出 a_1=3。",
+              "reason": "把文字定义转为递推式，才能逐项计算；这也是找规律的基础。",
+              "formulaLatex": "a_{n+1}=\\frac{2}{2-a_n},\\quad a_1=3"
+            },
+            {
+              "id": "main-step2",
+              "title": "计算前几项找周期",
+              "explanation": "先算 a_2 到 a_5：a_2=2/(2-3)=-2；a_3=2/(2-(-2))=2/4=1/2；a_4=2/(2-1/2)=2/(3/2)=4/3；a_5=2/(2-4/3)=2/(2/3)=3。发现 a_5=3=a_1。",
+              "reason": "出现 a_5=a_1 说明从第1项到第4项的一组数已经完整循环了一次。计算时每一步分母都不为0，所以递推可以继续。",
+              "formulaLatex": "a_2=\\frac{2}{2-3}=-2,\\quad a_3=\\frac{2}{2-(-2)}=\\frac{1}{2},\\quad a_4=\\frac{2}{2-\\frac{1}{2}}=\\frac{4}{3},\\quad a_5=\\frac{2}{2-\\frac{4}{3}}=3"
+            },
+            {
+              "id": "main-step3",
+              "title": "确认以4为周期",
+              "explanation": "因为下一项只由前一项决定，a_5=a_1，所以 a_6=a_2，a_7=a_3，a_8=a_4，a_9=a_1，依此类推。每4项重复一次。",
+              "reason": "递推只依赖前一项，所以同值输入一定产生同值输出；这保证了从重复点开始整个序列循环。",
+              "formulaLatex": "a_{k+4}=a_k\\ (k=1,2,3,\\ldots)"
+            },
+            {
+              "id": "main-step4",
+              "title": "用余数确定a_2026",
+              "explanation": "2026除以4：2026=4×506+2，余数是2。周期为4，所以 a_2026 与 a_2 在同一位置，即 a_2026=-2。",
+              "reason": "余数1对应 a_1，余数2对应 a_2，余数3对应 a_3，余数0对应 a_4。2026余2，因此取 a_2。",
+              "formulaLatex": "2026=4\\times 506+2,\\quad a_{2026}=a_2=-2"
+            }
+          ],
+          "answer": {
+            "kind": "choice",
+            "value": "B",
+            "display": "$-2$（B）"
+          },
+          "misconceptions": [
+            {
+              "mistake": "只算了前三项就认为周期是3，或选 C 的 1/2。",
+              "correction": "必须算到出现与前面重复的项；本例 a_5 才与 a_1 相同，周期为4。不能凭前三项不同就下结论。"
+            },
+            {
+              "mistake": "用余数时把余0对应 a_1，或把余2对应 a_3。",
+              "correction": "周期4时：余1对应a_1，余2对应a_2，余3对应a_3，余0对应a_4。2026余2，所以对应a_2=-2。"
+            },
+            {
+              "mistake": "计算 a_4 或 a_5 时忘记处理分母中的分数，导致得错数。",
+              "correction": "分母先通分：2-1/2=3/2，所以 2/(3/2)=4/3；2-4/3=2/3，所以 2/(2/3)=3。分式除法是乘倒数。"
+            }
+          ],
+          "scene": null
+        }
+      ]
+    }
+  },
+  {
+    "question": {
+      "id": "80abf784-834c-4ef1-89dc-b3309b4ec9cd",
+      "revision": 4,
+      "number": 26,
+      "state": "confirmed",
+      "missingFields": [],
+      "parts": [
+        {
+          "id": "main",
+          "label": "主问题",
+          "prompt": "求第 $24$ 个三角形数与第 $22$ 个三角形数的差"
+        }
+      ]
+    },
+    "lesson": {
+      "questionId": "80abf784-834c-4ef1-89dc-b3309b4ec9cd",
+      "questionRevision": 4,
+      "lessonVersion": 3,
+      "status": "ready",
+      "checks": {
+        "issues": [],
+        "coverage": true,
+        "partIdMap": {
+          "main": "main"
+        },
+        "repairAttempt": 1,
+        "answerVerified": true,
+        "inputConfirmed": true,
+        "reasoningReviewed": true
+      },
+      "coveredPartIds": [
+        "main"
+      ],
+      "parts": [
+        {
+          "partId": "main",
+          "label": "主问题",
+          "goal": "求第24个三角形数与第22个三角形数的差，并选出正确选项",
+          "known": [
+            "三角形数序列为1，3，6，10，15，21，…",
+            "1称为第1个三角形数，3称为第2个三角形数，依此类推",
+            "这些数量的石子可以排成三角形，图中展示第1个到第4个三角形，后面省略",
+            "题目要求第24个与第22个三角形数的差",
+            "选项：A.2，B.47，C.23，D.24"
+          ],
+          "prerequisites": [
+            "第n个三角形数等于前n个正整数之和，即1+2+…+n",
+            "两个和式相减时，相同部分可以抵消"
+          ],
+          "method": "把第24个和第22个三角形数都写成连续自然数之和。这样两个大数之间相同的1到22可以整体抵消，差只由第23项和第24项组成，计算简明；再用求和公式独立检验。",
+          "verification": "用求和公式独立验算：第24个三角形数=24×25÷2=300，第22个三角形数=22×23÷2=253，差值=300-253=47。47对应选项B，与抵消法结果完全一致。",
+          "summary": "求规律数列两项的差时，可先把第n项写成可计算的求和式或公式，再约去相同部分。本题相隔两项的三角形数差等于中间新增的两个正整数23和24之和；用公式复算可以防止少加或多加。",
+          "steps": [
+            {
+              "id": "p1-step1",
+              "title": "把三角形数写成连续自然数和",
+              "explanation": "从图中可见：第1个三角形有1个点；第2个三角形增加一行2个点，共有3个点；第3个再增加一行3个点，共有6个点。因此第n个三角形数共有n行，第k行有k个点，总数就是1+2+3+…+n。",
+              "reason": "三角形点阵的每一行点数依次为1、2、3、…，所以第n个三角形数可表示为前n个正整数之和。",
+              "formulaLatex": "T_n=1+2+3+\\cdots+n"
+            },
+            {
+              "id": "p1-step2",
+              "title": "展开第24个和第22个三角形数",
+              "explanation": "第24个三角形数是从1一直加到24；第22个三角形数是从1一直加到22。两者相减时，1到22这部分完全相同。",
+              "reason": "把两个数写成求和形式后，公共部分1+2+…+22可以在差中抵消。",
+              "formulaLatex": "T_{24}=1+2+\\cdots+22+23+24,\\quad T_{22}=1+2+\\cdots+22"
+            },
+            {
+              "id": "p1-step3",
+              "title": "抵消公共部分并求差",
+              "explanation": "约去1到22后，剩下的只有23和24，相加得47。",
+              "reason": "第24个三角形数比第22个多出第23行和第24行，所以差值等于这两行点数之和。",
+              "formulaLatex": "T_{24}-T_{22}=23+24=47"
+            },
+            {
+              "id": "p1-step4",
+              "title": "用求和公式检验",
+              "explanation": "前n个正整数求和公式为n(n+1)/2。第24个三角形数为24×25÷2=300；第22个三角形数为22×23÷2=253。300减253等于47。",
+              "reason": "换用求和公式独立计算，能确认抵消时没有漏项。",
+              "formulaLatex": "T_{24}=\\frac{24\\times25}{2}=300,\\quad T_{22}=\\frac{22\\times23}{2}=253,\\quad 300-253=47"
+            }
+          ],
+          "answer": {
+            "kind": "choice",
+            "value": "B",
+            "display": "B（47）"
+          },
+          "misconceptions": [
+            {
+              "mistake": "直接用序号相减24-22=2，误选A。",
+              "correction": "三角形数的差不是序号的差。两个三角形数都包含前22个正整数，相减后还要加上第23项和第24项，不能只看序号。"
+            },
+            {
+              "mistake": "只加第23项或只加第24项，误选C或D。",
+              "correction": "第24个比第22个多出23和24两行，这两行都要计入差值，所以是23+24=47。"
+            }
+          ],
+          "scene": {
+            "kind": "triangle-count",
+            "params": {
+              "lower": 22,
+              "upper": 24,
+              "previewRows": 3
+            }
+          }
+        }
+      ]
+    }
+  },
+  {
+    "question": {
+      "id": "67ba8153-af47-477c-a0a9-4f76300f37bc",
+      "revision": 4,
+      "number": 27,
+      "state": "confirmed",
+      "missingFields": [],
+      "parts": [
+        {
+          "id": "1",
+          "label": "(1)",
+          "prompt": "计算：$2^7-2^6-2^5-2^4-2^3-2^2-2$。"
+        },
+        {
+          "id": "2",
+          "label": "(2)",
+          "prompt": "计算：$1+2+2^2+\\cdots+2^{2028}+2^{2029}-2^{2030}$。"
+        }
+      ]
+    },
+    "lesson": {
+      "questionId": "67ba8153-af47-477c-a0a9-4f76300f37bc",
+      "questionRevision": 4,
+      "lessonVersion": 1,
+      "status": "ready",
+      "checks": {
+        "issues": [],
+        "coverage": true,
+        "partIdMap": {
+          "1": "1",
+          "2": "2"
+        },
+        "repairAttempt": 0,
+        "answerVerified": true,
+        "inputConfirmed": true,
+        "reasoningReviewed": true
+      },
+      "coveredPartIds": [
+        "1",
+        "2"
+      ],
+      "parts": [
+        {
+          "partId": "1",
+          "label": "(1)",
+          "goal": "计算2^7-2^6-2^5-2^4-2^3-2^2-2的值。",
+          "known": [
+            "探究给出规律：2^(k+1)-2^k=2^k（k为正整数）",
+            "原式为2^7依次减去2^6、2^5、2^4、2^3、2^2、2",
+            "最后一项2可看作2^1"
+          ],
+          "prerequisites": [
+            "同底数幂的意义：2^(m+1)=2×2^m",
+            "乘法分配律：2×2^m-1×2^m=(2-1)×2^m=2^m",
+            "连续减法从左到右计算"
+          ],
+          "method": "题中规律正好给出相邻两次幂相减会降一次幂，因此从最高指数开始逐项合并：每次用2^(k+1)-2^k=2^k，得到的结果继续与下一项相减，直至最后一项。",
+          "verification": "直接代入数值检验：2^7=128，2^6=64，2^5=32，2^4=16，2^3=8，2^2=4，所以128-64-32-16-8-4-2=2，与逐步合并结果一致。",
+          "summary": "遇到形如a^(n+1)-a^n的相邻幂差，先提公因式a^n，差值为(a-1)a^n；对a=2时正好得到a^n，可连续消项。",
+          "steps": [
+            {
+              "id": "p1-step1",
+              "title": "把最后一项看成2^1",
+              "explanation": "原式最后减去的2就是2^1，所以整个式子可以看成：2^7-2^6-2^5-2^4-2^3-2^2-2^1。这样每一步都能使用相邻幂的差。",
+              "reason": "题中规律的左边都是2的相邻整数次幂，把常数2改写为指数形式后，规律可以一致使用。",
+              "formulaLatex": "2^7-2^6-2^5-2^4-2^3-2^2-2 = 2^7-2^6-2^5-2^4-2^3-2^2-2^1"
+            },
+            {
+              "id": "p1-step2",
+              "title": "从最高幂开始逐步化简",
+              "explanation": "先算2^7-2^6。根据探究结论，2^7-2^6=2^6。于是式子变为2^6-2^5-2^4-2^3-2^2-2^1。",
+              "reason": "2^7=2×2^6，所以2^7-2^6=(2-1)×2^6=1×2^6=2^6，不是把指数相减。",
+              "formulaLatex": "2^7-2^6=2^6"
+            },
+            {
+              "id": "p1-step3",
+              "title": "继续用同一规律逐项相减",
+              "explanation": "接着算2^6-2^5=2^5，再算2^5-2^4=2^4，依此类推：2^4-2^3=2^3，2^3-2^2=2^2，2^2-2^1=2^1。",
+              "reason": "每一步都是减法，且题目本身从左到右连续相减，符合运算顺序；只要相邻指数差1，就能使用探究中的结论。",
+              "formulaLatex": "2^6-2^5=2^5, 2^5-2^4=2^4, 2^4-2^3=2^3, 2^3-2^2=2^2, 2^2-2^1=2^1"
+            },
+            {
+              "id": "p1-step4",
+              "title": "得到最终结果",
+              "explanation": "最后剩下2^1，也就是2。所以原式的结果为2。",
+              "reason": "所有中间高次幂都被逐步抵消，最后只剩最低次幂2^1。",
+              "formulaLatex": "2^7-2^6-2^5-2^4-2^3-2^2-2 = 2"
+            }
+          ],
+          "answer": {
+            "kind": "numbers",
+            "value": 2,
+            "display": "2"
+          },
+          "misconceptions": [
+            {
+              "mistake": "把2^7-2^6算成2（以为7-6=1）或算成2^7/2^6。",
+              "correction": "2^7-2^6=2×2^6-1×2^6=(2-1)×2^6=2^6，应提取公因式2^6；指数不能直接相减。"
+            },
+            {
+              "mistake": "最后一项2没有看作2^1，导致最后一步无法套用规律。",
+              "correction": "2=2^1，所以2^2-2=2^2-2^1=2^1。"
+            }
+          ],
+          "scene": null
+        },
+        {
+          "partId": "2",
+          "label": "(2)",
+          "goal": "计算1+2+2^2+...+2^2029-2^2030的值。",
+          "known": [
+            "原式从1（即2^0）加到2^2029，最后减去2^2030",
+            "探究已给出相邻幂差：2^(k+1)-2^k=2^k",
+            "求和项共有2030项（指数0到2029）"
+          ],
+          "prerequisites": [
+            "把和式记为S",
+            "等式两边同乘2，利用幂的性质2×2^k=2^(k+1)",
+            "错位相减时只有首尾项保留"
+          ],
+          "method": "先把前面连续求和看成一个整体S，用错位相减法求出S的封闭形式，再用S减去2^2030。这样避免了逐项计算2030个数，也避免了把探究规律误用到长加法中。",
+          "verification": "取较小指数n=2检验公式：S_2=1+2+4=7，2^3-1=7；原式1+2+4-8=7-8=-1，与一般结论一致。对n=2029，同样的错位相减步骤每一步都成立，因此结果为-1。",
+          "summary": "连续同底数幂求和可用整体设S、乘公比、错位相减；相邻幂差规律用于化简减法串，两者结合可处理含和与差的长式子。",
+          "steps": [
+            {
+              "id": "p2-step1",
+              "title": "设和式为S",
+              "explanation": "设S=1+2+2^2+...+2^2029。原式就是S-2^2030。",
+              "reason": "把长串求和先整体处理，后面减去2^2030只需一步。",
+              "formulaLatex": "S=1+2+2^2+\\cdots+2^{2029}"
+            },
+            {
+              "id": "p2-step2",
+              "title": "两边乘2",
+              "explanation": "将S乘以2，得到2S=2+2^2+2^3+...+2^2030。注意每一项指数都增加1，最后一项从2^2029变成2^2030。",
+              "reason": "乘以底数2后，原和式中的每一项都会移动到后一位，有利于相减时大量抵消。",
+              "formulaLatex": "2S=2+2^2+2^3+\\cdots+2^{2030}"
+            },
+            {
+              "id": "p2-step3",
+              "title": "错位相减求S",
+              "explanation": "计算2S-S。右边相减时，2、2^2、...、2^2029这些项都成对出现并抵消，只剩下2^2030减去1，得到S=2^2030-1。",
+              "reason": "这是等比数列求和的常用整体方法；相减后中间项全部消去，避免逐项求和。",
+              "formulaLatex": "2S-S=2^{2030}-1 \\Rightarrow S=2^{2030}-1"
+            },
+            {
+              "id": "p2-step4",
+              "title": "代入原式得到答案",
+              "explanation": "原式=S-2^2030=(2^2030-1)-2^2030=-1。",
+              "reason": "S中多出的2^2030正好被最后一项减去，剩余-1。",
+              "formulaLatex": "S-2^{2030} = (2^{2030}-1)-2^{2030} = -1"
+            }
+          ],
+          "answer": {
+            "kind": "numbers",
+            "value": -1,
+            "display": "-1"
+          },
+          "misconceptions": [
+            {
+              "mistake": "忘记1是2^0，把求和第一项当成2^1，导致S=1+2+...+2^2029=2^2030-2，最后得-2。",
+              "correction": "首项1=2^0，总和公式为2^(n+1)-1；本题n=2029，所以S=2^2030-1。"
+            },
+            {
+              "mistake": "错位相减后忘记减去S中的初始1，或把2S最后一项写成2^2029，导致总和少算。",
+              "correction": "两边乘2后最后一项指数+1变为2^2030；相减时2^2030保留，初始1也保留为-1。"
+            },
+            {
+              "mistake": "看到最后减2^2030，以为与前一项2^2029或求和中的2^2030直接约去得0。",
+              "correction": "求和结果S比2^2030少1，所以S-2^2030=-1，不能直接约成0。"
+            }
+          ],
+          "scene": null
+        }
+      ]
+    }
+  }
+]

@@ -1,4 +1,6 @@
 import {useId} from 'react';
+import {paperRecipe} from '../paper-resources/models';
+import {PaperTeaching} from '../paper-resources/PaperVisual';
 import {interpolate,spring} from 'remotion';
 import {distanceState,fmt,parseScene,triangleState} from '../domain';
 import type {NumberScene,TriangleScene} from '../domain';
@@ -17,6 +19,8 @@ const arrival=(timing:Timing,start:number)=>timing.reducedMotion?1:spring({frame
 
 export function TeachingVisual({part,stepIndex,localFrame=0,fps=30,pace=1,reducedMotion,motionPack,motionView='space'}:Props){
   const scene=parseScene(part.scene),timing={localFrame,fps,pace,reducedMotion};
+  const recipe=paperRecipe(motionPack);
+  if(recipe)return <PaperTeaching recipe={recipe} part={part} stage={stepIndex} frame={localFrame*pace} fps={fps} reducedMotion={reducedMotion}/>;
   if(!scene)return null;
   const template=['triangle-grow','triangle-compare','triangle-sum','triangle-expand','triangle-cancel','triangle-verify','triangle-recap'][stepIndex];
   if(scene.kind==='triangle-count'&&scene.lower===22&&scene.upper===24&&motionPack?.target.partId===part.partId&&motionPack.stages.some(stage=>stage.stageIndex===stepIndex&&stage.template===template))return <TriangleMotionLesson scene={scene} stageIndex={stepIndex} localFrame={localFrame} fps={fps} pace={pace} reducedMotion={reducedMotion} pack={motionPack} view={motionView}/>;

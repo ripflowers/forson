@@ -13,3 +13,4 @@ data/imports/
 .DS_Store
 *.tsbuildinfo
 .cache/
+.remotion/

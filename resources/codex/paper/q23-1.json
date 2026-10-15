@@ -1,0 +1,128 @@
+{
+  "schemaVersion": 1,
+  "title": "提取公因数后，四分之一块正负抵消",
+  "subject": "math",
+  "author": "Codex",
+  "target": {
+    "questionId": "2ec23e62-b860-44f3-9d42-4a136ce0a6ee",
+    "questionRevision": 5,
+    "lessonVersion": 5,
+    "partId": "1",
+    "lessonHash": "1dc6adea6eeacc7e1b663e5718ceaebe3ddbdd7aa53076456822f5592bd4efb0"
+  },
+  "concepts": [
+    {
+      "id": "k0",
+      "label": "知识 1",
+      "explanation": "乘法分配律：$a(b+c)=ab+ac$。"
+    },
+    {
+      "id": "k1",
+      "label": "知识 2",
+      "explanation": "有理数乘法符号法则：异号相乘得负。"
+    },
+    {
+      "id": "k2",
+      "label": "知识 3",
+      "explanation": "分数的通分与减法。"
+    },
+    {
+      "id": "k3",
+      "label": "知识 4",
+      "explanation": "任何数乘以 $0$ 都得 $0$。"
+    }
+  ],
+  "stages": [
+    {
+      "stageIndex": 0,
+      "template": "paper-q23-1-v1",
+      "title": "把每项的符号留下",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2",
+        "k3"
+      ],
+      "focus": "把共同的 25 提到外面，再比较括号内的三份和三份。",
+      "explanation": "简便计算 $25\\times\\frac{3}{4}+(-25)\\times\\frac{1}{2}-25\\times\\frac{1}{4}$。"
+    },
+    {
+      "stageIndex": 1,
+      "template": "paper-q23-1-v1",
+      "title": "三项都含有 25",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2",
+        "k3"
+      ],
+      "focus": "把共同的 25 提到外面，再比较括号内的三份和三份。",
+      "explanation": "三项表面符号不同，但都含有数值 $25$ 的因子。先利用有理数乘法符号法则把负号写进分数中：$(-25)\\times\\frac{1}{2}=25\\times(-\\frac{1}{2})$，$-25\\times\\frac{1}{4}=25\\times(-\\frac{1}{4})$，使三项统一为 $25$ 乘以某个分数的形式。再逆用乘法分配律提取公因数 $25$，括号内分数分别为 $\\frac{3}{4}$、$-\\frac{1}{2}$、$-\\frac{1}{4}$。由于分母都可通分为 $4$，括号内计算恰好为 $0$，所以结果直接为 $0$。若不统一因数而逐项先乘后加减，计算量较大。"
+    },
+    {
+      "stageIndex": 2,
+      "template": "paper-q23-1-v1",
+      "title": "将负号移到分数前",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2",
+        "k3"
+      ],
+      "focus": "把共同的 25 提到外面，再比较括号内的三份和三份。",
+      "explanation": "有理数乘法中异号相乘得负，所以 $(-25)\\times\\frac{1}{2}=25\\times(-\\frac{1}{2})$，$-25\\times\\frac{1}{4}=25\\times(-\\frac{1}{4})$。变形只改变书写形式，不改变值。"
+    },
+    {
+      "stageIndex": 3,
+      "template": "paper-q23-1-v1",
+      "title": "只提取一个共同的 25",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2",
+        "k3"
+      ],
+      "focus": "把共同的 25 提到外面，再比较括号内的三份和三份。",
+      "explanation": "逆用乘法分配律：$25\\times a+25\\times b+25\\times c=25(a+b+c)$。这里 $a=\\frac{3}{4}$，$b=-\\frac{1}{2}$，$c=-\\frac{1}{4}$。"
+    },
+    {
+      "stageIndex": 4,
+      "template": "paper-q23-1-v1",
+      "title": "3/4 与 2/4+1/4 抵消",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2",
+        "k3"
+      ],
+      "focus": "把共同的 25 提到外面，再比较括号内的三份和三份。",
+      "explanation": "分母相同才能直接相减；通分后分母统一为 $4$。"
+    },
+    {
+      "stageIndex": 5,
+      "template": "paper-q23-1-v1",
+      "title": "25 乘以 0",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2",
+        "k3"
+      ],
+      "focus": "把共同的 25 提到外面，再比较括号内的三份和三份。",
+      "explanation": "任何数乘以 $0$ 都等于 $0$。"
+    },
+    {
+      "stageIndex": 6,
+      "template": "paper-q23-1-v1",
+      "title": "原式逐项计算也为 0",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2",
+        "k3"
+      ],
+      "focus": "把共同的 25 提到外面，再比较括号内的三份和三份。",
+      "explanation": "遇到多项都含有同一因数的式子时，可以先把负号统一收入分数或项中，使公因数一致，再逆用分配律提取公因数；括号内的分数先通分再相减，常能直接抵消简化计算。"
+    }
+  ]
+}

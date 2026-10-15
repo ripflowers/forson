@@ -1,3 +1,5 @@
+import {paperRecipe,paperSnapshot,teacherInputs} from '../paper-resources/models';
+import type {MotionPack} from '../motion-resources';
 import {stageDuration} from '../lesson-playback';
 import type {LessonPart} from '../types';
 import type {Narration,NarrationClip} from '../narration';
@@ -36,7 +38,7 @@ export function timedNarrationClips(narration:Narration,fps=LESSON_FPS,pace=1):T
   return narration.clips.map(clip=>({clip,from:Math.round(clip.from*ratio),durationInFrames:Math.max(1,Math.ceil(clip.durationInFrames*ratio)),audioFrames:Math.max(1,Math.ceil(clip.audioFrames*ratio))}));
 }
 
-export function lessonFrameState(part:LessonPart|null,frame:number,fps=LESSON_FPS,pace=1,reducedMotion=false,narration?:Narration|null):LessonTime{
+export function lessonFrameState(part:LessonPart|null,frame:number,fps=LESSON_FPS,pace=1,reducedMotion=false,narration?:Narration|null,motionPack?:MotionPack|null):LessonTime{
   const voice=part&&narration?.partId===part.partId?narration:null;
   const timeline=lessonTimeline(part,fps,pace,voice);
   const boundedFrame=Math.min(timeline.durationInFrames-1,Math.max(0,Math.floor(frame)));
@@ -49,7 +51,8 @@ export function lessonFrameState(part:LessonPart|null,frame:number,fps=LESSON_FP
   const speaking=Boolean(currentClip&&sourceOffset>=0&&sourceOffset<currentClip.audioFrames);
   const clipProgress=currentClip?Math.max(0,Math.min(1,sourceOffset/currentClip.audioFrames)):0;
   const visualFrame=currentClip?(currentClip.visualFrom+(currentClip.visualTo-currentClip.visualFrom)*clipProgress)*fps:localFrame;
-  const snapshot=part?teachingVisualFrame(part,stageIndex,visualFrame,fps,voice?1:pace,reducedMotion):{};
+  const recipe=paperRecipe(motionPack);
+  const snapshot=recipe?paperSnapshot(recipe,teacherInputs(recipe,stageIndex,visualFrame/fps*(voice?1:pace),reducedMotion),stageIndex):part?teachingVisualFrame(part,stageIndex,visualFrame,fps,voice?1:pace,reducedMotion):{};
   return{
     frame:boundedFrame,stageIndex,localFrame,visualFrame,
     progress:stage?localFrame/Math.max(1,stage.durationInFrames-1):0,

@@ -13,6 +13,7 @@ from .jobs import DATA_SYSTEM, JobRunner
 from .media import MAX_BYTES, save_uploads
 from .models import AskRequest, EventRequest, LessonRequest, PatchQuestion, SessionRequest
 from .motion_resources import MotionPackInput, MotionResourceStore
+from .paper_resources import paper_scene_context
 from .narration import NarrationRequest, NarrationStore, NarrationUnavailable, content_hash, current_part
 from .provider import AIError, AIUnavailable, Provider
 from .rules import check_question
@@ -26,6 +27,9 @@ def public_paper(paper):
 
 
 def scene_facts(part, snapshot):
+    paper_context = paper_scene_context(part, snapshot)
+    if paper_context is not None:
+        return paper_context
     scene = part.get("scene")
     if not scene:
         return {}
@@ -355,7 +359,7 @@ def create_app(*, start_worker=True):
             raise Invalid("课堂现场过大，请只提交当前场景和草稿")
         position = teaching_position(part, request.snapshot, request.stepId)
         facts = scene_facts(part, request.snapshot)
-        context = {"question": q, "part": part, "mode": request.mode, "snapshot": request.snapshot, "computedSceneFacts": facts, "learnerQuestion": request.text, **position}
+        context = {"question": q, "part": part, "mode": request.mode, "snapshot": {key: value for key, value in request.snapshot.items() if key != "paperFacts"}, "computedSceneFacts": facts, "learnerQuestion": request.text, **position}
         evidence_dir = settings.data_dir / "runtime" / "evidence" / ("ask-" + uid())
         answer = ""
         checked = False

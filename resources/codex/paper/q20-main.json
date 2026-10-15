@@ -1,0 +1,104 @@
+{
+  "schemaVersion": 1,
+  "title": "四条等价路径，寻找最容易约分的一条",
+  "subject": "math",
+  "author": "Codex",
+  "target": {
+    "questionId": "559fc372-f32c-473a-8379-bdfda107e1b5",
+    "questionRevision": 4,
+    "lessonVersion": 2,
+    "partId": "main",
+    "lessonHash": "3893fa26d75438f638044fcb9e519837bc7ea0a876151db43d77a2ccd141d611"
+  },
+  "concepts": [
+    {
+      "id": "k0",
+      "label": "知识 1",
+      "explanation": "带分数可化为假分数，也可写为整数与真分数的和或差"
+    },
+    {
+      "id": "k1",
+      "label": "知识 2",
+      "explanation": "分配律：a(b+c)=ab+ac，a(b-c)=ab-ac"
+    },
+    {
+      "id": "k2",
+      "label": "知识 3",
+      "explanation": "分数乘法可以先约分再乘；分母较大时通分较繁"
+    }
+  ],
+  "stages": [
+    {
+      "stageIndex": 0,
+      "template": "paper-q20-main-v1",
+      "title": "目标是简便，不是判断等不等",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2"
+      ],
+      "focus": "拆分不改变数值；挑与分母 16 能直接约分的两项。",
+      "explanation": "判断在四个选项中，哪种变形运用分配律计算 13\\frac{5}{7}\\times\\frac{3}{16} 最简便。"
+    },
+    {
+      "stageIndex": 1,
+      "template": "paper-q20-main-v1",
+      "title": "留意乘数的分母 16",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2"
+      ],
+      "focus": "拆分不改变数值；挑与分母 16 能直接约分的两项。",
+      "explanation": "把四个选项分别按分配律展开，观察拆出的每一项与 \\frac{3}{16} 相乘后能否直接约分。D 把 13\\frac{5}{7} 写成 16-\\frac{16}{7}，两项都含有因数 16，能与 \\frac{3}{16} 约分，无需通分，因此最简便。"
+    },
+    {
+      "stageIndex": 2,
+      "template": "paper-q20-main-v1",
+      "title": "四种拆分都等于原数",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2"
+      ],
+      "focus": "拆分不改变数值；挑与分母 16 能直接约分的两项。",
+      "explanation": "只有先确认拆分前后数值相等，后续比较简便性才有意义；否则可能是错误变形。"
+    },
+    {
+      "stageIndex": 3,
+      "template": "paper-q20-main-v1",
+      "title": "展开比较，D 的两项都约去 16",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2"
+      ],
+      "focus": "拆分不改变数值；挑与分母 16 能直接约分的两项。",
+      "explanation": "简便运算的关键是展开后尽量避免把异分母分数通分。A、B、C的展开项中都至少有一项不能与16完全约分，导致后续需要112或56这样的较大公分母；D的两项直接约分，所以计算最简便。"
+    },
+    {
+      "stageIndex": 4,
+      "template": "paper-q20-main-v1",
+      "title": "算出 18/7 并核对",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2"
+      ],
+      "focus": "拆分不改变数值；挑与分母 16 能直接约分的两项。",
+      "explanation": "简便变形必须保证结果不变；代回原式计算可以排除只是恰好形式简单但答案错误的选项。"
+    },
+    {
+      "stageIndex": 5,
+      "template": "paper-q20-main-v1",
+      "title": "等价变形不等于同样简便",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2"
+      ],
+      "focus": "拆分不改变数值；挑与分母 16 能直接约分的两项。",
+      "explanation": "选择分配律的简便变形时，先确认拆分等价，再把每一项与已知因数相乘，优先选择能直接约去分母的项。计算时遇到乘\\frac{3}{16}，尽量凑分母16的倍数或含因数16的数，能大幅减少通分。"
+    }
+  ]
+}

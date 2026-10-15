@@ -1,0 +1,128 @@
+{
+  "schemaVersion": 1,
+  "title": "带分数变假分数，只翻转除数",
+  "subject": "math",
+  "author": "Codex",
+  "target": {
+    "questionId": "2ec23e62-b860-44f3-9d42-4a136ce0a6ee",
+    "questionRevision": 5,
+    "lessonVersion": 5,
+    "partId": "2",
+    "lessonHash": "c9809e20cb7d9a5c4f73dce758f19ada3bedac1bcb1294fba800a78bf4c66148"
+  },
+  "concepts": [
+    {
+      "id": "k0",
+      "label": "知识 1",
+      "explanation": "带分数化假分数：整数部分乘分母加分子作新分子，分母不变。"
+    },
+    {
+      "id": "k1",
+      "label": "知识 2",
+      "explanation": "求一个非零数的倒数。"
+    },
+    {
+      "id": "k2",
+      "label": "知识 3",
+      "explanation": "有理数除法法则：$a\\div b=a\\times\\frac{1}{b}$，其中 $b\\neq 0$。"
+    },
+    {
+      "id": "k3",
+      "label": "知识 4",
+      "explanation": "分数乘法与约分。"
+    }
+  ],
+  "stages": [
+    {
+      "stageIndex": 0,
+      "template": "paper-q23-2-v1",
+      "title": "先确认整数部分与分数部分",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2",
+        "k3"
+      ],
+      "focus": "两个带分数分别转换，除法门只把第二个数变成倒数。",
+      "explanation": "简便计算 $999\\frac{6}{7}\\div(-1\\frac{3}{7})$。"
+    },
+    {
+      "stageIndex": 1,
+      "template": "paper-q23-2-v1",
+      "title": "除以非零数等于乘其倒数",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2",
+        "k3"
+      ],
+      "focus": "两个带分数分别转换，除法门只把第二个数变成倒数。",
+      "explanation": "带分数乘除时，化成假分数是常用算法，便于统一约分和处理符号。本题被除数和除数分母都是 $7$，化为假分数后分别为 $\\frac{6999}{7}$ 和 $-\\frac{10}{7}$；再将除法转化为乘法并约去 $7$，得到 $-\\frac{6999}{10}$。也可以先把 $999\\frac{6}{7}$ 拆成 $1000-\\frac{1}{7}$ 再使用分配律，但化假分数更直接。"
+    },
+    {
+      "stageIndex": 2,
+      "template": "paper-q23-2-v1",
+      "title": "999×7+6=6999",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2",
+        "k3"
+      ],
+      "focus": "两个带分数分别转换，除法门只把第二个数变成倒数。",
+      "explanation": "带分数 $a\\frac{b}{c}$ 化成假分数为 $\\frac{a\\times c+b}{c}$，这里 $a=999$，$b=6$，$c=7$。"
+    },
+    {
+      "stageIndex": 3,
+      "template": "paper-q23-2-v1",
+      "title": "负号保留，除数是 −10/7",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2",
+        "k3"
+      ],
+      "focus": "两个带分数分别转换，除法门只把第二个数变成倒数。",
+      "explanation": "负带分数可以先写成带负号的假分数：$-1\\frac{3}{7}=-\\frac{1\\times 7+3}{7}=-\\frac{10}{7}$。"
+    },
+    {
+      "stageIndex": 4,
+      "template": "paper-q23-2-v1",
+      "title": "只把除数翻成 −7/10",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2",
+        "k3"
+      ],
+      "focus": "两个带分数分别转换，除法门只把第二个数变成倒数。",
+      "explanation": "除以一个非零分数等于乘这个分数的倒数。"
+    },
+    {
+      "stageIndex": 5,
+      "template": "paper-q23-2-v1",
+      "title": "约掉 7，留下 −6999/10",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2",
+        "k3"
+      ],
+      "focus": "两个带分数分别转换，除法门只把第二个数变成倒数。",
+      "explanation": "分数乘法中可约去公因数 $7$；异号相乘得负，所以结果带负号。"
+    },
+    {
+      "stageIndex": 6,
+      "template": "paper-q23-2-v1",
+      "title": "乘回除数验证",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2",
+        "k3"
+      ],
+      "focus": "两个带分数分别转换，除法门只把第二个数变成倒数。",
+      "explanation": "带分数除法可以先把带分数化为假分数，再将除法转化为乘法，约分计算；如果带分数接近某个整数，也可以拆成整数减分数后使用分配律，但无论哪种方法都要注意符号和带分数化法的正确性。"
+    }
+  ]
+}

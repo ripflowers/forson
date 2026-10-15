@@ -1,0 +1,128 @@
+{
+  "schemaVersion": 1,
+  "title": "四步回到起点，用余数定位",
+  "subject": "math",
+  "author": "Codex",
+  "target": {
+    "questionId": "a7777018-263f-4c19-bb77-d600aab4fbc1",
+    "questionRevision": 4,
+    "lessonVersion": 1,
+    "partId": "main",
+    "lessonHash": "9299f6623f719a9fb1fb293f00f02a81a9aec8c88b079d9a0e0988998c347b72"
+  },
+  "concepts": [
+    {
+      "id": "k0",
+      "label": "知识 1",
+      "explanation": "分式求值"
+    },
+    {
+      "id": "k1",
+      "label": "知识 2",
+      "explanation": "分母不为0"
+    },
+    {
+      "id": "k2",
+      "label": "知识 3",
+      "explanation": "递推关系"
+    },
+    {
+      "id": "k3",
+      "label": "知识 4",
+      "explanation": "用带余除法确定周期位置"
+    }
+  ],
+  "stages": [
+    {
+      "stageIndex": 0,
+      "template": "paper-q25-main-v1",
+      "title": "从 3 进入递推环",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2",
+        "k3"
+      ],
+      "focus": "每次严格执行 2/(2−a)，看状态何时第一次回到 3。",
+      "explanation": "求 a_{2026} 的值"
+    },
+    {
+      "stageIndex": 1,
+      "template": "paper-q25-main-v1",
+      "title": "每个箭头都使用同一规则",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2",
+        "k3"
+      ],
+      "focus": "每次严格执行 2/(2−a)，看状态何时第一次回到 3。",
+      "explanation": "新定义的数列只需按递推式先算前几项，观察是否出现重复；只要某一项与前面某相同，因递推只依赖前一项，后面就会按同样顺序循环。用前几项找到周期后，再用2026除以周期取余数定位，可避免逐项算到2026。"
+    },
+    {
+      "stageIndex": 2,
+      "template": "paper-q25-main-v1",
+      "title": "写清下一项如何产生",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2",
+        "k3"
+      ],
+      "focus": "每次严格执行 2/(2−a)，看状态何时第一次回到 3。",
+      "explanation": "把文字定义转为递推式，才能逐项计算；这也是找规律的基础。"
+    },
+    {
+      "stageIndex": 3,
+      "template": "paper-q25-main-v1",
+      "title": "走完 3、−2、1/2、4/3",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2",
+        "k3"
+      ],
+      "focus": "每次严格执行 2/(2−a)，看状态何时第一次回到 3。",
+      "explanation": "出现 a_5=a_1 说明从第1项到第4项的一组数已经完整循环了一次。计算时每一步分母都不为0，所以递推可以继续。"
+    },
+    {
+      "stageIndex": 4,
+      "template": "paper-q25-main-v1",
+      "title": "回到 3 后，后续也重复",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2",
+        "k3"
+      ],
+      "focus": "每次严格执行 2/(2−a)，看状态何时第一次回到 3。",
+      "explanation": "递推只依赖前一项，所以同值输入一定产生同值输出；这保证了从重复点开始整个序列循环。"
+    },
+    {
+      "stageIndex": 5,
+      "template": "paper-q25-main-v1",
+      "title": "2026 除以 4 余 2",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2",
+        "k3"
+      ],
+      "focus": "每次严格执行 2/(2−a)，看状态何时第一次回到 3。",
+      "explanation": "余数1对应 a_1，余数2对应 a_2，余数3对应 a_3，余数0对应 a_4。2026余2，因此取 a_2。"
+    },
+    {
+      "stageIndex": 6,
+      "template": "paper-q25-main-v1",
+      "title": "余数 0 对应环的第 4 位",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2",
+        "k3"
+      ],
+      "focus": "每次严格执行 2/(2−a)，看状态何时第一次回到 3。",
+      "explanation": "遇到新定义数列，先写出递推式，算前几项直到重复；重复后周期确定，再用目标序号除以周期取余数定位。这样不用逐项算到很大序号。"
+    }
+  ]
+}

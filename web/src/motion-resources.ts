@@ -1,7 +1,7 @@
 import type {LessonPart,Question} from './types';
 
 export type MotionView='space'|'flat';
-export type MotionTemplate='triangle-grow'|'triangle-compare'|'triangle-sum'|'triangle-expand'|'triangle-cancel'|'triangle-verify'|'triangle-recap'|'distance-model';
+export type MotionTemplate='triangle-grow'|'triangle-compare'|'triangle-sum'|'triangle-expand'|'triangle-cancel'|'triangle-verify'|'triangle-recap'|'distance-model'|`paper-${string}`;
 export type MotionTarget={questionId:string;questionRevision:number;lessonVersion:number;partId:string;lessonHash:string};
 export type MotionPack={
   id:string;

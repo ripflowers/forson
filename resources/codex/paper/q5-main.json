@@ -1,0 +1,116 @@
+{
+  "schemaVersion": 1,
+  "title": "折叠数轴，分开奇偶两条线",
+  "subject": "math",
+  "author": "Codex",
+  "target": {
+    "questionId": "ccb0c46c-380b-42c3-838b-6ce35539f38b",
+    "questionRevision": 5,
+    "lessonVersion": 5,
+    "partId": "main",
+    "lessonHash": "022021cb5db672e1624a96557666ecb8b011a1ee995b1f19c97450670ddce7f2"
+  },
+  "concepts": [
+    {
+      "id": "k0",
+      "label": "知识 1",
+      "explanation": "数轴上到定点距离相等的两个不重合点关于该定点对称。"
+    },
+    {
+      "id": "k1",
+      "label": "知识 2",
+      "explanation": "若两个不重合点$x,y$关于点$c$对称，则$c=\\frac{x+y}{2}$，等价于$y=2c-x$。"
+    },
+    {
+      "id": "k2",
+      "label": "知识 3",
+      "explanation": "通过递推公式与奇偶分类求通项。"
+    }
+  ],
+  "stages": [
+    {
+      "stageIndex": 0,
+      "template": "paper-q5-main-v1",
+      "title": "从 A₀=−2 开始",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2"
+      ],
+      "focus": "用反射展示 A(k+1)=2k−Ak，再观察奇偶项。",
+      "explanation": "求点$A_{2027}$表示的数。"
+    },
+    {
+      "stageIndex": 1,
+      "template": "paper-q5-main-v1",
+      "title": "一次折叠是一对等距点",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2"
+      ],
+      "focus": "用反射展示 A(k+1)=2k−Ak，再观察奇偶项。",
+      "explanation": "把每步等距看成关于中心$k$的对称，写出递推式$A_{k+1}=2k-A_k$；先算前几项发现奇偶规律，再用归纳法证明规律对所有$n$成立，最后代入$n=2027$。这样不是只靠前几项猜测，而是能覆盖题目的大下标。"
+    },
+    {
+      "stageIndex": 2,
+      "template": "paper-q5-main-v1",
+      "title": "围绕 k 做反射",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2"
+      ],
+      "focus": "用反射展示 A(k+1)=2k−Ak，再观察奇偶项。",
+      "explanation": "到同一点距离相等且不重合的两个点，只能是关于该点对称的两点，因此对称中心是两点的中点。"
+    },
+    {
+      "stageIndex": 3,
+      "template": "paper-q5-main-v1",
+      "title": "把前几项排成两行",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2"
+      ],
+      "focus": "用反射展示 A(k+1)=2k−Ak，再观察奇偶项。",
+      "explanation": "从递推式反复代入得到具体项，能看出奇偶分类；下一步用归纳证明该规律不只适用于前几项。"
+    },
+    {
+      "stageIndex": 4,
+      "template": "paper-q5-main-v1",
+      "title": "两步推进，验证奇偶规律",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2"
+      ],
+      "focus": "用反射展示 A(k+1)=2k−Ak，再观察奇偶项。",
+      "explanation": "递推关系对所有$k$成立，所以可以从任意相邻两项向下一项传递；奇偶两步同时验证后，规律覆盖所有非负整数$m$。"
+    },
+    {
+      "stageIndex": 5,
+      "template": "paper-q5-main-v1",
+      "title": "定位第 2027 项",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2"
+      ],
+      "focus": "用反射展示 A(k+1)=2k−Ak，再观察奇偶项。",
+      "explanation": "先判断下标奇偶，再使用对应通项，避免把偶数项的$n-2$错误套到奇数项上。"
+    },
+    {
+      "stageIndex": 6,
+      "template": "paper-q5-main-v1",
+      "title": "递推验证，不只猜规律",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2"
+      ],
+      "focus": "用反射展示 A(k+1)=2k−Ak，再观察奇偶项。",
+      "explanation": "遇到数轴上不断关于不同中心对称的问题，先把等距条件写成$A_{k+1}=2k-A_k$，再通过前几项观察奇偶规律并用归纳法证明通项；最后判断下标奇偶后代入。"
+    }
+  ]
+}

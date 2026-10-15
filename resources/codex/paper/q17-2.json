@@ -1,0 +1,104 @@
+{
+  "schemaVersion": 1,
+  "title": "绝对值化简前，先给内部定号",
+  "subject": "math",
+  "author": "Codex",
+  "target": {
+    "questionId": "d3b21541-d39a-48b7-834d-b7a3ff5232fb",
+    "questionRevision": 4,
+    "lessonVersion": 5,
+    "partId": "2",
+    "lessonHash": "1b234553b7a73cbb7963407d895908c3d324864e08995bd388785d1fe6335db0"
+  },
+  "concepts": [
+    {
+      "id": "k0",
+      "label": "知识 1",
+      "explanation": "数轴上右边的数大于左边的数"
+    },
+    {
+      "id": "k1",
+      "label": "知识 2",
+      "explanation": "正数加正数仍为正数"
+    },
+    {
+      "id": "k2",
+      "label": "知识 3",
+      "explanation": "小数减大数为负数"
+    }
+  ],
+  "stages": [
+    {
+      "stageIndex": 0,
+      "template": "paper-q17-2-v1",
+      "title": "确认 a、b、c 的区间",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2"
+      ],
+      "focus": "用三个位置运算分别看 a−c、b+c、b−1。",
+      "explanation": "判断 a-c、b+c、b-1 分别与 0 的大小关系"
+    },
+    {
+      "stageIndex": 1,
+      "template": "paper-q17-2-v1",
+      "title": "先定号，后去绝对值",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2"
+      ],
+      "focus": "用三个位置运算分别看 a−c、b+c、b−1。",
+      "explanation": "直接用已知范围判断每个式子的符号：a 小于 c，所以 a-c<0；b 和 c 都大于 0，所以 b+c>0；b 小于 1，所以 b-1<0。"
+    },
+    {
+      "stageIndex": 2,
+      "template": "paper-q17-2-v1",
+      "title": "a 在 c 左边，a−c<0",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2"
+      ],
+      "focus": "用三个位置运算分别看 a−c、b+c、b−1。",
+      "explanation": "负数减正数，结果一定小于 0；也可由 a<c 直接推出。"
+    },
+    {
+      "stageIndex": 3,
+      "template": "paper-q17-2-v1",
+      "title": "两个正数相加，b+c>0",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2"
+      ],
+      "focus": "用三个位置运算分别看 a−c、b+c、b−1。",
+      "explanation": "两个正数相加仍为正数；这里 c 还大于 2，结论更稳定。"
+    },
+    {
+      "stageIndex": 4,
+      "template": "paper-q17-2-v1",
+      "title": "b<1，所以 b−1<0",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2"
+      ],
+      "focus": "用三个位置运算分别看 a−c、b+c、b−1。",
+      "explanation": "小于 1 的数减去 1，结果一定小于 0。"
+    },
+    {
+      "stageIndex": 5,
+      "template": "paper-q17-2-v1",
+      "title": "三个符号缺一不可",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2"
+      ],
+      "focus": "用三个位置运算分别看 a−c、b+c、b−1。",
+      "explanation": "判断代数式与 0 的大小，要先找已知不等关系，再通过加减变形得到符号。"
+    }
+  ]
+}

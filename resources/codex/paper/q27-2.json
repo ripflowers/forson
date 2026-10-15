@@ -1,0 +1,116 @@
+{
+  "schemaVersion": 1,
+  "title": "两行错位，逐对抵消中间的幂",
+  "subject": "math",
+  "author": "Codex",
+  "target": {
+    "questionId": "67ba8153-af47-477c-a0a9-4f76300f37bc",
+    "questionRevision": 4,
+    "lessonVersion": 1,
+    "partId": "2",
+    "lessonHash": "385a88c8d4e0e89b4fc20e3ae899b3a8158a5062dfe3ffe25b995b7a1ba1c87b"
+  },
+  "concepts": [
+    {
+      "id": "k0",
+      "label": "知识 1",
+      "explanation": "把和式记为S"
+    },
+    {
+      "id": "k1",
+      "label": "知识 2",
+      "explanation": "等式两边同乘2，利用幂的性质2×2^k=2^(k+1)"
+    },
+    {
+      "id": "k2",
+      "label": "知识 3",
+      "explanation": "错位相减时只有首尾项保留"
+    }
+  ],
+  "stages": [
+    {
+      "stageIndex": 0,
+      "template": "paper-q27-2-v1",
+      "title": "先用小指数看结构",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2"
+      ],
+      "focus": "将和式乘 2 后向右移动一格，再按列相减。",
+      "explanation": "计算1+2+2^2+...+2^2029-2^2030的值。"
+    },
+    {
+      "stageIndex": 1,
+      "template": "paper-q27-2-v1",
+      "title": "把求和部分命名为 S",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2"
+      ],
+      "focus": "将和式乘 2 后向右移动一格，再按列相减。",
+      "explanation": "先把前面连续求和看成一个整体S，用错位相减法求出S的封闭形式，再用S减去2^2030。这样避免了逐项计算2030个数，也避免了把探究规律误用到长加法中。"
+    },
+    {
+      "stageIndex": 2,
+      "template": "paper-q27-2-v1",
+      "title": "一行从 1 加到最高项",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2"
+      ],
+      "focus": "将和式乘 2 后向右移动一格，再按列相减。",
+      "explanation": "把长串求和先整体处理，后面减去2^2030只需一步。"
+    },
+    {
+      "stageIndex": 3,
+      "template": "paper-q27-2-v1",
+      "title": "乘 2 后，每项右移一格",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2"
+      ],
+      "focus": "将和式乘 2 后向右移动一格，再按列相减。",
+      "explanation": "乘以底数2后，原和式中的每一项都会移动到后一位，有利于相减时大量抵消。"
+    },
+    {
+      "stageIndex": 4,
+      "template": "paper-q27-2-v1",
+      "title": "中间成对抵消，只留两端",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2"
+      ],
+      "focus": "将和式乘 2 后向右移动一格，再按列相减。",
+      "explanation": "这是等比数列求和的常用整体方法；相减后中间项全部消去，避免逐项求和。"
+    },
+    {
+      "stageIndex": 5,
+      "template": "paper-q27-2-v1",
+      "title": "S 减去下一次幂，剩 −1",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2"
+      ],
+      "focus": "将和式乘 2 后向右移动一格，再按列相减。",
+      "explanation": "S中多出的2^2030正好被最后一项减去，剩余-1。"
+    },
+    {
+      "stageIndex": 6,
+      "template": "paper-q27-2-v1",
+      "title": "回到指数 2029，结构完全相同",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2"
+      ],
+      "focus": "将和式乘 2 后向右移动一格，再按列相减。",
+      "explanation": "连续同底数幂求和可用整体设S、乘公比、错位相减；相邻幂差规律用于化简减法串，两者结合可处理含和与差的长式子。"
+    }
+  ]
+}

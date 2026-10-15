@@ -1,0 +1,82 @@
+{
+  "schemaVersion": 1,
+  "title": "所有点对中，最远的是两个端点",
+  "subject": "math",
+  "author": "Codex",
+  "target": {
+    "questionId": "c204ce4a-c180-4342-b0b5-6d1ddf20632f",
+    "questionRevision": 4,
+    "lessonVersion": 5,
+    "partId": "1",
+    "lessonHash": "2611c3d14b97d921eb73709e2a42ed6084f9ca8aeea240ffa69cf5aeac9fb9c0"
+  },
+  "concepts": [
+    {
+      "id": "k0",
+      "label": "知识 1",
+      "explanation": "绝对值的计算"
+    },
+    {
+      "id": "k1",
+      "label": "知识 2",
+      "explanation": "最大值与最小值的概念"
+    }
+  ],
+  "stages": [
+    {
+      "stageIndex": 0,
+      "template": "paper-q18-1-v1",
+      "title": "把数组 {1,−2,3} 放到数轴",
+      "conceptIds": [
+        "k0",
+        "k1"
+      ],
+      "focus": "比较三段距离，把最大的一段留下。",
+      "explanation": "求数组 1，-2，3 的距离系数 k"
+    },
+    {
+      "stageIndex": 1,
+      "template": "paper-q18-1-v1",
+      "title": "距离系数看最远两点",
+      "conceptIds": [
+        "k0",
+        "k1"
+      ],
+      "focus": "比较三段距离，把最大的一段留下。",
+      "explanation": "距离系数等于数组中的最大值减去最小值，所以先找出最大值和最小值，再作差。"
+    },
+    {
+      "stageIndex": 2,
+      "template": "paper-q18-1-v1",
+      "title": "比较三个点对",
+      "conceptIds": [
+        "k0",
+        "k1"
+      ],
+      "focus": "比较三段距离，把最大的一段留下。",
+      "explanation": "距离系数是任意两个数差的绝对值的最大可能值，这个最大值一定出现在最大值与最小值之间。"
+    },
+    {
+      "stageIndex": 3,
+      "template": "paper-q18-1-v1",
+      "title": "最大距离为 3−(−2)=5",
+      "conceptIds": [
+        "k0",
+        "k1"
+      ],
+      "focus": "比较三段距离，把最大的一段留下。",
+      "explanation": "任意两个数的差的绝对值不会超过最大值与最小值的差，因此这个差就是距离系数。"
+    },
+    {
+      "stageIndex": 4,
+      "template": "paper-q18-1-v1",
+      "title": "最大值减最小值",
+      "conceptIds": [
+        "k0",
+        "k1"
+      ],
+      "focus": "比较三段距离，把最大的一段留下。",
+      "explanation": "求距离系数只需找数组中的最大值和最小值，作差即可。"
+    }
+  ]
+}

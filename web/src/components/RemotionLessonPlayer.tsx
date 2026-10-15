@@ -22,9 +22,9 @@ export const RemotionLessonPlayer=forwardRef<RemotionLessonPlayerHandle,Remotion
   const inputProps=useMemo(()=>({part,pace:1,reducedMotion,canvasOnly:true,narration,muted,onAudioError:audioError,onCanvasHeight:setContentHeight,motionPack,motionView}),[part,reducedMotion,narration,muted,audioError,motionPack,motionView]);
   const height=Math.max(380,contentHeight);
   const report=useCallback((frame:number)=>{
-    const time=lessonFrameState(part,frame,LESSON_FPS,1,reducedMotion,narration);
+    const time=lessonFrameState(part,frame,LESSON_FPS,1,reducedMotion,narration,motionPack);
     callback.current(time);return time;
-  },[part,reducedMotion,narration]);
+  },[part,reducedMotion,narration,motionPack]);
   const seekFrame=useCallback((frame:number)=>{
     const bounded=Math.max(0,Math.min(timeline.durationInFrames-1,Math.round(frame)));
     player.current?.seekTo(bounded);report(bounded);

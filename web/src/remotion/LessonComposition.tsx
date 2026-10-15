@@ -7,6 +7,7 @@ import {TeachingVisual} from '../components/TeachingVisual';
 import {Formula} from '../components/Formula';
 import {MathText} from '../components/MathText';
 import {parseScene} from '../domain';
+import {paperRecipe} from '../paper-resources/models';
 import {lessonFrameState,lessonStageLabel,narrationCards,timedNarrationClips} from './timeline';
 import 'katex/dist/katex.min.css';
 import '@fontsource-variable/noto-sans-sc';
@@ -94,8 +95,8 @@ export function LessonComposition({part,pace=1,reducedMotion=false,canvasOnly=fa
   let pageIndex=0,accumulated=weights[0];
   while(pageIndex<pages.length-1&&time.progress*totalWeight>=accumulated){pageIndex++;accumulated+=weights[pageIndex];}
   const page=pages[pageIndex];
-  const hasVisual=Boolean(parseScene(part.scene)),shownFormulas=part.steps.slice(0,motionPack?.stages.some(stage=>stage.template==='triangle-grow')?revealedMotionStepCount(index,time.visualFrame,fps,reducedMotion):Math.max(0,index-1)).filter(item=>item.formulaLatex);
-  return <AbsoluteFill ref={canvas} className={`lesson-composition ${canvasOnly?'lc-canvas-only':'lc-video'} ${voice?'lc-voiced':''}`}>
+  const hasVisual=Boolean(parseScene(part.scene)||paperRecipe(motionPack)),shownFormulas=part.steps.slice(0,motionPack?.stages.some(stage=>stage.template==='triangle-grow')?revealedMotionStepCount(index,time.visualFrame,fps,reducedMotion):Math.max(0,index-1)).filter(item=>item.formulaLatex);
+  return <AbsoluteFill ref={canvas} className={`lesson-composition ${canvasOnly?'lc-canvas-only':'lc-video'} ${voice?'lc-voiced':''} ${paperRecipe(motionPack)?'lc-paper':''}`}>
     {voice&&timedNarrationClips(voice,fps,pace).map(({clip,from,durationInFrames})=><Sequence key={clip.id} name={`老师口述 · ${clip.id}`} from={from} durationInFrames={durationInFrames} premountFor={fps} style={{pointerEvents:'none'}}><Html5Audio src={clip.audioPath?staticFile(clip.audioPath):clip.audioUrl} data-narration-clip={clip.id} playbackRate={pace} preservePitch muted={muted} pauseWhenBuffering acceptableTimeShiftInSeconds={.12} onError={onAudioError}/></Sequence>)}
     {!canvasOnly&&<><header className="lc-header"><div><span className="lc-brand">知间 · 老师课堂</span><h1><MathText text={lessonStageLabel(part,index)}/></h1></div><span className="lc-stage-number">{index+1} / {part.steps.length+3}</span></header>
     <div className="lc-knowledge" aria-label="本课会用到的知识点">{part.prerequisites.slice(0,3).map((concept,i)=><span key={i}><MathText text={concept}/></span>)}</div></>}

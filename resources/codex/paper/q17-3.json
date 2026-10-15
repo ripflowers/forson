@@ -1,0 +1,128 @@
+{
+  "schemaVersion": 1,
+  "title": "打开绝对值，外面的减号仍保留",
+  "subject": "math",
+  "author": "Codex",
+  "target": {
+    "questionId": "d3b21541-d39a-48b7-834d-b7a3ff5232fb",
+    "questionRevision": 4,
+    "lessonVersion": 5,
+    "partId": "3",
+    "lessonHash": "16339aeb457078632d88ca753732ec9315a01913d13c235e2f9147b76ad54902"
+  },
+  "concepts": [
+    {
+      "id": "k0",
+      "label": "知识 1",
+      "explanation": "绝对值的代数定义：正数和 0 的绝对值是它本身，负数的绝对值是它的相反数"
+    },
+    {
+      "id": "k1",
+      "label": "知识 2",
+      "explanation": "去括号法则"
+    },
+    {
+      "id": "k2",
+      "label": "知识 3",
+      "explanation": "合并同类项"
+    }
+  ],
+  "stages": [
+    {
+      "stageIndex": 0,
+      "template": "paper-q17-3-v1",
+      "title": "从上一问的三个符号出发",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2"
+      ],
+      "focus": "先翻转负的内部，再分配括号外的负号，最后抵消 c。",
+      "explanation": "化简 |a-c|-|b+c|+|b-1|"
+    },
+    {
+      "stageIndex": 1,
+      "template": "paper-q17-3-v1",
+      "title": "负的取相反数，正的保持",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2"
+      ],
+      "focus": "先翻转负的内部，再分配括号外的负号，最后抵消 c。",
+      "explanation": "先根据已知符号去掉每个绝对值，抄成不含绝对值的式子，再去括号、合并同类项，得到最简结果。"
+    },
+    {
+      "stageIndex": 2,
+      "template": "paper-q17-3-v1",
+      "title": "第一项变成 c−a",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2"
+      ],
+      "focus": "先翻转负的内部，再分配括号外的负号，最后抵消 c。",
+      "explanation": "负数的绝对值等于它的相反数。"
+    },
+    {
+      "stageIndex": 3,
+      "template": "paper-q17-3-v1",
+      "title": "第二项内部为正",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2"
+      ],
+      "focus": "先翻转负的内部，再分配括号外的负号，最后抵消 c。",
+      "explanation": "正数的绝对值等于它本身。"
+    },
+    {
+      "stageIndex": 4,
+      "template": "paper-q17-3-v1",
+      "title": "第三项变成 1−b",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2"
+      ],
+      "focus": "先翻转负的内部，再分配括号外的负号，最后抵消 c。",
+      "explanation": "负数的绝对值等于它的相反数。"
+    },
+    {
+      "stageIndex": 5,
+      "template": "paper-q17-3-v1",
+      "title": "外部减号作用到 b 和 c",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2"
+      ],
+      "focus": "先翻转负的内部，再分配括号外的负号，最后抵消 c。",
+      "explanation": "括号前是减号时，去括号后括号内各项要变号；括号前是加号则不变号。"
+    },
+    {
+      "stageIndex": 6,
+      "template": "paper-q17-3-v1",
+      "title": "c 与 −c 抵消",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2"
+      ],
+      "focus": "先翻转负的内部，再分配括号外的负号，最后抵消 c。",
+      "explanation": "按字母 a、b 整理，常数项单独合并。"
+    },
+    {
+      "stageIndex": 7,
+      "template": "paper-q17-3-v1",
+      "title": "结果 1−a−2b 与 c 无关",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2"
+      ],
+      "focus": "先翻转负的内部，再分配括号外的负号，最后抵消 c。",
+      "explanation": "绝对值化简的关键是先确定绝对值内式子的正负，再按定义去绝对值，最后认真去括号、合并同类项。"
+    }
+  ]
+}

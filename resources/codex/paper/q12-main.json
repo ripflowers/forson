@@ -1,0 +1,116 @@
+{
+  "schemaVersion": 1,
+  "title": "四个候选原点，比较距离和的范围",
+  "subject": "math",
+  "author": "Codex",
+  "target": {
+    "questionId": "c90376f1-1432-43d0-b99c-20f540524f73",
+    "questionRevision": 4,
+    "lessonVersion": 2,
+    "partId": "main",
+    "lessonHash": "078e032bf7ec87f4d01a44486a72eb4da6070b8d6b993ab17f0d8343e7905126"
+  },
+  "concepts": [
+    {
+      "id": "k0",
+      "label": "知识 1",
+      "explanation": "相邻整数点间距离为1时，四点坐标连续"
+    },
+    {
+      "id": "k1",
+      "label": "知识 2",
+      "explanation": "绝对值表示数轴上点到原点的距离"
+    },
+    {
+      "id": "k2",
+      "label": "知识 3",
+      "explanation": "用正负号去掉绝对值讨论范围"
+    }
+  ],
+  "stages": [
+    {
+      "stageIndex": 0,
+      "template": "paper-q12-main-v1",
+      "title": "相邻整数间距为 1",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2"
+      ],
+      "focus": "切换原点，让 a、b 在开区间内变化。",
+      "explanation": "确定原点在 M,N,P,R 中的可能位置"
+    },
+    {
+      "stageIndex": 1,
+      "template": "paper-q12-main-v1",
+      "title": "原点只能选四个整数点",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2"
+      ],
+      "focus": "切换原点，让 a、b 在开区间内变化。",
+      "explanation": "把 M,N,P,R 设成连续整数 x,x+1,x+2,x+3。由其中一个为原点，x 只有四种取值，对应原点分别为 M,N,P,R。对每种原点写出 a,b 所在开区间，求 |a|+|b| 的上界。等于 3 是否可能，关键看 3 是否落在真实取值范围内，尤其注意 a,b 不取端点时 3 只能作为开区间端点则不可取。"
+    },
+    {
+      "stageIndex": 2,
+      "template": "paper-q12-main-v1",
+      "title": "分别将 M、N、P、R 移到 0",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2"
+      ],
+      "focus": "切换原点，让 a、b 在开区间内变化。",
+      "explanation": "连续整数点夹住原点，最左点 x 必须使 0 落在 x 到 x+3 之间。"
+    },
+    {
+      "stageIndex": 3,
+      "template": "paper-q12-main-v1",
+      "title": "外侧原点能达到距离和 3",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2"
+      ],
+      "focus": "切换原点，让 a、b 在开区间内变化。",
+      "explanation": "这两个情况下 3 落在 a,b 允许范围内，且给出的具体有理数不在端点上，符合“在两点之间”的要求。"
+    },
+    {
+      "stageIndex": 4,
+      "template": "paper-q12-main-v1",
+      "title": "内侧原点的和严格小于 3",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2"
+      ],
+      "focus": "切换原点，让 a、b 在开区间内变化。",
+      "explanation": "3 只能作为这两个情况取端点时的极限，但端点不允许取，所以必须排除。"
+    },
+    {
+      "stageIndex": 5,
+      "template": "paper-q12-main-v1",
+      "title": "留下 M 和 R",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2"
+      ],
+      "focus": "切换原点，让 a、b 在开区间内变化。",
+      "explanation": "分类无遗漏，且排除了端点取等情况，结论唯一。"
+    },
+    {
+      "stageIndex": 6,
+      "template": "paper-q12-main-v1",
+      "title": "示例验证可行，区间界排除不可行",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2"
+      ],
+      "focus": "切换原点，让 a、b 在开区间内变化。",
+      "explanation": "连续整数点中有原点时，先把四点坐标用最左点表示；遇到绝对值和等于定值，按原点可能位置分类求 |a|+|b| 的范围。特别检查端点：若定值等于某开区间端点，则无法取到，需要排除。"
+    }
+  ]
+}

@@ -1,0 +1,116 @@
+{
+  "schemaVersion": 1,
+  "title": "把 x、x²、x³ 放在同一条数轴",
+  "subject": "math",
+  "author": "Codex",
+  "target": {
+    "questionId": "dd16f234-a49f-4d8e-88d4-7b54de63591e",
+    "questionRevision": 5,
+    "lessonVersion": 2,
+    "partId": "main",
+    "lessonHash": "140f9139cf17e767980325c14c9498c645f0c9bc840c7fbb9910976ddf2778a8"
+  },
+  "concepts": [
+    {
+      "id": "k0",
+      "label": "知识 1",
+      "explanation": "数轴上右点对应的实数大于左点对应的实数"
+    },
+    {
+      "id": "k1",
+      "label": "知识 2",
+      "explanation": "有理数乘方的符号规律"
+    },
+    {
+      "id": "k2",
+      "label": "知识 3",
+      "explanation": "一元不等式组的解法"
+    }
+  ],
+  "stages": [
+    {
+      "stageIndex": 0,
+      "template": "paper-q7-main-v1",
+      "title": "三个点的顺序就是条件",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2"
+      ],
+      "focus": "改变 x，观察三个数的顺序何时满足严格不等式。",
+      "explanation": "写出一个使数轴上从左到右为 x、x³、x² 的 x 值。"
+    },
+    {
+      "stageIndex": 1,
+      "template": "paper-q7-main-v1",
+      "title": "把两条不等式分别考虑",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2"
+      ],
+      "focus": "改变 x，观察三个数的顺序何时满足严格不等式。",
+      "explanation": "把图中左右顺序转化为严格不等式 x < x³ < x²。先由 x³ < x² 缩小范围，再由 x < x³ 进一步限制，最后取交集得到 -1 < x < 0，并从中选一个便于验算的值。"
+    },
+    {
+      "stageIndex": 2,
+      "template": "paper-q7-main-v1",
+      "title": "先把三点次序写成两个不等式",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2"
+      ],
+      "focus": "改变 x，观察三个数的顺序何时满足严格不等式。",
+      "explanation": "数轴上的左右顺序与实数大小顺序一致。"
+    },
+    {
+      "stageIndex": 3,
+      "template": "paper-q7-main-v1",
+      "title": "x³<x² 给出 x<1 且 x≠0",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2"
+      ],
+      "focus": "改变 x，观察三个数的顺序何时满足严格不等式。",
+      "explanation": "利用 x² 的非负性判断符号，避免漏掉 x = 0 的特殊情况。"
+    },
+    {
+      "stageIndex": 4,
+      "template": "paper-q7-main-v1",
+      "title": "再求交集，留下 (−1,0)",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2"
+      ],
+      "focus": "改变 x，观察三个数的顺序何时满足严格不等式。",
+      "explanation": "两个条件必须同时成立，所以要取交集，不能只用一个不等式判断。"
+    },
+    {
+      "stageIndex": 5,
+      "template": "paper-q7-main-v1",
+      "title": "用边界与区间内数检验",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2"
+      ],
+      "focus": "改变 x，观察三个数的顺序何时满足严格不等式。",
+      "explanation": "题目只要求写出一个满足条件的值，不必写出全部解。"
+    },
+    {
+      "stageIndex": 6,
+      "template": "paper-q7-main-v1",
+      "title": "严格不等号不能取端点",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2"
+      ],
+      "focus": "改变 x，观察三个数的顺序何时满足严格不等式。",
+      "explanation": "解这类“根据数轴上点的位置求字母值”的问题，先把左右顺序写成严格不等式，再结合乘方、乘积的符号分区间求解。若只要求写出一个值，从解集中选一个易算的数并代回验证即可。"
+    }
+  ]
+}

@@ -1,0 +1,141 @@
+{
+  "schemaVersion": 1,
+  "title": "三个判断，分别用顺序、符号和方向验证",
+  "subject": "math",
+  "author": "Codex",
+  "target": {
+    "questionId": "b1e2d5ac-5c41-424e-91e3-9fc6b87f8748",
+    "questionRevision": 6,
+    "lessonVersion": 6,
+    "partId": "main",
+    "lessonHash": "5287fb5ef7c29162c07262fea30814ae9950a02ed16cfac6afdfa349925b728e"
+  },
+  "concepts": [
+    {
+      "id": "k0",
+      "label": "知识 1",
+      "explanation": "数轴上原点左侧的点表示负数，右侧的点表示正数。"
+    },
+    {
+      "id": "k1",
+      "label": "知识 2",
+      "explanation": "绝对值的非负性：|x|≥0；一个负数的相反数是正数。"
+    },
+    {
+      "id": "k2",
+      "label": "知识 3",
+      "explanation": "同号两数相乘得正，异号两数相乘得负。"
+    },
+    {
+      "id": "k3",
+      "label": "知识 4",
+      "explanation": "两个负数比较大小：绝对值大的反而小。"
+    }
+  ],
+  "stages": [
+    {
+      "stageIndex": 0,
+      "template": "paper-q10-main-v1",
+      "title": "数轴先定符号与距离",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2",
+        "k3"
+      ],
+      "focus": "切换检验对象，观察相反数、符号商和同向相加。",
+      "explanation": "判断①、②、③中正确的个数，并选出正确答案。"
+    },
+    {
+      "stageIndex": 1,
+      "template": "paper-q10-main-v1",
+      "title": "三个命题分开检验",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2",
+        "k3"
+      ],
+      "focus": "切换检验对象，观察相反数、符号商和同向相加。",
+      "explanation": "先由点的位置和绝对值大小确定各数的符号及离原点的远近，再按“先定号，再化简绝对值或比较大小”的顺序逐个检验三个式子；最后统计正确个数。"
+    },
+    {
+      "stageIndex": 2,
+      "template": "paper-q10-main-v1",
+      "title": "整理 b<a<0<c",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2",
+        "k3"
+      ],
+      "focus": "切换检验对象，观察相反数、符号商和同向相加。",
+      "explanation": "数轴上点的左右顺序就是有理数的大小顺序；绝对值的大小用来比较负数离原点的远近。"
+    },
+    {
+      "stageIndex": 3,
+      "template": "paper-q10-main-v1",
+      "title": "相反数移到原点另一侧",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2",
+        "k3"
+      ],
+      "focus": "切换检验对象，观察相反数、符号商和同向相加。",
+      "explanation": "两个负数比较，绝对值大的反而小；-a 是正数，不可能排在两个负数左边。"
+    },
+    {
+      "stageIndex": 4,
+      "template": "paper-q10-main-v1",
+      "title": "正商为 1，负商为 −1",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2",
+        "k3"
+      ],
+      "focus": "切换检验对象，观察相反数、符号商和同向相加。",
+      "explanation": "绝对值化简前必须先判断内部整体的符号；同号相乘得正，异号相乘得负。"
+    },
+    {
+      "stageIndex": 5,
+      "template": "paper-q10-main-v1",
+      "title": "两个负数同向相加",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2",
+        "k3"
+      ],
+      "focus": "切换检验对象，观察相反数、符号商和同向相加。",
+      "explanation": "两个负数相加仍为负数，方向相同没有正负抵消，和的绝对值等于各自绝对值之和。"
+    },
+    {
+      "stageIndex": 6,
+      "template": "paper-q10-main-v1",
+      "title": "统计：只有③成立",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2",
+        "k3"
+      ],
+      "focus": "切换检验对象，观察相反数、符号商和同向相加。",
+      "explanation": "三个命题已经逐项检验完毕，按正确个数对应选项作答。"
+    },
+    {
+      "stageIndex": 7,
+      "template": "paper-q10-main-v1",
+      "title": "把符号与大小分开看",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2",
+        "k3"
+      ],
+      "focus": "切换检验对象，观察相反数、符号商和同向相加。",
+      "explanation": "处理数轴与绝对值的判断选择题时，先根据点的位置定符号并运用绝对值大小比较负数，再对乘法、相反数、和的绝对值分别先定号再化简。判断“和的绝对值”时，先看加数是否同号：同号相加，绝对值相加；异号相加，才作差。"
+    }
+  ]
+}

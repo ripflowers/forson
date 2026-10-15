@@ -1,0 +1,128 @@
+{
+  "schemaVersion": 1,
+  "title": "运动过程中，分支会在 t=7 改变",
+  "subject": "math",
+  "author": "Codex",
+  "target": {
+    "questionId": "f09a0c95-3251-4809-8b54-9dd04fc7f14b",
+    "questionRevision": 4,
+    "lessonVersion": 2,
+    "partId": "2.2",
+    "lessonHash": "aa40958fc11825c9f8b2f26d4cb54dcdc7a198fedafeab7b759783ed1d443e5b"
+  },
+  "concepts": [
+    {
+      "id": "k0",
+      "label": "知识 1",
+      "explanation": "用t表示数轴上的点"
+    },
+    {
+      "id": "k1",
+      "label": "知识 2",
+      "explanation": "绝对值化简"
+    },
+    {
+      "id": "k2",
+      "label": "知识 3",
+      "explanation": "分情况讨论"
+    },
+    {
+      "id": "k3",
+      "label": "知识 4",
+      "explanation": "解一元一次方程并检验范围"
+    }
+  ],
+  "stages": [
+    {
+      "stageIndex": 0,
+      "template": "paper-q8-2-2-v1",
+      "title": "三个点各自表示什么",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2",
+        "k3"
+      ],
+      "focus": "同时跟踪 A、B、P；特别比较 7 秒前、恰好 7 秒、7 秒后。",
+      "explanation": "判断是否存在t使联动点P恰好与原点重合，并说明理由"
+    },
+    {
+      "stageIndex": 1,
+      "template": "paper-q8-2-2-v1",
+      "title": "按 B 的正负拆时间段",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2",
+        "k3"
+      ],
+      "focus": "同时跟踪 A、B、P；特别比较 7 秒前、恰好 7 秒、7 秒后。",
+      "explanation": "先写出A、B与t的关系，再按B(t)的符号分两类列P的表达式，分别令P=0求解，并检验t是否在对应时间范围内。"
+    },
+    {
+      "stageIndex": 2,
+      "template": "paper-q8-2-2-v1",
+      "title": "A=t−1，B=7−t",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2",
+        "k3"
+      ],
+      "focus": "同时跟踪 A、B、P；特别比较 7 秒前、恰好 7 秒、7 秒后。",
+      "explanation": "两个点都在运动，而联动点P由点A位置和点B表示的数共同决定，所以要先用t表示它们。"
+    },
+    {
+      "stageIndex": 3,
+      "template": "paper-q8-2-2-v1",
+      "title": "t≤7：P=t+1；t>7：P=6",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2",
+        "k3"
+      ],
+      "focus": "同时跟踪 A、B、P；特别比较 7 秒前、恰好 7 秒、7 秒后。",
+      "explanation": "联动点定义按b的符号分为两种移动方式，必须分类才能正确列式；t=7时b=0属于第一类。"
+    },
+    {
+      "stageIndex": 4,
+      "template": "paper-q8-2-2-v1",
+      "title": "求 P=0，并检查时间限制",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2",
+        "k3"
+      ],
+      "focus": "同时跟踪 A、B、P；特别比较 7 秒前、恰好 7 秒、7 秒后。",
+      "explanation": "存在性要求解必须同时满足方程和对应的时间范围；第二类中t已消去，说明P不随t改变。"
+    },
+    {
+      "stageIndex": 5,
+      "template": "paper-q8-2-2-v1",
+      "title": "没有合法的相遇时刻",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2",
+        "k3"
+      ],
+      "focus": "同时跟踪 A、B、P；特别比较 7 秒前、恰好 7 秒、7 秒后。",
+      "explanation": "两类覆盖了所有t≥0，因此可以下完整结论。"
+    },
+    {
+      "stageIndex": 6,
+      "template": "paper-q8-2-2-v1",
+      "title": "检查 t=7 的分支边界",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2",
+        "k3"
+      ],
+      "focus": "同时跟踪 A、B、P；特别比较 7 秒前、恰好 7 秒、7 秒后。",
+      "explanation": "含绝对值或分段定义的存在性问题，先列表达式，按条件分类讨论；每一类解出后必须带回该类的范围检验，分类边界也要单独明确。"
+    }
+  ]
+}

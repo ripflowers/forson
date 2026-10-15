@@ -1,0 +1,114 @@
+name: Check and deploy Forson
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: forson-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  check:
+    runs-on: ubuntu-24.04
+    services:
+      postgres:
+        image: postgres:17-alpine
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: zhijian_test
+        ports: ["55432:5432"]
+        options: >-
+          --health-cmd "pg_isready -U postgres -d zhijian_test"
+          --health-interval 5s --health-timeout 5s --health-retries 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: web/package-lock.json
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: server/requirements.txt
+      - name: Install dependencies
+        run: |
+          npm ci --prefix web --no-audit --no-fund
+          python -m pip install -r server/requirements.txt
+      - name: Create isolated test images
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from PIL import Image
+          folder = Path('data/sample-images')
+          folder.mkdir(parents=True, exist_ok=True)
+          for number in (1, 2):
+              Image.new('RGB', (100, 140), 'white').save(folder / f'page-{number}.jpg')
+          PY
+      - name: Test backend without AI requests
+        env:
+          PYTHONPATH: server
+          TEST_DATABASE_URL: postgresql://postgres:postgres@127.0.0.1:55432/zhijian_test
+          DEEPSEEK_API_KEY: ''
+        run: python -m pytest server/tests -q
+      - name: Test frontend and build
+        run: |
+          npm test --prefix web
+          npm run build --prefix web
+          bash -n deploy/deploy.sh
+      - name: Verify production containers
+        if: github.event_name != 'pull_request'
+        env:
+          RELEASE_SHA: ${{ github.sha }}
+        run: |
+          sudo install -d -m 755 /opt/forson
+          sudo install -d -o 10001 -g 10001 -m 700 /opt/forson/data
+          printf '%s\n' 'DB_PASSWORD=isolated-ci-password' 'DEEPSEEK_API_KEY=' | sudo tee /opt/forson/.env > /dev/null
+          sudo chmod 644 /opt/forson/.env
+          docker compose --env-file /opt/forson/.env -f deploy/compose.production.yml up -d --build --wait --wait-timeout 180
+          curl --fail --silent http://127.0.0.1:15178/api/status | python -c 'import json,sys; assert json.load(sys.stdin)["dbReady"]'
+          curl --fail --silent http://127.0.0.1:15178/ > /dev/null
+      - name: Package exact commit and built frontend
+        if: github.event_name != 'pull_request'
+        run: |
+          release_dir="$RUNNER_TEMP/forson-release"
+          mkdir -p "$release_dir"
+          git archive HEAD | tar -x -C "$release_dir"
+          cp -R web/dist "$release_dir/web/dist"
+          git rev-parse HEAD > "$release_dir/REVISION"
+          tar -czf "$RUNNER_TEMP/forson-release.tar.gz" -C "$release_dir" .
+      - uses: actions/upload-artifact@v4
+        if: github.event_name != 'pull_request'
+        with:
+          name: forson-release
+          path: ${{ runner.temp }}/forson-release.tar.gz
+          retention-days: 7
+  deploy:
+    needs: check
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request' && vars.DEPLOY_ENABLED == 'true'
+    runs-on: ubuntu-24.04
+    environment: production
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: forson-release
+      - name: Deploy verified commit through restricted SSH key
+        env:
+          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+          DEPLOY_PORT: ${{ secrets.DEPLOY_PORT }}
+          DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
+          DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}
+          DEPLOY_KNOWN_HOSTS: ${{ secrets.DEPLOY_KNOWN_HOSTS }}
+        run: |
+          test -n "$DEPLOY_HOST" && test -n "$DEPLOY_USER" && test -n "$DEPLOY_KEY" && test -n "$DEPLOY_KNOWN_HOSTS"
+          install -d -m 700 ~/.ssh
+          printf '%s\n' "$DEPLOY_KEY" > ~/.ssh/forson_deploy
+          chmod 600 ~/.ssh/forson_deploy
+          printf '%s\n' "$DEPLOY_KNOWN_HOSTS" > ~/.ssh/known_hosts
+          ssh -i ~/.ssh/forson_deploy -p "${DEPLOY_PORT:-22}" -o BatchMode=yes -o StrictHostKeyChecking=yes \
+            "$DEPLOY_USER@$DEPLOY_HOST" "deploy $GITHUB_SHA" < forson-release.tar.gz

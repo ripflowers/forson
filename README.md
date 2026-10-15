@@ -67,3 +67,9 @@ Docker Compose V2可用时，新机器可以`docker compose up -d db`建立本�
 最终设计源位于`../deliverables/math-teacher-design-20261013/12-final-system-design.md`。数据不默认公开；原照只供当前家庭私用。
 
 第26题支持知识驱动的空间/平面教学动画，以及 Codex 备课资源的本机导入。流程、版本门禁和能力边界见 [Codex 教学资源说明](docs/codex-teaching-resources-20261015.md)。课堂中的“老师备课台”也可导出资料、导入JSON包，无需重新调用解题模型。
+
+整卷逐小问动画与公式排版的实现、数学核对和边界见 [整卷教学资源验收](docs/whole-paper-teaching-resources-20261015.md)。
+
+## 服务器部署
+
+GitHub Actions、Docker Compose、Nginx 和发布回退流程见 [部署说明](docs/deployment.md)。线上环境需独立配置访问口令与服务器凭据，不能直接公开本机开发端口。

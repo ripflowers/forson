@@ -1,0 +1,93 @@
+{
+  "schemaVersion": 1,
+  "title": "区间平移与关于零点反射",
+  "subject": "math",
+  "author": "Codex",
+  "target": {
+    "questionId": "d3b21541-d39a-48b7-834d-b7a3ff5232fb",
+    "questionRevision": 4,
+    "lessonVersion": 5,
+    "partId": "1",
+    "lessonHash": "f237f20f520950ec05c7c0a5e70a53d0fa783af286d2ebc377d63a7dd5979267"
+  },
+  "concepts": [
+    {
+      "id": "k0",
+      "label": "知识 1",
+      "explanation": "不等式两边同加、同减，不等号方向不变"
+    },
+    {
+      "id": "k1",
+      "label": "知识 2",
+      "explanation": "不等式两边同乘负数，不等号方向改变"
+    }
+  ],
+  "stages": [
+    {
+      "stageIndex": 0,
+      "template": "paper-q17-1-v1",
+      "title": "先画 b 与 c 的两个区间",
+      "conceptIds": [
+        "k0",
+        "k1"
+      ],
+      "focus": "b−1 是把 b 左移 1；−c 是把 c 关于原点翻转。",
+      "explanation": "判断 b-1 与 -c 的大小关系并填符号"
+    },
+    {
+      "stageIndex": 1,
+      "template": "paper-q17-1-v1",
+      "title": "不同运算对应不同移动",
+      "conceptIds": [
+        "k0",
+        "k1"
+      ],
+      "focus": "b−1 是把 b 左移 1；−c 是把 c 关于原点翻转。",
+      "explanation": "先把 b-1 和 -c 分别化为只含已知范围的区间，再比较两个区间的位置：如果一个区间的左端都大于另一个区间的右端，则这个式子的值整体大于另一个式子。"
+    },
+    {
+      "stageIndex": 2,
+      "template": "paper-q17-1-v1",
+      "title": "b−1 落入 (−1,0)",
+      "conceptIds": [
+        "k0",
+        "k1"
+      ],
+      "focus": "b−1 是把 b 左移 1；−c 是把 c 关于原点翻转。",
+      "explanation": "不等式两边同减 1，不等号方向不变。"
+    },
+    {
+      "stageIndex": 3,
+      "template": "paper-q17-1-v1",
+      "title": "−c 落入 (−3,−2)",
+      "conceptIds": [
+        "k0",
+        "k1"
+      ],
+      "focus": "b−1 是把 b 左移 1；−c 是把 c 关于原点翻转。",
+      "explanation": "不等式两边乘负数会改变大小关系。"
+    },
+    {
+      "stageIndex": 4,
+      "template": "paper-q17-1-v1",
+      "title": "两个区间完全分开",
+      "conceptIds": [
+        "k0",
+        "k1"
+      ],
+      "focus": "b−1 是把 b 左移 1；−c 是把 c 关于原点翻转。",
+      "explanation": "借助中间值 -1 和 -2 过渡，避免只看两边都是负数就下结论。"
+    },
+    {
+      "stageIndex": 5,
+      "template": "paper-q17-1-v1",
+      "title": "右边的数始终更大",
+      "conceptIds": [
+        "k0",
+        "k1"
+      ],
+      "focus": "b−1 是把 b 左移 1；−c 是把 c 关于原点翻转。",
+      "explanation": "比较含参式子大小，可先求其范围；区间完全分离时可直接比端点。"
+    }
+  ]
+}

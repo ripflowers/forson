@@ -1,0 +1,116 @@
+{
+  "schemaVersion": 1,
+  "title": "两个界把绝对值夹到 3",
+  "subject": "math",
+  "author": "Codex",
+  "target": {
+    "questionId": "5d337254-c1d9-43bb-8d6f-30a86045ce1a",
+    "questionRevision": 4,
+    "lessonVersion": 2,
+    "partId": "main",
+    "lessonHash": "f580c6814b90c71be00926ec5dffd7086564158aa40182b3cea899bdb505c991"
+  },
+  "concepts": [
+    {
+      "id": "k0",
+      "label": "知识 1",
+      "explanation": "实数的平方都大于等于 0"
+    },
+    {
+      "id": "k1",
+      "label": "知识 2",
+      "explanation": "绝对值都大于等于 0"
+    },
+    {
+      "id": "k2",
+      "label": "知识 3",
+      "explanation": "等式两边可以移项、代入"
+    }
+  ],
+  "stages": [
+    {
+      "stageIndex": 0,
+      "template": "paper-q14-main-v1",
+      "title": "把两式的非负项标出来",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2"
+      ],
+      "focus": "把平方的非负性变成上下界，再展开 b 的两个分支。",
+      "explanation": "求 ac+2bc 的所有可能值"
+    },
+    {
+      "stageIndex": 1,
+      "template": "paper-q14-main-v1",
+      "title": "同一个量同时受两个界限制",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2"
+      ],
+      "focus": "把平方的非负性变成上下界，再展开 b 的两个分支。",
+      "explanation": "两个等式都含有公共项 |b-3|，先利用平方和绝对值的非负性把 |b-3| 的取值范围从两边夹住，确定 |b-3| 的值；再回代求 c 和 a，最后按 b 的两个分支分别计算目标式。不能只代入一个分支就下结论。"
+    },
+    {
+      "stageIndex": 2,
+      "template": "paper-q14-main-v1",
+      "title": "上下两个界相遇：|b−3|=3",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2"
+      ],
+      "focus": "把平方的非负性变成上下界，再展开 b 的两个分支。",
+      "explanation": "这一步用到平方和绝对值非负，把两个不等式合起来，才能避免只猜一个值。"
+    },
+    {
+      "stageIndex": 3,
+      "template": "paper-q14-main-v1",
+      "title": "c=1，b 有 0 和 6 两个分支",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2"
+      ],
+      "focus": "把平方的非负性变成上下界，再展开 b 的两个分支。",
+      "explanation": "绝对值等于正数时必须分两种情况讨论，否则会漏解。"
+    },
+    {
+      "stageIndex": 4,
+      "template": "paper-q14-main-v1",
+      "title": "平方为零，确定 a",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2"
+      ],
+      "focus": "把平方的非负性变成上下界，再展开 b 的两个分支。",
+      "explanation": "第一式只含有 |b-3|，不含 b 的符号分支，所以 a 是确定的。"
+    },
+    {
+      "stageIndex": 5,
+      "template": "paper-q14-main-v1",
+      "title": "保留 b=0 和 b=6 两个结果",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2"
+      ],
+      "focus": "把平方的非负性变成上下界，再展开 b 的两个分支。",
+      "explanation": "b 有两个分支，必须分别代入目标式；不能因为两个 b 都满足条件就随意只取一个。"
+    },
+    {
+      "stageIndex": 6,
+      "template": "paper-q14-main-v1",
+      "title": "逐组代入验算",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2"
+      ],
+      "focus": "把平方的非负性变成上下界，再展开 b 的两个分支。",
+      "explanation": "含多个方程和公共项时，先借非负性夹出公共项；解绝对值方程要写清两支；最后把所有合法分支分别代入目标式，不能遗漏多解。"
+    }
+  ]
+}

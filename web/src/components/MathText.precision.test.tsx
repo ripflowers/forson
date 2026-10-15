@@ -4,6 +4,28 @@ import {MathText,splitMathText} from './MathText';
 import {Formula} from './Formula';
 
 describe('题面公式的精细分段与安全显示',()=>{
+  it('第27题的数字底数、括号指数与完整大指数都按数学含义排版',()=>{
+    for(const [source,latex] of [
+      ['2^7-2^6-2^5-2^4-2^3-2^2-2','2^7-2^6-2^5-2^4-2^3-2^2-2'],
+      ['2^(k+1)-2^k=2^k','2^{k+1}-2^k=2^k'],
+      ['1+2+2^2+...+2^2029-2^2030','1+2+2^2+\\cdots +2^{2029}-2^{2030}'],
+    ]){
+      expect(splitMathText(`计算${source}的值。`)).toEqual([{kind:'text',text:'计算'},{kind:'math',text:latex,display:false},{kind:'text',text:'的值。'}]);
+      expect(renderToStaticMarkup(<MathText text={source}/>)).toContain('<msup>');
+    }
+    expect(renderToStaticMarkup(<MathText text="2^2030"/>)).toContain('<mn>2030</mn>');
+  });
+  it('分数保留运算优先级，关系符和绝对值可在中文讲解中直接排版',()=>{
+    for(const [source,latex] of [
+      ['1/2','\\frac{1}{2}'],['2/(3/2)=4/3','\\frac{2}{\\frac{3}{2}}=\\frac{4}{3}'],
+      ['2/(2-(-2))','\\frac{2}{2-(-2)}'],
+      ['2^7/2^6','\\frac{2^7}{2^6}'],['ab/|ab|=1','\\frac{ab}{|ab|}=1'],
+      ['(a+2)²≥0','(a+2)^2\\ge 0'],['|a|>1>|b|','|a|>1>|b|'],
+    ]){
+      expect(splitMathText(source)).toEqual([{kind:'math',text:latex,display:false}]);
+      expect(renderToStaticMarkup(<MathText text={source}/>)).not.toContain('katex-error');
+    }
+  });
   it('真实第24题讲义的裸下标准确显示完整序号与递推关系',()=>{
     expect(splitMathText('求 a_2027 的值，并从四个选项中选出正确答案')).toEqual([
       {kind:'text',text:'求 '},

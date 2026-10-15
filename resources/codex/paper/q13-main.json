@@ -1,0 +1,116 @@
+{
+  "schemaVersion": 1,
+  "title": "两条折线相交，分支里找等式",
+  "subject": "math",
+  "author": "Codex",
+  "target": {
+    "questionId": "34b6126d-3a9e-416e-a137-ff9063e2348f",
+    "questionRevision": 4,
+    "lessonVersion": 3,
+    "partId": "main",
+    "lessonHash": "9e3b37ff85858126912d1cfe5cd2e94432d687a2d68db4740a6e65eca1bd755c"
+  },
+  "concepts": [
+    {
+      "id": "k0",
+      "label": "知识 1",
+      "explanation": "绝对值定义：|x|=x（x≥0），|x|=-x（x<0）"
+    },
+    {
+      "id": "k1",
+      "label": "知识 2",
+      "explanation": "解一元一次方程"
+    },
+    {
+      "id": "k2",
+      "label": "知识 3",
+      "explanation": "分类讨论并检验解是否落在所设范围内"
+    }
+  ],
+  "stages": [
+    {
+      "stageIndex": 0,
+      "template": "paper-q13-main-v1",
+      "title": "两个表达式分别计算",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2"
+      ],
+      "focus": "比较 |2a+1| 与 3|a|−2；图形帮助观察，分段推理负责求全部解。",
+      "explanation": "求 a 的值"
+    },
+    {
+      "stageIndex": 1,
+      "template": "paper-q13-main-v1",
+      "title": "右边非负先筛掉中间",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2"
+      ],
+      "focus": "比较 |2a+1| 与 3|a|−2；图形帮助观察，分段推理负责求全部解。",
+      "explanation": "先利用绝对值非负得到右边也必须非负，从而把 a 限制在 a≤-2/3 或 a≥2/3；在这两个区间内 2a+1 与 a 的符号都唯一，可直接去掉绝对值求解，最后代回原方程验根。"
+    },
+    {
+      "stageIndex": 2,
+      "template": "paper-q13-main-v1",
+      "title": "留下 a≤−2/3 或 a≥2/3",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2"
+      ],
+      "focus": "比较 |2a+1| 与 3|a|−2；图形帮助观察，分段推理负责求全部解。",
+      "explanation": "绝对值的最小值是 0，若右边为负数，左边非负数不可能等于负数。"
+    },
+    {
+      "stageIndex": 3,
+      "template": "paper-q13-main-v1",
+      "title": "左分支交于 a=−1",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2"
+      ],
+      "focus": "比较 |2a+1| 与 3|a|−2；图形帮助观察，分段推理负责求全部解。",
+      "explanation": "去绝对值必须根据该范围内 2a+1 和 a 的实际符号。"
+    },
+    {
+      "stageIndex": 4,
+      "template": "paper-q13-main-v1",
+      "title": "右分支交于 a=3",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2"
+      ],
+      "focus": "比较 |2a+1| 与 3|a|−2；图形帮助观察，分段推理负责求全部解。",
+      "explanation": "该区间内绝对值内部都为正，可直接去掉绝对值符号。"
+    },
+    {
+      "stageIndex": 5,
+      "template": "paper-q13-main-v1",
+      "title": "两根分别代回",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2"
+      ],
+      "focus": "比较 |2a+1| 与 3|a|−2；图形帮助观察，分段推理负责求全部解。",
+      "explanation": "分类讨论得到的候选值必须满足原方程，不能只看满足区间。"
+    },
+    {
+      "stageIndex": 6,
+      "template": "paper-q13-main-v1",
+      "title": "图形与代数互相核对",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2"
+      ],
+      "focus": "比较 |2a+1| 与 3|a|−2；图形帮助观察，分段推理负责求全部解。",
+      "explanation": "解含多个绝对值的方程时，先利用绝对值非负找必要条件缩小范围，再在确定符号的区间内去绝对值，每个候选解都要既落在讨论区间内又能代回原式成立。"
+    }
+  ]
+}

@@ -1,0 +1,82 @@
+{
+  "schemaVersion": 1,
+  "title": "从起点 7 按时间向左运动",
+  "subject": "math",
+  "author": "Codex",
+  "target": {
+    "questionId": "f09a0c95-3251-4809-8b54-9dd04fc7f14b",
+    "questionRevision": 4,
+    "lessonVersion": 2,
+    "partId": "2.1",
+    "lessonHash": "48618a94a9cafb49255ca9717451641f2bf90348368bfb3e88db8047665b0ba1"
+  },
+  "concepts": [
+    {
+      "id": "k0",
+      "label": "知识 1",
+      "explanation": "数轴上向左移动对应减法"
+    },
+    {
+      "id": "k1",
+      "label": "知识 2",
+      "explanation": "速度×时间=路程"
+    }
+  ],
+  "stages": [
+    {
+      "stageIndex": 0,
+      "template": "paper-q8-2-1-v1",
+      "title": "确定起点、方向和速度",
+      "conceptIds": [
+        "k0",
+        "k1"
+      ],
+      "focus": "用一秒一个单位的运动建立 b=7−t。",
+      "explanation": "求t=3时点B表示的数"
+    },
+    {
+      "stageIndex": 1,
+      "template": "paper-q8-2-1-v1",
+      "title": "位置等于起点减路程",
+      "conceptIds": [
+        "k0",
+        "k1"
+      ],
+      "focus": "用一秒一个单位的运动建立 b=7−t。",
+      "explanation": "用“起点-速度×时间”表示点B向左运动后的位置，再代入t=3。"
+    },
+    {
+      "stageIndex": 2,
+      "template": "paper-q8-2-1-v1",
+      "title": "写出 B 的运动式",
+      "conceptIds": [
+        "k0",
+        "k1"
+      ],
+      "focus": "用一秒一个单位的运动建立 b=7−t。",
+      "explanation": "向左移动使数变小，所以用减法；1个单位/秒乘t秒是移动距离。"
+    },
+    {
+      "stageIndex": 3,
+      "template": "paper-q8-2-1-v1",
+      "title": "播放到 t=3",
+      "conceptIds": [
+        "k0",
+        "k1"
+      ],
+      "focus": "用一秒一个单位的运动建立 b=7−t。",
+      "explanation": "求某一时刻的位置只需把时间代入位置表达式。"
+    },
+    {
+      "stageIndex": 4,
+      "template": "paper-q8-2-1-v1",
+      "title": "代回位置核验",
+      "conceptIds": [
+        "k0",
+        "k1"
+      ],
+      "focus": "用一秒一个单位的运动建立 b=7−t。",
+      "explanation": "数轴上的运动问题，先判断方向确定加减，再用“起点±速度×时间”列式。"
+    }
+  ]
+}

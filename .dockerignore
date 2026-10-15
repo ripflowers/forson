@@ -1,0 +1,11 @@
+.git
+.env
+.env.*
+.venv
+.remotion
+data
+web/node_modules
+web/.remotion
+**/__pycache__
+**/.pytest_cache
+**/*.log

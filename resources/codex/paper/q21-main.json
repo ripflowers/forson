@@ -1,0 +1,104 @@
+{
+  "schemaVersion": 1,
+  "title": "把 12 分配给每一项，再正负抵消",
+  "subject": "math",
+  "author": "Codex",
+  "target": {
+    "questionId": "d5b22996-a1fc-420b-ab56-e9bb12825b27",
+    "questionRevision": 4,
+    "lessonVersion": 2,
+    "partId": "main",
+    "lessonHash": "e490a2ec75469cf85254eaec580729c7776da05cdf5bdf767acbeadc3c1b2c4c"
+  },
+  "concepts": [
+    {
+      "id": "k0",
+      "label": "知识 1",
+      "explanation": "分数加减法需要先通分。"
+    },
+    {
+      "id": "k1",
+      "label": "知识 2",
+      "explanation": "乘法分配律：\\(a(b+c)=ab+ac\\)，对减法同样成立。"
+    },
+    {
+      "id": "k2",
+      "label": "知识 3",
+      "explanation": "有理数乘法中，先确定符号，再约分计算。"
+    }
+  ],
+  "stages": [
+    {
+      "stageIndex": 0,
+      "template": "paper-q21-main-v1",
+      "title": "先看每一项的符号",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2"
+      ],
+      "focus": "12 格为一个整体，分别取 1/6、1/4，再减去 1/2。",
+      "explanation": "计算 \\((\\frac{1}{6}+\\frac{1}{4}-\\frac{1}{2})\\times12\\) 的值。"
+    },
+    {
+      "stageIndex": 1,
+      "template": "paper-q21-main-v1",
+      "title": "12 要乘到括号内每一项",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2"
+      ],
+      "focus": "12 格为一个整体，分别取 1/6、1/4，再减去 1/2。",
+      "explanation": "因为括号外的 12 正好是 6、4、2 的公倍数，所以优先使用乘法分配律，把 12 分别乘进括号里的每一项。这样每一项都能直接约分成整数，避免先通分再相乘的繁琐计算。"
+    },
+    {
+      "stageIndex": 2,
+      "template": "paper-q21-main-v1",
+      "title": "三条分配箭头缺一不可",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2"
+      ],
+      "focus": "12 格为一个整体，分别取 1/6、1/4，再减去 1/2。",
+      "explanation": "乘法分配律可以用于括号内有加减法的式子；12 是三个分母的公倍数，展开后每一项都容易约分。"
+    },
+    {
+      "stageIndex": 3,
+      "template": "paper-q21-main-v1",
+      "title": "得到 +2、+3、−6",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2"
+      ],
+      "focus": "12 格为一个整体，分别取 1/6、1/4，再减去 1/2。",
+      "explanation": "每一项中，12 都与对应分母约分，得到整数，再按从左到右进行加减。"
+    },
+    {
+      "stageIndex": 4,
+      "template": "paper-q21-main-v1",
+      "title": "5 个正单位抵掉 5 个负单位",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2"
+      ],
+      "focus": "12 格为一个整体，分别取 1/6、1/4，再减去 1/2。",
+      "explanation": "按有理数加减法从左到右合并，注意最后一步是 \\(5-6\\)，结果为负数。"
+    },
+    {
+      "stageIndex": 5,
+      "template": "paper-q21-main-v1",
+      "title": "剩下 1 个负单位",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2"
+      ],
+      "focus": "12 格为一个整体，分别取 1/6、1/4，再减去 1/2。",
+      "explanation": "遇到分数加减乘混合计算时，如果括号外的乘数是各分母的公倍数，优先用乘法分配律展开，逐项约分能大幅简化计算。展开时每一项的符号必须保留，尤其是负数项。"
+    }
+  ]
+}

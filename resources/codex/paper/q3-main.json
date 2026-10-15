@@ -1,0 +1,104 @@
+{
+  "schemaVersion": 1,
+  "title": "和固定为 1，较大的数在哪里",
+  "subject": "math",
+  "author": "Codex",
+  "target": {
+    "questionId": "9ffe2a6f-e949-4d93-9db7-698f40f099ca",
+    "questionRevision": 4,
+    "lessonVersion": 3,
+    "partId": "main",
+    "lessonHash": "911a92e93c74aeb7c9c47a7e469f2acda9ce1d203e87ed47e0e7ddb4c2b4a547"
+  },
+  "concepts": [
+    {
+      "id": "k0",
+      "label": "知识 1",
+      "explanation": "数轴上右边点表示的数大于左边点表示的数。"
+    },
+    {
+      "id": "k1",
+      "label": "知识 2",
+      "explanation": "不等式两边同加一个数不改变方向。"
+    },
+    {
+      "id": "k2",
+      "label": "知识 3",
+      "explanation": "判断“一定是”时，一个满足条件的反例就能否定某选项。"
+    }
+  ],
+  "stages": [
+    {
+      "stageIndex": 0,
+      "template": "paper-q3-main-v1",
+      "title": "读懂 a 在 b 左边",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2"
+      ],
+      "focus": "让 a 与 b 联动，保持 a+b=1 和 a<b。",
+      "explanation": "判断四个式子中哪一个的值一定是正数。"
+    },
+    {
+      "stageIndex": 1,
+      "template": "paper-q3-main-v1",
+      "title": "用中点分开大小",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2"
+      ],
+      "focus": "让 a 与 b 联动，保持 a+b=1 和 a<b。",
+      "explanation": "把“A在B左”转化为a<b，再与a+b=1组合推出b的范围；只要证明b+1始终为正，并用反例说明其他式子不是一定正数。"
+    },
+    {
+      "stageIndex": 2,
+      "template": "paper-q3-main-v1",
+      "title": "次序给出 a<b",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2"
+      ],
+      "focus": "让 a 与 b 联动，保持 a+b=1 和 a<b。",
+      "explanation": "这一步把图形条件变成代数不等式，后续才能与a+b=1联立推理。"
+    },
+    {
+      "stageIndex": 3,
+      "template": "paper-q3-main-v1",
+      "title": "中点是 1/2，b 在它右边",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2"
+      ],
+      "focus": "让 a 与 b 联动，保持 a+b=1 和 a<b。",
+      "explanation": "把两个已知条件结合，能确定b的大小范围，从而判断含b的式子的符号。"
+    },
+    {
+      "stageIndex": 4,
+      "template": "paper-q3-main-v1",
+      "title": "检查四个式子的符号",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2"
+      ],
+      "focus": "让 a 与 b 联动，保持 a+b=1 和 a<b。",
+      "explanation": "对于“一定是正数”，只有C能被条件推出恒正；其余选项只要存在一个满足条件的反例，就不能保证一定是正数。"
+    },
+    {
+      "stageIndex": 5,
+      "template": "paper-q3-main-v1",
+      "title": "一定为正的是 b+1",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2"
+      ],
+      "focus": "让 a 与 b 联动，保持 a+b=1 和 a<b。",
+      "explanation": "遇到数轴位置与等式结合的选择题，先把“左、右”转化为不等式；再用不等式性质与等式推出变量范围；说明“一定成立”需要一般推导，否定“一定成立”只需一个反例。"
+    }
+  ]
+}

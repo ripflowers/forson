@@ -1,0 +1,128 @@
+{
+  "schemaVersion": 1,
+  "title": "先确定端点，再反推参数的两种可能",
+  "subject": "math",
+  "author": "Codex",
+  "target": {
+    "questionId": "4eb514f2-b858-4b44-b840-51de7495eab9",
+    "questionRevision": 6,
+    "lessonVersion": 8,
+    "partId": "2.3",
+    "lessonHash": "48c8469cb50b66df85801e109405033d4907bde193af301b8f9894063bb41427"
+  },
+  "concepts": [
+    {
+      "id": "k0",
+      "label": "知识 1",
+      "explanation": "绝对值的几何意义。"
+    },
+    {
+      "id": "k1",
+      "label": "知识 2",
+      "explanation": "两点距离的最小值等于两个固定点之间的距离。"
+    },
+    {
+      "id": "k2",
+      "label": "知识 3",
+      "explanation": "解绝对值方程 |u|=m（m>0），得到 u=m 或 u=-m。"
+    }
+  ],
+  "stages": [
+    {
+      "stageIndex": 0,
+      "template": "paper-q19-2-3-v1",
+      "title": "参数 a 控制的点其实是 −a",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2"
+      ],
+      "focus": "移动 −a，保持另一个端点为 3；目标是端点间距为 2。",
+      "explanation": "求参数a，使 |x+a|+|x-3| 的最小值为2。"
+    },
+    {
+      "stageIndex": 1,
+      "template": "paper-q19-2-3-v1",
+      "title": "最小值只由两端距离决定",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2"
+      ],
+      "focus": "移动 −a，保持另一个端点为 3；目标是端点间距为 2。",
+      "explanation": "把参数a放入固定点-a，利用“距离和最小值=两固定点距离”建立关于a的绝对值方程，再解出全部参数解。"
+    },
+    {
+      "stageIndex": 2,
+      "template": "paper-q19-2-3-v1",
+      "title": "先定位 −a 与 3",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2"
+      ],
+      "focus": "移动 −a，保持另一个端点为 3；目标是端点间距为 2。",
+      "explanation": "绝对值 $|x-c|$ 的几何意义是点x到点c的距离。"
+    },
+    {
+      "stageIndex": 3,
+      "template": "paper-q19-2-3-v1",
+      "title": "两点间距是 ｜a+3｜",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2"
+      ],
+      "focus": "移动 −a，保持另一个端点为 3；目标是端点间距为 2。",
+      "explanation": "两段距离之和的最小值，就是两点之间的线段长度；该长度等于两点坐标差的绝对值。"
+    },
+    {
+      "stageIndex": 4,
+      "template": "paper-q19-2-3-v1",
+      "title": "把间距设为 2",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2"
+      ],
+      "focus": "移动 −a，保持另一个端点为 3；目标是端点间距为 2。",
+      "explanation": "把已知最小值和两点距离表达式画等号，即可反求参数。"
+    },
+    {
+      "stageIndex": 5,
+      "template": "paper-q19-2-3-v1",
+      "title": "3 的两侧各找一个端点",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2"
+      ],
+      "focus": "移动 −a，保持另一个端点为 3；目标是端点间距为 2。",
+      "explanation": "绝对值方程有两个方向，必须两边都考虑，才能得到全部参数解。"
+    },
+    {
+      "stageIndex": 6,
+      "template": "paper-q19-2-3-v1",
+      "title": "从端点反推 a=−1 或 −5",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2"
+      ],
+      "focus": "移动 −a，保持另一个端点为 3；目标是端点间距为 2。",
+      "explanation": "回代确认最小值确实为2，防止绝对值变形时丢解。"
+    },
+    {
+      "stageIndex": 7,
+      "template": "paper-q19-2-3-v1",
+      "title": "分别检验最小值",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2"
+      ],
+      "focus": "移动 −a，保持另一个端点为 3；目标是端点间距为 2。",
+      "explanation": "当题目给出 $|x+a|+|x-3|$ 的最小值时，先把 $|x+a|$ 改写成 $|x-(-a)|$，再令两个固定点距离等于已知最小值，解绝对值方程即可。"
+    }
+  ]
+}

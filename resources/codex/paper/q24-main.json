@@ -1,0 +1,128 @@
+{
+  "schemaVersion": 1,
+  "title": "递推数字成对出现，验证后推到远处",
+  "subject": "math",
+  "author": "Codex",
+  "target": {
+    "questionId": "7e792cb1-f298-4795-af16-831d58b37ba5",
+    "questionRevision": 4,
+    "lessonVersion": 1,
+    "partId": "main",
+    "lessonHash": "40de7d69232bd6935a6f9925b13cc3c4067a22dc21dca361f2341c71036412dd"
+  },
+  "concepts": [
+    {
+      "id": "k0",
+      "label": "知识 1",
+      "explanation": "绝对值的定义：|x| 表示 x 到 0 的距离，结果非负"
+    },
+    {
+      "id": "k1",
+      "label": "知识 2",
+      "explanation": "求相反数"
+    },
+    {
+      "id": "k2",
+      "label": "知识 3",
+      "explanation": "根据递推式计算若干项，观察规律并用归纳验证"
+    }
+  ],
+  "stages": [
+    {
+      "stageIndex": 0,
+      "template": "paper-q24-main-v1",
+      "title": "先把递推规则写清",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2"
+      ],
+      "focus": "从前项得到后项，再把偶数项与后一奇数项配对。",
+      "explanation": "求 a_2027 的值，并从四个选项中选出正确答案"
+    },
+    {
+      "stageIndex": 1,
+      "template": "paper-q24-main-v1",
+      "title": "每一步：相加、绝对值、取相反数",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2"
+      ],
+      "focus": "从前项得到后项，再把偶数项与后一奇数项配对。",
+      "explanation": "先按递推式算出前几项，发现相邻两组值成对重复；再用数学归纳法证明 a_{2k}=a_{2k+1}=-k，从而避免直接算到 2027。"
+    },
+    {
+      "stageIndex": 2,
+      "template": "paper-q24-main-v1",
+      "title": "明确第 n 项用 n−1",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2"
+      ],
+      "focus": "从前项得到后项，再把偶数项与后一奇数项配对。",
+      "explanation": "只有先明确每一项如何由前一项得到，才能进行后续计算和找规律。"
+    },
+    {
+      "stageIndex": 3,
+      "template": "paper-q24-main-v1",
+      "title": "前几项按次序算出",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2"
+      ],
+      "focus": "从前项得到后项，再把偶数项与后一奇数项配对。",
+      "explanation": "算前几项能直观看出成对重复的规律，为归纳证明提供依据。"
+    },
+    {
+      "stageIndex": 4,
+      "template": "paper-q24-main-v1",
+      "title": "相邻两项合成一个编号组",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2"
+      ],
+      "focus": "从前项得到后项，再把偶数项与后一奇数项配对。",
+      "explanation": "把“成对重复”抽象成统一公式，才能快速定位到 a_2027。"
+    },
+    {
+      "stageIndex": 5,
+      "template": "paper-q24-main-v1",
+      "title": "下一组仍成立，规律得到证明",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2"
+      ],
+      "focus": "从前项得到后项，再把偶数项与后一奇数项配对。",
+      "explanation": "仅凭前几项举例不能证明所有情况，必须用归纳法说明规律能够一直传递下去。"
+    },
+    {
+      "stageIndex": 6,
+      "template": "paper-q24-main-v1",
+      "title": "2027 落在第 1013 组",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2"
+      ],
+      "focus": "从前项得到后项，再把偶数项与后一奇数项配对。",
+      "explanation": "把目标项的序号代入已经证明的规律，直接得到结果。"
+    },
+    {
+      "stageIndex": 7,
+      "template": "paper-q24-main-v1",
+      "title": "回代前一项核对",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2"
+      ],
+      "focus": "从前项得到后项，再把偶数项与后一奇数项配对。",
+      "explanation": "遇到递推式中的绝对值，先算前几项观察是否成对重复或呈现简单模式，再把序号拆成奇偶形式，并用归纳法证明规律。最后把目标项的序号代入规律求值。"
+    }
+  ]
+}

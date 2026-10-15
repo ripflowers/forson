@@ -1,0 +1,104 @@
+{
+  "schemaVersion": 1,
+  "title": "端点决定最大跨度，与选数个数不同",
+  "subject": "math",
+  "author": "Codex",
+  "target": {
+    "questionId": "c204ce4a-c180-4342-b0b5-6d1ddf20632f",
+    "questionRevision": 4,
+    "lessonVersion": 5,
+    "partId": "4",
+    "lessonHash": "8dfa847c5c3f5f450a96958f0213ee332f1c5b4337a025c4ee2e159d348a79f9"
+  },
+  "concepts": [
+    {
+      "id": "k0",
+      "label": "知识 1",
+      "explanation": "连续整数的表示"
+    },
+    {
+      "id": "k1",
+      "label": "知识 2",
+      "explanation": "最大最小值的性质"
+    }
+  ],
+  "stages": [
+    {
+      "stageIndex": 0,
+      "template": "paper-q18-4-v1",
+      "title": "m 个整数只有 m−1 个间隔",
+      "conceptIds": [
+        "k0",
+        "k1"
+      ],
+      "focus": "在 m 个连续整数中保留两个端点，再补足内部点。",
+      "explanation": "求在 m 个连续整数中选取 n 个不同整数组成数组时，距离系数 k 的最大值"
+    },
+    {
+      "stageIndex": 1,
+      "template": "paper-q18-4-v1",
+      "title": "先看最大可能跨度",
+      "conceptIds": [
+        "k0",
+        "k1"
+      ],
+      "focus": "在 m 个连续整数中保留两个端点，再补足内部点。",
+      "explanation": "距离系数取决于所选数中的最大值和最小值；为了使 k 最大，应选取原连续序列中的最小数和最大数，此时极差为原序列的跨度 m-1。"
+    },
+    {
+      "stageIndex": 2,
+      "template": "paper-q18-4-v1",
+      "title": "从 a 排到 a+m−1",
+      "conceptIds": [
+        "k0",
+        "k1"
+      ],
+      "focus": "在 m 个连续整数中保留两个端点，再补足内部点。",
+      "explanation": "连续整数可以写成首项为 a、公差为 1 的等差数列。"
+    },
+    {
+      "stageIndex": 3,
+      "template": "paper-q18-4-v1",
+      "title": "两端的差为 m−1",
+      "conceptIds": [
+        "k0",
+        "k1"
+      ],
+      "focus": "在 m 个连续整数中保留两个端点，再补足内部点。",
+      "explanation": "这是整个连续数组的跨度。"
+    },
+    {
+      "stageIndex": 4,
+      "template": "paper-q18-4-v1",
+      "title": "选两端即可达到上界",
+      "conceptIds": [
+        "k0",
+        "k1"
+      ],
+      "focus": "在 m 个连续整数中保留两个端点，再补足内部点。",
+      "explanation": "距离系数由所选数中的最大值和最小值决定，选到这两个端点时极差最大。"
+    },
+    {
+      "stageIndex": 5,
+      "template": "paper-q18-4-v1",
+      "title": "再多选内部点，跨度不变",
+      "conceptIds": [
+        "k0",
+        "k1"
+      ],
+      "focus": "在 m 个连续整数中保留两个端点，再补足内部点。",
+      "explanation": "这是对 k 的上界证明，确保没有更大的可能。"
+    },
+    {
+      "stageIndex": 6,
+      "template": "paper-q18-4-v1",
+      "title": "上界能达到才叫最大值",
+      "conceptIds": [
+        "k0",
+        "k1"
+      ],
+      "focus": "在 m 个连续整数中保留两个端点，再补足内部点。",
+      "explanation": "已知连续整数总数求距离系数最大值，关键是端点距离，即总数减一。"
+    }
+  ]
+}

@@ -1,0 +1,93 @@
+{
+  "schemaVersion": 1,
+  "title": "先看 b 的符号，再执行定义",
+  "subject": "math",
+  "author": "Codex",
+  "target": {
+    "questionId": "f09a0c95-3251-4809-8b54-9dd04fc7f14b",
+    "questionRevision": 4,
+    "lessonVersion": 2,
+    "partId": "1",
+    "lessonHash": "f926851342630dd1fa94778731cd364fc88c5c027ee4c9d8e4ab65fd6c9de2ea"
+  },
+  "concepts": [
+    {
+      "id": "k0",
+      "label": "知识 1",
+      "explanation": "数轴上向右移动是加对应长度"
+    },
+    {
+      "id": "k1",
+      "label": "知识 2",
+      "explanation": "比较数的大小"
+    }
+  ],
+  "stages": [
+    {
+      "stageIndex": 0,
+      "template": "paper-q8-1-v1",
+      "title": "读清关联点的定义",
+      "conceptIds": [
+        "k0",
+        "k1"
+      ],
+      "focus": "b≥0 时始终右移 2，移动量不是 b。",
+      "explanation": "在数轴上画出当b=4时点A关于点B的联动点P"
+    },
+    {
+      "stageIndex": 1,
+      "template": "paper-q8-1-v1",
+      "title": "先选择分支",
+      "conceptIds": [
+        "k0",
+        "k1"
+      ],
+      "focus": "b≥0 时始终右移 2，移动量不是 b。",
+      "explanation": "先根据b=4判断属于b≥0的情况，再按定义从A向右移2个单位，最后在数轴上标点。"
+    },
+    {
+      "stageIndex": 2,
+      "template": "paper-q8-1-v1",
+      "title": "b=4，进入非负分支",
+      "conceptIds": [
+        "k0",
+        "k1"
+      ],
+      "focus": "b≥0 时始终右移 2，移动量不是 b。",
+      "explanation": "联动点定义首先看b是否非负，这决定移动方向。"
+    },
+    {
+      "stageIndex": 3,
+      "template": "paper-q8-1-v1",
+      "title": "从 −1 右移 2",
+      "conceptIds": [
+        "k0",
+        "k1"
+      ],
+      "focus": "b≥0 时始终右移 2，移动量不是 b。",
+      "explanation": "数轴上向右移动就是加上移动的单位长度。"
+    },
+    {
+      "stageIndex": 4,
+      "template": "paper-q8-1-v1",
+      "title": "在数轴上标出 P=1",
+      "conceptIds": [
+        "k0",
+        "k1"
+      ],
+      "focus": "b≥0 时始终右移 2，移动量不是 b。",
+      "explanation": "联动点P就是移动后到达的位置。"
+    },
+    {
+      "stageIndex": 5,
+      "template": "paper-q8-1-v1",
+      "title": "检验移动量",
+      "conceptIds": [
+        "k0",
+        "k1"
+      ],
+      "focus": "b≥0 时始终右移 2，移动量不是 b。",
+      "explanation": "遇到新定义题，先判断定义中的条件属于哪一类，再按对应规则移动，最后检查位置。"
+    }
+  ]
+}

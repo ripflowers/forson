@@ -1,0 +1,152 @@
+{
+  "schemaVersion": 1,
+  "title": "加权距离的最低平台",
+  "subject": "math",
+  "author": "Codex",
+  "target": {
+    "questionId": "8052b0e2-5662-4f62-8964-0dc4de2387cb",
+    "questionRevision": 4,
+    "lessonVersion": 4,
+    "partId": "main",
+    "lessonHash": "f9dc1328587d76e273f8168aa31837f8bdf953ac5138dc396336710416c60c92"
+  },
+  "concepts": [
+    {
+      "id": "k0",
+      "label": "知识 1",
+      "explanation": "绝对值的定义与去绝对值方法"
+    },
+    {
+      "id": "k1",
+      "label": "知识 2",
+      "explanation": "一次函数斜率的正负与增减性"
+    },
+    {
+      "id": "k2",
+      "label": "知识 3",
+      "explanation": "三角不等式 $|m|+|n|\\ge |m-n|$"
+    }
+  ],
+  "stages": [
+    {
+      "stageIndex": 0,
+      "template": "paper-q16-main-v1",
+      "title": "三处零点决定分类",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2"
+      ],
+      "focus": "两条到 a 的距离都要计入；移动 x，观察最低值和取得区间。",
+      "explanation": "求所有使 $|x+1|+2|x-a|+|x-6|$ 的最小值为 $8$ 的有理数 $a$。"
+    },
+    {
+      "stageIndex": 1,
+      "template": "paper-q16-main-v1",
+      "title": "把 a 放到区间内或两侧",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2"
+      ],
+      "focus": "两条到 a 的距离都要计入；移动 x，观察最低值和取得区间。",
+      "explanation": "先按 $a$ 与固定零点 $-1$、$6$ 的位置关系分类讨论。零点顺序不同，去绝对值后的分段表达式不同。再根据每段斜率确定函数在哪里取最小值，令最小值为 $8$ 反解 $a$，最后检验解是否落在对应分类区间。"
+    },
+    {
+      "stageIndex": 2,
+      "template": "paper-q16-main-v1",
+      "title": "分别检查 a 的三种位置",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2"
+      ],
+      "focus": "两条到 a 的距离都要计入；移动 x，观察最低值和取得区间。",
+      "explanation": "去绝对值时必须知道 $a$ 与 $-1$、$6$ 的大小关系；不同顺序会得到不同的分段表达式。"
+    },
+    {
+      "stageIndex": 3,
+      "template": "paper-q16-main-v1",
+      "title": "a 在中间时最低只有 7",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2"
+      ],
+      "focus": "两条到 a 的距离都要计入；移动 x，观察最低值和取得区间。",
+      "explanation": "三角不等式给出全域下界，取 $x=a$ 又能达到这个下界，因此最小值恰好为 $7$，与题给最小值 $8$ 矛盾。"
+    },
+    {
+      "stageIndex": 4,
+      "template": "paper-q16-main-v1",
+      "title": "a 在左侧，分成四段",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2"
+      ],
+      "focus": "两条到 a 的距离都要计入；移动 x，观察最低值和取得区间。",
+      "explanation": "每个区间内绝对值内式子的符号固定，所以能化为一次函数或常数。"
+    },
+    {
+      "stageIndex": 5,
+      "template": "paper-q16-main-v1",
+      "title": "左侧平台最低为 5−2a",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2"
+      ],
+      "focus": "两条到 a 的距离都要计入；移动 x，观察最低值和取得区间。",
+      "explanation": "斜率为负时函数随 $x$ 增大而减小，斜率为正时增大；所以恰在第二段取最小值。"
+    },
+    {
+      "stageIndex": 6,
+      "template": "paper-q16-main-v1",
+      "title": "a 在右侧，分成四段",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2"
+      ],
+      "focus": "两条到 a 的距离都要计入；移动 x，观察最低值和取得区间。",
+      "explanation": "零点顺序改变，导致中间段是否为常数段的位置也改变，必须重新分段。"
+    },
+    {
+      "stageIndex": 7,
+      "template": "paper-q16-main-v1",
+      "title": "右侧平台最低为 2a−5",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2"
+      ],
+      "focus": "两条到 a 的距离都要计入；移动 x，观察最低值和取得区间。",
+      "explanation": "函数从左边下降到 $x=6$ 后进入常数段，之后才开始上升，所以最小值在常数段取得。"
+    },
+    {
+      "stageIndex": 8,
+      "template": "paper-q16-main-v1",
+      "title": "两侧分别得到 −1.5 与 6.5",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2"
+      ],
+      "focus": "两条到 a 的距离都要计入；移动 x，观察最低值和取得区间。",
+      "explanation": "分类讨论中的解必须回代到分类前提中验证，否则可能产生无效解。"
+    },
+    {
+      "stageIndex": 9,
+      "template": "paper-q16-main-v1",
+      "title": "最低值 8，不代表只有一个 x",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2"
+      ],
+      "focus": "两条到 a 的距离都要计入；移动 x，观察最低值和取得区间。",
+      "explanation": "带系数的绝对值函数求最值时，先按绝对值零点固定好分段区间，并注意参数 $a$ 会影响零点顺序。去绝对值后看每一段的一次函数斜率：负斜率段下降，正常数段为最小值，正斜率段上升。令最小值等于已知值反解参数后，务必检验参数是否落在当前分类范围内。"
+    }
+  ]
+}

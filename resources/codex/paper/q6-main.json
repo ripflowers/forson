@@ -1,0 +1,104 @@
+{
+  "schemaVersion": 1,
+  "title": "先分两侧，再一起向左移动",
+  "subject": "math",
+  "author": "Codex",
+  "target": {
+    "questionId": "02d80c3c-72b0-4e2b-96af-3676d073e98c",
+    "questionRevision": 4,
+    "lessonVersion": 2,
+    "partId": "main",
+    "lessonHash": "19311f47ce384134e4cdabbbe18c624a723bc16e1fcfd7507c43f084771cd010"
+  },
+  "concepts": [
+    {
+      "id": "k0",
+      "label": "知识 1",
+      "explanation": "数轴上到原点距离为3的点有两个：3和-3"
+    },
+    {
+      "id": "k1",
+      "label": "知识 2",
+      "explanation": "数轴上左侧的坐标比右侧小"
+    }
+  ],
+  "stages": [
+    {
+      "stageIndex": 0,
+      "template": "paper-q6-main-v1",
+      "title": "距离给出两个 A",
+      "conceptIds": [
+        "k0",
+        "k1"
+      ],
+      "focus": "到原点的距离为 3，对应两个位置。",
+      "explanation": "求点B表示的数"
+    },
+    {
+      "stageIndex": 1,
+      "template": "paper-q6-main-v1",
+      "title": "每条分支都执行左移",
+      "conceptIds": [
+        "k0",
+        "k1"
+      ],
+      "focus": "到原点的距离为 3，对应两个位置。",
+      "explanation": "先根据“到原点的距离等于3”确定A的两种可能坐标；再根据“B在A左侧且距离A点2个单位长度”，把B表示为A-2，分别代入A的两个值，得到全部B的可能值。"
+    },
+    {
+      "stageIndex": 2,
+      "template": "paper-q6-main-v1",
+      "title": "到原点距离 3，有两个 A",
+      "conceptIds": [
+        "k0",
+        "k1"
+      ],
+      "focus": "到原点的距离为 3，对应两个位置。",
+      "explanation": "数轴上点P到原点的距离等于|p|，因此|a|=3。"
+    },
+    {
+      "stageIndex": 3,
+      "template": "paper-q6-main-v1",
+      "title": "A=3 时，B=1",
+      "conceptIds": [
+        "k0",
+        "k1"
+      ],
+      "focus": "到原点的距离为 3，对应两个位置。",
+      "explanation": "左侧距离2个单位就是沿数轴向负方向移动2个单位。"
+    },
+    {
+      "stageIndex": 4,
+      "template": "paper-q6-main-v1",
+      "title": "A=−3 时，B=−5",
+      "conceptIds": [
+        "k0",
+        "k1"
+      ],
+      "focus": "到原点的距离为 3，对应两个位置。",
+      "explanation": "无论A是3还是-3，左侧都对应坐标减小2。"
+    },
+    {
+      "stageIndex": 5,
+      "template": "paper-q6-main-v1",
+      "title": "保留两个结果",
+      "conceptIds": [
+        "k0",
+        "k1"
+      ],
+      "focus": "到原点的距离为 3，对应两个位置。",
+      "explanation": "题中没有条件限定A在原点哪一侧，分类讨论得到的两种情况都必须保留。"
+    },
+    {
+      "stageIndex": 6,
+      "template": "paper-q6-main-v1",
+      "title": "把距离和方向分别检查",
+      "conceptIds": [
+        "k0",
+        "k1"
+      ],
+      "focus": "到原点的距离为 3，对应两个位置。",
+      "explanation": "遇到数轴上的距离条件，先由绝对值确定对称的位置，再按方向移动求另一点，最后逐一检验每个可能结果。"
+    }
+  ]
+}

@@ -56,7 +56,7 @@ export function restoreSession(remote:Session|null,draft:{session:Session;dirty:
   return{session:base,dirty:false,conflict:false,stale:Boolean(remote&&!valid)};
 }
 export function isCurrentReply(reply:AskResponse,session:Session,currentScene:Record<string,unknown>){
-  return reply.questionId===session.questionId&&reply.questionRevision===session.questionRevision&&reply.lessonVersion===session.lessonVersion&&reply.partId===session.partId&&reply.mode===session.mode&&reply.snapshot?.stepIndex===session.stepIndex&&['x','a','rows','left','right'].every(key=>reply.snapshot?.[key]===currentScene[key]);
+  return reply.questionId===session.questionId&&reply.questionRevision===session.questionRevision&&reply.lessonVersion===session.lessonVersion&&reply.partId===session.partId&&reply.mode===session.mode&&reply.snapshot?.stepIndex===session.stepIndex&&['x','a','rows','left','right','paperResource'].every(key=>reply.snapshot?.[key]===currentScene[key])&&JSON.stringify(Object.entries((reply.snapshot?.paperInputs??{}) as Record<string,unknown>).sort())===JSON.stringify(Object.entries((currentScene.paperInputs??{}) as Record<string,unknown>).sort());
 }
 export function normalizePartLabel(label:string):string|null{
   const value=label.replace(/\s/g,'').replace(/（/g,'(').replace(/）/g,')');

@@ -10,12 +10,11 @@ from uuid import UUID
 from pydantic import BaseModel, ConfigDict, Field, ValidationError, field_validator
 
 from .store import Conflict, Invalid, Missing, now, uid
+from .paper_resources import PAPER_TEMPLATES, matching_recipe
 
 
 TRIANGLE_TEMPLATES = ("triangle-grow", "triangle-compare", "triangle-sum", "triangle-expand",
                       "triangle-cancel", "triangle-verify", "triangle-recap")
-Template = Literal["triangle-grow", "triangle-compare", "triangle-sum", "triangle-expand",
-                   "triangle-cancel", "triangle-verify", "triangle-recap", "distance-model"]
 
 
 def canonical_hash(value):
@@ -50,7 +49,15 @@ class MotionConcept(DataModel):
 
 class MotionStage(DataModel):
     stageIndex: int = Field(ge=0, le=31)
-    template: Template
+    template: str = Field(min_length=1, max_length=80)
+
+    @field_validator("template")
+    @classmethod
+    def supported_template(cls, value):
+        if value not in (*TRIANGLE_TEMPLATES, "distance-model") and value not in PAPER_TEMPLATES:
+            raise ValueError("教学动画模板尚未审核支持")
+        return value
+
     title: str = Field(min_length=1, max_length=160)
     conceptIds: list[str] = Field(min_length=1, max_length=16)
     focus: str = Field(min_length=1, max_length=500)
@@ -97,6 +104,11 @@ def teaching_target(question, lesson, lesson_version, part_id, expected_revision
             raise ValueError()
     except (KeyError, TypeError, ValueError):
         raise Invalid("当前教案不完整或阶段数超出资源模板范围") from None
+    target = {"questionId": question["id"], "questionRevision": question["revision"],
+              "lessonVersion": lesson["lessonVersion"], "partId": part_id, "lessonHash": canonical_hash(part)}
+    recipe = matching_recipe(target)
+    if recipe:
+        return part, target, [recipe["key"]] * (len(part["steps"]) + 3)
     scene = part.get("scene") or {}
     if scene.get("kind") == "triangle-count":
         params = scene["params"]

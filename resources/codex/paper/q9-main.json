@@ -1,0 +1,116 @@
+{
+  "schemaVersion": 1,
+  "title": "和为零，把不等式变成符号约束",
+  "subject": "math",
+  "author": "Codex",
+  "target": {
+    "questionId": "b8cd65e1-a1da-4441-a87c-416cff01292a",
+    "questionRevision": 4,
+    "lessonVersion": 3,
+    "partId": "main",
+    "lessonHash": "8a3f73b544a5846a8871981e6c010dc1e0ee989a8bba60a1ebdce90c35f4640c"
+  },
+  "concepts": [
+    {
+      "id": "k0",
+      "label": "知识 1",
+      "explanation": "|c|≥0，且仅当 c=0 时取等号"
+    },
+    {
+      "id": "k1",
+      "label": "知识 2",
+      "explanation": "不等式传递性：若 x>y≥z，则 x>z"
+    },
+    {
+      "id": "k2",
+      "label": "知识 3",
+      "explanation": "等式变形：c=-a-b=-(a+b)"
+    }
+  ],
+  "stages": [
+    {
+      "stageIndex": 0,
+      "template": "paper-q9-main-v1",
+      "title": "把绝对值看成非负长度",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2"
+      ],
+      "focus": "在满足条件的范围内移动 a，看 c 是否一定小于 0。",
+      "explanation": "从条件判断 a、b、c 的符号以及 c 是否可为0"
+    },
+    {
+      "stageIndex": 1,
+      "template": "paper-q9-main-v1",
+      "title": "先确定 b，再确定 a",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2"
+      ],
+      "focus": "在满足条件的范围内移动 a，看 c 是否一定小于 0。",
+      "explanation": "先由 -b>|c|≥0 得到 -b>0，故 b<0；同时 a≥-b>0，故 a>0。再把 c 写成 -(a+b)，利用 a≥-b 得 a+b≥0，从而 c≤0。最后检查 c=0 是否真的可能，避免把 c≤0 误缩成 c<0。"
+    },
+    {
+      "stageIndex": 2,
+      "template": "paper-q9-main-v1",
+      "title": "−b>｜c｜，所以 b<0",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2"
+      ],
+      "focus": "在满足条件的范围内移动 a，看 c 是否一定小于 0。",
+      "explanation": "这一步把隐藏的绝对值条件转化为明确符号，是判断 b 的直接依据。"
+    },
+    {
+      "stageIndex": 3,
+      "template": "paper-q9-main-v1",
+      "title": "a≥−b，所以 a>0",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2"
+      ],
+      "focus": "在满足条件的范围内移动 a，看 c 是否一定小于 0。",
+      "explanation": "利用已知 -b>0 作为桥梁，直接得到 a 的正负。"
+    },
+    {
+      "stageIndex": 4,
+      "template": "paper-q9-main-v1",
+      "title": "c=−(a+b)，可能等于 0",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2"
+      ],
+      "focus": "在满足条件的范围内移动 a，看 c 是否一定小于 0。",
+      "explanation": "符号判断不能跳过等式条件；这里将 c 用 a、b 表示，再使用已知不等关系。"
+    },
+    {
+      "stageIndex": 5,
+      "template": "paper-q9-main-v1",
+      "title": "用边界值防止漏掉等号",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2"
+      ],
+      "focus": "在满足条件的范围内移动 a，看 c 是否一定小于 0。",
+      "explanation": "出现≥时等号边界必须单独验证，防止误判范围。"
+    },
+    {
+      "stageIndex": 6,
+      "template": "paper-q9-main-v1",
+      "title": "整理三个数的符号",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2"
+      ],
+      "focus": "在满足条件的范围内移动 a，看 c 是否一定小于 0。",
+      "explanation": "遇到不等式链时，先从绝对非负的项入手确定符号；遇到“≥”要区分严格与不严格，并单独验证等号能否取到；再用等式把第三个量表示出来，判断范围。"
+    }
+  ]
+}

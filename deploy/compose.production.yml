@@ -1,0 +1,60 @@
+name: forson
+services:
+  db:
+    image: postgres:17-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: forson
+      POSTGRES_DB: forson
+      POSTGRES_PASSWORD: ${DB_PASSWORD:?Set DB_PASSWORD in /opt/forson/.env}
+    volumes:
+      - /opt/forson/postgres:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U forson -d forson"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+  api:
+    image: forson-api:${RELEASE_SHA:?Set RELEASE_SHA}
+    build:
+      context: ..
+      dockerfile: deploy/Dockerfile
+      target: api
+      args:
+        APP_REVISION: ${RELEASE_SHA}
+    restart: unless-stopped
+    init: true
+    shm_size: 512mb
+    env_file: /opt/forson/.env
+    environment:
+      DATABASE_URL: postgresql://forson:${DB_PASSWORD}@db:5432/forson
+    volumes:
+      - /opt/forson/data:/app/data
+    depends_on:
+      db:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "python", "-c", "import json,urllib.request; s=json.load(urllib.request.urlopen('http://127.0.0.1:8787/api/status',timeout=4)); assert s['dbReady']"]
+      interval: 10s
+      timeout: 6s
+      start_period: 30s
+      retries: 12
+  web:
+    image: forson-web:${RELEASE_SHA}
+    build:
+      context: ..
+      dockerfile: deploy/Dockerfile
+      target: web
+      args:
+        APP_REVISION: ${RELEASE_SHA}
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:15178:8080"
+    depends_on:
+      api:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://127.0.0.1:8080/"]
+      interval: 10s
+      timeout: 5s
+      retries: 6

@@ -1,0 +1,126 @@
+{
+  "schemaVersion": 1,
+  "title": "比最短距离多 2，就向外多走 1",
+  "subject": "math",
+  "author": "Codex",
+  "target": {
+    "questionId": "4eb514f2-b858-4b44-b840-51de7495eab9",
+    "questionRevision": 6,
+    "lessonVersion": 8,
+    "partId": "2.2",
+    "lessonHash": "447e49370980906d1c395cf4fb6b7a61baa469ef85a5753626a54639bb74ae4b"
+  },
+  "concepts": [
+    {
+      "id": "k0",
+      "label": "知识 1",
+      "explanation": "绝对值的分段化简：根据x与固定点的大小关系去绝对值。"
+    },
+    {
+      "id": "k1",
+      "label": "知识 2",
+      "explanation": "解一元一次方程并检验解是否在对应范围内。"
+    }
+  ],
+  "stages": [
+    {
+      "stageIndex": 0,
+      "template": "paper-q19-2-2-v1",
+      "title": "先看固定端点与目标 8",
+      "conceptIds": [
+        "k0",
+        "k1"
+      ],
+      "focus": "分别考察左、中、右三段，找两个目标位置。",
+      "explanation": "求满足 |x-4|+|x+2|=8 的所有 x 值。"
+    },
+    {
+      "stageIndex": 1,
+      "template": "paper-q19-2-2-v1",
+      "title": "按左右和中间分三段",
+      "conceptIds": [
+        "k0",
+        "k1"
+      ],
+      "focus": "分别考察左、中、右三段，找两个目标位置。",
+      "explanation": "把两个绝对值看成距离，先分三段写出无绝对值的表达式；中段距离和恒为6，所以解只能发生在左右两段，分别解一元一次方程并验根。"
+    },
+    {
+      "stageIndex": 2,
+      "template": "paper-q19-2-2-v1",
+      "title": "基准距离为 6",
+      "conceptIds": [
+        "k0",
+        "k1"
+      ],
+      "focus": "分别考察左、中、右三段，找两个目标位置。",
+      "explanation": "$|x-4|$ 是 x 到 4 的距离，$|x+2|$ 是 x 到 -2 的距离；基准距离 6 是当 x 位于两点之间时距离和的最小可能值。"
+    },
+    {
+      "stageIndex": 3,
+      "template": "paper-q19-2-2-v1",
+      "title": "外侧会多出两倍路程",
+      "conceptIds": [
+        "k0",
+        "k1"
+      ],
+      "focus": "分别考察左、中、右三段，找两个目标位置。",
+      "explanation": "去绝对值必须根据每个绝对值内表达式的正负号决定；不同区间得到的线性表达式不同，这是解绝对值方程的基础。"
+    },
+    {
+      "stageIndex": 4,
+      "template": "paper-q19-2-2-v1",
+      "title": "中间整段只有 6，排除",
+      "conceptIds": [
+        "k0",
+        "k1"
+      ],
+      "focus": "分别考察左、中、右三段，找两个目标位置。",
+      "explanation": "中段表达式已经化简为常量6，而8不等于6，因此中段不可能有解。"
+    },
+    {
+      "stageIndex": 5,
+      "template": "paper-q19-2-2-v1",
+      "title": "左侧多走 1，x=−3",
+      "conceptIds": [
+        "k0",
+        "k1"
+      ],
+      "focus": "分别考察左、中、右三段，找两个目标位置。",
+      "explanation": "左段表达式的适用条件是 $x<-2$，所得根必须落回这个范围，不能只看方程结果。"
+    },
+    {
+      "stageIndex": 6,
+      "template": "paper-q19-2-2-v1",
+      "title": "右侧多走 1，x=5",
+      "conceptIds": [
+        "k0",
+        "k1"
+      ],
+      "focus": "分别考察左、中、右三段，找两个目标位置。",
+      "explanation": "同理，根必须落回 $x>4$ 的范围；不在范围的要舍去。"
+    },
+    {
+      "stageIndex": 7,
+      "template": "paper-q19-2-2-v1",
+      "title": "保留并检验两根",
+      "conceptIds": [
+        "k0",
+        "k1"
+      ],
+      "focus": "分别考察左、中、右三段，找两个目标位置。",
+      "explanation": "三段中只有左、右两段各产生一个满足范围限制的根；中段无解，因此最终是两个解。"
+    },
+    {
+      "stageIndex": 8,
+      "template": "paper-q19-2-2-v1",
+      "title": "两个分支都不能漏",
+      "conceptIds": [
+        "k0",
+        "k1"
+      ],
+      "focus": "分别考察左、中、右三段，找两个目标位置。",
+      "explanation": "已知距离和大于两固定点距离时，解一定在区间外；按左右两侧分段去绝对值，并检查解是否在对应范围内。"
+    }
+  ]
+}

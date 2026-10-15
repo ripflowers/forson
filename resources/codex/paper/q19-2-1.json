@@ -1,0 +1,93 @@
+{
+  "schemaVersion": 1,
+  "title": "换一对端点，找整段最小区间",
+  "subject": "math",
+  "author": "Codex",
+  "target": {
+    "questionId": "4eb514f2-b858-4b44-b840-51de7495eab9",
+    "questionRevision": 6,
+    "lessonVersion": 8,
+    "partId": "2.1",
+    "lessonHash": "08e1a84a0a9268061c8ee6442026f74f8570bbffc76e8f0e6e19f117171f94a7"
+  },
+  "concepts": [
+    {
+      "id": "k0",
+      "label": "知识 1",
+      "explanation": "绝对值的几何意义。"
+    },
+    {
+      "id": "k1",
+      "label": "知识 2",
+      "explanation": "两点距离公式：数轴上两点a、b的距离为|a-b|。"
+    }
+  ],
+  "stages": [
+    {
+      "stageIndex": 0,
+      "template": "paper-q19-2-1-v1",
+      "title": "找准 −2 与 4 两个固定点",
+      "conceptIds": [
+        "k0",
+        "k1"
+      ],
+      "focus": "先把 x+2 读成到 −2 的距离，防止固定点读反。",
+      "explanation": "求 |x-4|+|x+2| 的最小值。"
+    },
+    {
+      "stageIndex": 1,
+      "template": "paper-q19-2-1-v1",
+      "title": "在两端之间拼接距离",
+      "conceptIds": [
+        "k0",
+        "k1"
+      ],
+      "focus": "先把 x+2 读成到 −2 的距离，防止固定点读反。",
+      "explanation": "同第(1)问的数形结合思路：两个绝对值之和是点到两个固定点的距离和，最小值就是两个固定点之间的距离。"
+    },
+    {
+      "stageIndex": 2,
+      "template": "paper-q19-2-1-v1",
+      "title": "x+2 对应点 −2",
+      "conceptIds": [
+        "k0",
+        "k1"
+      ],
+      "focus": "先把 x+2 读成到 −2 的距离，防止固定点读反。",
+      "explanation": "绝对值 $|x-c|$ 的几何意义是点x到点c的距离。"
+    },
+    {
+      "stageIndex": 3,
+      "template": "paper-q19-2-1-v1",
+      "title": "端点距离是 6",
+      "conceptIds": [
+        "k0",
+        "k1"
+      ],
+      "focus": "先把 x+2 读成到 −2 的距离，防止固定点读反。",
+      "explanation": "当点x位于这两个固定点之间时，两段距离和正好等于这条线段的长度。"
+    },
+    {
+      "stageIndex": 4,
+      "template": "paper-q19-2-1-v1",
+      "title": "整个 [−2,4] 都最小",
+      "conceptIds": [
+        "k0",
+        "k1"
+      ],
+      "focus": "先把 x+2 读成到 −2 的距离，防止固定点读反。",
+      "explanation": "点x在线段[-2,4]上时，两段距离拼成完整线段；在线段外会额外多出一段。"
+    },
+    {
+      "stageIndex": 5,
+      "template": "paper-q19-2-1-v1",
+      "title": "外侧多出的长度是两倍",
+      "conceptIds": [
+        "k0",
+        "k1"
+      ],
+      "focus": "先把 x+2 读成到 −2 的距离，防止固定点读反。",
+      "explanation": "求 $|x-a|+|x-b|$ 的最小值时，先找两个固定点a、b，最小值就是 $|a-b|$。"
+    }
+  ]
+}

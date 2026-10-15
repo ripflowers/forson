@@ -1,0 +1,93 @@
+{
+  "schemaVersion": 1,
+  "title": "两段距离拼成固定线段",
+  "subject": "math",
+  "author": "Codex",
+  "target": {
+    "questionId": "4eb514f2-b858-4b44-b840-51de7495eab9",
+    "questionRevision": 6,
+    "lessonVersion": 8,
+    "partId": "1",
+    "lessonHash": "fc00be392663d39b7593a7d37de19400f9c048b76eb7464a6d04460df08479d6"
+  },
+  "concepts": [
+    {
+      "id": "k0",
+      "label": "知识 1",
+      "explanation": "绝对值的几何意义：|x-c| 表示数轴上点x与点c的距离。"
+    },
+    {
+      "id": "k1",
+      "label": "知识 2",
+      "explanation": "两点-1和2的距离为|2-(-1)|=3。"
+    }
+  ],
+  "stages": [
+    {
+      "stageIndex": 0,
+      "template": "paper-q19-1-v1",
+      "title": "把两个绝对值画成路径",
+      "conceptIds": [
+        "k0",
+        "k1"
+      ],
+      "focus": "P 在两端之间时，一增一减；走到外面会多走一个来回。",
+      "explanation": "求 |x+1|+|x-2| 的最小值。"
+    },
+    {
+      "stageIndex": 1,
+      "template": "paper-q19-1-v1",
+      "title": "总长度与端点间距比较",
+      "conceptIds": [
+        "k0",
+        "k1"
+      ],
+      "focus": "P 在两端之间时，一增一减；走到外面会多走一个来回。",
+      "explanation": "用数形结合，把两个绝对值之和看成点P到两个固定点的距离和；距离和的最小值等于两固定点之间的线段长度。"
+    },
+    {
+      "stageIndex": 2,
+      "template": "paper-q19-1-v1",
+      "title": "两段路径分别对应 PA、PB",
+      "conceptIds": [
+        "k0",
+        "k1"
+      ],
+      "focus": "P 在两端之间时，一增一减；走到外面会多走一个来回。",
+      "explanation": "绝对值内部相减的两数的差正好对应数轴上两点的距离。"
+    },
+    {
+      "stageIndex": 3,
+      "template": "paper-q19-1-v1",
+      "title": "在线段上没有折返",
+      "conceptIds": [
+        "k0",
+        "k1"
+      ],
+      "focus": "P 在两端之间时，一增一减；走到外面会多走一个来回。",
+      "explanation": "当点P夹在两固定点之间时，两段距离刚好拼成整条线段，不会多出一段；落在外侧时，会额外多出一段离最近端点的往返长度。"
+    },
+    {
+      "stageIndex": 4,
+      "template": "paper-q19-1-v1",
+      "title": "整个闭区间都取得最小值",
+      "conceptIds": [
+        "k0",
+        "k1"
+      ],
+      "focus": "P 在两端之间时，一增一减；走到外面会多走一个来回。",
+      "explanation": "线段AB上的任意点都能使距离和等于线段长度，外侧则严格变大。"
+    },
+    {
+      "stageIndex": 5,
+      "template": "paper-q19-1-v1",
+      "title": "端点也要检验",
+      "conceptIds": [
+        "k0",
+        "k1"
+      ],
+      "focus": "P 在两端之间时，一增一减；走到外面会多走一个来回。",
+      "explanation": "形如 $|x-a|+|x-b|$ 的式子，其最小值为 $|a-b|$，取得范围是 $a$ 与 $b$ 之间的闭区间。"
+    }
+  ]
+}

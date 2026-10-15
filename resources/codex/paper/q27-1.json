@@ -1,0 +1,116 @@
+{
+  "schemaVersion": 1,
+  "title": "每次减去一半，余下的继续化简",
+  "subject": "math",
+  "author": "Codex",
+  "target": {
+    "questionId": "67ba8153-af47-477c-a0a9-4f76300f37bc",
+    "questionRevision": 4,
+    "lessonVersion": 1,
+    "partId": "1",
+    "lessonHash": "d6d3f8d0f234a82a4af347e23a6e981e086303fdf5596abe61c4d4bf7d2b7ccf"
+  },
+  "concepts": [
+    {
+      "id": "k0",
+      "label": "知识 1",
+      "explanation": "同底数幂的意义：2^(m+1)=2×2^m"
+    },
+    {
+      "id": "k1",
+      "label": "知识 2",
+      "explanation": "乘法分配律：2×2^m-1×2^m=(2-1)×2^m=2^m"
+    },
+    {
+      "id": "k2",
+      "label": "知识 3",
+      "explanation": "连续减法从左到右计算"
+    }
+  ],
+  "stages": [
+    {
+      "stageIndex": 0,
+      "template": "paper-q27-1-v1",
+      "title": "最后的 2 就是 2¹",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2"
+      ],
+      "focus": "从最大幂往下，半块移走，另一半留下。",
+      "explanation": "计算2^7-2^6-2^5-2^4-2^3-2^2-2的值。"
+    },
+    {
+      "stageIndex": 1,
+      "template": "paper-q27-1-v1",
+      "title": "相邻幂差仍是较小的幂",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2"
+      ],
+      "focus": "从最大幂往下，半块移走，另一半留下。",
+      "explanation": "题中规律正好给出相邻两次幂相减会降一次幂，因此从最高指数开始逐项合并：每次用2^(k+1)-2^k=2^k，得到的结果继续与下一项相减，直至最后一项。"
+    },
+    {
+      "stageIndex": 2,
+      "template": "paper-q27-1-v1",
+      "title": "指数统一后顺次相减",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2"
+      ],
+      "focus": "从最大幂往下，半块移走，另一半留下。",
+      "explanation": "题中规律的左边都是2的相邻整数次幂，把常数2改写为指数形式后，规律可以一致使用。"
+    },
+    {
+      "stageIndex": 3,
+      "template": "paper-q27-1-v1",
+      "title": "128−64 留下 64",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2"
+      ],
+      "focus": "从最大幂往下，半块移走，另一半留下。",
+      "explanation": "2^7=2×2^6，所以2^7-2^6=(2-1)×2^6=1×2^6=2^6，不是把指数相减。"
+    },
+    {
+      "stageIndex": 4,
+      "template": "paper-q27-1-v1",
+      "title": "继续逐次减半",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2"
+      ],
+      "focus": "从最大幂往下，半块移走，另一半留下。",
+      "explanation": "每一步都是减法，且题目本身从左到右连续相减，符合运算顺序；只要相邻指数差1，就能使用探究中的结论。"
+    },
+    {
+      "stageIndex": 5,
+      "template": "paper-q27-1-v1",
+      "title": "最后留下 2",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2"
+      ],
+      "focus": "从最大幂往下，半块移走，另一半留下。",
+      "explanation": "所有中间高次幂都被逐步抵消，最后只剩最低次幂2^1。"
+    },
+    {
+      "stageIndex": 6,
+      "template": "paper-q27-1-v1",
+      "title": "用数值逐项核对",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2"
+      ],
+      "focus": "从最大幂往下，半块移走，另一半留下。",
+      "explanation": "遇到形如a^(n+1)-a^n的相邻幂差，先提公因式a^n，差值为(a-1)a^n；对a=2时正好得到a^n，可连续消项。"
+    }
+  ]
+}

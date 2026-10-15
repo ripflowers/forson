@@ -1,0 +1,116 @@
+{
+  "schemaVersion": 1,
+  "title": "等距离把 D 锁定在中点",
+  "subject": "math",
+  "author": "Codex",
+  "target": {
+    "questionId": "81777131-9a5f-4088-841f-b6fca18c3942",
+    "questionRevision": 5,
+    "lessonVersion": 2,
+    "partId": "main",
+    "lessonHash": "0cef60f5086d64b7036b0de17f1df4e2989b86aac02f4560ce3b14a428544a34"
+  },
+  "concepts": [
+    {
+      "id": "k0",
+      "label": "知识 1",
+      "explanation": "数轴上两点距离表示成绝对值"
+    },
+    {
+      "id": "k1",
+      "label": "知识 2",
+      "explanation": "绝对值相等的几何意义：到两点距离相等"
+    },
+    {
+      "id": "k2",
+      "label": "知识 3",
+      "explanation": "中点坐标公式：数轴上 a、b 中点为 (a+b)/2"
+    }
+  ],
+  "stages": [
+    {
+      "stageIndex": 0,
+      "template": "paper-q4-main-v1",
+      "title": "把绝对值读成距离",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2"
+      ],
+      "focus": "移动 C，两条相等的距离带同步伸缩。",
+      "explanation": "判断满足 |d-5|=|d-c| 的点 D 在四个区间中的位置"
+    },
+    {
+      "stageIndex": 1,
+      "template": "paper-q4-main-v1",
+      "title": "找到等距离的点",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2"
+      ],
+      "focus": "移动 C，两条相等的距离带同步伸缩。",
+      "explanation": "把绝对值条件理解为 D 到 B(5) 和到 C(c) 的距离相等；D 就是线段 BC 的垂直平分线与数轴的交点，即 B、C 所表示数的中点。再用 c 的范围确定 d 的范围，对照选项。"
+    },
+    {
+      "stageIndex": 2,
+      "template": "paper-q4-main-v1",
+      "title": "两边分别是 DB 与 DC",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2"
+      ],
+      "focus": "移动 C，两条相等的距离带同步伸缩。",
+      "explanation": "数轴上 |x-a| 表示 x 与 a 两点间距离，因此可以脱离符号直接看出几何关系。"
+    },
+    {
+      "stageIndex": 3,
+      "template": "paper-q4-main-v1",
+      "title": "D 位于 C 与 B 的中点",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2"
+      ],
+      "focus": "移动 C，两条相等的距离带同步伸缩。",
+      "explanation": "数轴上到两点距离相等的点唯一，就是这两点所表示数的平均数；也可通过解方程验证。"
+    },
+    {
+      "stageIndex": 4,
+      "template": "paper-q4-main-v1",
+      "title": "C 的范围限制 D 的范围",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2"
+      ],
+      "focus": "移动 C，两条相等的距离带同步伸缩。",
+      "explanation": "因为 c 严格在 -5 和 0 之间，不取端点，所以 d 也严格在 0 和 2.5 之间。"
+    },
+    {
+      "stageIndex": 5,
+      "template": "paper-q4-main-v1",
+      "title": "D 总在 O 与 B 之间",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2"
+      ],
+      "focus": "移动 C，两条相等的距离带同步伸缩。",
+      "explanation": "需要严格比较 d 与 0、5 的大小；d 大于 0 小于 5，且在 B 左侧，故在 O、B 之间。"
+    },
+    {
+      "stageIndex": 6,
+      "template": "paper-q4-main-v1",
+      "title": "用两段等长检验",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2"
+      ],
+      "focus": "移动 C，两条相等的距离带同步伸缩。",
+      "explanation": "遇到数轴上找满足到两点距离相等的点，先想中点：若到 a、b 距离相等，则点的坐标为 (a+b)/2；再结合已知字母范围判断该中点落在哪两个整数点之间。"
+    }
+  ]
+}

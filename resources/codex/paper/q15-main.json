@@ -1,0 +1,116 @@
+{
+  "schemaVersion": 1,
+  "title": "只有一个负数，三张符号卡逐一试",
+  "subject": "math",
+  "author": "Codex",
+  "target": {
+    "questionId": "b68c335a-c3a7-41a2-8541-360bc625aa69",
+    "questionRevision": 4,
+    "lessonVersion": 2,
+    "partId": "main",
+    "lessonHash": "e000e50a64f34f62f11052b27e45c40bf551b4aaf4f509052bddda8768644bf9"
+  },
+  "concepts": [
+    {
+      "id": "k0",
+      "label": "知识 1",
+      "explanation": "绝对值的非负性：|t|/t 当 t≠0 时等于 t 的符号"
+    },
+    {
+      "id": "k1",
+      "label": "知识 2",
+      "explanation": "两数和为零时互为相反数"
+    },
+    {
+      "id": "k2",
+      "label": "知识 3",
+      "explanation": "三个数乘积为负说明负号个数为奇数"
+    }
+  ],
+  "stages": [
+    {
+      "stageIndex": 0,
+      "template": "paper-q15-main-v1",
+      "title": "三个分式包含什么信息",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2"
+      ],
+      "focus": "先用和为零换掉绝对值内部，再枚举负数的位置。",
+      "explanation": "求x的最大值与最小值的乘积"
+    },
+    {
+      "stageIndex": 1,
+      "template": "paper-q15-main-v1",
+      "title": "和为零把三项改成符号",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2"
+      ],
+      "focus": "先用和为零换掉绝对值内部，再枚举负数的位置。",
+      "explanation": "先用a+b+c=0把绝对值内的和式化为单个字母的绝对值，再用|字母|/字母化为符号，接着由abc<0与和为零推出a,b,c只能两正一负，最后分三类讨论得到x的所有可能值，比较出最大和最小。"
+    },
+    {
+      "stageIndex": 2,
+      "template": "paper-q15-main-v1",
+      "title": "b+c=−a，循环替换",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2"
+      ],
+      "focus": "先用和为零换掉绝对值内部，再枚举负数的位置。",
+      "explanation": "化简后每个绝对值只关于一个字母，方便直接判断符号。"
+    },
+    {
+      "stageIndex": 3,
+      "template": "paper-q15-main-v1",
+      "title": "乘积负且和零：恰一个负数",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2"
+      ],
+      "focus": "先用和为零换掉绝对值内部，再枚举负数的位置。",
+      "explanation": "这一步排除三负情形，确保后续分类没有遗漏也没有多余。"
+    },
+    {
+      "stageIndex": 4,
+      "template": "paper-q15-main-v1",
+      "title": "分别让 a、b、c 为负",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2"
+      ],
+      "focus": "先用和为零换掉绝对值内部，再枚举负数的位置。",
+      "explanation": "两正一负共有三种不同位置，分类计算x的所有可能值。"
+    },
+    {
+      "stageIndex": 5,
+      "template": "paper-q15-main-v1",
+      "title": "从 −4、−2、6 找最值",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2"
+      ],
+      "focus": "先用和为零换掉绝对值内部，再枚举负数的位置。",
+      "explanation": "分类已穷尽所有符合条件的情形，因此最值可靠。"
+    },
+    {
+      "stageIndex": 6,
+      "template": "paper-q15-main-v1",
+      "title": "最大最小相乘为 −24",
+      "conceptIds": [
+        "k0",
+        "k1",
+        "k2"
+      ],
+      "focus": "先用和为零换掉绝对值内部，再枚举负数的位置。",
+      "explanation": "遇到含绝对值的分式且已知和为零、积为负时，先把绝对值内和式化为相反数，再把|t|/t写成符号函数；结合乘积符号与和为零确定正负个数，分类穷尽求最值。"
+    }
+  ]
+}
