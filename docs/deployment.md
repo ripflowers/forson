@@ -8,7 +8,9 @@
 
 `/opt/forson/.env` 保持 `600` 权限，配置 `DB_PASSWORD`、`AI_BASE_URL`、`AI_MODEL`、`AI_VISION_MODEL`、`AI_REVIEW_MODEL`、`DEEPSEEK_API_KEY`。数据库连接由 Compose 注入，不能继续使用本机 `127.0.0.1:55432` 地址。密码使用不含 URL 保留字符的随机值。凭据不进入仓库或构建包。
 
-当前产品为单家庭学习空间。Nginx 使用 `/opt/forson/access.htpasswd` 保护整个站点及 API；访问口令单独交付。数据库和应用容器没有公网端口。此服务器已有 Cloudflare Origin CA 通配符证书，覆盖 `*.ningxx.com`，有效期至 2041-03-30；虚拟主机使用服务器原有私有证书文件。Cloudflare 对此主机须使用 Full (strict)，HTTP 重定向到 HTTPS。
+当前产品为单家庭学习空间。Nginx 使用 `/opt/forson/access.htpasswd` 保护整个站点及 API；访问口令单独交付。数据库和应用容器没有公网端口。此服务器已有 Cloudflare Origin CA 通配符证书，覆盖 `*.ningxx.com`，有效期至 2041-03-30；虚拟主机使用服务器原有私有证书文件。配置兼容服务器现有的 Cloudflare HTTP 回源方式，以 `X-Forwarded-Proto` 判断访客协议：访客已使用 HTTPS 时直接代理，访客使用 HTTP 时才跳转 HTTPS。不能对所有 80 端口回源请求无条件跳转，否则会让公网 HTTPS 循环重定向。无需为此次发布修改 Cloudflare 加密模式或其他站点配置。
+
+主机虚拟主机配置独立于容器发布：更新 `deploy/forson.ningxx.com.conf` 后，只安装到 `/etc/nginx/conf.d/forson.conf`，保留备份，执行 `nginx -t` 通过后再 `nginx -s reload`。验证公网 HTTPS 未登录返回 `401`、登录后首页和 API 返回 `200`、HTTP 只跳转一次，并回归 `enstudy.ningxx.com`。
 
 ## CI 与发布流程
 
