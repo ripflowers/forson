@@ -23,7 +23,8 @@ COPY --chown=forson:forson scripts /app/scripts
 COPY --chown=forson:forson resources /app/resources
 COPY --chown=forson:forson web/src /app/web/src
 COPY --chown=forson:forson web/public /app/web/public
-RUN mkdir -p /app/data /app/web/node_modules/.remotion && chown -R forson:forson /app/data /app/web/node_modules/.remotion
+RUN mkdir -p /app/data /app/web/node_modules/.remotion /app/web/node_modules/.cache \
+ && chown -R forson:forson /app/data /app/web/node_modules/.remotion /app/web/node_modules/.cache
 USER forson
 RUN npx remotion browser ensure
 ENV PYTHONPATH=/app/server PYTHONUNBUFFERED=1

@@ -4,6 +4,8 @@ import {readFileSync,mkdirSync} from 'node:fs';
 import {resolve,dirname} from 'node:path';
 import {fileURLToPath,pathToFileURL} from 'node:url';
 const root=resolve(dirname(fileURLToPath(import.meta.url)),'..');
+// Match the production video worker's working directory and browser cache.
+process.chdir(resolve(root,'web'));
 const require=createRequire(resolve(root,'web/package.json'));
 const {bundle}=await import(pathToFileURL(require.resolve('@remotion/bundler')).href);
 const {selectComposition,renderStill}=await import(pathToFileURL(require.resolve('@remotion/renderer')).href);
