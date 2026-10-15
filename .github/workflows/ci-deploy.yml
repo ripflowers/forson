@@ -73,6 +73,7 @@ jobs:
           docker compose --env-file /opt/forson/.env -f deploy/compose.production.yml up -d --build --wait --wait-timeout 180
           curl --fail --silent http://127.0.0.1:15178/api/status | python -c 'import json,sys; assert json.load(sys.stdin)["dbReady"]'
           curl --fail --silent http://127.0.0.1:15178/ > /dev/null
+          docker compose --env-file /opt/forson/.env -f deploy/compose.production.yml exec -T api node scripts/smoke_render.mjs
       - name: Package exact commit and built frontend
         if: github.event_name != 'pull_request'
         run: |

@@ -10,12 +10,20 @@ fi
 release_sha=${BASH_REMATCH[1]}
 base=/opt/forson
 mkdir -p "$base/releases"
+# The Nginx worker must traverse the directory to read its access hash file.
+chmod 711 "$base"
 exec 9>"$base/deploy.lock"
 flock -w 900 9
 release="$base/releases/$release_sha"
 if [[ -e "$release" ]]; then
-    echo 'Release already exists; refusing to overwrite it.' >&2
-    exit 2
+    if [[ $(readlink -f "$base/current" 2>/dev/null || true) == "$release" ]]; then
+        cat > /dev/null
+        curl --fail --silent --max-time 10 http://127.0.0.1:15178/api/status | python3 -c 'import json,sys; assert json.load(sys.stdin)["dbReady"]'
+        echo "Already deployed $release_sha"
+        exit 0
+    fi
+    # Retry an interrupted/failed upload of this exact immutable commit.
+    rm -rf "$release"
 fi
 mkdir "$release"
 trap 'rm -f "$release/upload.tar.gz"' EXIT
