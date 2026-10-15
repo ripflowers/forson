@@ -15,7 +15,7 @@ RUN ln -s /usr/local/lib/node_modules/npm/bin/npm-cli.js /usr/local/bin/npm \
 WORKDIR /app
 COPY server/requirements.txt server/requirements.txt
 RUN pip install --no-cache-dir -r server/requirements.txt
-COPY web/package.json web/package-lock.json web/
+COPY --chown=forson:forson web/package.json web/package-lock.json web/
 WORKDIR /app/web
 RUN npm ci --omit=dev --no-audit --no-fund
 COPY --chown=forson:forson server /app/server
@@ -36,5 +36,5 @@ FROM nginx:1.28-alpine AS web
 ARG APP_REVISION=development
 LABEL org.opencontainers.image.revision=$APP_REVISION
 COPY deploy/web.conf /etc/nginx/conf.d/default.conf
-COPY web/dist /usr/share/nginx/html
+COPY --chown=nginx:nginx web/dist /usr/share/nginx/html
 EXPOSE 8080

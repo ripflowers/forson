@@ -8,11 +8,11 @@
 
 `/opt/forson/.env` 保持 `600` 权限，配置 `DB_PASSWORD`、`AI_BASE_URL`、`AI_MODEL`、`AI_VISION_MODEL`、`AI_REVIEW_MODEL`、`DEEPSEEK_API_KEY`。数据库连接由 Compose 注入，不能继续使用本机 `127.0.0.1:55432` 地址。密码使用不含 URL 保留字符的随机值。凭据不进入仓库或构建包。
 
-当前产品为单家庭学习空间。Nginx 使用 `/opt/forson/access.htpasswd` 保护整个站点及 API；访问口令单独交付。数据库和应用容器没有公网端口。配置 DNS 后使用现有证书工具签发此域名 HTTPS，ACME 验证目录为 `/var/www/letsencrypt`，HTTP 应重定向到 HTTPS。
+当前产品为单家庭学习空间。Nginx 使用 `/opt/forson/access.htpasswd` 保护整个站点及 API；访问口令单独交付。数据库和应用容器没有公网端口。此服务器已有 Cloudflare Origin CA 通配符证书，覆盖 `*.ningxx.com`，有效期至 2041-03-30；虚拟主机使用服务器原有私有证书文件。Cloudflare 对此主机须使用 Full (strict)，HTTP 重定向到 HTTPS。
 
 ## CI 与发布流程
 
-`.github/workflows/ci-deploy.yml` 对 PR 和 `main` 运行隔离数据库的后端测试、前端测试和生产构建。推送 `main` 还会构建并检查正式容器，再打包精确提交的源代码与前端产物。测试图片是 CI 中生成的隔离夹具，不作为线上样卷。
+`.github/workflows/ci-deploy.yml` 对 PR 和 `main` 运行隔离数据库的后端测试、前端测试和生产构建。推送 `main` 还会先打包精确提交，再以和服务器一致的 `027` umask 解包，构建并检查正式容器及真实 Remotion 画面；通过后发布该同一构建包。测试图片是 CI 中生成的隔离夹具，不作为线上样卷。
 
 配置以下 GitHub Secrets：`DEPLOY_HOST`、`DEPLOY_PORT`、`DEPLOY_USER`、`DEPLOY_KEY`、`DEPLOY_KNOWN_HOSTS`。CI 使用专用 SSH 密钥和经过可信渠道确认的服务器主机密钥。服务器在 `authorized_keys` 为这把专用公钥绑定：
 
@@ -28,4 +28,4 @@ restrict,command="/opt/forson/bin/deploy" ssh-ed25519 <专用公钥> forson-gith
 
 ## 当前发布记录
 
-首次配置时服务器默认 SSH 22 端口连接超时，域名 DNS 返回 NXDOMAIN。自动部署开关在连接及 DNS 完成前保持关闭。具体最终上线状态以本次任务最终回复和 Actions 运行结果为准。
+SSH 使用 root、22 端口，握手较慢，CI 等待上限为 180 秒。域名已通过 Cloudflare 代理解析。主机的 Nginx 虚拟站点、私有环境文件、访问口令和受限 CI 公钥已安装；本次任务通过 main 推送验证完整自动部署。最终运行证据见任务交付记录。

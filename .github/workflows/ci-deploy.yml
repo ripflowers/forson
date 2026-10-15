@@ -61,19 +61,6 @@ jobs:
           npm test --prefix web
           npm run build --prefix web
           bash -n deploy/deploy.sh
-      - name: Verify production containers
-        if: github.event_name != 'pull_request'
-        env:
-          RELEASE_SHA: ${{ github.sha }}
-        run: |
-          sudo install -d -m 755 /opt/forson
-          sudo install -d -o 10001 -g 10001 -m 700 /opt/forson/data
-          printf '%s\n' 'DB_PASSWORD=isolated-ci-password' 'DEEPSEEK_API_KEY=' | sudo tee /opt/forson/.env > /dev/null
-          sudo chmod 644 /opt/forson/.env
-          docker compose --env-file /opt/forson/.env -f deploy/compose.production.yml up -d --build --wait --wait-timeout 180
-          curl --fail --silent http://127.0.0.1:15178/api/status | python -c 'import json,sys; assert json.load(sys.stdin)["dbReady"]'
-          curl --fail --silent http://127.0.0.1:15178/ > /dev/null
-          docker compose --env-file /opt/forson/.env -f deploy/compose.production.yml exec -T api node scripts/smoke_render.mjs
       - name: Package exact commit and built frontend
         if: github.event_name != 'pull_request'
         run: |
@@ -83,6 +70,22 @@ jobs:
           cp -R web/dist "$release_dir/web/dist"
           git rev-parse HEAD > "$release_dir/REVISION"
           tar -czf "$RUNNER_TEMP/forson-release.tar.gz" -C "$release_dir" .
+      - name: Verify production containers
+        if: github.event_name != 'pull_request'
+        env:
+          RELEASE_SHA: ${{ github.sha }}
+        run: |
+          sudo install -d -m 755 /opt/forson
+          sudo install -d -o 10001 -g 10001 -m 700 /opt/forson/data
+          printf '%s\n' 'DB_PASSWORD=isolated-ci-password' 'DEEPSEEK_API_KEY=' | sudo tee /opt/forson/.env > /dev/null
+          sudo chmod 644 /opt/forson/.env
+          release_dir="$RUNNER_TEMP/forson-container-check"
+          mkdir -p "$release_dir"
+          (umask 027; tar -xzf "$RUNNER_TEMP/forson-release.tar.gz" -C "$release_dir" --no-same-owner --no-same-permissions)
+          docker compose --env-file /opt/forson/.env -f "$release_dir/deploy/compose.production.yml" up -d --build --wait --wait-timeout 180
+          curl --fail --silent http://127.0.0.1:15178/api/status | python -c 'import json,sys; assert json.load(sys.stdin)["dbReady"]'
+          curl --fail --silent http://127.0.0.1:15178/ > /dev/null
+          docker compose --env-file /opt/forson/.env -f "$release_dir/deploy/compose.production.yml" exec -T api node scripts/smoke_render.mjs
       - uses: actions/upload-artifact@v4
         if: github.event_name != 'pull_request'
         with:
@@ -90,6 +93,7 @@ jobs:
           path: ${{ runner.temp }}/forson-release.tar.gz
           retention-days: 7
   deploy:
+    timeout-minutes: 30
     needs: check
     if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request' && vars.DEPLOY_ENABLED == 'true'
     runs-on: ubuntu-24.04
@@ -111,5 +115,5 @@ jobs:
           printf '%s\n' "$DEPLOY_KEY" > ~/.ssh/forson_deploy
           chmod 600 ~/.ssh/forson_deploy
           printf '%s\n' "$DEPLOY_KNOWN_HOSTS" > ~/.ssh/known_hosts
-          ssh -i ~/.ssh/forson_deploy -p "${DEPLOY_PORT:-22}" -o BatchMode=yes -o StrictHostKeyChecking=yes \
+          ssh -i ~/.ssh/forson_deploy -p "${DEPLOY_PORT:-22}" -o BatchMode=yes -o StrictHostKeyChecking=yes -o ConnectTimeout=180 -o ServerAliveInterval=15 -o ServerAliveCountMax=8 \
             "$DEPLOY_USER@$DEPLOY_HOST" "deploy $GITHUB_SHA" < forson-release.tar.gz
