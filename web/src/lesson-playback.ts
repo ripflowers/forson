@@ -10,3 +10,8 @@ export function stageText(part:LessonPart,index:number){
 }
 export function stageDuration(part:LessonPart,index:number){return Math.max(index===0?16:18,Math.min(70,Math.ceil(stageText(part,index).length/5)+5));}
 export function teachingSnapshot(frame:Record<string,unknown>,stepIndex:number,sceneState:Record<string,unknown>):Record<string,unknown>{return {...frame,stepIndex,sceneState};}
+
+export type QuestionInterruption={identity:string;wasPlaying:boolean;frame:number};
+export function canResumeAfterAnswer(intent:QuestionInterruption|null,identity:string,checked:boolean,active:boolean,visible:boolean,mode:Session['mode'],saveState:string){
+  return Boolean(intent?.wasPlaying&&intent.identity===identity&&checked&&canPlayLesson(active,false,mode,visible,saveState));
+}

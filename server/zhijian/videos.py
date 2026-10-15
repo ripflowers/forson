@@ -21,6 +21,7 @@ class VideoRequest(BaseModel):
     lessonVersion: int = Field(strict=True, ge=1)
     partId: str = Field(min_length=1, max_length=80)
     pace: int = Field(default=1, strict=True, ge=1, le=2)
+    narrationId: str | None = Field(default=None, min_length=36, max_length=36)
 
 
 def write_json(path, value):
@@ -86,7 +87,7 @@ class VideoStore:
         except (OSError, ValueError, KeyError, TypeError):
             raise Missing("教学视频不存在或记录不完整") from None
 
-    def create(self, question, lesson, request: VideoRequest):
+    def create(self, question, lesson, request: VideoRequest, narration=None, clip_path=None):
         if question["revision"] != request.expectedRevision:
             raise Conflict("题面已有新版本，请重新加载后导出")
         if question["state"] != "confirmed" or question.get("missingFields"):
@@ -109,9 +110,37 @@ class VideoStore:
                 raise ValueError()
         except (KeyError, TypeError, ValueError):
             raise Invalid("老师讲解内容不完整，不能导出") from None
+        audio_files = []
+        if request.narrationId:
+            if not narration or not clip_path or narration.get("id") != request.narrationId or narration.get("state") != "ready":
+                raise Invalid("老师配音尚未完整准备，不能导出有声课堂")
+            part_hash = hashlib.sha256(json.dumps(part, ensure_ascii=False, sort_keys=True, separators=(",", ":")).encode()).hexdigest()
+            if any(narration.get(key) != value for key, value in {
+                "questionId": question["id"], "questionRevision": question["revision"],
+                "lessonVersion": lesson["lessonVersion"], "partId": request.partId, "lessonHash": part_hash,
+            }.items()):
+                raise Conflict("配音与当前课堂版本不一致，请重新准备老师声音")
+            if narration.get("askId") or len(narration.get("stageDurations", [])) != len(part["steps"]) + 3:
+                raise Invalid("答疑补讲不能代替完整课堂配音")
+            if not narration.get("clips"):
+                raise Invalid("配音缺少实际音频，不能导出有声课堂")
+            if {clip.get("stageIndex") for clip in narration["clips"]} != set(range(len(part["steps"]) + 3)):
+                raise Invalid("老师配音缺少教学阶段，不能导出完整有声课堂")
+            for clip in narration["clips"]:
+                source = clip_path(narration["id"], clip["id"])
+                raw = source.read_bytes()
+                if not raw or hashlib.sha256(raw).hexdigest() != clip.get("audioHash"):
+                    raise Invalid("老师音频文件已变化或为空，请重新准备配音")
+                audio_files.append((clip["id"], raw))
         snapshot = {"questionId": question["id"], "questionRevision": question["revision"],
                     "lessonVersion": lesson["lessonVersion"], "partId": request.partId,
                     "inputProps": {"part": part, "pace": request.pace, "canvasOnly": False, "reducedMotion": False}}
+        if request.narrationId:
+            voice = json.loads(json.dumps(narration, ensure_ascii=False))
+            for clip in voice["clips"]:
+                clip["audioPath"] = "_narration/" + voice["id"] + "/" + clip["id"] + ".mp3"
+                clip.pop("audioUrl", None)
+            snapshot["inputProps"]["narration"] = voice
         # Round-trip provides an immutable JSON snapshot rather than references to caller data.
         serialized = json.dumps(snapshot, ensure_ascii=False, sort_keys=True, separators=(",", ":"))
         snapshot = json.loads(serialized)
@@ -119,10 +148,17 @@ class VideoStore:
                  "questionId": question["id"], "questionRevision": question["revision"],
                  "lessonVersion": lesson["lessonVersion"], "partId": request.partId, "pace": request.pace,
                  "snapshotHash": hashlib.sha256(serialized.encode()).hexdigest(), "createdAt": now(),
-                 "width": 1280, "height": 720, "hasAudio": False}
+                 "width": 1280, "height": 720, "hasAudio": bool(request.narrationId), "narrationId": request.narrationId}
         with self.lock:
             folder = self.directory(video["id"])
             folder.mkdir(mode=0o700)
+            if audio_files:
+                audio_folder = folder / "audio"
+                audio_folder.mkdir(mode=0o700)
+                for clip_id, raw in audio_files:
+                    destination = audio_folder / (clip_id + ".mp3")
+                    destination.write_bytes(raw)
+                    destination.chmod(0o600)
             write_json(folder / "snapshot.json", snapshot)
             write_json(folder / "video.json", video)
         return self.get(video["id"])

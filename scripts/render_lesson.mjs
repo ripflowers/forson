@@ -1,9 +1,10 @@
 // Render only the application's reviewed, fixed Lesson composition.
+import {execFileSync} from 'node:child_process';
 import {createHash} from 'node:crypto';
 import {createRequire} from 'node:module';
 import {dirname, join, resolve, basename} from 'node:path';
 import {fileURLToPath, pathToFileURL} from 'node:url';
-import {readFileSync, writeFileSync, renameSync, readdirSync, existsSync, mkdirSync, chmodSync, realpathSync} from 'node:fs';
+import {readFileSync, writeFileSync, renameSync, readdirSync, existsSync, mkdirSync, chmodSync, realpathSync, copyFileSync} from 'node:fs';
 
 const projectRoot = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const webRoot = join(projectRoot, 'web');
@@ -22,11 +23,11 @@ const writeProgress = (value) => {
 let stage = 'bundling';
 try {
   const request = JSON.parse(readFileSync(join(directory, 'snapshot.json'), 'utf8'));
-  const {part, pace} = request.inputProps;
+  const {part, pace, narration} = request.inputProps;
   if (!part || !Array.isArray(part.steps) || !part.steps.length || ![1, 2].includes(pace)) {
     throw new Error('Reviewed lesson snapshot required');
   }
-  const inputProps = {part, pace, canvasOnly: false, reducedMotion: false};
+  const inputProps = {part, pace, narration: narration ?? null, canvasOnly: false, reducedMotion: false};
   const require = createRequire(join(webRoot, 'package.json'));
   const {bundle} = await import(pathToFileURL(require.resolve('@remotion/bundler')).href);
   const {ensureBrowser, selectComposition, renderMedia} = await import(pathToFileURL(require.resolve('@remotion/renderer')).href);
@@ -51,6 +52,16 @@ try {
       outDir: bundleDirectory, onProgress: (value) => writeProgress({stage, progress: value * 0.1})});
     writeFileSync(marker, 'complete', {mode: 0o600});
   }
+  if (narration) {
+    for (const clip of narration.clips) {
+      if (!/^clip-[0-9]{3}$/.test(clip.id) || !/^_narration\/[0-9a-f-]{36}\/clip-[0-9]{3}\.mp3$/.test(clip.audioPath)) throw new Error('Invalid approved audio path');
+      const source = join(directory, 'audio', clip.id + '.mp3');
+      if (createHash('sha256').update(readFileSync(source)).digest('hex') !== clip.audioHash) throw new Error('Approved audio changed');
+      const target = join(bundleDirectory, 'public', clip.audioPath);
+      mkdirSync(dirname(target), {recursive: true, mode: 0o700});
+      copyFileSync(source, target);chmodSync(target, 0o600);
+    }
+  }
   stage = 'browser';
   writeProgress({stage, progress: 10});
   await ensureBrowser();
@@ -61,11 +72,16 @@ try {
   stage = 'rendering';
   const output = join(directory, 'lesson.mp4');
   await renderMedia({composition, serveUrl: bundleDirectory, inputProps, outputLocation: output,
-    codec: 'h264', pixelFormat: 'yuv420p', crf: 20, concurrency: 2, muted: true,
-    onProgress: ({progress, stitchStage}) => {
-      stage = stitchStage === 'muxing' ? 'encoding' : 'rendering';
+    codec: 'h264', pixelFormat: 'yuv420p', crf: 20, concurrency: 2, muted: !narration, ...(narration ? {audioCodec: 'aac'} : {}),
+    onProgress: ({progress, stitchStage, renderedFrames}) => {
+      stage = stitchStage === 'muxing' || renderedFrames === composition.durationInFrames ? 'encoding' : 'rendering';
       writeProgress({stage, progress: 10 + progress * 89});
     }});
+  if (narration) {
+    stage = 'encoding';
+    const metadata = JSON.parse(execFileSync('ffprobe', ['-v', 'error', '-show_entries', 'stream=codec_type', '-of', 'json', output], {encoding: 'utf8'}));
+    if (!metadata.streams.some(stream => stream.codec_type === 'audio')) throw new Error('Narrated MP4 must contain real audio');
+  }
   chmodSync(output, 0o600);
   writeProgress({stage: 'ready', progress: 100, durationSeconds: composition.durationInFrames / composition.fps,
     frameCount: composition.durationInFrames, fps: composition.fps, width: composition.width, height: composition.height});

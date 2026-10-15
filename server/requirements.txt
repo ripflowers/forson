@@ -9,3 +9,4 @@ pypdfium2>=4.30,<6
 pytest>=8,<10
 pytest-asyncio>=0.24,<2
 anyio==4.9.0
+edge-tts==7.3.1

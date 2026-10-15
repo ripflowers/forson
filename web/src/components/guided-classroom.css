@@ -5,3 +5,5 @@
 .math-code-editor{padding:12px 0;margin-bottom:16px}.math-code-editor summary{color:var(--accent);cursor:pointer;font-size:14px;min-height:36px;padding:6px 0}.math-code-editor[open] .field{margin-top:10px}.lesson-route .formula{vertical-align:baseline}.guided-caption .slide-label>.formula{font-size:12px}
 
 .lesson-scrub{display:flex;align-items:center;gap:10px;width:100%;font-variant-numeric:tabular-nums}.lesson-scrub input{flex:1;min-width:30px;accent-color:var(--accent)}.guided-controls .lesson-time{flex-wrap:wrap}.lesson-time>span{width:100%}
+
+.voice-lesson-bar{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;border:1px solid var(--line);background:var(--soft);border-radius:14px;padding:16px 20px;margin:18px 0}.voice-lesson-bar>div{display:flex;align-items:center;gap:14px}.voice-lesson-bar>div>svg{color:var(--accent);flex:none}.voice-lesson-bar p{margin:5px 0 0}.voice-lesson-bar b{font-size:15px;font-weight:600}.voice-lesson-bar .notice{width:100%}

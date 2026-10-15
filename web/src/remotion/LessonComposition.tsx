@@ -1,16 +1,17 @@
-import {useEffect,useState} from 'react';
-import {AbsoluteFill,continueRender,delayRender,interpolate,useCurrentFrame,useVideoConfig} from 'remotion';
+import {useEffect,useLayoutEffect,useRef,useState} from 'react';
+import {AbsoluteFill,Html5Audio,Sequence,continueRender,delayRender,interpolate,staticFile,useCurrentFrame,useVideoConfig} from 'remotion';
 import type {LessonPart} from '../types';
+import type {Narration} from '../narration';
 import {TeachingVisual} from '../components/TeachingVisual';
 import {Formula} from '../components/Formula';
 import {MathText} from '../components/MathText';
 import {parseScene} from '../domain';
-import {lessonFrameState,lessonStageLabel,narrationCards} from './timeline';
+import {lessonFrameState,lessonStageLabel,narrationCards,timedNarrationClips} from './timeline';
 import 'katex/dist/katex.min.css';
 import '@fontsource-variable/noto-sans-sc';
 import './lesson-composition.css';
 
-export type LessonCompositionProps={part:LessonPart|null;pace?:number;reducedMotion?:boolean;canvasOnly?:boolean};
+export type LessonCompositionProps={part:LessonPart|null;pace?:number;reducedMotion?:boolean;canvasOnly?:boolean;narration?:Narration|null;muted?:boolean;onAudioError?:(error:Error)=>void;onCanvasHeight?:(height:number)=>void};
 
 // Split only outside formula delimiters, preserving every character of the source.
 export function chunkNarration(text:string,limit=170){
@@ -54,28 +55,57 @@ function VideoFormula({latex}:{latex:string}){
   return <div className="lc-video-formula">{latex.split(/,\s*\\quad\s*/).map((line,index)=><Formula key={index} latex={line}/>)}</div>;
 }
 
-export function LessonComposition({part,pace=1,reducedMotion=false,canvasOnly=false}:LessonCompositionProps){
+function FormulaLedger({steps}:{steps:LessonPart['steps']}){
+  return <section className="lc-formula-ledger" aria-label="已经形成的关键公式">{steps.slice(-2).map((item,i)=><div key={item.id}><span>{Math.max(0,steps.length-2)+i+1}</span><VideoFormula latex={item.formulaLatex}/></div>)}</section>;
+}
+
+export function LessonComposition({part,pace=1,reducedMotion=false,canvasOnly=false,narration=null,muted=false,onAudioError,onCanvasHeight}:LessonCompositionProps){
   const frame=useCurrentFrame(),{fps}=useVideoConfig();
+  const canvas=useRef<HTMLDivElement>(null);
   useLessonFonts(part);
+  // The interactive page follows its content height. Exported video stays at its fixed size.
+  useLayoutEffect(()=>{
+    const element=canvas.current;if(!canvasOnly||!onCanvasHeight||!element)return;
+    let measuredHeight=0;
+    const measure=()=>{
+      const style=getComputedStyle(element);
+      let height=parseFloat(style.paddingTop)+parseFloat(style.paddingBottom);
+      for(const child of element.children){
+        if(!(child instanceof HTMLElement))continue;
+        const childStyle=getComputedStyle(child);
+        if(childStyle.position==='absolute'||childStyle.display==='none')continue;
+        height+=child.offsetHeight+(parseFloat(childStyle.marginTop)||0)+(parseFloat(childStyle.marginBottom)||0);
+      }
+      const next=Math.ceil(height);
+      if(next!==measuredHeight){measuredHeight=next;onCanvasHeight(next);}
+    };
+    const observer=new ResizeObserver(measure);
+    observer.observe(element);
+    for(const child of element.children){const style=getComputedStyle(child);if(style.position!=='absolute'&&style.display!=='none')observer.observe(child);}
+    measure();return()=>observer.disconnect();
+  },[canvasOnly,onCanvasHeight,part]);
   if(!part)return <AbsoluteFill className="lesson-composition lc-empty"><span>知间 · 老师课堂</span><h1>等待经过校对的真实教案</h1><p>选择已生成的小问后，条件、板书与讲解会沿同一条时间线展开。</p></AbsoluteFill>;
-  const time=lessonFrameState(part,frame,fps,pace,reducedMotion),index=time.stageIndex;
-  const pages=narrationCards(part,index).flatMap(card=>chunkNarration(card.text,canvasOnly?170:80).map(text=>({...card,text})));
+  const voice=narration?.partId===part.partId?narration:null;
+  const time=lessonFrameState(part,frame,fps,pace,reducedMotion,voice),index=time.stageIndex;
+  const pages=narrationCards(part,index).flatMap(card=>chunkNarration(card.text,canvasOnly?170:voice?55:80).map(text=>({...card,text})));
   const weights=pages.map(card=>Math.max(35,card.text.length)),totalWeight=weights.reduce((sum,weight)=>sum+weight,0);
   let pageIndex=0,accumulated=weights[0];
   while(pageIndex<pages.length-1&&time.progress*totalWeight>=accumulated){pageIndex++;accumulated+=weights[pageIndex];}
   const page=pages[pageIndex];
   const hasVisual=Boolean(parseScene(part.scene)),shownFormulas=part.steps.slice(0,Math.max(0,index-1)).filter(item=>item.formulaLatex);
-  return <AbsoluteFill className={`lesson-composition ${canvasOnly?'lc-canvas-only':'lc-video'}`}>
+  return <AbsoluteFill ref={canvas} className={`lesson-composition ${canvasOnly?'lc-canvas-only':'lc-video'} ${voice?'lc-voiced':''}`}>
+    {voice&&timedNarrationClips(voice,fps,pace).map(({clip,from,durationInFrames})=><Sequence key={clip.id} name={`老师口述 · ${clip.id}`} from={from} durationInFrames={durationInFrames} premountFor={fps} style={{pointerEvents:'none'}}><Html5Audio src={clip.audioPath?staticFile(clip.audioPath):clip.audioUrl} data-narration-clip={clip.id} playbackRate={pace} preservePitch muted={muted} pauseWhenBuffering acceptableTimeShiftInSeconds={.12} onError={onAudioError}/></Sequence>)}
     <header className="lc-header"><div><span className="lc-brand">知间 · 老师课堂</span><h1><MathText text={lessonStageLabel(part,index)}/></h1></div><span className="lc-stage-number">{index+1} / {part.steps.length+3}</span></header>
     <div className="lc-knowledge" aria-label="本课会用到的知识点">{part.prerequisites.slice(0,3).map((concept,i)=><span key={i}><MathText text={concept}/></span>)}</div>
     <main className="lc-main">
       <section className="lc-board" style={{opacity:reducedMotion?1:interpolate(time.localFrame,[0,Math.max(1,fps*.25/pace)],[.88,1],{extrapolateRight:'clamp',extrapolateLeft:'clamp'})}}>
-        {hasVisual?<TeachingVisual part={part} stepIndex={index} localFrame={time.localFrame} fps={fps} pace={pace} reducedMotion={reducedMotion}/>:<GenericBoard part={part} index={index}/>}
+        {hasVisual?<TeachingVisual part={part} stepIndex={index} localFrame={time.visualFrame} fps={fps} pace={voice?1:pace} reducedMotion={reducedMotion}/>:<GenericBoard part={part} index={index}/>}
         {canvasOnly&&hasVisual&&shownFormulas.length>0&&<div className="lc-visual-proof" aria-label="已经形成的关键公式">{shownFormulas.map(item=><Formula key={item.id} latex={item.formulaLatex}/>)}</div>}
       </section>
-      {!canvasOnly&&<aside className="lc-narrator" aria-label="此刻的老师讲解"><span className="lc-narrator-label">{page.label}</span><div className="lc-narration-text"><MathText text={page.text}/></div><span className="lc-page-number">{pages.length>1?`讲解 ${pageIndex+1} / ${pages.length}`:'条件 → 方法 → 推理 → 检验'}</span><div className="lc-narration-progress"><span style={{width:`${time.progress*100}%`}}/></div></aside>}
+      {!canvasOnly&&<aside className="lc-narrator" aria-label="此刻的老师讲解"><span className="lc-narrator-label">{page.label}</span><div className="lc-narration-text"><MathText text={page.text}/></div>{voice&&hasVisual&&shownFormulas.length>0&&<FormulaLedger steps={shownFormulas}/>}<span className="lc-page-number">{pages.length>1?`讲解 ${pageIndex+1} / ${pages.length}`:'条件 → 方法 → 推理 → 检验'}</span><div className="lc-narration-progress"><span style={{width:`${time.progress*100}%`}}/></div></aside>}
     </main>
-    {!canvasOnly&&hasVisual&&shownFormulas.length>0&&<section className="lc-formula-ledger" aria-label="已经形成的关键公式">{shownFormulas.slice(-2).map((item,i)=><div key={item.id}><span>{Math.max(0,shownFormulas.length-2)+i+1}</span><VideoFormula latex={item.formulaLatex}/></div>)}</section>}
+    {!canvasOnly&&!voice&&hasVisual&&shownFormulas.length>0&&<FormulaLedger steps={shownFormulas}/>}
+    {voice&&<div className={`lc-spoken-caption ${time.speaking?'speaking':'observing'}`} aria-label="同步口述字幕" data-narration-id={voice.id} data-clip-id={time.clipId??''} data-speaking={time.speaking}><span>{time.speaking?(muted?'老师口述 · 已静音':'老师口述 · 与板书同步'):'观察板书 · 稍作停留'}</span><p>{time.spokenText??'可以把这一步的图像和算式对照起来。'}</p></div>}
     <footer className="lc-footer"><span>每一步有理由，每个结论可检验</span><span>{Math.floor(frame/fps)} 秒 / {Math.ceil(time.durationInFrames/fps)} 秒</span></footer>
   </AbsoluteFill>;
 }

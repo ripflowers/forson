@@ -4,7 +4,7 @@ from contextlib import asynccontextmanager
 from pathlib import Path
 
 import psycopg
-from fastapi import FastAPI, File, Form, HTTPException, Request, UploadFile
+from fastapi import FastAPI, File, Form, HTTPException, Query, Request, UploadFile
 from fastapi.exceptions import RequestValidationError
 from fastapi.responses import FileResponse, JSONResponse
 
@@ -12,6 +12,7 @@ from .config import ROOT, Settings
 from .jobs import DATA_SYSTEM, JobRunner
 from .media import MAX_BYTES, save_uploads
 from .models import AskRequest, EventRequest, LessonRequest, PatchQuestion, SessionRequest
+from .narration import NarrationRequest, NarrationStore, NarrationUnavailable, content_hash, current_part
 from .provider import AIError, AIUnavailable, Provider
 from .rules import check_question
 from .store import Conflict, Invalid, Missing, Store, uid
@@ -98,6 +99,7 @@ def create_app(*, start_worker=True):
     runner = JobRunner(store, provider, settings)
     video_store = VideoStore(settings.data_dir)
     video_runner = VideoRunner(video_store, ROOT)
+    narration_store = NarrationStore(settings.data_dir)
 
     @asynccontextmanager
     async def lifespan(app):
@@ -113,6 +115,7 @@ def create_app(*, start_worker=True):
             video_runner.start()
         else:
             video_store.initialize()
+        narration_store.initialize()
         yield
         await video_runner.stop()
         await runner.stop()
@@ -124,6 +127,7 @@ def create_app(*, start_worker=True):
     app.state.store = store
     app.state.video_store = video_store
     app.state.video_runner = video_runner
+    app.state.narration = narration_store
 
     @app.exception_handler(Conflict)
     async def conflict_handler(request, exc):
@@ -144,6 +148,10 @@ def create_app(*, start_worker=True):
     @app.exception_handler(AIError)
     async def ai_error_handler(request, exc):
         return JSONResponse(status_code=502, content={"detail": str(exc)})
+
+    @app.exception_handler(NarrationUnavailable)
+    async def narration_unavailable_handler(request, exc):
+        return JSONResponse(status_code=503, content={"detail": str(exc)})
 
     @app.exception_handler(psycopg.Error)
     async def database_handler(request, exc):
@@ -246,7 +254,9 @@ def create_app(*, start_worker=True):
 
     @app.post("/api/questions/{question_id}/videos")
     def export_video(question_id: str, request: VideoRequest):
-        return {"video": video_store.create(store.question(question_id), store.lesson(question_id), request)}
+        narration = narration_store.get(request.narrationId) if request.narrationId else None
+        return {"video": video_store.create(store.question(question_id), store.lesson(question_id), request,
+                                           narration, narration_store.clip_path)}
 
     @app.get("/api/videos/{video_id}")
     def video(video_id: str):
@@ -328,14 +338,18 @@ def create_app(*, start_worker=True):
         checked = False
         evidence = {"stepId": request.stepId, "snapshot": request.snapshot, "computedSceneFacts": facts, "review": None, **position}
         try:
-            raw = await provider.json(prompt="回答这个孩子的追问，绑定给定现场，不改变原题条件。围绕currentTeachingSlide与currentStep标明的当前片段解释；currentStep=null表示读题、选思路或收束，不能当成第一条计算步骤。图中的数值必须遵守computedSceneFacts；改数字举例明确说是另一例。不确定或缺条件就说明并给补全动作，不能猜。老师先接住问题，再解释关键原因，用初中表达。输出JSON {answer:完整答复,claims:[{id:唯一编号,statement:需要核验的数学断言}]}。\n课堂上下文：" + json.dumps(context, ensure_ascii=False), model=settings.model, system=DATA_SYSTEM, evidence_dir=evidence_dir, name="answer", interactive=True)
+            raw = await asyncio.wait_for(provider.json(prompt="回答这个孩子的追问，绑定给定现场，不改变原题条件。围绕currentTeachingSlide与currentStep标明的当前片段解释；currentStep=null表示读题、选思路或收束，不能当成第一条计算步骤。图中的数值必须遵守computedSceneFacts；改数字举例明确说是另一例。不确定或缺条件就说明并给补全动作，不能猜。老师先接住问题，再解释关键原因，用初中表达。输出JSON {answer:完整答复,claims:[{id:唯一编号,statement:需要核验的数学断言}]}。\n课堂上下文：" + json.dumps(context, ensure_ascii=False), model=settings.model, system=DATA_SYSTEM, evidence_dir=evidence_dir, name="answer", interactive=True), timeout=45)
             answer = raw.get("answer", "")
             claims = raw.get("claims", [])
-            review = await provider.json(prompt="作为独立审核员，逐断言核验下面追问答复是否符合题设、当前现场计算和初中数学。不得自己补缺失理由后称原回答正确。输出JSON {reasoningCorrect:boolean,claims:[{id:对应原id,supported:boolean,evidence:具体理由,issue:问题或空字符串}]}。\n上下文：" + json.dumps(context, ensure_ascii=False) + "\n待审答复：" + json.dumps(raw, ensure_ascii=False), model=settings.review_model, system=DATA_SYSTEM, evidence_dir=evidence_dir, name="answer-review", interactive=True)
+            review = await asyncio.wait_for(provider.json(prompt="作为独立审核员，逐断言核验下面追问答复是否符合题设、当前现场计算和初中数学。不得自己补缺失理由后称原回答正确。输出JSON {reasoningCorrect:boolean,claims:[{id:对应原id,supported:boolean,evidence:具体理由,issue:问题或空字符串}]}。\n上下文：" + json.dumps(context, ensure_ascii=False) + "\n待审答复：" + json.dumps(raw, ensure_ascii=False), model=settings.review_model, system=DATA_SYSTEM, evidence_dir=evidence_dir, name="answer-review", interactive=True), timeout=45)
             items = review.get("claims", [])
             ids = [claim.get("id") for claim in claims]
             checked = bool(answer) and bool(claims) and len(ids) == len(set(ids)) and review.get("reasoningCorrect") is True and len(items) == len(claims) and {item.get("id") for item in items} == set(ids) and all(item.get("supported") is True and item.get("evidence") and not item.get("issue") for item in items)
             evidence["review"] = review
+        except asyncio.TimeoutError:
+            answer = "追问已保留，AI 响应超时；主课保持暂停，暂未产生已核验答复，请稍后重试答疑。"
+            evidence["responseTimeout"] = True
+            evidence["timeoutSeconds"] = 45
         except (AIError, AIUnavailable) as exc:
             answer = "追问已保留，回答暂未完成核验：" + str(exc)
         # Do not publish an old response after the question changed during its two AI calls.
@@ -349,6 +363,42 @@ def create_app(*, start_worker=True):
     @app.get("/api/questions/{question_id}/asks")
     def asks(question_id: str):
         return {"items": store.asks(question_id)}
+
+    def verify_narration_current(question_id, request, manifest):
+        latest = store.question(question_id)
+        lesson = store.lesson(question_id)
+        part = current_part(latest, lesson, request)
+        if content_hash(part) != manifest["lessonHash"]:
+            raise Conflict("配音准备期间教案内容已变化，请重新准备当前课堂配音")
+
+    @app.get("/api/questions/{question_id}/narration")
+    def current_narration(question_id: str, lessonVersion: int = Query(ge=1),
+                          partId: str = Query(default="main", min_length=1, max_length=80)):
+        question = store.question(question_id)
+        request = NarrationRequest(expectedRevision=question["revision"], lessonVersion=lessonVersion, partId=partId)
+        return {"narration": narration_store.get_current(question, store.lesson(question_id), request)}
+
+    @app.post("/api/questions/{question_id}/narration")
+    async def prepare_narration(question_id: str, request: NarrationRequest):
+        manifest = await narration_store.prepare(store.question(question_id), store.lesson(question_id), request)
+        verify_narration_current(question_id, request, manifest)
+        return {"narration": manifest}
+
+    @app.get("/api/narration/{narration_id}/clips/{clip_id}.mp3")
+    def narration_clip(narration_id: str, clip_id: str):
+        return FileResponse(narration_store.clip_path(narration_id, clip_id), media_type="audio/mpeg",
+                            headers={"Cache-Control": "private, no-store"})
+
+    @app.post("/api/questions/{question_id}/asks/{ask_id}/narration")
+    async def prepare_answer_narration(question_id: str, ask_id: str, request: NarrationRequest):
+        manifest = await narration_store.prepare_answer(store.question(question_id), store.lesson(question_id), request,
+                                                        store.asks(question_id), ask_id)
+        verify_narration_current(question_id, request, manifest)
+        latest_ask = next((item for item in store.asks(question_id) if item.get("id") == ask_id), None)
+        if (not latest_ask or latest_ask.get("status") != "checked"
+                or content_hash(latest_ask.get("answer")) != manifest["answerHash"]):
+            raise Conflict("配音准备期间答复内容或核验状态已变化，请重新加载答复")
+        return {"narration": manifest}
 
     return app
 
